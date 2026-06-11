@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check, Phone, MessageCircle, Calendar } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
-import { COUNTRY_PROGRAMS, findProgram, SITE, type CountryGroup, type Program } from "@/lib/site";
+import { findProgram, SITE, type CountryGroup, type Program } from "@/lib/site";
 
 type LoaderData = { country: CountryGroup; program: Program };
 
