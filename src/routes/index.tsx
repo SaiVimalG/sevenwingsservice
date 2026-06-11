@@ -7,12 +7,22 @@ import { Reveal, RevealWords } from "@/components/motion/Reveal";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Marquee } from "@/components/motion/Marquee";
 import { CountUp } from "@/components/motion/CountUp";
-import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, NEWS, COUNTRIES, SITE } from "@/lib/site";
+import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE, type BlogPost } from "@/lib/site";
+import { listDbPosts } from "@/lib/blog.functions";
+import { mergePosts } from "@/lib/blog-merge";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
 import germanyImg from "@/assets/germany.jpg";
 
 export const Route = createFileRoute("/")({
+  loader: async () => {
+    try {
+      const db = await listDbPosts();
+      return { posts: mergePosts(db) };
+    } catch {
+      return { posts: mergePosts([]) };
+    }
+  },
   head: () => ({
     meta: [
       { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
@@ -28,6 +38,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { posts } = Route.useLoaderData();
   return (
     <PageShell>
       <Hero />
@@ -40,7 +51,7 @@ function Home() {
       <Counter />
       <Awards />
       <BrandMarquee />
-      <NewsTeaser />
+      <NewsTeaser posts={posts} />
       <CTABanner />
     </PageShell>
   );
@@ -453,7 +464,7 @@ function BrandMarquee() {
 }
 
 /* ───────── News teaser ───────── */
-function NewsTeaser() {
+function NewsTeaser({ posts }: { posts: BlogPost[] }) {
   return (
     <section className="bg-cream py-24">
       <div className="mx-auto max-w-7xl px-6">
@@ -469,7 +480,7 @@ function NewsTeaser() {
           </Reveal>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
-          {NEWS.slice(0, 3).map((n, i) => (
+          {posts.slice(0, 3).map((n, i) => (
             <Reveal key={n.slug} delay={i * 0.08}>
               <Link to="/blog/$slug" params={{ slug: n.slug }} className="group block overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:shadow-gold">
                 <div className="relative aspect-[16/10] overflow-hidden">
