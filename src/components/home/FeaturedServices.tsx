@@ -12,59 +12,63 @@ export function FeaturedServices() {
   return (
     <section
       id="featured-services"
-      className="relative overflow-hidden py-24 text-white"
-      style={{ background: "linear-gradient(135deg, #061a52 0%, #0a2470 55%, #061a52 100%)" }}
+      className="relative overflow-hidden bg-cream py-24"
     >
-      {/* glow accents */}
-      <div aria-hidden className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-sky/20 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute -right-40 bottom-10 h-[28rem] w-[28rem] rounded-full bg-gold/15 blur-3xl" />
-
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6">
-        {/* heading */}
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <p className="inline-block rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-soft backdrop-blur sm:text-xs">
-              Immigration Services for Indians
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="mt-5 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-              Pathways chosen by <span className="text-gradient-gold">Indian professionals</span>, students &amp; families.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base">
-              Explore the most popular visa and immigration pathways. Switch between countries to see the programs we deliver end-to-end from our Hyderabad office.
-            </p>
-          </Reveal>
-        </div>
+        {/* heading card — white with border to stand apart from the navy detail panel below */}
+        <div className="rounded-3xl border border-navy/15 bg-white p-8 shadow-elegant sm:p-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <p className="inline-block rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-deep sm:text-xs">
+                Immigration Services for Indians
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-navy-deep sm:text-4xl md:text-5xl">
+                Pathways chosen by <span className="text-gradient-gold">Indian professionals</span>, students &amp; families.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Explore the most popular visa and immigration pathways. Switch between countries to see the programs we deliver end-to-end from our Hyderabad office.
+              </p>
+            </Reveal>
+          </div>
 
-        {/* country tabs — horizontal scroll on mobile */}
-        <div className="relative mt-12">
-          <div
-            className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center sm:gap-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {COUNTRY_PROGRAMS.map((c) => {
-              const isActive = c.key === activeKey;
-              return (
-                <button
-                  key={c.key}
-                  onClick={() => setActiveKey(c.key)}
-                  className={[
-                    "group relative shrink-0 whitespace-nowrap rounded-full border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] transition-all sm:px-5 sm:py-3 sm:text-[11px]",
-                    isActive
-                      ? "border-gold bg-gradient-to-r from-gold-soft via-gold to-gold-deep text-navy-deep shadow-gold"
-                      : "border-white/15 bg-white/5 text-white/75 backdrop-blur hover:border-gold/50 hover:text-gold-soft",
-                  ].join(" ")}
-                  aria-pressed={isActive}
-                >
-                  <span className="mr-2 text-base leading-none">{c.flag}</span>
-                  {c.country}
-                </button>
-              );
-            })}
+          {/* country tabs */}
+          <div className="relative mt-10">
+            <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center sm:gap-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {COUNTRY_PROGRAMS.map((c) => {
+                const isActive = c.key === activeKey;
+                return (
+                  <button
+                    key={c.key}
+                    onClick={() => setActiveKey(c.key)}
+                    className={[
+                      "group relative shrink-0 whitespace-nowrap rounded-full border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] transition-all sm:px-5 sm:py-3 sm:text-[11px]",
+                      isActive
+                        ? "border-gold bg-gradient-to-r from-gold-soft via-gold to-gold-deep text-navy-deep shadow-gold"
+                        : "border-navy/20 bg-white text-navy/70 hover:border-gold hover:text-gold-deep",
+                    ].join(" ")}
+                    aria-pressed={isActive}
+                  >
+                    <span className="mr-2 text-base leading-none">{c.flag}</span>
+                    {c.country}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
+
+        {/* country detail panel — navy, unchanged styling */}
+        <div
+          className="relative mt-10 overflow-hidden rounded-3xl px-6 py-12 text-white shadow-elegant sm:px-10 sm:py-16"
+          style={{ background: "linear-gradient(135deg, #061a52 0%, #0a2470 55%, #061a52 100%)" }}
+        >
+          <div aria-hidden className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-sky/20 blur-3xl" />
+          <div aria-hidden className="pointer-events-none absolute -right-40 bottom-10 h-[28rem] w-[28rem] rounded-full bg-gold/15 blur-3xl" />
+
 
         {/* content card */}
         <AnimatePresence mode="wait">
@@ -161,7 +165,9 @@ export function FeaturedServices() {
             </div>
           </motion.div>
         </AnimatePresence>
+        </div>
       </div>
     </section>
+
   );
 }
