@@ -111,7 +111,7 @@ export function FeaturedServices() {
                     <Link
                       to="/programs/$slug"
                       params={{ slug: p.slug }}
-                      className="group flex items-center gap-3 rounded-xl px-2 py-2 text-sm text-white/85 transition-all hover:bg-white/[0.06] hover:text-white"
+                      className="group flex items-center gap-3 rounded-xl border border-gold/60 px-3 py-2.5 text-sm text-white/85 transition-all hover:border-gold hover:bg-gold/10 hover:text-white hover:shadow-gold"
                     >
                       <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold/15 text-gold transition-all group-hover:bg-gold group-hover:text-navy-deep">
                         <ArrowRight className="h-3.5 w-3.5" />
