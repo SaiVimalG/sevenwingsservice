@@ -202,6 +202,3 @@ function ProgramPage() {
     </PageShell>
   );
 }
-
-// Helper for sitemap consumers
-export const ALL_PROGRAM_SLUGS = COUNTRY_PROGRAMS.flatMap((c) => c.programs.map((p) => p.slug));
