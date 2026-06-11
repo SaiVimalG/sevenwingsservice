@@ -47,7 +47,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetail() {
-  const { service: s } = Route.useLoaderData();
+  const { service: s } = Route.useLoaderData() as { service: Service };
   return (
     <PageShell>
       <section className="relative overflow-hidden bg-hero pb-20 pt-36 text-white">
