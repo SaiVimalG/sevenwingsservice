@@ -2,7 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Calendar, Clock, User, Check, Phone } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
-import { BLOG_MAP, BLOG, SITE } from "@/lib/site";
+import { BLOG_MAP, BLOG, SITE, type BlogPost } from "@/lib/site";
+import type { ServiceSlug } from "@/lib/site";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
