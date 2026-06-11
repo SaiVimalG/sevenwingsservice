@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_posts: {
+        Row: {
+          author: string
+          category: string
+          created_at: string
+          cta_label: string | null
+          cta_slug: string | null
+          excerpt: string
+          id: string
+          image_url: string
+          intro: string
+          published: boolean
+          published_at: string
+          read_time: string
+          sections: Json
+          slug: string
+          title: string
+          updated_at: string
+          why_7wings: Json
+        }
+        Insert: {
+          author?: string
+          category: string
+          created_at?: string
+          cta_label?: string | null
+          cta_slug?: string | null
+          excerpt: string
+          id?: string
+          image_url: string
+          intro: string
+          published?: boolean
+          published_at?: string
+          read_time?: string
+          sections?: Json
+          slug: string
+          title: string
+          updated_at?: string
+          why_7wings?: Json
+        }
+        Update: {
+          author?: string
+          category?: string
+          created_at?: string
+          cta_label?: string | null
+          cta_slug?: string | null
+          excerpt?: string
+          id?: string
+          image_url?: string
+          intro?: string
+          published?: boolean
+          published_at?: string
+          read_time?: string
+          sections?: Json
+          slug?: string
+          title?: string
+          updated_at?: string
+          why_7wings?: Json
+        }
+        Relationships: []
+      }
       consultation_requests: {
         Row: {
           created_at: string
