@@ -3,11 +3,11 @@ import { SITE } from "@/lib/site";
 
 export function Logo({ className = "" }: { variant?: "light" | "dark"; className?: string }) {
   return (
-    <Link to="/" className={`group flex h-full items-center py-0.5 leading-none ${className}`} aria-label={`${SITE.name} home`}>
+    <Link to="/" className={`flex h-full items-center overflow-hidden p-0 m-0 ${className}`} aria-label={`${SITE.name} home`}>
       <img
         src={SITE.logoUrl}
         alt={`${SITE.name} logo`}
-        className="block h-full max-h-[76px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+        className="block h-[94%] w-auto max-w-none object-contain"
       />
     </Link>
   );
