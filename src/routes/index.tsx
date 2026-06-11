@@ -463,7 +463,7 @@ function NewsTeaser() {
             <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">News & <span className="text-gradient-gold">Migration Updates</span></h2></Reveal>
           </div>
           <Reveal delay={0.2}>
-            <Link to="/news" className="hidden items-center gap-2 text-sm font-semibold text-navy-deep transition-all hover:gap-3 hover:text-gold-deep md:inline-flex">
+            <Link to="/blog" className="hidden items-center gap-2 text-sm font-semibold text-navy-deep transition-all hover:gap-3 hover:text-gold-deep md:inline-flex">
               View all news <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
