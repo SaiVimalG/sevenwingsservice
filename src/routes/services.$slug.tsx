@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
-import { SERVICE_MAP, SERVICES, type ServiceSlug } from "@/lib/site";
+import { SERVICE_MAP, SERVICES, type Service, type ServiceSlug } from "@/lib/site";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -47,7 +47,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetail() {
-  const { service: s } = Route.useLoaderData();
+  const { service: s } = Route.useLoaderData() as { service: Service };
   return (
     <PageShell>
       <section className="relative overflow-hidden bg-hero pb-20 pt-36 text-white">
