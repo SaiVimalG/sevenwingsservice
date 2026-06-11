@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { posts } = Route.useLoaderData();
+  const { posts } = Route.useLoaderData() as { posts: BlogPost[] };
   return (
     <PageShell>
       <Hero />

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
+import type { BlogPost } from "@/lib/site";
 import { listDbPosts } from "@/lib/blog.functions";
 import { mergePosts } from "@/lib/blog-merge";
 
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogIndex() {
-  const { posts } = Route.useLoaderData();
+  const { posts } = Route.useLoaderData() as { posts: BlogPost[] };
   const [featured, ...rest] = posts;
 
   return (
