@@ -209,14 +209,130 @@ export const NAV = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
-  { label: "Success Stories", to: "/success-stories" },
-  { label: "FAQ", to: "/faq" },
+  { label: "Countries", to: "/countries" },
+  { label: "Pricing", to: "/pricing" },
+  { label: "News", to: "/news" },
   { label: "Contact", to: "/contact" },
 ];
 
 export const STATS = [
   { value: 1000, suffix: "+", label: "Successful Consultations" },
-  { value: 95, suffix: "%", label: "Client Satisfaction" },
+  { value: 95, suffix: "%", label: "Visa Success Rate" },
   { value: 4, suffix: "", label: "Countries Served" },
   { value: 24, suffix: "/7", label: "Guidance Support" },
+];
+
+export const COUNTRIES = [
+  { slug: "germany", name: "Germany", flag: "🇩🇪", tagline: "Opportunity Card · Job Seeker Visa", image: germany, blurb: "Europe's largest economy, now open to skilled Indian professionals through the points-based Chancenkarte." },
+  { slug: "australia", name: "Australia", flag: "🇦🇺", tagline: "Skilled Migration · 189 / 190 / 491", image: australia, blurb: "World-class healthcare, lifestyle and salaries — engineered around your SkillSelect points." },
+  { slug: "canada", name: "Canada", flag: "🇨🇦", tagline: "Express Entry · PNP · Family", image: canada, blurb: "The most welcoming PR program on earth. CRS optimisation and PNP shortlisting from day one." },
+  { slug: "uae", name: "United Arab Emirates", flag: "🇦🇪", tagline: "Golden Visa · Skilled Employment", image: jss, blurb: "Tax-free salaries, world-class infrastructure and a 10-year Golden Visa for in-demand professionals." },
+  { slug: "uk", name: "United Kingdom", flag: "🇬🇧", tagline: "Skilled Worker · Global Talent", image: germany, blurb: "Career-defining roles across London, Manchester and Edinburgh via Skilled Worker and Global Talent routes." },
+  { slug: "singapore", name: "Singapore", flag: "🇸🇬", tagline: "Employment Pass · ONE Pass", image: australia, blurb: "Asia's premier finance and tech hub — Employment Pass and ONE Pass strategy for senior professionals." },
+];
+
+export const AWARDS = [
+  { title: "Best Immigration Consultancy", year: "2025", body: "Hyderabad Business Council" },
+  { title: "Visa Success Award", year: "2025", body: "Telangana Trade Forum" },
+  { title: "Innovation in Migration", year: "2024", body: "South India Excellence Awards" },
+  { title: "Global Education Partner", year: "2024", body: "AIRC Recognised Member" },
+];
+
+export const NEWS = [
+  {
+    slug: "germany-opportunity-card-2026-changes",
+    title: "Germany Opportunity Card 2026: Three things Hyderabad applicants must know",
+    excerpt: "From the new points matrix to language flexibilities — a deep dive into BAMF's latest Chancenkarte update and what it means for Indian professionals.",
+    date: "May 12, 2026",
+    readTime: "6 min read",
+    category: "Germany",
+    author: "7 Wings Editorial",
+    image: germany,
+    body: [
+      "Germany's points-based Opportunity Card continues to evolve. The 2026 update widens the language-equivalence ladder and extends the residence permit window for in-country switching.",
+      "For Hyderabad professionals, three things matter most: the lowered B1-German bonus, the new IT-experience credit and clearer rules on Schengen-to-OC conversion.",
+      "If you scored 5 points under the old matrix, you may now qualify with the same documents. Re-score with our team before re-applying.",
+    ],
+  },
+  {
+    slug: "canada-pr-category-draws-2026",
+    title: "Canada PR category-based draws: How healthcare and STEM are dominating ITAs",
+    excerpt: "IRCC's 2026 category-based Express Entry rounds are issuing invitations at CRS scores below 470 for targeted occupations. Here's how to position your profile.",
+    date: "Apr 28, 2026",
+    readTime: "5 min read",
+    category: "Canada",
+    author: "Counsel Desk",
+    image: canada,
+    body: [
+      "IRCC's category-based draws now make up nearly 40% of all 2026 invitations. Healthcare, STEM, trades and French-language streams continue to receive the highest share.",
+      "A 462 CRS profile with the right NOC code is now competitive — provided your ECA and language test are current.",
+      "We help you re-position your NOC and language scores to fit the next category round.",
+    ],
+  },
+  {
+    slug: "australia-pr-state-nomination-cycle-fy26",
+    title: "Australia PR FY26: Which state should Hyderabad professionals target?",
+    excerpt: "NSW, VIC, QLD or SA — a clear-eyed look at this year's nomination ceilings, occupation lists and processing speed.",
+    date: "Apr 09, 2026",
+    readTime: "7 min read",
+    category: "Australia",
+    author: "7 Wings Editorial",
+    image: australia,
+    body: [
+      "Australian state nomination cycles refresh every July. The FY26 occupation lists favour engineers, data analysts and registered nurses.",
+      "Victoria continues to lead on processing speed for tech roles. NSW remains the strongest for finance and consulting.",
+      "Run a points-and-occupation check with our team before lodging an EOI — choosing the wrong state can cost you 12 months.",
+    ],
+  },
+  {
+    slug: "jss-program-relocation-checklist",
+    title: "The 30-day relocation checklist for JSS Program offer holders",
+    excerpt: "A practical, day-by-day breakdown of everything to handle between signing your offer letter and your first day at work abroad.",
+    date: "Mar 22, 2026",
+    readTime: "8 min read",
+    category: "JSS Program",
+    author: "Relocation Desk",
+    image: jss,
+    body: [
+      "An offer letter is just the beginning. The 30-day window between signing and flying is where most relocations slip.",
+      "Our JSS Relocation Desk walks every offer holder through visa, accommodation, banking, schooling and shipping in parallel.",
+      "Save this 30-day checklist and share it with your spouse before your first packing day.",
+    ],
+  },
+];
+
+export const NEWS_MAP = Object.fromEntries(NEWS.map((n) => [n.slug, n])) as Record<string, (typeof NEWS)[number]>;
+export const COUNTRY_MAP = Object.fromEntries(COUNTRIES.map((c) => [c.slug, c])) as Record<string, (typeof COUNTRIES)[number]>;
+
+export const PRICING = [
+  {
+    name: "Profile Assessment",
+    price: "Free",
+    cadence: "30-minute consultation",
+    description: "Sit with a senior counsellor at our Hitec City office or on video. Walk away with a written eligibility summary, country fit and next steps.",
+    features: ["1:1 senior-led call", "Points and occupation scoring", "Written eligibility note", "Recommended pathway"],
+    cta: "Book now",
+    href: "/book-consultation",
+    highlight: false,
+  },
+  {
+    name: "Full Service Engagement",
+    price: "Fixed-fee",
+    cadence: "End-to-end immigration",
+    description: "Full ownership of your file from documentation to visa grant. Includes attestation, translation, application lodgement and interview prep.",
+    features: ["Dedicated case manager", "Document attestation & translation", "Application lodgement", "Visa interview coaching", "Pre-departure briefing"],
+    cta: "Get a quote",
+    href: "/contact",
+    highlight: true,
+  },
+  {
+    name: "JSS Program",
+    price: "Milestone-linked",
+    cadence: "Career-led migration",
+    description: "Job-search support with CV rebuild, recruiter outreach, interview prep and offer negotiation — culminating in employer-sponsored relocation.",
+    features: ["Global CV & LinkedIn rebuild", "Curated recruiter outreach", "Interview & negotiation prep", "Offer letter review", "Post-arrival 90-day support"],
+    cta: "Apply for JSS",
+    href: "/book-consultation",
+    highlight: false,
+  },
 ];

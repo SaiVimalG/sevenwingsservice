@@ -1,24 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, Check, Compass, Globe2, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Play, Sparkles, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal, RevealWords } from "@/components/motion/Reveal";
 import { MagneticButton } from "@/components/motion/MagneticButton";
-import { TiltCard } from "@/components/motion/TiltCard";
 import { Marquee } from "@/components/motion/Marquee";
 import { CountUp } from "@/components/motion/CountUp";
-import { SERVICES, WHY_CHOOSE_US, PROCESS_STEPS, STATS, TESTIMONIALS, FAQS, SITE } from "@/lib/site";
+import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, NEWS, COUNTRIES, SITE } from "@/lib/site";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
+import germanyImg from "@/assets/germany.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { name: "description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS programs. 1000+ successful consultations, transparent fees, senior-led guidance." },
+      { name: "description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS Program. 1000+ successful consultations, transparent fees, senior-led guidance." },
       { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
       { property: "og:description", content: "Soar beyond borders. Land with confidence. Premium immigration consultancy in Hyderabad for Germany, Australia, Canada and JSS pathways." },
       { property: "og:url", content: "/" },
+      { property: "og:image", content: heroImg },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -29,47 +31,53 @@ function Home() {
   return (
     <PageShell>
       <Hero />
-      <BrandStrip />
       <About />
-      <Services />
-      <WhyUs />
-      <Process />
-      <Stats />
+      <NumberedServices />
+      <DestinationFeature />
       <Testimonials />
+      <VideoBanner />
       <FAQ />
+      <Counter />
+      <Awards />
+      <BrandMarquee />
+      <NewsTeaser />
       <CTABanner />
     </PageShell>
   );
 }
 
+/* ───────── Hero ───────── */
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-hero pb-24 pt-36 text-white md:pb-32 md:pt-40">
-      <motion.div
-        aria-hidden
-        animate={{ y: [0, -12, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -right-32 top-20 h-96 w-96 rounded-full bg-gold/20 blur-3xl"
-      />
-      <motion.div
-        aria-hidden
-        animate={{ y: [0, 14, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -left-40 bottom-0 h-[28rem] w-[28rem] rounded-full bg-sky/20 blur-3xl"
-      />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+    <section className="relative overflow-hidden bg-hero pb-28 pt-44 text-white lg:pt-48">
+      {/* floating shapes */}
+      <motion.div aria-hidden animate={{ y: [0, -14, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute -right-32 top-32 h-96 w-96 rounded-full bg-gold/20 blur-3xl" />
+      <motion.div aria-hidden animate={{ y: [0, 16, 0] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -left-40 bottom-0 h-[28rem] w-[28rem] rounded-full bg-sky/20 blur-3xl" />
+      <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute right-1/3 top-24 h-32 w-32 rounded-full border border-gold/20" />
+
+      {/* pagi numbers (visaway style) */}
+      <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-2 font-display text-xs text-white/40 lg:flex">
+        <span className="text-gold">03</span>
+        <span className="h-12 w-px bg-white/15" />
+        <span>05</span>
+      </div>
+
+      <div className="relative mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <div>
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5" /> Hyderabad's premium immigration consultancy
+              <Sparkles className="h-3.5 w-3.5" /> Global Migration Simplified
             </p>
           </Reveal>
-          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] md:text-7xl">
-            <RevealWords text="Your Global" />
+          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.04] md:text-7xl">
+            <RevealWords text="From Eligibility" />
             <br />
-            <span className="text-gradient-gold"><RevealWords text="Future Starts" /></span>
+            <span className="text-gradient-gold"><RevealWords text="to Landing —" /></span>
             <br />
-            <RevealWords text="Here." />
+            <RevealWords text="We've Got You." />
+            <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" target="_blank" rel="noreferrer" className="ml-3 inline-grid h-12 w-12 translate-y-[-6px] place-items-center rounded-full bg-gradient-to-br from-gold-soft via-gold to-gold-deep text-navy-deep shadow-gold transition-transform hover:scale-110">
+              <Play className="h-4 w-4 fill-current" />
+            </a>
           </h1>
           <Reveal delay={0.5}>
             <p className="mt-7 max-w-xl text-base text-white/75 md:text-lg">
@@ -86,30 +94,19 @@ function Hero() {
               </Link>
             </div>
           </Reveal>
-          <Reveal delay={0.9}>
-            <dl className="mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
-              {STATS.map((s) => (
-                <div key={s.label}>
-                  <dt className="font-display text-3xl font-bold text-gold"><CountUp end={s.value} suffix={s.suffix} /></dt>
-                  <dd className="mt-1 text-[0.7rem] uppercase tracking-[0.15em] text-white/55">{s.label}</dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
         </div>
 
         <Reveal delay={0.3} y={40}>
           <div className="relative">
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-gold/30 via-transparent to-sky/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
-              <img src={heroImg} alt="Indian professional looking out at international flights at golden hour" width={1600} height={1024} className="aspect-[4/5] w-full object-cover" />
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-6 left-6 rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur-xl"
-              >
-                <p className="text-xs uppercase tracking-wider text-gold-soft">Soar Beyond Borders</p>
-                <p className="mt-1 font-display text-lg text-white">Land With Confidence.</p>
+              <img src={heroImg} alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={1600} height={1100} className="aspect-[5/4] w-full object-cover" />
+              <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur-xl">
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-gold-soft">Soar Beyond Borders</p>
+                  <p className="mt-1 font-display text-lg text-white">Land With Confidence.</p>
+                </div>
+                <div className="grid h-12 w-12 place-items-center rounded-full bg-gold text-navy-deep"><Play className="h-4 w-4 fill-current" /></div>
               </motion.div>
             </div>
           </div>
@@ -119,65 +116,59 @@ function Hero() {
   );
 }
 
-function BrandStrip() {
-  const items = ["Germany", "Australia", "Canada", "United Arab Emirates", "Singapore", "United Kingdom", "New Zealand"];
-  return (
-    <section className="border-y border-black/5 bg-cream py-8">
-      <Marquee>
-        {items.map((c) => (
-          <span key={c} className="font-display text-xl font-semibold tracking-wide text-navy/40 transition-colors hover:text-gold-deep md:text-2xl">
-            ✦ {c}
-          </span>
-        ))}
-      </Marquee>
-    </section>
-  );
-}
-
+/* ───────── About ───────── */
 function About() {
   return (
-    <section className="relative py-28">
+    <section className="relative overflow-hidden py-28">
+      <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 80, repeat: Infinity, ease: "linear" }} className="pointer-events-none absolute right-10 top-10 h-40 w-40 rounded-full border border-gold/20" />
       <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-sky/10 blur-2xl" />
-            <img src={aboutImg} alt="7 Wings Immigration consultants reviewing documents at Hyderabad office" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
-            <div className="absolute -bottom-6 -right-6 hidden rounded-2xl bg-navy p-5 text-white shadow-elegant md:block">
-              <p className="text-xs uppercase tracking-widest text-gold-soft">Since 2018</p>
-              <p className="mt-1 font-display text-2xl">A Hyderabad team that lands every detail.</p>
-            </div>
+            <img src={aboutImg} alt="7 Wings Immigration consultants at the Hyderabad office" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
+            <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-8 -right-6 hidden rounded-2xl border border-black/5 bg-white p-5 shadow-elegant md:block">
+              <p className="text-xs uppercase tracking-widest text-gold-deep">Since 2018</p>
+              <p className="mt-1 font-display text-xl text-navy-deep">Hyderabad's senior-led<br />immigration team.</p>
+            </motion.div>
           </div>
         </Reveal>
         <div>
-          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">About 7 Wings</p></Reveal>
+          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">About Our Consultancy</p></Reveal>
           <Reveal delay={0.1}>
             <h2 className="mt-3 font-display text-4xl font-bold leading-tight text-navy-deep md:text-5xl">
-              Soar Beyond Borders. <span className="text-gradient-gold">Land With Confidence.</span>
+              Turning Migration <span className="text-gradient-gold">Dreams</span> Into Documented Reality
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              At <strong className="text-navy-deep">7 Wings Immigration</strong>, we believe talent should never be limited by geography. From our Hyderabad office, we help professionals, students and families navigate complex immigration pathways with clarity, confidence and senior-led guidance.
+              At <strong className="text-navy-deep">7 Wings Immigration</strong>, we believe talent should never be limited by geography. From our Hitec City office, senior counsellors guide professionals, students and families through every step — from eligibility scoring to final landing.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Inspired by the vision and strength of the eagle, we deliver strategic immigration solutions for <strong className="text-navy-deep">Germany, Australia, Canada</strong> and our flagship <strong className="text-navy-deep">JSS Program</strong> — turning international dreams into real, documented results.
-            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {[
+                { label: "Global Reach", text: "Expanding opportunities across four continents" },
+                { label: "Senior Counsel", text: "Hands-on partners on every file, every time" },
+              ].map((b) => (
+                <div key={b.label} className="rounded-2xl border border-black/5 bg-cream p-5">
+                  <p className="flex items-center gap-2 font-semibold text-navy-deep"><span className="grid h-7 w-7 place-items-center rounded-full bg-gold text-navy-deep"><Check className="h-3.5 w-3.5" /></span> {b.label}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{b.text}</p>
+                </div>
+              ))}
+            </div>
           </Reveal>
           <Reveal delay={0.4}>
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-              {["Senior-led case management", "Fixed-fee transparent pricing", "Full document & translation support", "Family-first planning"].map((p) => (
-                <li key={p} className="flex items-start gap-2 text-sm font-medium text-navy-deep">
-                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/20 text-gold-deep"><Check className="h-3 w-3" /></span>
-                  {p}
+            <ul className="mt-6 space-y-2.5">
+              {["Fastest visa form processing with skilled consultants", "Partnerships with verified international employers & universities", "Family-first planning — spouse and children handled together"].map((p) => (
+                <li key={p} className="flex items-start gap-3 text-sm font-medium text-navy-deep">
+                  <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-gold-deep" /> {p}
                 </li>
               ))}
             </ul>
           </Reveal>
           <Reveal delay={0.5}>
-            <Link to="/about" className="mt-9 inline-flex items-center gap-2 font-semibold text-navy-deep transition-colors hover:text-gold-deep">
-              Read our full story <ArrowRight className="h-4 w-4" />
+            <Link to="/about" className="mt-9 inline-flex items-center gap-2 btn-gold btn-gold-hover">
+              Get Started <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
         </div>
@@ -186,40 +177,193 @@ function About() {
   );
 }
 
-function Services() {
+/* ───────── Numbered Service rail (Visaway hallmark) ───────── */
+function NumberedServices() {
+  return (
+    <section className="bg-white py-20">
+      <div className="mx-auto max-w-7xl px-6 text-center">
+        <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Our Expert Programmes</p></Reveal>
+        <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Comprehensive Visa Solutions</h2></Reveal>
+      </div>
+      <div className="mx-auto mt-14 max-w-7xl divide-y divide-black/10 border-y border-black/10 px-6">
+        {SERVICES.map((s, i) => (
+          <ServiceRow key={s.slug} s={s} index={i} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ServiceRow({ s, index }: { s: (typeof SERVICES)[number]; index: number }) {
+  return (
+    <Link
+      to="/services/$slug"
+      params={{ slug: s.slug }}
+      className="group relative grid grid-cols-1 items-center gap-6 overflow-hidden py-10 transition-all md:grid-cols-[120px_1.3fr_1fr_140px]"
+    >
+      {/* hover image */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{ backgroundImage: `linear-gradient(90deg, rgba(8,18,41,0.92), rgba(8,18,41,0.55)), url(${s.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
+      />
+      <div className="relative">
+        <p className="font-display text-5xl font-bold text-gold/40 transition-colors group-hover:text-gold md:text-6xl">{String(index + 1).padStart(2, "0")}</p>
+      </div>
+      <div className="relative">
+        <h3 className="font-display text-2xl font-bold text-navy-deep transition-colors group-hover:text-white md:text-3xl">{s.title}</h3>
+        <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">{s.flag} {s.country}</p>
+      </div>
+      <div className="relative">
+        <p className="text-sm text-muted-foreground transition-colors group-hover:text-white/80">{s.short}</p>
+      </div>
+      <div className="relative flex md:justify-end">
+        <span className="inline-flex items-center gap-2 text-sm font-semibold text-navy-deep transition-all group-hover:gap-3 group-hover:text-gold">
+          Service Details <ArrowRight className="h-4 w-4" />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+/* ───────── Destination Feature (Visaway country spotlight) ───────── */
+function DestinationFeature() {
+  return (
+    <section className="relative overflow-hidden bg-navy-mesh py-28 text-white">
+      <div className="absolute inset-0 [background:radial-gradient(800px_400px_at_80%_20%,color-mix(in_oklab,var(--gold)_20%,transparent),transparent_60%)]" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
+        <div>
+          <Reveal>
+            <p className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">
+              🇩🇪 Featured · Germany
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="mt-5 font-display text-4xl font-bold leading-tight text-white md:text-5xl">
+              Visa & Migration Services <span className="text-gradient-gold">to Germany.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-5 max-w-xl text-base text-white/75">
+              The Chancenkarte (Opportunity Card) is engineered for skilled professionals who want to enter Germany on their own terms — even before securing an offer. Our scoring, ZAB recognition and document team make every point count.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <div className="mt-8 grid gap-y-3 text-sm sm:grid-cols-2">
+              {["Opportunity Card · Chancenkarte", "Job Seeker Visa", "Skilled Worker Visa", "EU Blue Card", "Family Reunion Visa", "Study Pathway · DAAD"].map((b) => (
+                <div key={b} className="flex items-center gap-2 text-white/85">
+                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-gold" /> {b}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.4}>
+            <Link to="/services/$slug" params={{ slug: "germany-opportunity-card" }} className="mt-10 inline-flex btn-gold btn-gold-hover">
+              Get Started <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+        <Reveal delay={0.2} y={40}>
+          <div className="relative">
+            <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-gold/30 via-transparent to-sky/30 blur-2xl" />
+            <div className="overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
+              <img src={germanyImg} alt="Brandenburg Gate at blue hour" width={1400} height={1000} loading="lazy" className="aspect-[4/3] w-full object-cover" />
+            </div>
+            <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-6 left-6 rounded-2xl bg-white px-5 py-4 text-navy-deep shadow-elegant">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-deep">GERMANY</p>
+              <p className="mt-1 font-display text-xl">Opportunity Card</p>
+            </motion.div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ───────── Testimonials (image-left, slider-right) ───────── */
+function Testimonials() {
   return (
     <section className="bg-cream py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Our Programs</p></Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">
-              Four pathways. <span className="text-gradient-gold">One eagle-eyed team.</span>
-            </h2>
-          </Reveal>
+          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">What Our Clients Say</p></Reveal>
+          <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Stories of <span className="text-gradient-gold">Successful Landings.</span></h2></Reveal>
         </div>
+        <div className="mt-16 grid gap-8 lg:grid-cols-[5fr_7fr]">
+          <Reveal>
+            <div className="relative h-full min-h-[400px] overflow-hidden rounded-3xl border border-black/5 shadow-elegant">
+              <img src={aboutImg} alt="Real client story" width={800} height={1000} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy-deep/20 to-transparent" />
+              <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" target="_blank" rel="noreferrer" className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gold text-navy-deep shadow-gold transition-transform hover:scale-110">
+                <Play className="h-6 w-6 fill-current" />
+              </a>
+              <h5 className="absolute bottom-6 left-6 font-display text-2xl font-bold text-white">Real Stories</h5>
+            </div>
+          </Reveal>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {TESTIMONIALS.slice(0, 4).map((t, i) => (
+              <Reveal key={t.name} delay={i * 0.06}>
+                <figure className="h-full rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.2)] transition-all hover:-translate-y-1 hover:shadow-gold">
+                  <div className="mb-4 flex gap-0.5 text-gold">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
+                  <blockquote className="text-sm leading-relaxed text-navy-deep">"{t.text}"</blockquote>
+                  <figcaption className="mt-5 border-t border-black/5 pt-4">
+                    <p className="font-semibold text-navy-deep">{t.name}</p>
+                    <p className="text-xs text-muted-foreground">{t.role}</p>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 0.08}>
-              <TiltCard className="group relative h-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-elegant">
-                <div className="relative h-64 overflow-hidden">
-                  <img src={s.image} alt={`${s.country} skyline`} width={1024} height={768} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy/30 to-transparent" />
-                  <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-                    <span>{s.flag}</span> {s.country}
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="font-display text-2xl font-bold text-white">{s.title}</h3>
-                  </div>
-                </div>
-                <div className="p-8">
-                  <p className="text-sm leading-relaxed text-muted-foreground">{s.blurb}</p>
-                  <Link to="/services/$slug" params={{ slug: s.slug }} className="mt-6 inline-flex items-center gap-2 font-semibold text-navy-deep transition-all hover:gap-3 hover:text-gold-deep">
-                    Explore programme <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </TiltCard>
+/* ───────── Video Banner (text marquee + play) ───────── */
+function VideoBanner() {
+  return (
+    <section className="relative overflow-hidden bg-hero py-28 text-white">
+      <div className="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_50%,color-mix(in_oklab,var(--gold)_40%,transparent),transparent_50%)]" />
+      <motion.div aria-hidden animate={{ x: [-100, 0, -100] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute left-0 top-10 whitespace-nowrap font-display text-[8rem] font-black text-white/[0.04] md:text-[12rem]">
+        GLOBAL · GERMANY · CANADA · AUSTRALIA · GLOBAL · GERMANY ·
+      </motion.div>
+      <div className="relative mx-auto max-w-4xl px-6 text-center">
+        <Reveal>
+          <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" target="_blank" rel="noreferrer" className="group inline-grid h-24 w-24 place-items-center rounded-full bg-white/10 backdrop-blur transition-all hover:bg-gold">
+            <span className="absolute h-24 w-24 animate-ping rounded-full bg-gold/30" />
+            <Play className="relative h-7 w-7 fill-current text-white transition-colors group-hover:text-navy-deep" />
+          </a>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <h2 className="mt-8 font-display text-5xl font-bold md:text-7xl">
+            VIDEO <br /> <span className="text-gradient-gold">PLAY GALLERY</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.3}>
+          <p className="mx-auto mt-6 max-w-xl text-white/75">
+            Watch real client landings, behind-the-scenes from our Hyderabad office and inside looks at every visa pathway we run.
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ───────── FAQ ───────── */
+function FAQ() {
+  return (
+    <section className="py-28">
+      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.4fr]">
+        <div>
+          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Visa FAQs</p></Reveal>
+          <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Got Questions? <span className="text-gradient-gold">We've Got Answers.</span></h2></Reveal>
+          <Reveal delay={0.2}><p className="mt-5 text-muted-foreground">Hyderabad professionals ask us these the most. Still wondering? Drop us a line — replies within 4 working hours.</p></Reveal>
+          <Reveal delay={0.3}><Link to="/contact" className="mt-7 inline-flex btn-gold btn-gold-hover">Contact us <ArrowRight className="h-4 w-4" /></Link></Reveal>
+        </div>
+        <div className="space-y-3">
+          {FAQS.slice(0, 5).map((f, i) => (
+            <Reveal key={f.q} delay={i * 0.05}>
+              <AccordionItem q={f.q} a={f.a} defaultOpen={i === 0} />
             </Reveal>
           ))}
         </div>
@@ -228,54 +372,61 @@ function Services() {
   );
 }
 
-function WhyUs() {
-  const icons = [ShieldCheck, Compass, Award, Sparkles, Globe2, Check];
+function AccordionItem({ q, a, defaultOpen = false }: { q: string; a: string; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
   return (
-    <section className="relative overflow-hidden bg-navy-mesh py-28 text-white">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Why Clients Trust Us</p></Reveal>
-          <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">A consultancy you'd recommend to your <span className="text-gradient-gold">closest friend.</span></h2></Reveal>
-        </div>
-        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {WHY_CHOOSE_US.map((w, i) => {
-            const Icon = icons[i % icons.length];
-            return (
-              <Reveal key={w.title} delay={i * 0.06}>
-                <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur transition-all hover:-translate-y-1 hover:border-gold/40 hover:bg-white/[0.07]">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-gold/15 text-gold transition-transform group-hover:scale-110">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-5 font-display text-xl font-semibold">{w.title}</h3>
-                  <p className="mt-2 text-sm text-white/70">{w.description}</p>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
+    <div className={`rounded-2xl border bg-white p-6 transition-all ${open ? "border-gold/40 shadow-gold" : "border-black/5 shadow-[0_10px_30px_-20px_rgba(13,46,125,0.12)]"}`}>
+      <button onClick={() => setOpen((v) => !v)} className="flex w-full items-center justify-between gap-4 text-left font-display text-lg font-semibold text-navy-deep">
+        <span>{q}</span>
+        <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold/15 text-gold-deep transition-transform ${open ? "rotate-180" : ""}`}>
+          <ChevronDown className="h-4 w-4" />
+        </span>
+      </button>
+      <motion.div initial={false} animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }} transition={{ duration: 0.3, ease: [0.2, 0.8, 0.2, 1] }} className="overflow-hidden">
+        <p className="pt-4 text-sm leading-relaxed text-muted-foreground">{a}</p>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ───────── Counter ───────── */
+function Counter() {
+  return (
+    <section className="relative overflow-hidden bg-hero py-24 text-white">
+      <div className="absolute inset-0 [background:radial-gradient(600px_300px_at_20%_80%,color-mix(in_oklab,var(--gold)_25%,transparent),transparent_60%)]" />
+      <div className="relative mx-auto max-w-6xl px-6 text-center">
+        <Reveal><p className="inline-block rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Did You Know</p></Reveal>
+        <Reveal delay={0.1}><h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">Our Achievements in <span className="text-gradient-gold">Numbers</span></h2></Reveal>
+      </div>
+      <div className="relative mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur md:grid-cols-4">
+        {STATS.map((s, i) => (
+          <Reveal key={s.label} delay={i * 0.08}>
+            <div className="bg-navy-deep/70 p-8 text-center">
+              <p className="font-display text-5xl font-bold text-gradient-gold md:text-6xl"><CountUp end={s.value} suffix={s.suffix} /></p>
+              <p className="mt-3 text-xs uppercase tracking-[0.2em] text-white/65">{s.label}</p>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   );
 }
 
-function Process() {
+/* ───────── Awards (visa-consultancy grid) ───────── */
+function Awards() {
   return (
-    <section className="py-28">
+    <section className="py-24">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Our Process</p></Reveal>
-          <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Your journey in <span className="text-gradient-gold">four simple steps.</span></h2></Reveal>
-        </div>
-        <div className="relative mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div aria-hidden className="absolute left-0 right-0 top-12 hidden h-px bg-[linear-gradient(to_right,transparent,oklch(0.78_0.13_85)_30%,oklch(0.78_0.13_85)_70%,transparent)] opacity-50 lg:block" />
-          {PROCESS_STEPS.map((p, i) => (
-            <Reveal key={p.step} delay={i * 0.1}>
-              <div className="relative rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-20px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:shadow-gold">
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-gold-soft via-gold to-gold-deep font-display text-lg font-bold text-navy-deep shadow-gold">
-                  {p.step}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {AWARDS.map((a, i) => (
+            <Reveal key={a.title} delay={i * 0.06}>
+              <div className="group h-full rounded-2xl border border-black/5 bg-white p-7 text-center shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-gold">
+                <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-gold-soft via-gold to-gold-deep text-navy-deep shadow-gold transition-transform group-hover:scale-110">
+                  <span className="font-display text-2xl">🏆</span>
                 </div>
-                <h3 className="mt-5 font-display text-xl font-semibold text-navy-deep">{p.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
+                <h3 className="mt-5 font-display text-lg font-bold text-navy-deep">{a.title}</h3>
+                <p className="mt-1 text-xs text-muted-foreground">{a.body}</p>
+                <p className="mt-3 font-display text-gold-deep">{a.year}</p>
               </div>
             </Reveal>
           ))}
@@ -285,42 +436,57 @@ function Process() {
   );
 }
 
-function Stats() {
+/* ───────── Brand marquee ───────── */
+function BrandMarquee() {
   return (
-    <section className="relative overflow-hidden bg-hero py-20 text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 sm:grid-cols-2 lg:grid-cols-4">
-        {STATS.map((s, i) => (
-          <Reveal key={s.label} delay={i * 0.08}>
-            <div className="text-center md:text-left">
-              <p className="font-display text-6xl font-bold text-gradient-gold"><CountUp end={s.value} suffix={s.suffix} /></p>
-              <p className="mt-2 text-sm uppercase tracking-[0.2em] text-white/65">{s.label}</p>
-            </div>
-          </Reveal>
+    <section className="border-y border-black/5 bg-cream py-10">
+      <Marquee>
+        {COUNTRIES.map((c) => (
+          <span key={c.slug} className="flex items-center gap-3 font-display text-xl font-semibold tracking-wide text-navy/40 transition-colors hover:text-gold-deep md:text-2xl">
+            <span className="text-3xl">{c.flag}</span> {c.name}
+            <span className="text-gold">✦</span>
+          </span>
         ))}
-      </div>
+      </Marquee>
     </section>
   );
 }
 
-function Testimonials() {
+/* ───────── News teaser ───────── */
+function NewsTeaser() {
   return (
-    <section className="bg-cream py-28">
+    <section className="bg-cream py-24">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Success Stories</p></Reveal>
-          <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">A few of the <span className="text-gradient-gold">landings we're proud of.</span></h2></Reveal>
+        <div className="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Latest Insights</p></Reveal>
+            <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">News & <span className="text-gradient-gold">Migration Updates</span></h2></Reveal>
+          </div>
+          <Reveal delay={0.2}>
+            <Link to="/news" className="hidden items-center gap-2 text-sm font-semibold text-navy-deep transition-all hover:gap-3 hover:text-gold-deep md:inline-flex">
+              View all news <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
         </div>
-        <div className="mt-16 columns-1 gap-6 md:columns-2 lg:columns-3 [column-fill:_balance]">
-          {TESTIMONIALS.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.05}>
-              <figure className="mb-6 break-inside-avoid rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.18)] transition-all hover:-translate-y-1 hover:shadow-gold">
-                <div className="mb-4 flex gap-0.5 text-gold">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
-                <blockquote className="text-base leading-relaxed text-navy-deep">"{t.text}"</blockquote>
-                <figcaption className="mt-5 border-t border-black/5 pt-4">
-                  <p className="font-semibold text-navy-deep">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
-                </figcaption>
-              </figure>
+        <div className="grid gap-6 md:grid-cols-3">
+          {NEWS.slice(0, 3).map((n, i) => (
+            <Reveal key={n.slug} delay={i * 0.08}>
+              <Link to="/news/$slug" params={{ slug: n.slug }} className="group block overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:shadow-gold">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img src={n.image} alt={n.title} width={800} height={500} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
+                  <span className="absolute left-4 top-4 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep">{n.category}</span>
+                </div>
+                <div className="p-7">
+                  <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foreground">
+                    <span>{n.date}</span>
+                    <span className="h-1 w-1 rounded-full bg-gold" />
+                    <span>{n.readTime}</span>
+                  </div>
+                  <h3 className="mt-3 font-display text-xl font-bold text-navy-deep transition-colors group-hover:text-gold-deep line-clamp-2">{n.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{n.excerpt}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep">Read article <ArrowRight className="h-3.5 w-3.5" /></span>
+                </div>
+              </Link>
             </Reveal>
           ))}
         </div>
@@ -329,57 +495,33 @@ function Testimonials() {
   );
 }
 
-function FAQ() {
-  return (
-    <section className="py-28">
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.4fr]">
-        <div>
-          <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">FAQ</p></Reveal>
-          <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Questions, <span className="text-gradient-gold">answered.</span></h2></Reveal>
-          <Reveal delay={0.2}><p className="mt-4 text-muted-foreground">Still wondering? Drop us a line and we'll reply within 4 working hours.</p></Reveal>
-          <Reveal delay={0.3}><Link to="/contact" className="mt-6 inline-flex btn-gold btn-gold-hover">Ask a question <ArrowRight className="h-4 w-4" /></Link></Reveal>
-        </div>
-        <div className="space-y-3">
-          {FAQS.slice(0, 6).map((f, i) => (
-            <Reveal key={f.q} delay={i * 0.05}>
-              <details className="group rounded-2xl border border-black/5 bg-white p-6 shadow-[0_10px_30px_-20px_rgba(13,46,125,0.15)] open:shadow-gold">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-semibold text-navy-deep">
-                  {f.q}
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gold/15 text-gold-deep transition-transform group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
-              </details>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
+/* ───────── CTA Banner ───────── */
 function CTABanner() {
   return (
-    <section className="relative overflow-hidden bg-hero py-24 text-white">
-      <div className="relative mx-auto max-w-5xl px-6 text-center">
-        <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Ready to take flight?</p></Reveal>
-        <Reveal delay={0.1}>
-          <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl">
-            Book your <span className="text-gradient-gold">free 30-minute</span> consultation today.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <p className="mx-auto mt-5 max-w-2xl text-white/75">
-            Walk in to our <strong className="text-gold">{SITE.city}</strong> office or hop on a video call. We'll score your profile against every available pathway in one sitting — no obligation.
-          </p>
-        </Reveal>
-        <Reveal delay={0.3}>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-            <Link to="/book-consultation"><MagneticButton className="btn-gold btn-gold-hover">Book Free Consultation <ArrowRight className="h-4 w-4" /></MagneticButton></Link>
-            <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium hover:border-gold hover:text-gold">
-              Or call {SITE.phone}
-            </a>
+    <section className="relative overflow-hidden py-20">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-hero p-14 text-white shadow-elegant">
+          <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute -right-20 -top-20 h-72 w-72 rounded-full border border-gold/20" />
+          <div className="relative grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+            <div>
+              <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Ready to take flight?</p></Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="mt-3 font-display text-4xl font-bold leading-tight md:text-5xl">
+                  Book a free 30-minute consultation at our <span className="text-gradient-gold">Hyderabad office.</span>
+                </h2>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="mt-4 max-w-xl text-white/75">Walk in for a senior-led eligibility scoring across Germany, Australia, Canada and JSS — written summary at the end of every call.</p>
+              </Reveal>
+            </div>
+            <div className="flex flex-col gap-3">
+              <Link to="/book-consultation" className="inline-flex justify-center btn-gold btn-gold-hover">Book Consultation <ArrowRight className="h-4 w-4" /></Link>
+              <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white transition-all hover:border-gold hover:text-gold">
+                Call {SITE.phone}
+              </a>
+            </div>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
