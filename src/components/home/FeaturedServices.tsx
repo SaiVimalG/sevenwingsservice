@@ -75,9 +75,18 @@ export function FeaturedServices() {
                 <ChevronLeft className="h-4 w-4" />
               </button>
 
-              <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-3 sm:gap-4">
                 {COUNTRY_PROGRAMS.map((c, i) => {
                   const isActive = i === activeIndex;
+                  const code = ({
+                    germany: "de",
+                    australia: "au",
+                    canada: "ca",
+                    uk: "gb",
+                    "new-zealand": "nz",
+                    usa: "us",
+                    schengen: "eu",
+                  } as Record<string, string>)[c.key] ?? "un";
                   return (
                     <button
                       key={c.key}
@@ -86,14 +95,18 @@ export function FeaturedServices() {
                       aria-pressed={isActive}
                       title={c.country}
                       className={[
-                        "relative grid place-items-center overflow-hidden rounded-full transition-all duration-300",
+                        "relative overflow-hidden rounded-full transition-all duration-300",
                         isActive
-                          ? "h-[72px] w-[72px] text-[44px] ring-4 ring-gold shadow-[0_12px_28px_-8px_rgba(212,175,55,0.6),inset_0_-6px_14px_rgba(0,0,0,0.25),inset_0_6px_14px_rgba(255,255,255,0.35)] scale-110 sm:h-20 sm:w-20 sm:text-[52px]"
-                          : "h-9 w-9 text-[22px] opacity-55 shadow-[inset_0_-3px_8px_rgba(0,0,0,0.25),inset_0_3px_8px_rgba(255,255,255,0.3)] hover:opacity-100 sm:h-10 sm:w-10 sm:text-2xl",
+                          ? "h-[84px] w-[84px] ring-2 ring-gold shadow-[0_14px_32px_-10px_rgba(212,175,55,0.65)] scale-110 sm:h-[92px] sm:w-[92px]"
+                          : "h-10 w-10 opacity-60 hover:opacity-100 sm:h-12 sm:w-12",
                       ].join(" ")}
-                      style={{ background: "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%)" }}
                     >
-                      <span className="leading-none drop-shadow-sm">{c.flag}</span>
+                      <img
+                        src={`https://hatscripts.github.io/circle-flags/flags/${code}.svg`}
+                        alt={c.country}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
                     </button>
                   );
                 })}
@@ -108,7 +121,7 @@ export function FeaturedServices() {
                 <ChevronRight className="h-4 w-4" />
               </button>
             </div>
-            <p className="mt-2 text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-navy/70">
+            <p className="mt-4 text-center font-display text-xl font-bold text-navy-deep sm:text-2xl">
               {active.country}
             </p>
           </div>
