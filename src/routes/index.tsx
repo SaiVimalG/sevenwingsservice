@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal, RevealWords } from "@/components/motion/Reveal";
+import { FeaturedServices } from "@/components/home/FeaturedServices";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Marquee } from "@/components/motion/Marquee";
 import { CountUp } from "@/components/motion/CountUp";
@@ -43,6 +44,7 @@ function Home() {
     <PageShell>
       <Hero />
       <About />
+      <FeaturedServices />
       <NumberedServices />
       <DestinationFeature />
       <Testimonials />
