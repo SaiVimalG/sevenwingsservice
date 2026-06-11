@@ -33,10 +33,10 @@ function About() {
             <img src={aboutImg} alt="7 Wings Immigration consultants in Hyderabad" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
           </Reveal>
           <div>
-            <Reveal><h2 className="font-display text-4xl font-bold text-navy-deep">Why the eagle.</h2></Reveal>
+            <Reveal><h2 className="font-display text-4xl font-bold text-navy-deep">Why&nbsp; 7&nbsp; Wings Immigration?</h2></Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 leading-relaxed text-muted-foreground">
-                The eagle sees what others miss. It plans the long flight before the first wingbeat. It chooses calm air over busy noise. Those instincts shape how we work at 7 Wings Immigration — vision-first, evidence-based, and quietly relentless about your outcome.
+                The number 7 symbolizes trust, growth, success, wisdom, and new beginnings. Combined with the power of wings, it represents freedom, opportunity, and the courage to explore new horizons. At Seven Wings Immigration, we help individuals and families take flight toward a brighter future with confidence and clarity.
               </p>
             </Reveal>
             <Reveal delay={0.2}>
