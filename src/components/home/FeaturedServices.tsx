@@ -170,18 +170,16 @@ export function FeaturedServices() {
                   {active.description}
                 </p>
 
-                <ul className="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                <ul className="mt-8 space-y-3">
                   {active.programs.map((p) => (
                     <li key={p.slug}>
                       <Link
                         to="/programs/$slug"
                         params={{ slug: p.slug }}
-                        className="group flex items-center gap-3 rounded-xl border border-gold/60 px-3 py-2.5 text-sm text-white/85 transition-all hover:border-gold hover:bg-gold/10 hover:text-white hover:shadow-gold"
+                        className="group flex items-center gap-3 text-base font-medium text-white/90 transition-colors hover:text-gold sm:text-lg"
                       >
-                        <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold/15 text-gold transition-all group-hover:bg-gold group-hover:text-navy-deep">
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </span>
-                        <span className="truncate font-medium">{p.title}</span>
+                        <ArrowRight className="h-5 w-5 shrink-0 text-gold transition-transform group-hover:translate-x-1" />
+                        <span>{p.title}</span>
                       </Link>
                     </li>
                   ))}
