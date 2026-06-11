@@ -165,7 +165,9 @@ export function FeaturedServices() {
             </div>
           </motion.div>
         </AnimatePresence>
+        </div>
       </div>
     </section>
+
   );
 }
