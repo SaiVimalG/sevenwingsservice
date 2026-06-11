@@ -133,11 +133,11 @@ function BlogPostPage() {
               </ul>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                 {post.cta.slug ? (
-                  <Link to={post.cta.to} params={{ slug: post.cta.slug }} className="inline-flex justify-center btn-gold btn-gold-hover">
+                  <Link to="/services/$slug" params={{ slug: post.cta.slug as ServiceSlug }} className="inline-flex justify-center btn-gold btn-gold-hover">
                     {post.cta.label} <ArrowRight className="h-4 w-4" />
                   </Link>
                 ) : (
-                  <Link to={post.cta.to} className="inline-flex justify-center btn-gold btn-gold-hover">
+                  <Link to="/book-consultation" className="inline-flex justify-center btn-gold btn-gold-hover">
                     {post.cta.label} <ArrowRight className="h-4 w-4" />
                   </Link>
                 )}
