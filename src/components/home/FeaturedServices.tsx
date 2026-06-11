@@ -11,6 +11,30 @@ export function FeaturedServices() {
   const [paused, setPaused] = useState(false);
   const [activeKey, setActiveKey] = useState(COUNTRY_PROGRAMS[0].key);
   const active = COUNTRY_PROGRAMS.find((c) => c.key === activeKey) ?? COUNTRY_PROGRAMS[0];
+  const activeIndex = COUNTRY_PROGRAMS.findIndex((c) => c.key === activeKey);
+
+  const goTo = (idx: number) => {
+    const n = (idx + COUNTRY_PROGRAMS.length) % COUNTRY_PROGRAMS.length;
+    setActiveKey(COUNTRY_PROGRAMS[n].key);
+  };
+  const goPrev = () => { setPaused(true); goTo(activeIndex - 1); };
+  const goNext = () => { setPaused(true); goTo(activeIndex + 1); };
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setActiveKey((cur) => {
+        const i = COUNTRY_PROGRAMS.findIndex((c) => c.key === cur);
+        return COUNTRY_PROGRAMS[(i + 1) % COUNTRY_PROGRAMS.length].key;
+      });
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
+  useEffect(() => {
+    const el = tabRefs.current[activeKey];
+    if (el) el.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, [activeKey]);
 
   return (
     <section
