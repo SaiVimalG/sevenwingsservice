@@ -15,8 +15,8 @@ export function FeaturedServices() {
       className="relative overflow-hidden bg-cream py-24"
     >
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6">
-        {/* heading card — white with border to stand apart from the navy detail panel below */}
-        <div className="rounded-3xl border border-navy/15 bg-white p-8 shadow-elegant sm:p-12">
+        {/* heading card — white, attached to navy panel below via shared navy border + flat bottom */}
+        <div className="rounded-t-3xl border-2 border-b-0 border-[#061a52] bg-white p-8 shadow-elegant sm:p-12">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
               <p className="inline-block rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-deep sm:text-xs">
@@ -61,9 +61,9 @@ export function FeaturedServices() {
           </div>
         </div>
 
-        {/* country detail panel — navy, unchanged styling */}
+        {/* country detail panel — navy, attached directly under the white heading card */}
         <div
-          className="relative mt-10 overflow-hidden rounded-3xl px-6 py-12 text-white shadow-elegant sm:px-10 sm:py-16"
+          className="relative overflow-hidden rounded-b-3xl border-2 border-t-0 border-[#061a52] px-6 py-12 text-white shadow-elegant sm:px-10 sm:py-16"
           style={{ background: "linear-gradient(135deg, #061a52 0%, #0a2470 55%, #061a52 100%)" }}
         >
           <div aria-hidden className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-sky/20 blur-3xl" />
