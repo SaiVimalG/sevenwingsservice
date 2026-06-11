@@ -78,9 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: SITE.name },
       { property: "og:type", content: "website" },
       { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { property: "og:description", content: "Soar beyond borders. Land with confidence. 7 Wings Immigration helps Hyderabad professionals migrate to Germany, Australia and Canada." },
+      { property: "og:description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS programs. Personalised guidance, transparent process, proven results." },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "index,follow" },
+      { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
+      { name: "twitter:description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS programs. Personalised guidance, transparent process, proven results." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
