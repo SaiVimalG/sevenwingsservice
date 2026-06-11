@@ -15,8 +15,8 @@ export function FeaturedServices() {
       className="relative overflow-hidden bg-cream py-24"
     >
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6">
-        {/* heading card — white with border to stand apart from the navy detail panel below */}
-        <div className="rounded-3xl border border-navy/15 bg-white p-8 shadow-elegant sm:p-12">
+        {/* heading card — white, attached to navy panel below via shared navy border + flat bottom */}
+        <div className="rounded-t-3xl border-2 border-b-0 border-[#061a52] bg-white p-8 shadow-elegant sm:p-12">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
               <p className="inline-block rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-deep sm:text-xs">
