@@ -236,70 +236,197 @@ export const AWARDS = [
   { title: "Global Education Partner", year: "2024", body: "AIRC Recognised Member" },
 ];
 
-export const NEWS = [
+export interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  category: string;
+  author: string;
+  image: string;
+  intro: string;
+  sections: { heading: string; paragraphs: string[] }[];
+  why7Wings: string[];
+  cta: { label: string; to: string; slug?: string };
+}
+
+export const BLOG: BlogPost[] = [
   {
     slug: "germany-opportunity-card-2026-changes",
-    title: "Germany Opportunity Card 2026: Three things Hyderabad applicants must know",
-    excerpt: "From the new points matrix to language flexibilities — a deep dive into BAMF's latest Chancenkarte update and what it means for Indian professionals.",
+    title: "Germany Opportunity Card 2026: What Hyderabad applicants need to know",
+    excerpt: "The new Chancenkarte rules favour skilled Indian professionals more than ever. Here is the simple, points-by-points breakdown.",
     date: "May 12, 2026",
     readTime: "6 min read",
     category: "Germany",
     author: "7 Wings Editorial",
     image: germany,
-    body: [
-      "Germany's points-based Opportunity Card continues to evolve. The 2026 update widens the language-equivalence ladder and extends the residence permit window for in-country switching.",
-      "For Hyderabad professionals, three things matter most: the lowered B1-German bonus, the new IT-experience credit and clearer rules on Schengen-to-OC conversion.",
-      "If you scored 5 points under the old matrix, you may now qualify with the same documents. Re-score with our team before re-applying.",
+    intro:
+      "Germany's Opportunity Card (Chancenkarte) is a points-based residence permit that lets you fly to Germany and look for a job — even before you have an offer. The 2026 update makes it easier for Indian engineers, IT professionals, nurses and graduates to qualify.",
+    sections: [
+      {
+        heading: "What changed in 2026",
+        paragraphs: [
+          "The minimum German requirement is now A1 (basic) instead of A2, and B2 English alone earns you points. You can mix and match languages.",
+          "IT professionals with 2+ years of hands-on experience can now claim a dedicated experience point — even without a formal degree match.",
+          "You can switch from a Schengen tourist visa to an Opportunity Card from inside Germany in many cases.",
+        ],
+      },
+      {
+        heading: "Who should apply",
+        paragraphs: [
+          "Engineers, IT and software professionals, nurses, electricians, chefs, accountants and recent graduates with a recognised degree.",
+          "You need a minimum of 6 points across qualification, experience, language, age and Germany connection. Most working professionals from Hyderabad score 6-10 points easily.",
+        ],
+      },
+      {
+        heading: "How long it takes",
+        paragraphs: [
+          "Document preparation: 3-5 weeks. ZAB recognition: 4-8 weeks. Visa appointment to stamping: 4-6 weeks. Total: roughly 3 months from start to flight.",
+        ],
+      },
     ],
+    why7Wings: [
+      "We score your profile against the official BAMF matrix in the very first call - no guesswork.",
+      "Full ZAB recognition support so your Indian degree is accepted in Germany.",
+      "Notarised translation, blocked-account setup and health-insurance - handled in-house.",
+      "Mock VFS interview before your appointment so nothing surprises you on the day.",
+    ],
+    cta: { label: "Check my Germany eligibility", to: "/services/$slug", slug: "germany-opportunity-card" },
   },
   {
     slug: "canada-pr-category-draws-2026",
-    title: "Canada PR category-based draws: How healthcare and STEM are dominating ITAs",
-    excerpt: "IRCC's 2026 category-based Express Entry rounds are issuing invitations at CRS scores below 470 for targeted occupations. Here's how to position your profile.",
+    title: "Canada PR in 2026: Why category-based draws are the easiest route now",
+    excerpt: "If your CRS score is between 450 and 480, category-based Express Entry draws are now your best path to an ITA.",
     date: "Apr 28, 2026",
     readTime: "5 min read",
     category: "Canada",
     author: "Counsel Desk",
     image: canada,
-    body: [
-      "IRCC's category-based draws now make up nearly 40% of all 2026 invitations. Healthcare, STEM, trades and French-language streams continue to receive the highest share.",
-      "A 462 CRS profile with the right NOC code is now competitive — provided your ECA and language test are current.",
-      "We help you re-position your NOC and language scores to fit the next category round.",
+    intro:
+      "Canada continues to be the most welcoming PR country for Indian families. In 2026, almost 40% of all Express Entry invitations come from category-based draws - and the cut-off is often below 470 CRS for the right occupation.",
+    sections: [
+      {
+        heading: "Which categories are hottest",
+        paragraphs: [
+          "Healthcare (nurses, physiotherapists, pharmacists), STEM (software engineers, data analysts, civil engineers), trades and French-speaking candidates are being invited at lower scores.",
+          "If your NOC code falls in one of these categories, you can land an ITA with a CRS as low as 445.",
+        ],
+      },
+      {
+        heading: "What you need to lodge a profile",
+        paragraphs: [
+          "Valid IELTS General or CELPIP-G (we recommend re-testing if your score is 4+ years old).",
+          "ECA (Educational Credential Assessment) from WES or IQAS - usually 4-6 weeks.",
+          "Proof of funds equivalent to CAD ~14,000 for a single applicant (more for family).",
+        ],
+      },
+      {
+        heading: "Realistic timelines",
+        paragraphs: [
+          "Profile creation: 1 week. Pool wait: 1-6 months depending on category. PR application after ITA: 5-8 months. Total: 6-14 months to landing.",
+        ],
+      },
     ],
+    why7Wings: [
+      "Free CRS audit - we plug every legitimate point before you enter the pool.",
+      "We track every category-based round in real time and time your profile entry around it.",
+      "Parallel PNP applications where you qualify - a nomination adds 600 points and almost guarantees an ITA.",
+      "Spouse-skill addition, NAATI and study credits - all the small wins that add up.",
+    ],
+    cta: { label: "Start my Canada PR", to: "/services/$slug", slug: "canada-pr" },
   },
   {
     slug: "australia-pr-state-nomination-cycle-fy26",
-    title: "Australia PR FY26: Which state should Hyderabad professionals target?",
-    excerpt: "NSW, VIC, QLD or SA — a clear-eyed look at this year's nomination ceilings, occupation lists and processing speed.",
+    title: "Australia PR FY26: Picking the right state can save you 12 months",
+    excerpt: "NSW, Victoria, Queensland or South Australia - your choice of state nomination decides how fast your 190 or 491 visa lands.",
     date: "Apr 09, 2026",
     readTime: "7 min read",
     category: "Australia",
     author: "7 Wings Editorial",
     image: australia,
-    body: [
-      "Australian state nomination cycles refresh every July. The FY26 occupation lists favour engineers, data analysts and registered nurses.",
-      "Victoria continues to lead on processing speed for tech roles. NSW remains the strongest for finance and consulting.",
-      "Run a points-and-occupation check with our team before lodging an EOI — choosing the wrong state can cost you 12 months.",
+    intro:
+      "Australia rewards skilled professionals with one of the strongest PR programs in the world - Medicare, free schooling for kids and a citizenship pathway after 4 years. The trick is choosing the right visa subclass and the right state.",
+    sections: [
+      {
+        heading: "Which subclass fits you",
+        paragraphs: [
+          "Subclass 189 (Independent) - no state needed, but needs high points. Best for 90+ scorers.",
+          "Subclass 190 (State Nominated) - adds 5 points and ties you to one state for 2 years.",
+          "Subclass 491 (Regional) - adds 15 points and leads to permanent residency after 3 years in a regional area.",
+        ],
+      },
+      {
+        heading: "Which state to target in FY26",
+        paragraphs: [
+          "Victoria is fastest for tech (software, data, cyber). NSW is strongest for finance, accounting and consulting.",
+          "South Australia and Tasmania are the easiest entry points for engineers via 491.",
+          "Queensland is currently the most open for nurses and healthcare workers.",
+        ],
+      },
+      {
+        heading: "How long the whole process takes",
+        paragraphs: [
+          "Skills assessment (ACS / Engineers Australia / VETASSESS): 6-10 weeks. EOI to invitation: 1-6 months. Visa grant: 6-9 months. Total: 9-16 months.",
+        ],
+      },
     ],
+    why7Wings: [
+      "Free occupation and points audit - we tell you the exact subclass and state in one sitting.",
+      "Skills assessment dossiers prepared in-house - ACS, Engineers Australia and VETASSESS.",
+      "PTE / IELTS coaching partners to push your language score from 7 to 8 bands.",
+      "End-to-end EOI, nomination, medicals, PCC and grant follow-up.",
+    ],
+    cta: { label: "Apply for Australia PR", to: "/services/$slug", slug: "australia-pr" },
   },
   {
     slug: "jss-program-relocation-checklist",
-    title: "The 30-day relocation checklist for JSS Program offer holders",
-    excerpt: "A practical, day-by-day breakdown of everything to handle between signing your offer letter and your first day at work abroad.",
+    title: "The JSS Program: How we get Hyderabad professionals job offers abroad",
+    excerpt: "Job-Search Support is for ambitious professionals who want a real overseas offer first - and the migration paperwork second.",
     date: "Mar 22, 2026",
     readTime: "8 min read",
     category: "JSS Program",
     author: "Relocation Desk",
     image: jss,
-    body: [
-      "An offer letter is just the beginning. The 30-day window between signing and flying is where most relocations slip.",
-      "Our JSS Relocation Desk walks every offer holder through visa, accommodation, banking, schooling and shipping in parallel.",
-      "Save this 30-day checklist and share it with your spouse before your first packing day.",
+    intro:
+      "Our JSS (Job-Search Support) Program is built for professionals who do not want to migrate blind. We rebuild your CV for international recruiters, run a targeted outreach campaign and walk you through interviews, offers and the right work permit - Germany, Australia, Canada, UAE and beyond.",
+    sections: [
+      {
+        heading: "What is included",
+        paragraphs: [
+          "An ATS-friendly CV in the exact format recruiters in your target country actually screen with.",
+          "LinkedIn rebuild plus a curated outreach campaign to verified recruiters and hiring managers.",
+          "Mock interviews, salary benchmarking and offer-letter review before you sign anything.",
+        ],
+      },
+      {
+        heading: "Typical timeline",
+        paragraphs: [
+          "Week 1-2: discovery, CV and LinkedIn rebuild. Week 3-6: recruiter outreach and first interviews. Week 6-12: offers, negotiation and work-permit lodgement.",
+          "Most clients see active interview pipelines within 60-90 days of joining.",
+        ],
+      },
+      {
+        heading: "Best-fit countries right now",
+        paragraphs: [
+          "Germany (IT, engineering, healthcare), UAE (finance, sales, hospitality), Australia and Canada for licensed professionals, Singapore and the UK for senior leadership roles.",
+        ],
+      },
     ],
+    why7Wings: [
+      "Senior-led process - you work with consultants who have actually placed people abroad.",
+      "Milestone-linked fees - most of what you pay is tied to interviews and offers, not promises.",
+      "We negotiate the offer on your behalf so you do not leave salary or relocation cost on the table.",
+      "Post-arrival 90-day relocation support - banking, housing, schooling, taxes.",
+    ],
+    cta: { label: "Enrol in the JSS Program", to: "/services/$slug", slug: "jss-program" },
   },
 ];
 
-export const NEWS_MAP = Object.fromEntries(NEWS.map((n) => [n.slug, n])) as Record<string, (typeof NEWS)[number]>;
+// Backwards-compatible aliases
+export const NEWS = BLOG;
+export const BLOG_MAP = Object.fromEntries(BLOG.map((b) => [b.slug, b])) as Record<string, BlogPost>;
+export const NEWS_MAP = BLOG_MAP;
 export const COUNTRY_MAP = Object.fromEntries(COUNTRIES.map((c) => [c.slug, c])) as Record<string, (typeof COUNTRIES)[number]>;
 
 export const PRICING = [
