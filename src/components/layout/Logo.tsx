@@ -7,7 +7,7 @@ export function Logo({ className = "" }: { variant?: "light" | "dark"; className
       <img
         src={SITE.logoUrl}
         alt={`${SITE.name} logo`}
-        className="h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+        className="h-20 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
       />
     </Link>
   );
