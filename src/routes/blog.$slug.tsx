@@ -1,5 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import {
   ArrowRight,
   Calendar,
@@ -18,10 +20,18 @@ import {
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
 import { BLOG_MAP, BLOG, SITE, type BlogPost } from "@/lib/site";
+import { getDbPost } from "@/lib/blog.functions";
+import { dbToBlogPost } from "@/lib/blog-merge";
 import type { ServiceSlug } from "@/lib/site";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
+    try {
+      const db = await getDbPost({ data: { slug: params.slug } });
+      if (db) return { post: dbToBlogPost(db) };
+    } catch {
+      // fall through to static
+    }
     const post = BLOG_MAP[params.slug];
     if (!post) throw notFound();
     return { post };
