@@ -46,7 +46,6 @@ function Home() {
       <About />
       <FeaturedServices />
       <NumberedServices />
-      <DestinationFeature />
       <Testimonials />
       <VideoBanner />
       <FAQ />
