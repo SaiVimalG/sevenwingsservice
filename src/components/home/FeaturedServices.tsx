@@ -40,7 +40,7 @@ export function FeaturedServices() {
   return (
     <section
       id="featured-services"
-      className="relative overflow-hidden bg-cream py-24"
+      className="relative overflow-hidden bg-cream py-10 sm:py-14"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -86,13 +86,14 @@ export function FeaturedServices() {
                       aria-pressed={isActive}
                       title={c.country}
                       className={[
-                        "grid place-items-center rounded-full transition-all duration-300",
+                        "relative grid place-items-center overflow-hidden rounded-full transition-all duration-300",
                         isActive
-                          ? "h-12 w-12 border-2 border-gold bg-white text-2xl shadow-gold sm:h-14 sm:w-14 sm:text-3xl"
-                          : "h-8 w-8 border border-navy/15 bg-white text-base opacity-60 hover:opacity-100 sm:h-9 sm:w-9 sm:text-lg",
+                          ? "h-[72px] w-[72px] text-[44px] ring-4 ring-gold shadow-[0_12px_28px_-8px_rgba(212,175,55,0.6),inset_0_-6px_14px_rgba(0,0,0,0.25),inset_0_6px_14px_rgba(255,255,255,0.35)] scale-110 sm:h-20 sm:w-20 sm:text-[52px]"
+                          : "h-9 w-9 text-[22px] opacity-55 shadow-[inset_0_-3px_8px_rgba(0,0,0,0.25),inset_0_3px_8px_rgba(255,255,255,0.3)] hover:opacity-100 sm:h-10 sm:w-10 sm:text-2xl",
                       ].join(" ")}
+                      style={{ background: "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%)" }}
                     >
-                      <span className="leading-none">{c.flag}</span>
+                      <span className="leading-none drop-shadow-sm">{c.flag}</span>
                     </button>
                   );
                 })}
