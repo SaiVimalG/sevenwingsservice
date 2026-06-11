@@ -1,0 +1,105 @@
+import { Link } from "@tanstack/react-router";
+import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook, Youtube } from "lucide-react";
+import { Logo } from "./Logo";
+import { SITE, SERVICES } from "@/lib/site";
+
+export function Footer() {
+  return (
+    <footer className="relative overflow-hidden bg-navy-mesh text-white">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 lg:grid-cols-4">
+        <div className="space-y-6">
+          <Logo variant="dark" />
+          <p className="max-w-sm text-sm text-white/70">
+            Hyderabad's premium immigration consultancy for Germany, Australia, Canada and JSS pathways.
+            Soar beyond borders. Land with confidence.
+          </p>
+          <div className="flex items-center gap-3">
+            {[
+              { Icon: Instagram, href: SITE.social.instagram, label: "Instagram" },
+              { Icon: Linkedin, href: SITE.social.linkedin, label: "LinkedIn" },
+              { Icon: Facebook, href: SITE.social.facebook, label: "Facebook" },
+              { Icon: Youtube, href: SITE.social.youtube, label: "YouTube" },
+            ].map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
+                className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold hover:-translate-y-0.5"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Programs</h4>
+          <ul className="space-y-3 text-sm text-white/75">
+            {SERVICES.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: s.slug }}
+                  className="inline-flex items-center gap-2 transition-colors hover:text-gold"
+                >
+                  <span>{s.flag}</span> {s.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Company</h4>
+          <ul className="space-y-3 text-sm text-white/75">
+            {[
+              { to: "/about", label: "About Us" },
+              { to: "/success-stories", label: "Success Stories" },
+              { to: "/faq", label: "FAQ" },
+              { to: "/contact", label: "Contact" },
+              { to: "/privacy", label: "Privacy Policy" },
+              { to: "/terms", label: "Terms & Conditions" },
+              { to: "/refund", label: "Refund Policy" },
+            ].map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="transition-colors hover:text-gold">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Contact</h4>
+          <ul className="space-y-4 text-sm text-white/75">
+            <li className="flex items-start gap-3">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+              <span>{SITE.address}</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Phone className="h-4 w-4 shrink-0 text-gold" />
+              <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="hover:text-gold">{SITE.phone}</a>
+            </li>
+            <li className="flex items-center gap-3">
+              <Mail className="h-4 w-4 shrink-0 text-gold" />
+              <a href={`mailto:${SITE.email}`} className="hover:text-gold">{SITE.email}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-white/55 md:flex-row">
+          <p>© {new Date().getFullYear()} 7 Wings Immigration. All rights reserved.</p>
+          <p>
+            Made for ambitious professionals in <span className="text-gold">Hyderabad</span>.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
