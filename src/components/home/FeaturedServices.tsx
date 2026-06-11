@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { COUNTRY_PROGRAMS } from "@/lib/site";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function FeaturedServices() {
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [paused, setPaused] = useState(false);
   const [activeKey, setActiveKey] = useState(COUNTRY_PROGRAMS[0].key);
   const active = COUNTRY_PROGRAMS.find((c) => c.key === activeKey) ?? COUNTRY_PROGRAMS[0];
 
