@@ -1,13 +1,40 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { COUNTRY_PROGRAMS } from "@/lib/site";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function FeaturedServices() {
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [paused, setPaused] = useState(false);
   const [activeKey, setActiveKey] = useState(COUNTRY_PROGRAMS[0].key);
   const active = COUNTRY_PROGRAMS.find((c) => c.key === activeKey) ?? COUNTRY_PROGRAMS[0];
+  const activeIndex = COUNTRY_PROGRAMS.findIndex((c) => c.key === activeKey);
+
+  const goTo = (idx: number) => {
+    const n = (idx + COUNTRY_PROGRAMS.length) % COUNTRY_PROGRAMS.length;
+    setActiveKey(COUNTRY_PROGRAMS[n].key);
+  };
+  const goPrev = () => { setPaused(true); goTo(activeIndex - 1); };
+  const goNext = () => { setPaused(true); goTo(activeIndex + 1); };
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setActiveKey((cur) => {
+        const i = COUNTRY_PROGRAMS.findIndex((c) => c.key === cur);
+        return COUNTRY_PROGRAMS[(i + 1) % COUNTRY_PROGRAMS.length].key;
+      });
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
+  useEffect(() => {
+    const el = tabRefs.current[activeKey];
+    if (el) el.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, [activeKey]);
 
   return (
     <section
@@ -36,14 +63,38 @@ export function FeaturedServices() {
           </div>
 
           {/* country tabs */}
-          <div className="relative mt-10">
-            <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center sm:gap-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div
+            className="relative mt-10"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            <button
+              type="button"
+              aria-label="Previous country"
+              onClick={goPrev}
+              className="absolute left-0 top-1/2 z-10 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full border border-navy/20 bg-white text-navy shadow-elegant transition-all hover:border-gold hover:text-gold-deep sm:-left-2"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next country"
+              onClick={goNext}
+              className="absolute right-0 top-1/2 z-10 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full border border-navy/20 bg-white text-navy shadow-elegant transition-all hover:border-gold hover:text-gold-deep sm:-right-2"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+            <div
+              ref={tabsRef}
+              className="flex gap-2 overflow-x-auto scroll-smooth px-12 pb-2 sm:gap-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
               {COUNTRY_PROGRAMS.map((c) => {
                 const isActive = c.key === activeKey;
                 return (
                   <button
                     key={c.key}
-                    onClick={() => setActiveKey(c.key)}
+                    ref={(el) => { tabRefs.current[c.key] = el; }}
+                    onClick={() => { setPaused(true); setActiveKey(c.key); }}
                     className={[
                       "group relative shrink-0 whitespace-nowrap rounded-full border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] transition-all sm:px-5 sm:py-3 sm:text-[11px]",
                       isActive
