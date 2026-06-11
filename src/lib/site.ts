@@ -461,3 +461,177 @@ export const PRICING = [
     highlight: false,
   },
 ];
+
+/* ───────── Country Programs (Featured Services tabs) ───────── */
+export interface Program {
+  slug: string;
+  title: string;
+  short: string;
+}
+
+export interface CountryGroup {
+  key: string;
+  country: string;
+  flag: string;
+  headline: string;
+  description: string;
+  image: string;
+  badge: string;
+  programs: Program[];
+}
+
+export const COUNTRY_PROGRAMS: CountryGroup[] = [
+  {
+    key: "germany",
+    country: "Germany",
+    flag: "🇩🇪",
+    badge: "Featured · Germany",
+    headline: "Visa & Migration Services to Germany.",
+    description:
+      "The Chancenkarte (Opportunity Card) is engineered for skilled professionals who want to enter Germany on their own terms — even before securing an offer. Our scoring, ZAB recognition and document team make every point count.",
+    image: "https://images.unsplash.com/photo-1554072675-66db59dba46f?auto=format&fit=crop&w=1600&q=80",
+    programs: [
+      { slug: "germany-opportunity-card", title: "Opportunity Card · Chancenkarte", short: "Points-based residence permit to enter Germany and seek work." },
+      { slug: "germany-skilled-worker-visa", title: "Skilled Worker Visa", short: "Long-term work visa for qualified professionals with a German job offer." },
+      { slug: "germany-eu-blue-card", title: "EU Blue Card", short: "Fast-track residence for high-earning specialists across the EU." },
+      { slug: "germany-job-seeker-visa", title: "Job Seeker Visa", short: "Six-month visa to search for a qualifying role on the ground." },
+      { slug: "germany-work-permit", title: "Germany Work Permit", short: "Employer-sponsored work authorisation under German labour rules." },
+      { slug: "germany-student-visa", title: "Germany Student Visa", short: "Visa for full-time studies at recognised German universities." },
+      { slug: "germany-family-reunion-visa", title: "Family Reunion Visa", short: "Bring your spouse and children to Germany with full work and school rights." },
+      { slug: "germany-ausbildung-program", title: "Ausbildung Program", short: "Earn-and-learn vocational training pathway with sponsored employment." },
+      { slug: "germany-permanent-residency", title: "Permanent Residency Pathway", short: "Niederlassungserlaubnis — settle in Germany after qualifying years." },
+    ],
+  },
+  {
+    key: "australia",
+    country: "Australia",
+    flag: "🇦🇺",
+    badge: "Featured · Australia",
+    headline: "Visa & Migration Services to Australia.",
+    description:
+      "Australia's points-tested SkillSelect pathways reward strong English, age and experience. We profile, score, lodge EOIs and steer state-nomination strategy from day one.",
+    image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1600&q=80",
+    programs: [
+      { slug: "australia-pr-189", title: "Australia PR · 189 Visa", short: "Skilled Independent permanent residency, no sponsor required." },
+      { slug: "australia-pr-190", title: "Australia PR · 190 Visa", short: "State-nominated permanent residency for in-demand occupations." },
+      { slug: "australia-pr-491", title: "Australia PR · 491 Visa", short: "Regional skilled work visa with a PR pathway through 191." },
+      { slug: "australia-skilled-independent", title: "Skilled Independent Visa", short: "Points-tested PR independent of any sponsorship." },
+      { slug: "australia-skilled-nominated", title: "Skilled Nominated Visa", short: "PR through a state or territory nomination boost." },
+      { slug: "australia-regional-skilled", title: "Regional Skilled Visa", short: "Live and work in designated regional Australia." },
+      { slug: "australia-student-visa", title: "Australia Student Visa", short: "Subclass 500 for full-time study at registered institutions." },
+      { slug: "australia-temporary-graduate-485", title: "Temporary Graduate Visa (485)", short: "Post-study work rights for international graduates." },
+      { slug: "australia-employer-sponsored", title: "Employer Sponsored Visa", short: "TSS and ENS pathways through an Australian sponsor." },
+      { slug: "australia-partner-visa", title: "Partner Visa", short: "Join your Australian partner with provisional-to-PR pathway." },
+    ],
+  },
+  {
+    key: "canada",
+    country: "Canada",
+    flag: "🇨🇦",
+    badge: "Featured · Canada",
+    headline: "Visa & Migration Services to Canada.",
+    description:
+      "From Express Entry CRS optimisation to PNP nominations and study-to-PR plans, we map the fastest route to Canadian permanent residency for Indian professionals and students.",
+    image: "https://images.unsplash.com/photo-1517090504586-fde19ea6066f?auto=format&fit=crop&w=1600&q=80",
+    programs: [
+      { slug: "canada-express-entry", title: "Express Entry", short: "Federal CRS-ranked PR pool for skilled workers." },
+      { slug: "canada-pnp", title: "Provincial Nominee Program (PNP)", short: "Province-driven PR streams matching local skills demand." },
+      { slug: "canada-pr", title: "Canada PR", short: "Permanent residency strategy across federal and provincial routes." },
+      { slug: "canada-fswp", title: "Federal Skilled Worker Program", short: "Points-based PR for qualified professionals abroad." },
+      { slug: "canada-cec", title: "Canadian Experience Class", short: "PR for those with skilled Canadian work experience." },
+      { slug: "canada-student-visa", title: "Canada Student Visa", short: "Study permit for DLI-approved Canadian institutions." },
+      { slug: "canada-open-work-permit", title: "Open Work Permit", short: "Work for any Canadian employer — PGWP, spouse, IEC routes." },
+      { slug: "canada-lmia-work-permit", title: "LMIA Work Permit", short: "Employer-driven work authorisation backed by a positive LMIA." },
+      { slug: "canada-family-sponsorship", title: "Family Sponsorship", short: "Sponsor a spouse, partner, child or parent to join you in Canada." },
+      { slug: "canada-visitor-visa", title: "Visitor Visa", short: "Temporary resident visa for tourism, family or business visits." },
+    ],
+  },
+  {
+    key: "uk",
+    country: "United Kingdom",
+    flag: "🇬🇧",
+    badge: "Featured · United Kingdom",
+    headline: "Visa & Migration Services to the United Kingdom.",
+    description:
+      "Skilled Worker, Health & Care Worker, Graduate and Global Talent routes — we sponsor-check, prepare your CoS package and run the points-based application end-to-end.",
+    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80",
+    programs: [
+      { slug: "uk-skilled-worker-visa", title: "Skilled Worker Visa", short: "Sponsored UK work visa with a path to settlement." },
+      { slug: "uk-health-care-worker-visa", title: "Health and Care Worker Visa", short: "Discounted route for eligible NHS and care professionals." },
+      { slug: "uk-graduate-route", title: "Graduate Route Visa", short: "Two-year post-study work permit after a UK degree." },
+      { slug: "uk-student-visa", title: "UK Student Visa", short: "Study at licensed UK universities and colleges." },
+      { slug: "uk-innovator-founder-visa", title: "Innovator Founder Visa", short: "Build an endorsed innovative business in the UK." },
+      { slug: "uk-global-talent-visa", title: "Global Talent Visa", short: "Fast-track for leaders in tech, science, arts and academia." },
+      { slug: "uk-family-visa", title: "Family Visa", short: "Join a UK partner, parent or child under appendix FM rules." },
+      { slug: "uk-visitor-visa", title: "UK Visitor Visa", short: "Short-stay visa for tourism, business and family visits." },
+    ],
+  },
+  {
+    key: "new-zealand",
+    country: "New Zealand",
+    flag: "🇳🇿",
+    badge: "Featured · New Zealand",
+    headline: "Visa & Migration Services to New Zealand.",
+    description:
+      "Skilled Migrant Category 6-point system, Accredited Employer Work Visa and Green List residence pathways — calibrated for Indian applicants with strong qualifications.",
+    image: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?auto=format&fit=crop&w=1600&q=80",
+    programs: [
+      { slug: "nz-skilled-migrant", title: "Skilled Migrant Category", short: "Points-based residence for skilled workers." },
+      { slug: "nz-accredited-employer-work-visa", title: "Accredited Employer Work Visa", short: "Work for an NZ-accredited employer on a sponsored visa." },
+      { slug: "nz-student-visa", title: "NZ Student Visa", short: "Study at NZQA-approved New Zealand institutions." },
+      { slug: "nz-green-list", title: "Green List Pathway", short: "Fast-tracked residence for in-demand Green List roles." },
+      { slug: "nz-partner-visa", title: "Partner Visa", short: "Join an NZ partner on a work or resident visa." },
+      { slug: "nz-visitor-visa", title: "NZ Visitor Visa", short: "Short-term visa for tourism, family or business." },
+      { slug: "nz-residence-pathway", title: "Residence Pathway", short: "Strategy to convert work or study visas to NZ residence." },
+    ],
+  },
+  {
+    key: "usa",
+    country: "United States",
+    flag: "🇺🇸",
+    badge: "Featured · United States",
+    headline: "Visa & Migration Services to the United States.",
+    description:
+      "From H1B sponsorship support to F1 admissions, OPT/CPT compliance and EB2/EB3 green-card filings — premium guidance built around USCIS realities.",
+    image: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=1600&q=80",
+    programs: [
+      { slug: "usa-h1b-visa", title: "H1B Visa", short: "Specialty-occupation work visa for US employers." },
+      { slug: "usa-f1-student-visa", title: "F1 Student Visa", short: "Full-time academic study at SEVP-certified schools." },
+      { slug: "usa-opt", title: "OPT", short: "Optional Practical Training for F1 graduates." },
+      { slug: "usa-cpt", title: "CPT", short: "Curricular Practical Training during your F1 program." },
+      { slug: "usa-eb2-visa", title: "EB2 Visa", short: "Employment-based green card for advanced-degree professionals." },
+      { slug: "usa-eb3-visa", title: "EB3 Visa", short: "Green card for skilled, professional and other workers." },
+      { slug: "usa-visitor-visa", title: "Visitor Visa (B1/B2)", short: "Short-term business or tourist entry to the US." },
+      { slug: "usa-family-sponsorship", title: "Family Sponsorship", short: "Sponsor relatives for US immigrant or non-immigrant visas." },
+      { slug: "usa-green-card-pathway", title: "Green Card Pathway", short: "Strategy to obtain US lawful permanent residence." },
+    ],
+  },
+  {
+    key: "schengen",
+    country: "Schengen Europe",
+    flag: "🇪🇺",
+    badge: "Featured · Schengen Europe",
+    headline: "Visa & Immigration Services to Schengen Europe.",
+    description:
+      "Short-stay Schengen visas and long-stay European pathways — we handle the documentation, financial proofs and consulate appointments across all 27 Schengen states.",
+    image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1600&q=80",
+    programs: [
+      { slug: "schengen-tourist-visa", title: "Schengen Tourist Visa", short: "Short-stay leisure travel across the 27 Schengen states." },
+      { slug: "schengen-business-visa", title: "Schengen Business Visa", short: "Short-stay visa for meetings, conferences and trade events." },
+      { slug: "schengen-germany-opportunity-card", title: "Germany Opportunity Card", short: "Job-seeker residence permit for skilled Indians." },
+      { slug: "schengen-germany-work-visa", title: "Germany Work Visa", short: "Long-stay German employment-based residence permit." },
+      { slug: "schengen-germany-student-visa", title: "Germany Student Visa", short: "Long-stay D-visa for studies in Germany." },
+      { slug: "schengen-ireland-student-visa", title: "Ireland Student Visa", short: "Study in Ireland with post-study work options." },
+      { slug: "schengen-family-reunion-visa", title: "Family Reunion Visa", short: "Join a family member already resident in Europe." },
+      { slug: "schengen-visitor-visa", title: "Schengen Visitor Visa", short: "Visit family and friends across Schengen Europe." },
+    ],
+  },
+];
+
+export const ALL_PROGRAMS: { country: CountryGroup; program: Program }[] = COUNTRY_PROGRAMS.flatMap((c) =>
+  c.programs.map((p) => ({ country: c, program: p })),
+);
+
+export function findProgram(slug: string) {
+  return ALL_PROGRAMS.find((x) => x.program.slug === slug);
+}
