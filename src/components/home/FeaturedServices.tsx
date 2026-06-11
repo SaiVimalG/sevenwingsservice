@@ -40,7 +40,7 @@ export function FeaturedServices() {
   return (
     <section
       id="featured-services"
-      className="relative overflow-hidden bg-cream py-24"
+      className="relative overflow-hidden bg-cream py-10 sm:py-14"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
