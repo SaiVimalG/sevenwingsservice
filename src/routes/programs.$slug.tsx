@@ -179,7 +179,7 @@ function ProgramPage() {
               <h2 className="mt-3 font-display text-3xl font-bold text-navy-deep md:text-4xl">Explore related pathways.</h2>
             </Reveal>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((p, i) => (
+              {related.map((p: Program, i: number) => (
                 <Reveal key={p.slug} delay={i * 0.05}>
                   <Link
                     to="/programs/$slug"
