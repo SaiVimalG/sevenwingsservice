@@ -7,7 +7,8 @@ export function Logo({ className = "" }: { variant?: "light" | "dark"; className
       <img
         src={SITE.logoUrl}
         alt={`${SITE.name} logo`}
-        className="block h-[78px] max-h-[97.5%] w-auto max-w-none shrink-0 object-contain"
+        className="block w-auto max-w-none shrink-0 object-contain"
+        style={{ height: "76px", maxHeight: "95%" }}
       />
     </Link>
   );
