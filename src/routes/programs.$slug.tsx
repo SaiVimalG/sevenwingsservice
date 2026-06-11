@@ -2,7 +2,9 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check, Phone, MessageCircle, Calendar } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
-import { COUNTRY_PROGRAMS, findProgram, SITE } from "@/lib/site";
+import { COUNTRY_PROGRAMS, findProgram, SITE, type CountryGroup, type Program } from "@/lib/site";
+
+type LoaderData = { country: CountryGroup; program: Program };
 
 export const Route = createFileRoute("/programs/$slug")({
   loader: ({ params }) => {
@@ -42,8 +44,8 @@ export const Route = createFileRoute("/programs/$slug")({
 });
 
 function ProgramPage() {
-  const { country, program } = Route.useLoaderData();
-  const related = country.programs.filter((p) => p.slug !== program.slug).slice(0, 6);
+  const { country, program } = Route.useLoaderData() as LoaderData;
+  const related = country.programs.filter((p: Program) => p.slug !== program.slug).slice(0, 6);
 
   return (
     <PageShell>
