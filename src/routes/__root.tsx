@@ -83,6 +83,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "robots", content: "index,follow" },
       { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
       { name: "twitter:description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS programs. Personalised guidance, transparent process, proven results." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/28b4bd14-fa2e-478b-aa43-8112e8c9520f/id-preview-272f0f6b--194042d7-d400-4563-a5dc-ee36f53cbdd1.lovable.app-1781163543517.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/28b4bd14-fa2e-478b-aa43-8112e8c9520f/id-preview-272f0f6b--194042d7-d400-4563-a5dc-ee36f53cbdd1.lovable.app-1781163543517.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
