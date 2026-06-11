@@ -2,9 +2,18 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
-import { BLOG } from "@/lib/site";
+import { listDbPosts } from "@/lib/blog.functions";
+import { mergePosts } from "@/lib/blog-merge";
 
 export const Route = createFileRoute("/blog/")({
+  loader: async () => {
+    try {
+      const db = await listDbPosts();
+      return { posts: mergePosts(db) };
+    } catch {
+      return { posts: mergePosts([]) };
+    }
+  },
   head: () => ({
     meta: [
       { title: "Immigration Blog & Visa Insights | 7 Wings Immigration Hyderabad" },
@@ -18,7 +27,8 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogIndex() {
-  const [featured, ...rest] = BLOG;
+  const { posts } = Route.useLoaderData();
+  const [featured, ...rest] = posts;
 
   return (
     <PageShell>
