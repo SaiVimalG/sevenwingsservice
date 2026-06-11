@@ -270,14 +270,43 @@ function BlogPostPage() {
                           {section.heading}
                         </h2>
                       </div>
-                      <div className="mt-5 space-y-4 pl-0 md:pl-10">
+                      <div className="prose-blog mt-5 space-y-4 pl-0 md:pl-10">
                         {section.paragraphs.map((p, j) => (
-                          <p
+                          <ReactMarkdown
                             key={j}
-                            className="text-base leading-[1.85] text-muted-foreground md:text-[17px]"
+                            remarkPlugins={[remarkGfm]}
+                            components={{
+                              p: ({ node, ...props }) => (
+                                <p className="text-base leading-[1.85] text-muted-foreground md:text-[17px]" {...props} />
+                              ),
+                              ul: ({ node, ...props }) => (
+                                <ul className="ml-5 list-disc space-y-2 text-base leading-[1.85] text-muted-foreground md:text-[17px]" {...props} />
+                              ),
+                              ol: ({ node, ...props }) => (
+                                <ol className="ml-5 list-decimal space-y-2 text-base leading-[1.85] text-muted-foreground md:text-[17px]" {...props} />
+                              ),
+                              h3: ({ node, ...props }) => (
+                                <h3 className="font-display text-xl font-bold text-navy-deep" {...props} />
+                              ),
+                              a: ({ node, ...props }) => (
+                                <a className="text-gold-deep underline-offset-4 hover:underline" {...props} />
+                              ),
+                              strong: ({ node, ...props }) => (
+                                <strong className="font-semibold text-navy-deep" {...props} />
+                              ),
+                              blockquote: ({ node, ...props }) => (
+                                <blockquote className="border-l-4 border-gold pl-4 italic text-navy-deep" {...props} />
+                              ),
+                              code: ({ node, ...props }) => (
+                                <code className="rounded bg-cream px-1.5 py-0.5 font-mono text-sm text-navy-deep" {...props} />
+                              ),
+                              img: ({ node, ...props }) => (
+                                <img className="my-4 rounded-2xl border border-black/5" {...props} />
+                              ),
+                            }}
                           >
                             {p}
-                          </p>
+                          </ReactMarkdown>
                         ))}
                       </div>
                     </section>
