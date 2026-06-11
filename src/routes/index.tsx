@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Play, Sparkles, ChevronDown } from "lucide-react";
+import { ArrowRight, Check, Sparkles, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
@@ -86,9 +86,6 @@ function Hero() {
             <span className="text-gradient-gold"><RevealWords text="to Landing —" /></span>
             <br />
             <RevealWords text="We've Got You." />
-            <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" target="_blank" rel="noreferrer" className="ml-3 inline-grid h-12 w-12 translate-y-[-6px] place-items-center rounded-full bg-gradient-to-br from-gold-soft via-gold to-gold-deep text-navy-deep shadow-gold transition-transform hover:scale-110">
-              <Play className="h-4 w-4 fill-current" />
-            </a>
           </h1>
           <Reveal delay={0.5}>
             <p className="mt-7 max-w-xl text-base text-white/75 md:text-lg">
@@ -117,7 +114,7 @@ function Hero() {
                   <p className="text-xs uppercase tracking-wider text-gold-soft">Soar Beyond Borders</p>
                   <p className="mt-1 font-display text-lg text-white">Land With Confidence.</p>
                 </div>
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-gold text-navy-deep"><Play className="h-4 w-4 fill-current" /></div>
+                <div className="grid h-12 w-12 place-items-center rounded-full bg-gold text-navy-deep"><Sparkles className="h-4 w-4" /></div>
               </motion.div>
             </div>
           </div>
