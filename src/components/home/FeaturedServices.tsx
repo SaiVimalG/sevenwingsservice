@@ -216,13 +216,6 @@ export function FeaturedServices() {
             </motion.div>
           </AnimatePresence>
         </div>
-
-              className="grid h-11 w-11 place-items-center rounded-full border border-navy/20 bg-white text-navy shadow-elegant transition-all hover:border-gold hover:bg-gold hover:text-navy-deep"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );
