@@ -63,6 +63,53 @@ export function FeaturedServices() {
                 Explore the most popular visa and immigration pathways. Switch between countries to see the programs we deliver end-to-end from our Hyderabad office.
               </p>
             </Reveal>
+
+            {/* compact flag selector — all countries, active highlighted */}
+            <div className="mt-8 flex items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={goPrev}
+                aria-label="Previous country"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-navy/20 bg-white text-navy shadow-sm transition-all hover:border-gold hover:bg-gold hover:text-navy-deep"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+
+              <div className="flex items-center gap-2 sm:gap-3">
+                {COUNTRY_PROGRAMS.map((c, i) => {
+                  const isActive = i === activeIndex;
+                  return (
+                    <button
+                      key={c.key}
+                      onClick={() => goTo(i)}
+                      aria-label={c.country}
+                      aria-pressed={isActive}
+                      title={c.country}
+                      className={[
+                        "grid place-items-center rounded-full transition-all duration-300",
+                        isActive
+                          ? "h-12 w-12 border-2 border-gold bg-white text-2xl shadow-gold sm:h-14 sm:w-14 sm:text-3xl"
+                          : "h-8 w-8 border border-navy/15 bg-white text-base opacity-60 hover:opacity-100 sm:h-9 sm:w-9 sm:text-lg",
+                      ].join(" ")}
+                    >
+                      <span className="leading-none">{c.flag}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <button
+                type="button"
+                onClick={goNext}
+                aria-label="Next country"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-navy/20 bg-white text-navy shadow-sm transition-all hover:border-gold hover:bg-gold hover:text-navy-deep"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+            <p className="mt-2 text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-navy/70">
+              {active.country}
+            </p>
           </div>
         </div>
 
