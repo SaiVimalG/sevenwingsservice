@@ -189,22 +189,24 @@
   to { background-position: -200% 0; }
 }
 
-.logo-shine { position: relative; }
-.logo-shine::after {
+.logo-shine { position: relative; isolation: isolate; }
+.logo-shine::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -18%;
+  z-index: -1;
   pointer-events: none;
-  background: linear-gradient(115deg, transparent 35%, color-mix(in oklab, var(--gold-soft) 55%, transparent) 50%, transparent 65%);
-  background-size: 250% 100%;
-  background-position: 200% 0;
-  mix-blend-mode: screen;
-  opacity: 0.7;
-  animation: logoShine 7s ease-in-out infinite;
+  border-radius: 50%;
+  background:
+    radial-gradient(60% 55% at 35% 50%, color-mix(in oklab, var(--sky) 18%, transparent), transparent 70%),
+    radial-gradient(55% 50% at 70% 55%, color-mix(in oklab, var(--gold) 16%, transparent), transparent 72%);
+  filter: blur(18px);
+  opacity: 0.55;
+  animation: logoAmbient 9s ease-in-out infinite;
 }
-@keyframes logoShine {
-  0%, 70%, 100% { background-position: 200% 0; }
-  85% { background-position: -150% 0; }
+@keyframes logoAmbient {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.04); }
 }
 
 @media (prefers-reduced-motion: reduce) {
