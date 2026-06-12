@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { SITE } from "@/lib/site";
 
-export function Logo({ className = "" }: { variant?: "light" | "dark"; className?: string }) {
+export function Logo({ variant = "light", className = "" }: { variant?: "light" | "dark"; className?: string }) {
+  const src = variant === "dark" ? SITE.logoUrlDark : SITE.logoUrl;
   return (
     <Link
       to="/"
@@ -10,7 +11,7 @@ export function Logo({ className = "" }: { variant?: "light" | "dark"; className
     >
       <span className="logo-shine relative inline-block transition-transform duration-500 ease-out group-hover:scale-[1.02]">
         <img
-          src={SITE.logoUrl}
+          src={src}
           alt={`${SITE.name} logo`}
           className="block w-auto max-w-none shrink-0 object-contain transition-[filter,transform] duration-500 ease-out group-hover:brightness-105"
           style={{
