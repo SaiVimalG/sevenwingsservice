@@ -75,7 +75,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="col-span-2 lg:col-span-1">
           <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Contact</h4>
           <ul className="space-y-4 text-sm text-white/75">
             <li className="flex items-start gap-3">
