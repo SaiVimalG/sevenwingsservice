@@ -153,17 +153,22 @@ export function FeaturedServices() {
                   {active.badge}
                 </span>
 
-                <h3 className="mt-5 font-display text-3xl font-bold leading-[1.08] sm:text-4xl md:text-5xl">
-                  {active.headline.split(active.country).map((part, i, arr) =>
-                    i < arr.length - 1 ? (
-                      <span key={i}>
-                        {part}
-                        <span className="text-gradient-gold">{active.country}</span>
-                      </span>
-                    ) : (
-                      <span key={i}>{part}</span>
-                    ),
-                  )}
+                <h3 className="mt-5 flex flex-nowrap items-baseline gap-x-2 whitespace-nowrap font-display text-xl font-bold leading-[1.08] sm:text-2xl md:text-3xl lg:text-4xl">
+                  <span>{active.headline.replace(active.country + ".", "").trim()}</span>
+                  <span className="relative inline-flex overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={active.country}
+                        initial={{ y: "100%", opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: "-100%", opacity: 0 }}
+                        transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+                        className="text-gradient-gold"
+                      >
+                        {active.country}.
+                      </motion.span>
+                    </AnimatePresence>
+                  </span>
                 </h3>
 
                 <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">

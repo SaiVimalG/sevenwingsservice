@@ -190,21 +190,39 @@ function About() {
 /* ───────── Numbered Service rail (Visaway hallmark) ───────── */
 function NumberedServices() {
   return (
-    <section className="bg-white py-10 md:py-14">
-      <div className="mx-auto max-w-[1400px] px-6 text-center">
-        <Reveal>
-          <p className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-gold-deep">
-            <Sparkles className="h-3.5 w-3.5" /> Our Expert Programmes
-          </p>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <h2 className="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-tight text-navy-deep md:text-6xl">
-            Comprehensive <span className="text-gradient-gold">Visa</span> Solutions
-          </h2>
-        </Reveal>
-        <Reveal delay={0.15}>
-          <div className="mx-auto mt-5 h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent" />
-        </Reveal>
+    <section className="relative overflow-hidden bg-white py-12 md:py-16">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      <div aria-hidden className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[60rem] -translate-x-1/2 rounded-full bg-gold/10 blur-3xl" />
+      <div className="relative mx-auto max-w-[1400px] px-6">
+        <div className="grid items-end gap-8 md:grid-cols-[1fr_auto] md:gap-12">
+          <div>
+            <Reveal>
+              <p className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-gold-deep">
+                <Sparkles className="h-3.5 w-3.5" /> Our Expert Programmes
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-5 font-display text-4xl font-bold leading-[1.02] tracking-tight text-navy-deep md:text-6xl lg:text-7xl">
+                Comprehensive{" "}
+                <span className="relative inline-block">
+                  <span className="text-gradient-gold">Visa</span>
+                  <span aria-hidden className="absolute -bottom-2 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-gold via-gold-soft to-transparent" />
+                </span>{" "}
+                Solutions.
+              </h2>
+            </Reveal>
+          </div>
+          <Reveal delay={0.15}>
+            <p className="max-w-xs text-sm leading-relaxed text-muted-foreground md:text-right">
+              End-to-end pathways — curated, scored and delivered by specialists from our Hyderabad office.
+            </p>
+          </Reveal>
+        </div>
+        <div className="mt-8 flex items-center gap-4">
+          <span className="h-px flex-1 bg-gradient-to-r from-transparent via-black/15 to-transparent" />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-gold-deep">{SERVICES.length} Signature Programmes</span>
+          <span className="h-px flex-1 bg-gradient-to-r from-transparent via-black/15 to-transparent" />
+        </div>
       </div>
       <div className="mx-auto mt-14 max-w-[1400px] divide-y divide-black/10 border-y border-black/10 px-6">
         {SERVICES.map((s, i) => (
