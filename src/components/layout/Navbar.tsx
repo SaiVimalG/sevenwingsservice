@@ -135,8 +135,8 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <Link to="/book-consultation" className="ml-3 btn-gold btn-gold-hover text-sm">
-              Apply Now <ArrowRight className="h-4 w-4" />
+            <Link to="/eligibility" className="ml-3 btn-gold btn-gold-hover text-sm">
+              Free Eligibility Check <ArrowRight className="h-4 w-4" />
             </Link>
           </nav>
 
@@ -183,10 +183,10 @@ export function Navbar() {
                   ))}
                 </div>
                 <Link
-                  to="/book-consultation"
+                  to="/eligibility"
                   className="mt-3 inline-flex w-full items-center justify-center gap-2 btn-gold btn-gold-hover"
                 >
-                  Apply Now <ArrowRight className="h-4 w-4" />
+                  Free Eligibility Check <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </motion.div>
