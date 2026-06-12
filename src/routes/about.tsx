@@ -28,7 +28,7 @@ function About() {
         subtitle="We help professionals, students and families convert international ambition into documented, defensible immigration results."
       />
       <section className="py-12 md:py-10">
-        <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto grid max-w-[1400px] gap-16 px-6 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <img src={aboutImg} alt="7 Wings Immigration consultants in Hyderabad" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
           </Reveal>
@@ -59,7 +59,7 @@ function About() {
       </section>
 
       <section className="bg-cream py-12 md:py-10">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-[1400px] px-6">
           <Reveal><h2 className="mx-auto max-w-2xl text-center font-display text-4xl font-bold text-navy-deep">Our values, in writing.</h2></Reveal>
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {WHY_CHOOSE_US.map((w, i) => (

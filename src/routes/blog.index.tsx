@@ -36,7 +36,7 @@ function BlogIndex() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-hero pb-20 pt-40 text-white lg:pt-48">
         <div className="absolute inset-0 [background:radial-gradient(700px_350px_at_80%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
-        <div className="relative mx-auto max-w-7xl px-6 text-center">
+        <div className="relative mx-auto max-w-[1400px] px-6 text-center">
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft backdrop-blur">
               Visa Tips &amp; Migration Guides
@@ -58,7 +58,7 @@ function BlogIndex() {
       {/* Featured */}
       {featured && (
         <section className="bg-cream py-10 md:py-12">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-[1400px] px-6">
             <Reveal>
               <Link
                 to="/blog/$slug"
@@ -98,7 +98,7 @@ function BlogIndex() {
 
       {/* Grid */}
       <section className="py-10 md:py-12">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-[1400px] px-6">
           <div className="mb-10 flex items-end justify-between gap-6">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">More Articles</p>

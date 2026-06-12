@@ -52,7 +52,7 @@ function ProgramPage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-hero pb-20 pt-36 text-white lg:pt-44">
         <div className="absolute inset-0 [background:radial-gradient(800px_400px_at_85%_15%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <div className="relative mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
             <Reveal>
               <Link to="/" hash="featured-services" className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">← All programs</Link>
@@ -144,7 +144,7 @@ function ProgramPage() {
 
       {/* CTA strip */}
       <section className="bg-cream py-10 md:py-12">
-        <div className="mx-auto grid max-w-6xl gap-6 px-6 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-[1400px] gap-6 px-6 sm:grid-cols-3">
           {[
             { icon: Calendar, label: "Book consultation", to: "/book-consultation" },
             { icon: Phone, label: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}` },
@@ -171,7 +171,7 @@ function ProgramPage() {
       {/* Related programs */}
       {related.length > 0 && (
         <section className="py-10 md:py-14">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-[1400px] px-6">
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">More {country.country} programs</p>
             </Reveal>
