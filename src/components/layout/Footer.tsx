@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy-mesh text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-4 py-6 sm:px-6 md:gap-12 md:py-14 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-4 pt-4 pb-6 sm:px-6 md:gap-12 md:pt-8 md:pb-14 lg:grid-cols-4">
         <div className="space-y-4 md:space-y-6 col-span-2 lg:col-span-1 pb-[2px]">
           <div className="flex items-center justify-start gap-4 -mt-2 mb-[5px]">
             <Logo variant="dark" />
