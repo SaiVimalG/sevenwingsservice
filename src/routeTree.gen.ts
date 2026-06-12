@@ -15,6 +15,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as EligibilityRouteImport } from './routes/eligibility'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookConsultationRouteImport } from './routes/book-consultation'
 import { Route as AboutRouteImport } from './routes/about'
@@ -54,6 +55,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EligibilityRoute = EligibilityRouteImport.update({
+  id: '/eligibility',
+  path: '/eligibility',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
+  '/eligibility': typeof EligibilityRoute
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
+  '/eligibility': typeof EligibilityRoute
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
+  '/eligibility': typeof EligibilityRoute
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-consultation'
     | '/contact'
+    | '/eligibility'
     | '/faq'
     | '/privacy'
     | '/refund'
@@ -187,6 +197,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-consultation'
     | '/contact'
+    | '/eligibility'
     | '/faq'
     | '/privacy'
     | '/refund'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-consultation'
     | '/contact'
+    | '/eligibility'
     | '/faq'
     | '/privacy'
     | '/refund'
@@ -224,6 +236,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BookConsultationRoute: typeof BookConsultationRoute
   ContactRoute: typeof ContactRoute
+  EligibilityRoute: typeof EligibilityRoute
   FaqRoute: typeof FaqRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
@@ -280,6 +293,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eligibility': {
+      id: '/eligibility'
+      path: '/eligibility'
+      fullPath: '/eligibility'
+      preLoaderRoute: typeof EligibilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -360,6 +380,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BookConsultationRoute: BookConsultationRoute,
   ContactRoute: ContactRoute,
+  EligibilityRoute: EligibilityRoute,
   FaqRoute: FaqRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
@@ -376,3 +397,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
