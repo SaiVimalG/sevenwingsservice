@@ -426,7 +426,7 @@ function Awards() {
   return (
     <section className="py-12 md:py-10">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
           {AWARDS.map((a, i) => (
             <Reveal key={a.title} delay={i * 0.06}>
               <div className="group h-full rounded-2xl border border-black/5 bg-white p-7 text-center shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-gold">
