@@ -17,6 +17,7 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
           style={{
             height: "110px",
             marginLeft: "-6px",
+            marginTop: "5px",
             mixBlendMode: "multiply",
             filter:
               "drop-shadow(0 0 6px color-mix(in oklab, var(--gold) 18%, transparent)) drop-shadow(0 1px 2px rgba(0,0,0,0.06))",
