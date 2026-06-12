@@ -8,6 +8,7 @@ import { FeaturedServices } from "@/components/home/FeaturedServices";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Marquee } from "@/components/motion/Marquee";
 import { CountUp } from "@/components/motion/CountUp";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE, type BlogPost } from "@/lib/site";
 import { listDbPosts } from "@/lib/blog.functions";
 import { mergePosts } from "@/lib/blog-merge";
