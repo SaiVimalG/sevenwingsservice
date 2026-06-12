@@ -320,7 +320,44 @@ function DestinationFeature() {
   );
 }
 
+function VideoStory() {
+  const [playing, setPlaying] = useState(false);
+  const ref = useRef<HTMLVideoElement | null>(null);
+  const handlePlay = () => {
+    setPlaying(true);
+    requestAnimationFrame(() => ref.current?.play());
+  };
+  return (
+    <div className="group relative h-full min-h-[500px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant">
+      <video
+        ref={ref}
+        src={realStoriesVideo.url}
+        poster={realStoriesPoster.url}
+        controls={playing}
+        playsInline
+        preload="metadata"
+        onEnded={() => setPlaying(false)}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {!playing && (
+        <button
+          type="button"
+          onClick={handlePlay}
+          aria-label="Play video"
+          className="absolute inset-0 z-10 flex items-center justify-center bg-navy-deep/20 transition-colors duration-300 hover:bg-navy-deep/40"
+        >
+          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/90 text-navy-deep shadow-elegant transition-all duration-300 group-hover:scale-110 group-hover:bg-gold group-hover:text-white">
+            <Play className="ml-1 h-8 w-8 fill-current" />
+          </span>
+        </button>
+      )}
+      <h5 className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</h5>
+    </div>
+  );
+}
+
 /* ───────── Testimonials (image-left, slider-right) ───────── */
+
 function Testimonials() {
   return (
     <section className="bg-cream py-14 md:py-10">
