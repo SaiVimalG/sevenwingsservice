@@ -47,7 +47,7 @@ export function FeaturedServices() {
       <div className="relative mx-auto max-w-7xl px-0.5 sm:px-6">
         {/* heading */}
         <div className="rounded-t-3xl border-2 border-b-0 border-[#061a52] bg-white p-5 text-justify shadow-elegant sm:p-8 sm:text-left md:p-12">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-justify sm:text-center">
             <Reveal>
               <p className="inline-block rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-deep sm:text-xs">
                 Immigration Services for Indians
