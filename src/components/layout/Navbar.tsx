@@ -70,7 +70,7 @@ export function Navbar() {
             : ""
         }`}
       >
-        <div className="mx-auto flex h-[86px] max-w-[1400px] items-center justify-between px-6 overflow-visible">
+        <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-6 overflow-visible">
           <Logo />
 
           <nav className="hidden items-center gap-1 lg:flex">
