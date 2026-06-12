@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy-mesh text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-4 py-6 sm:px-6 md:gap-12 md:py-14 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-6 sm:px-6 md:gap-12 md:py-14 lg:grid-cols-4">
         <div className="space-y-4 md:space-y-6 col-span-2 lg:col-span-1 pb-[2px]">
           <div className="flex items-center justify-start gap-4 -my-2">
             <Logo variant="dark" />
@@ -114,7 +114,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-white/55 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-white/55 md:flex-row">
           <p>© {new Date().getFullYear()} 7 Wings Immigration. All rights reserved.</p>
           <p>
             Made for ambitious professionals in <span className="text-gold">Hyderabad</span>.

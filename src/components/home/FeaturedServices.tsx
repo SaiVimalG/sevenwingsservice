@@ -40,11 +40,11 @@ export function FeaturedServices() {
   return (
     <section
       id="featured-services"
-      className="relative overflow-hidden bg-cream pt-10 pb-[45px] sm:pt-14 sm:pb-[61px]"
+      className="relative overflow-hidden bg-cream py-10 sm:py-14"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative mx-auto max-w-[1400px] px-0.5 sm:px-6">
+      <div className="relative mx-auto max-w-7xl px-0.5 sm:px-6">
         {/* heading */}
         <div className="rounded-t-3xl border-2 border-b-0 border-[#061a52] bg-white p-5 text-justify shadow-elegant sm:p-8 sm:text-left md:p-12">
           <div className="mx-auto max-w-3xl text-justify sm:text-center">
