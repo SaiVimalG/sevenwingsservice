@@ -16,6 +16,7 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
           className="block w-auto max-w-none shrink-0 object-contain object-left transition-[filter,transform] duration-500 ease-out group-hover:brightness-105"
           style={{
             height: "110px",
+            marginLeft: "-6px",
             marginTop: "3px",
             mixBlendMode: "multiply",
             filter:
