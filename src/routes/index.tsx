@@ -61,7 +61,7 @@ function Home() {
 /* ───────── Hero ───────── */
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-hero pb-28 pt-44 text-white lg:pt-48">
+    <section className="relative overflow-hidden bg-hero pb-10 pt-24 text-white sm:pb-20 sm:pt-36 lg:pb-28 lg:pt-48">
       {/* floating shapes */}
       <motion.div aria-hidden animate={{ y: [0, -14, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute -right-32 top-32 h-96 w-96 rounded-full bg-gold/20 blur-3xl" />
       <motion.div aria-hidden animate={{ y: [0, 16, 0] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -left-40 bottom-0 h-[28rem] w-[28rem] rounded-full bg-sky/20 blur-3xl" />
@@ -74,20 +74,21 @@ function Hero() {
         <span>05</span>
       </div>
 
-      <div className="relative mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-        <div>
+      <div className="relative mx-auto grid max-w-[1400px] gap-12 px-0.5 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <div className="px-2 sm:px-0">
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" /> Global Migration Simplified
             </p>
           </Reveal>
-          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.04] md:text-7xl">
+          <h1 className="mt-6 font-display text-4xl font-bold leading-[1.04] sm:text-5xl md:text-7xl">
             <RevealWords text="From Eligibility" />
             <br />
             <span className="text-gradient-gold"><RevealWords text="to Landing —" /></span>
             <br />
             <RevealWords text="We've Got You." />
           </h1>
+
           <Reveal delay={0.5}>
             <p className="mt-7 max-w-xl text-base text-white/75 md:text-lg">
               7 Wings Immigration guides ambitious professionals, students and families from Hyderabad to confident landings in
