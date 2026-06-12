@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { SITE } from "@/lib/site";
 
 export function Logo({ variant = "light", className = "" }: { variant?: "light" | "dark"; className?: string }) {
-  const src = variant === "dark" ? SITE.logoUrlDark : SITE.logoUrl;
+  const isDark = variant === "dark";
+  const src = isDark ? SITE.logoUrlDark : SITE.logoUrl;
   return (
     <Link
       to="/"
@@ -18,9 +19,10 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
             height: "110px",
             marginLeft: "-6px",
             marginTop: "9px",
-            mixBlendMode: "multiply",
-            filter:
-              "drop-shadow(0 0 6px color-mix(in oklab, var(--gold) 18%, transparent)) drop-shadow(0 1px 2px rgba(0,0,0,0.06))",
+            mixBlendMode: isDark ? "normal" : "multiply",
+            filter: isDark
+              ? "drop-shadow(0 0 8px color-mix(in oklab, var(--gold) 25%, transparent)) drop-shadow(0 1px 2px rgba(0,0,0,0.4))"
+              : "drop-shadow(0 0 6px color-mix(in oklab, var(--gold) 18%, transparent)) drop-shadow(0 1px 2px rgba(0,0,0,0.06))",
           }}
         />
       </span>
