@@ -157,7 +157,7 @@ export function FeaturedServices() {
 
             <h3 className="mt-5 flex flex-nowrap items-baseline gap-x-3 whitespace-nowrap font-display font-bold leading-[1.08] text-xl sm:text-2xl md:text-3xl lg:text-4xl">
               <span>Visa &amp; Migration Services to</span>
-              <span className="relative inline-flex overflow-hidden align-baseline text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+              <span className="relative inline-flex overflow-hidden align-baseline pb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={active.country}
@@ -165,7 +165,7 @@ export function FeaturedServices() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: "-100%", opacity: 0 }}
                     transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-                    className="text-gradient-gold"
+                    className="relative text-gradient-gold after:absolute after:inset-x-0 after:-bottom-1 after:h-[3px] after:rounded-full after:bg-gradient-to-r after:from-transparent after:via-gold after:to-transparent"
                   >
                     {active.country}.
                   </motion.span>
