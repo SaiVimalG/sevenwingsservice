@@ -170,16 +170,17 @@ export function FeaturedServices() {
                   {active.description}
                 </p>
 
-                <ul className="mt-8 space-y-3">
+                <ul className="mt-8 grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
                   {active.programs.map((p) => (
                     <li key={p.slug}>
                       <Link
                         to="/programs/$slug"
                         params={{ slug: p.slug }}
-                        className="group flex items-center gap-3 text-base font-medium text-white/90 transition-colors hover:text-gold sm:text-lg"
+                        className="group relative flex w-full items-center justify-between gap-3 overflow-hidden whitespace-nowrap rounded-full border border-gold/50 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-white/90 shadow-[0_4px_14px_-8px_rgba(212,175,55,0.45)] backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-navy-deep hover:shadow-[0_10px_28px_-10px_rgba(212,175,55,0.75)] sm:text-[15px]"
                       >
-                        <ArrowRight className="h-5 w-5 shrink-0 text-gold transition-transform group-hover:translate-x-1" />
-                        <span>{p.title}</span>
+                        <span className="relative z-10 truncate">{p.title}</span>
+                        <ArrowRight className="relative z-10 h-4 w-4 shrink-0 text-gold transition-all duration-300 group-hover:translate-x-1 group-hover:text-navy-deep" />
+                        <span aria-hidden className="pointer-events-none absolute inset-y-0 -left-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/35 to-transparent transition-all duration-700 group-hover:left-full" />
                       </Link>
                     </li>
                   ))}
