@@ -330,14 +330,14 @@ function Testimonials() {
         </div>
         <div className="mt-16 grid gap-8 lg:grid-cols-[5fr_7fr]">
           <Reveal>
-            <div className="group relative h-full min-h-[400px] overflow-hidden rounded-3xl border border-black/5 shadow-elegant">
+            <div className="group relative flex h-full min-h-[400px] items-center justify-center overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant">
               <video
                 src={realStoriesVideo.url}
                 poster={aboutImg}
                 controls
                 playsInline
                 preload="metadata"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="relative z-0 h-full w-full object-contain"
               />
               <h5 className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</h5>
             </div>
