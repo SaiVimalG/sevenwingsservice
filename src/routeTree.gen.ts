@@ -27,6 +27,15 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as EligibilityUkSkilledWorkerCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-calculator'
+import { Route as EligibilityGermanyOpportunityCardCalculatorRouteImport } from './routes/eligibility.germany.opportunity-card-calculator'
+import { Route as EligibilityCanadaSaskatchewanSinpCalculatorRouteImport } from './routes/eligibility.canada.saskatchewan-sinp-calculator'
+import { Route as EligibilityCanadaQuebecSkilledWorkerProgramRouteImport } from './routes/eligibility.canada.quebec-skilled-worker-program'
+import { Route as EligibilityCanadaFederalSkilledWorkerProgramRouteImport } from './routes/eligibility.canada.federal-skilled-worker-program'
+import { Route as EligibilityCanadaCrsCalculatorRouteImport } from './routes/eligibility.canada.crs-calculator'
+import { Route as EligibilityAustralia491PointsCalculatorRouteImport } from './routes/eligibility.australia.491-points-calculator'
+import { Route as EligibilityAustralia190PointsCalculatorRouteImport } from './routes/eligibility.australia.190-points-calculator'
+import { Route as EligibilityAustralia189PointsCalculatorRouteImport } from './routes/eligibility.australia.189-points-calculator'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -118,6 +127,60 @@ const AdminBlogRoute = AdminBlogRouteImport.update({
   path: '/admin/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EligibilityUkSkilledWorkerCalculatorRoute =
+  EligibilityUkSkilledWorkerCalculatorRouteImport.update({
+    id: '/uk/skilled-worker-calculator',
+    path: '/uk/skilled-worker-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityGermanyOpportunityCardCalculatorRoute =
+  EligibilityGermanyOpportunityCardCalculatorRouteImport.update({
+    id: '/germany/opportunity-card-calculator',
+    path: '/germany/opportunity-card-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityCanadaSaskatchewanSinpCalculatorRoute =
+  EligibilityCanadaSaskatchewanSinpCalculatorRouteImport.update({
+    id: '/canada/saskatchewan-sinp-calculator',
+    path: '/canada/saskatchewan-sinp-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityCanadaQuebecSkilledWorkerProgramRoute =
+  EligibilityCanadaQuebecSkilledWorkerProgramRouteImport.update({
+    id: '/canada/quebec-skilled-worker-program',
+    path: '/canada/quebec-skilled-worker-program',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityCanadaFederalSkilledWorkerProgramRoute =
+  EligibilityCanadaFederalSkilledWorkerProgramRouteImport.update({
+    id: '/canada/federal-skilled-worker-program',
+    path: '/canada/federal-skilled-worker-program',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityCanadaCrsCalculatorRoute =
+  EligibilityCanadaCrsCalculatorRouteImport.update({
+    id: '/canada/crs-calculator',
+    path: '/canada/crs-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityAustralia491PointsCalculatorRoute =
+  EligibilityAustralia491PointsCalculatorRouteImport.update({
+    id: '/australia/491-points-calculator',
+    path: '/australia/491-points-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityAustralia190PointsCalculatorRoute =
+  EligibilityAustralia190PointsCalculatorRouteImport.update({
+    id: '/australia/190-points-calculator',
+    path: '/australia/190-points-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityAustralia189PointsCalculatorRoute =
+  EligibilityAustralia189PointsCalculatorRouteImport.update({
+    id: '/australia/189-points-calculator',
+    path: '/australia/189-points-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -138,6 +201,15 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
+  '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
+  '/eligibility/australia/491-points-calculator': typeof EligibilityAustralia491PointsCalculatorRoute
+  '/eligibility/canada/crs-calculator': typeof EligibilityCanadaCrsCalculatorRoute
+  '/eligibility/canada/federal-skilled-worker-program': typeof EligibilityCanadaFederalSkilledWorkerProgramRoute
+  '/eligibility/canada/quebec-skilled-worker-program': typeof EligibilityCanadaQuebecSkilledWorkerProgramRoute
+  '/eligibility/canada/saskatchewan-sinp-calculator': typeof EligibilityCanadaSaskatchewanSinpCalculatorRoute
+  '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
+  '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -157,6 +229,15 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/eligibility': typeof EligibilityIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
+  '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
+  '/eligibility/australia/491-points-calculator': typeof EligibilityAustralia491PointsCalculatorRoute
+  '/eligibility/canada/crs-calculator': typeof EligibilityCanadaCrsCalculatorRoute
+  '/eligibility/canada/federal-skilled-worker-program': typeof EligibilityCanadaFederalSkilledWorkerProgramRoute
+  '/eligibility/canada/quebec-skilled-worker-program': typeof EligibilityCanadaQuebecSkilledWorkerProgramRoute
+  '/eligibility/canada/saskatchewan-sinp-calculator': typeof EligibilityCanadaSaskatchewanSinpCalculatorRoute
+  '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
+  '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -178,6 +259,15 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
+  '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
+  '/eligibility/australia/491-points-calculator': typeof EligibilityAustralia491PointsCalculatorRoute
+  '/eligibility/canada/crs-calculator': typeof EligibilityCanadaCrsCalculatorRoute
+  '/eligibility/canada/federal-skilled-worker-program': typeof EligibilityCanadaFederalSkilledWorkerProgramRoute
+  '/eligibility/canada/quebec-skilled-worker-program': typeof EligibilityCanadaQuebecSkilledWorkerProgramRoute
+  '/eligibility/canada/saskatchewan-sinp-calculator': typeof EligibilityCanadaSaskatchewanSinpCalculatorRoute
+  '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
+  '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -200,6 +290,15 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/eligibility/'
     | '/services/'
+    | '/eligibility/australia/189-points-calculator'
+    | '/eligibility/australia/190-points-calculator'
+    | '/eligibility/australia/491-points-calculator'
+    | '/eligibility/canada/crs-calculator'
+    | '/eligibility/canada/federal-skilled-worker-program'
+    | '/eligibility/canada/quebec-skilled-worker-program'
+    | '/eligibility/canada/saskatchewan-sinp-calculator'
+    | '/eligibility/germany/opportunity-card-calculator'
+    | '/eligibility/uk/skilled-worker-calculator'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -219,6 +318,15 @@ export interface FileRouteTypes {
     | '/blog'
     | '/eligibility'
     | '/services'
+    | '/eligibility/australia/189-points-calculator'
+    | '/eligibility/australia/190-points-calculator'
+    | '/eligibility/australia/491-points-calculator'
+    | '/eligibility/canada/crs-calculator'
+    | '/eligibility/canada/federal-skilled-worker-program'
+    | '/eligibility/canada/quebec-skilled-worker-program'
+    | '/eligibility/canada/saskatchewan-sinp-calculator'
+    | '/eligibility/germany/opportunity-card-calculator'
+    | '/eligibility/uk/skilled-worker-calculator'
   id:
     | '__root__'
     | '/'
@@ -239,6 +347,15 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/eligibility/'
     | '/services/'
+    | '/eligibility/australia/189-points-calculator'
+    | '/eligibility/australia/190-points-calculator'
+    | '/eligibility/australia/491-points-calculator'
+    | '/eligibility/canada/crs-calculator'
+    | '/eligibility/canada/federal-skilled-worker-program'
+    | '/eligibility/canada/quebec-skilled-worker-program'
+    | '/eligibility/canada/saskatchewan-sinp-calculator'
+    | '/eligibility/germany/opportunity-card-calculator'
+    | '/eligibility/uk/skilled-worker-calculator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -389,15 +506,104 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eligibility/uk/skilled-worker-calculator': {
+      id: '/eligibility/uk/skilled-worker-calculator'
+      path: '/uk/skilled-worker-calculator'
+      fullPath: '/eligibility/uk/skilled-worker-calculator'
+      preLoaderRoute: typeof EligibilityUkSkilledWorkerCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/germany/opportunity-card-calculator': {
+      id: '/eligibility/germany/opportunity-card-calculator'
+      path: '/germany/opportunity-card-calculator'
+      fullPath: '/eligibility/germany/opportunity-card-calculator'
+      preLoaderRoute: typeof EligibilityGermanyOpportunityCardCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/canada/saskatchewan-sinp-calculator': {
+      id: '/eligibility/canada/saskatchewan-sinp-calculator'
+      path: '/canada/saskatchewan-sinp-calculator'
+      fullPath: '/eligibility/canada/saskatchewan-sinp-calculator'
+      preLoaderRoute: typeof EligibilityCanadaSaskatchewanSinpCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/canada/quebec-skilled-worker-program': {
+      id: '/eligibility/canada/quebec-skilled-worker-program'
+      path: '/canada/quebec-skilled-worker-program'
+      fullPath: '/eligibility/canada/quebec-skilled-worker-program'
+      preLoaderRoute: typeof EligibilityCanadaQuebecSkilledWorkerProgramRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/canada/federal-skilled-worker-program': {
+      id: '/eligibility/canada/federal-skilled-worker-program'
+      path: '/canada/federal-skilled-worker-program'
+      fullPath: '/eligibility/canada/federal-skilled-worker-program'
+      preLoaderRoute: typeof EligibilityCanadaFederalSkilledWorkerProgramRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/canada/crs-calculator': {
+      id: '/eligibility/canada/crs-calculator'
+      path: '/canada/crs-calculator'
+      fullPath: '/eligibility/canada/crs-calculator'
+      preLoaderRoute: typeof EligibilityCanadaCrsCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/australia/491-points-calculator': {
+      id: '/eligibility/australia/491-points-calculator'
+      path: '/australia/491-points-calculator'
+      fullPath: '/eligibility/australia/491-points-calculator'
+      preLoaderRoute: typeof EligibilityAustralia491PointsCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/australia/190-points-calculator': {
+      id: '/eligibility/australia/190-points-calculator'
+      path: '/australia/190-points-calculator'
+      fullPath: '/eligibility/australia/190-points-calculator'
+      preLoaderRoute: typeof EligibilityAustralia190PointsCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/australia/189-points-calculator': {
+      id: '/eligibility/australia/189-points-calculator'
+      path: '/australia/189-points-calculator'
+      fullPath: '/eligibility/australia/189-points-calculator'
+      preLoaderRoute: typeof EligibilityAustralia189PointsCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
   }
 }
 
 interface EligibilityRouteChildren {
   EligibilityIndexRoute: typeof EligibilityIndexRoute
+  EligibilityAustralia189PointsCalculatorRoute: typeof EligibilityAustralia189PointsCalculatorRoute
+  EligibilityAustralia190PointsCalculatorRoute: typeof EligibilityAustralia190PointsCalculatorRoute
+  EligibilityAustralia491PointsCalculatorRoute: typeof EligibilityAustralia491PointsCalculatorRoute
+  EligibilityCanadaCrsCalculatorRoute: typeof EligibilityCanadaCrsCalculatorRoute
+  EligibilityCanadaFederalSkilledWorkerProgramRoute: typeof EligibilityCanadaFederalSkilledWorkerProgramRoute
+  EligibilityCanadaQuebecSkilledWorkerProgramRoute: typeof EligibilityCanadaQuebecSkilledWorkerProgramRoute
+  EligibilityCanadaSaskatchewanSinpCalculatorRoute: typeof EligibilityCanadaSaskatchewanSinpCalculatorRoute
+  EligibilityGermanyOpportunityCardCalculatorRoute: typeof EligibilityGermanyOpportunityCardCalculatorRoute
+  EligibilityUkSkilledWorkerCalculatorRoute: typeof EligibilityUkSkilledWorkerCalculatorRoute
 }
 
 const EligibilityRouteChildren: EligibilityRouteChildren = {
   EligibilityIndexRoute: EligibilityIndexRoute,
+  EligibilityAustralia189PointsCalculatorRoute:
+    EligibilityAustralia189PointsCalculatorRoute,
+  EligibilityAustralia190PointsCalculatorRoute:
+    EligibilityAustralia190PointsCalculatorRoute,
+  EligibilityAustralia491PointsCalculatorRoute:
+    EligibilityAustralia491PointsCalculatorRoute,
+  EligibilityCanadaCrsCalculatorRoute: EligibilityCanadaCrsCalculatorRoute,
+  EligibilityCanadaFederalSkilledWorkerProgramRoute:
+    EligibilityCanadaFederalSkilledWorkerProgramRoute,
+  EligibilityCanadaQuebecSkilledWorkerProgramRoute:
+    EligibilityCanadaQuebecSkilledWorkerProgramRoute,
+  EligibilityCanadaSaskatchewanSinpCalculatorRoute:
+    EligibilityCanadaSaskatchewanSinpCalculatorRoute,
+  EligibilityGermanyOpportunityCardCalculatorRoute:
+    EligibilityGermanyOpportunityCardCalculatorRoute,
+  EligibilityUkSkilledWorkerCalculatorRoute:
+    EligibilityUkSkilledWorkerCalculatorRoute,
 }
 
 const EligibilityRouteWithChildren = EligibilityRoute._addFileChildren(
