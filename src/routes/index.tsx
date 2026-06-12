@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Play, Sparkles, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal, RevealWords } from "@/components/motion/Reveal";
 import { FeaturedServices } from "@/components/home/FeaturedServices";
