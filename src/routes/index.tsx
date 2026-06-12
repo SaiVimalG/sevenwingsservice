@@ -13,6 +13,7 @@ import { listDbPosts } from "@/lib/blog.functions";
 import { mergePosts } from "@/lib/blog-merge";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
+import realStoriesVideo from "@/assets/real-stories.mp4.asset.json";
 import germanyImg from "@/assets/germany.jpg";
 
 export const Route = createFileRoute("/")({
