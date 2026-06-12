@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy-mesh text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-10 md:py-14 md:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-6">
           <Logo variant="dark" />
           <p className="max-w-sm text-sm text-white/70">

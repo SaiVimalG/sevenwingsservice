@@ -27,7 +27,7 @@ function About() {
         title="A Hyderabad consultancy with an eagle's eye for detail."
         subtitle="We help professionals, students and families convert international ambition into documented, defensible immigration results."
       />
-      <section className="py-24">
+      <section className="py-12 md:py-10">
         <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <img src={aboutImg} alt="7 Wings Immigration consultants in Hyderabad" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
@@ -58,7 +58,7 @@ function About() {
         </div>
       </section>
 
-      <section className="bg-cream py-24">
+      <section className="bg-cream py-12 md:py-10">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal><h2 className="mx-auto max-w-2xl text-center font-display text-4xl font-bold text-navy-deep">Our values, in writing.</h2></Reveal>
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

@@ -20,7 +20,7 @@ export const Route = createFileRoute("/refund")({
   component: () => (
     <PageShell>
       <PageHero eyebrow="Legal" title="Refund Policy" />
-      <section className="py-20">
+      <section className="py-10 md:py-14">
         <div className="mx-auto max-w-3xl space-y-8 px-6">
           {sections.map((s) => (
             <div key={s.title}>

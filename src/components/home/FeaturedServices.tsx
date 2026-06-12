@@ -129,7 +129,7 @@ export function FeaturedServices() {
 
         {/* country detail card — single country at a time */}
         <div
-          className="relative overflow-hidden rounded-b-3xl border-2 border-t-0 border-[#061a52] px-6 py-12 text-white shadow-elegant sm:px-10 sm:py-16"
+          className="relative overflow-hidden rounded-b-3xl border-2 border-t-0 border-[#061a52] px-6 py-12 text-white shadow-elegant sm:px-10 sm:py-10 md:py-12"
           style={{ background: "linear-gradient(135deg, #061a52 0%, #0a2470 55%, #061a52 100%)" }}
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}

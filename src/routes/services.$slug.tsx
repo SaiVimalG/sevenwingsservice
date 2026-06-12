@@ -80,7 +80,7 @@ function ServiceDetail() {
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="py-12 md:py-10">
         <div className="mx-auto max-w-6xl px-6">
           <Reveal><h2 className="font-display text-3xl font-bold text-navy-deep md:text-4xl">What's included.</h2></Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -97,7 +97,7 @@ function ServiceDetail() {
         </div>
       </section>
 
-      <section className="bg-cream py-24">
+      <section className="bg-cream py-12 md:py-10">
         <div className="mx-auto max-w-5xl px-6">
           <Reveal><h2 className="font-display text-3xl font-bold text-navy-deep md:text-4xl">Our process for {s.title}.</h2></Reveal>
           <ol className="mt-10 space-y-4">
@@ -115,7 +115,7 @@ function ServiceDetail() {
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="py-12 md:py-10">
         <div className="mx-auto max-w-4xl px-6">
           <Reveal><h2 className="font-display text-3xl font-bold text-navy-deep md:text-4xl">FAQs for {s.title}.</h2></Reveal>
           <div className="mt-8 space-y-3">
@@ -134,7 +134,7 @@ function ServiceDetail() {
         </div>
       </section>
 
-      <section className="bg-hero py-20 text-white">
+      <section className="bg-hero py-10 md:py-14 text-white">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <Reveal>
             <h2 className="font-display text-3xl font-bold md:text-5xl">Ready to start your <span className="text-gradient-gold">{s.country}</span> journey?</h2>

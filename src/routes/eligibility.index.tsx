@@ -57,7 +57,7 @@ function EligibilityHub() {
         title="Find your immigration pathway in 60 seconds"
         subtitle="Pick a country and program — get a real-time eligibility score, personalised recommendations and an expert assessment."
       />
-      <section className="bg-background py-16">
+      <section className="bg-background py-10 md:py-12">
         <div className="mx-auto max-w-6xl px-6 space-y-14">
           {CALCS.map((g) => (
             <div key={g.group}>

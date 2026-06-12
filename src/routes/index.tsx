@@ -128,7 +128,7 @@ function Hero() {
 /* ───────── About ───────── */
 function About() {
   return (
-    <section className="relative overflow-hidden py-28">
+    <section className="relative overflow-hidden py-14 md:py-10">
       <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 80, repeat: Infinity, ease: "linear" }} className="pointer-events-none absolute right-10 top-10 h-40 w-40 rounded-full border border-gold/20" />
       <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
         <Reveal>
@@ -189,7 +189,7 @@ function About() {
 /* ───────── Numbered Service rail (Visaway hallmark) ───────── */
 function NumberedServices() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-10 md:py-14">
       <div className="mx-auto max-w-7xl px-6 text-center">
         <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Our Expert Programmes</p></Reveal>
         <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Comprehensive Visa Solutions</h2></Reveal>
@@ -237,7 +237,7 @@ function ServiceRow({ s, index }: { s: (typeof SERVICES)[number]; index: number 
 /* ───────── Destination Feature (Visaway country spotlight) ───────── */
 function DestinationFeature() {
   return (
-    <section className="relative overflow-hidden bg-navy-mesh py-28 text-white">
+    <section className="relative overflow-hidden bg-navy-mesh py-14 md:py-10 text-white">
       <div className="absolute inset-0 [background:radial-gradient(800px_400px_at_80%_20%,color-mix(in_oklab,var(--gold)_20%,transparent),transparent_60%)]" />
       <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
         <div>
@@ -291,7 +291,7 @@ function DestinationFeature() {
 /* ───────── Testimonials (image-left, slider-right) ───────── */
 function Testimonials() {
   return (
-    <section className="bg-cream py-28">
+    <section className="bg-cream py-14 md:py-10">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">What Our Clients Say</p></Reveal>
@@ -331,7 +331,7 @@ function Testimonials() {
 /* ───────── Video Banner (text marquee + play) ───────── */
 function VideoBanner() {
   return (
-    <section className="relative overflow-hidden bg-hero py-28 text-white">
+    <section className="relative overflow-hidden bg-hero py-14 md:py-10 text-white">
       <div className="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_50%,color-mix(in_oklab,var(--gold)_40%,transparent),transparent_50%)]" />
       <motion.div aria-hidden animate={{ x: [-100, 0, -100] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute left-0 top-10 whitespace-nowrap font-display text-[8rem] font-black text-white/[0.04] md:text-[12rem]">
         GLOBAL · GERMANY · CANADA · AUSTRALIA · GLOBAL · GERMANY ·
@@ -361,7 +361,7 @@ function VideoBanner() {
 /* ───────── FAQ ───────── */
 function FAQ() {
   return (
-    <section className="py-28">
+    <section className="py-14 md:py-10">
       <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.4fr]">
         <div>
           <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Visa FAQs</p></Reveal>
@@ -401,7 +401,7 @@ function AccordionItem({ q, a, defaultOpen = false }: { q: string; a: string; de
 /* ───────── Counter ───────── */
 function Counter() {
   return (
-    <section className="relative overflow-hidden bg-hero py-24 text-white">
+    <section className="relative overflow-hidden bg-hero py-12 md:py-10 text-white">
       <div className="absolute inset-0 [background:radial-gradient(600px_300px_at_20%_80%,color-mix(in_oklab,var(--gold)_25%,transparent),transparent_60%)]" />
       <div className="relative mx-auto max-w-6xl px-6 text-center">
         <Reveal><p className="inline-block rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Did You Know</p></Reveal>
@@ -424,7 +424,7 @@ function Counter() {
 /* ───────── Awards (visa-consultancy grid) ───────── */
 function Awards() {
   return (
-    <section className="py-24">
+    <section className="py-12 md:py-10">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {AWARDS.map((a, i) => (
@@ -464,7 +464,7 @@ function BrandMarquee() {
 /* ───────── News teaser ───────── */
 function NewsTeaser({ posts }: { posts: BlogPost[] }) {
   return (
-    <section className="bg-cream py-24">
+    <section className="bg-cream py-12 md:py-10">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-12 flex items-end justify-between gap-6">
           <div>
@@ -507,7 +507,7 @@ function NewsTeaser({ posts }: { posts: BlogPost[] }) {
 /* ───────── CTA Banner ───────── */
 function CTABanner() {
   return (
-    <section className="relative overflow-hidden py-20">
+    <section className="relative overflow-hidden py-10 md:py-14">
       <div className="mx-auto max-w-6xl px-6">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-hero p-14 text-white shadow-elegant">
           <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute -right-20 -top-20 h-72 w-72 rounded-full border border-gold/20" />

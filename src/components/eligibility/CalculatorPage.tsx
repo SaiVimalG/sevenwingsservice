@@ -89,7 +89,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
       </section>
 
       {/* Calculator + sticky sidebar */}
-      <section className="relative bg-background py-12 md:py-16">
+      <section className="relative bg-background py-12 md:py-10">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-[1fr_360px]">
           <div className="space-y-5">
             {config.basePointsLabel && (
@@ -244,7 +244,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
       </section>
 
       {/* SEO Long-Form Content */}
-      <section className="bg-muted/30 py-16">
+      <section className="bg-muted/30 py-10 md:py-12">
         <div className="mx-auto max-w-4xl px-6">
           {config.sections.map((s) => (
             <div key={s.h2} className="mb-10">
@@ -404,7 +404,7 @@ function LeadCapture({ country }: { country: string }) {
   };
 
   return (
-    <section className="bg-background py-16">
+    <section className="bg-background py-10 md:py-12">
       <div className="mx-auto max-w-4xl px-6">
         <div className="overflow-hidden rounded-3xl border bg-gradient-to-br from-navy-deep to-navy p-8 text-white md:p-12">
           <div className="flex items-center gap-2 text-gold-soft">
