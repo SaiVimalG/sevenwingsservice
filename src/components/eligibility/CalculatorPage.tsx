@@ -89,7 +89,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
       </section>
 
       {/* Calculator + sticky sidebar */}
-      <section className="relative bg-background py-12 md:py-10 md:py-12">
+      <section className="relative bg-background py-12 md:py-10">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-[1fr_360px]">
           <div className="space-y-5">
             {config.basePointsLabel && (

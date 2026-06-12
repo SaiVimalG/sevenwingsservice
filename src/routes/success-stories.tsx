@@ -21,7 +21,7 @@ function Stories() {
   return (
     <PageShell>
       <PageHero eyebrow="Success Stories" title="Real landings from real clients." subtitle="A handful of the engineers, analysts, students and families who chose 7 Wings and now call somewhere new home." />
-      <section className="py-12 md:py-10 md:py-12">
+      <section className="py-12 md:py-10">
         <div className="mx-auto max-w-6xl px-6">
           <div className="columns-1 gap-6 md:columns-2 lg:columns-3 [column-fill:_balance]">
             {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
