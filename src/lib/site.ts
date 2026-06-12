@@ -1,4 +1,5 @@
 import logo from "@/assets/7wings-logo-new.png.asset.json";
+import logoDark from "@/assets/7wings-logo-dark.png.asset.json";
 
 export const SITE = {
   name: "7 Wings Immigration",
@@ -10,6 +11,7 @@ export const SITE = {
   whatsapp: "+91 90000 70000",
   address: "Hitec City, Hyderabad, Telangana 500081, India",
   logoUrl: logo.url,
+  logoUrlDark: logoDark.url,
   social: {
     instagram: "https://instagram.com/",
     facebook: "https://facebook.com/",
