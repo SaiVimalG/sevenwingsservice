@@ -44,10 +44,10 @@ export function FeaturedServices() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-6">
+      <div className="relative mx-auto max-w-7xl px-0.5 sm:px-6">
         {/* heading */}
-        <div className="rounded-t-3xl border-2 border-b-0 border-[#061a52] bg-white p-8 shadow-elegant sm:p-12">
-          <div className="mx-auto max-w-3xl text-center">
+        <div className="rounded-t-3xl border-2 border-b-0 border-[#061a52] bg-white p-5 text-justify shadow-elegant sm:p-8 sm:text-left md:p-12">
+          <div className="mx-auto max-w-3xl text-justify sm:text-center">
             <Reveal>
               <p className="inline-block rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-deep sm:text-xs">
                 Immigration Services for Indians
@@ -129,7 +129,7 @@ export function FeaturedServices() {
 
         {/* country detail card — single country at a time */}
         <div
-          className="relative overflow-hidden rounded-b-3xl border-2 border-t-0 border-[#061a52] px-6 py-12 text-white shadow-elegant sm:px-10 sm:py-10 md:py-12"
+          className="relative overflow-hidden rounded-b-3xl border-2 border-t-0 border-[#061a52] px-3 py-10 text-justify text-white shadow-elegant sm:px-10 sm:py-10 sm:text-left md:py-12"
           style={{ background: "linear-gradient(135deg, #061a52 0%, #0a2470 55%, #061a52 100%)" }}
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
