@@ -192,8 +192,19 @@ function NumberedServices() {
   return (
     <section className="bg-white py-10 md:py-14">
       <div className="mx-auto max-w-[1400px] px-6 text-center">
-        <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Our Expert Programmes</p></Reveal>
-        <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Comprehensive Visa Solutions</h2></Reveal>
+        <Reveal>
+          <p className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-gold-deep">
+            <Sparkles className="h-3.5 w-3.5" /> Our Expert Programmes
+          </p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <h2 className="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-tight text-navy-deep md:text-6xl">
+            Comprehensive <span className="text-gradient-gold">Visa</span> Solutions
+          </h2>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <div className="mx-auto mt-5 h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent" />
+        </Reveal>
       </div>
       <div className="mx-auto mt-14 max-w-[1400px] divide-y divide-black/10 border-y border-black/10 px-6">
         {SERVICES.map((s, i) => (
