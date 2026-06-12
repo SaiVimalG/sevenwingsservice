@@ -370,7 +370,7 @@ function Testimonials() {
           <Reveal>
             <VideoStory />
           </Reveal>
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="hidden gap-5 sm:grid sm:grid-cols-2">
             {TESTIMONIALS.slice(0, 4).map((t, i) => (
               <Reveal key={t.name} delay={i * 0.06}>
                 <figure className="h-full rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.2)] transition-all hover:-translate-y-1 hover:shadow-gold">
@@ -383,6 +383,28 @@ function Testimonials() {
                 </figure>
               </Reveal>
             ))}
+          </div>
+          <div className="sm:hidden">
+            <Carousel opts={{ loop: true, align: "start" }} className="w-full">
+              <CarouselContent>
+                {TESTIMONIALS.slice(0, 4).map((t) => (
+                  <CarouselItem key={t.name}>
+                    <figure className="h-full rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.2)]">
+                      <div className="mb-4 flex gap-0.5 text-gold">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
+                      <blockquote className="text-sm leading-relaxed text-navy-deep">"{t.text}"</blockquote>
+                      <figcaption className="mt-5 border-t border-black/5 pt-4">
+                        <p className="font-semibold text-navy-deep">{t.name}</p>
+                        <p className="text-xs text-muted-foreground">{t.role}</p>
+                      </figcaption>
+                    </figure>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="mt-4 flex items-center justify-center gap-3">
+                <CarouselPrevious className="static translate-y-0" />
+                <CarouselNext className="static translate-y-0" />
+              </div>
+            </Carousel>
           </div>
         </div>
       </div>
