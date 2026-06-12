@@ -137,6 +137,43 @@ export function FeaturedServices() {
           <div aria-hidden className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-sky/20 blur-3xl" />
           <div aria-hidden className="pointer-events-none absolute -right-40 bottom-10 h-[28rem] w-[28rem] rounded-full bg-gold/15 blur-3xl" />
 
+          {/* static heading — never blinks; only country name animates */}
+          <div className="relative mb-8">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-soft backdrop-blur">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={active.key + "-badge"}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="inline-flex items-center gap-2"
+                >
+                  <span className="text-sm leading-none">{active.flag}</span>
+                  {active.badge}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+
+            <h3 className="mt-5 flex flex-nowrap items-baseline gap-x-3 whitespace-nowrap font-display font-bold leading-[1.08] text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+              <span>Visa &amp; Migration Services to</span>
+              <span className="relative inline-flex overflow-hidden align-baseline text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={active.country}
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: "-100%", opacity: 0 }}
+                    transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+                    className="text-gradient-gold"
+                  >
+                    {active.country}.
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </h3>
+          </div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={active.key}
@@ -148,32 +185,10 @@ export function FeaturedServices() {
             >
               {/* left: copy */}
               <div className="order-2 lg:order-1">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-soft backdrop-blur">
-                  <span className="text-sm leading-none">{active.flag}</span>
-                  {active.badge}
-                </span>
-
-                <h3 className="mt-5 flex flex-nowrap items-baseline gap-x-2 whitespace-nowrap font-display text-xl font-bold leading-[1.08] sm:text-2xl md:text-3xl lg:text-4xl">
-                  <span>Visa &amp; Migration Services to</span>
-                  <span className="relative inline-flex overflow-hidden">
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={active.country}
-                        initial={{ y: "100%", opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: "-100%", opacity: 0 }}
-                        transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-                        className="text-gradient-gold"
-                      >
-                        {active.country}.
-                      </motion.span>
-                    </AnimatePresence>
-                  </span>
-                </h3>
-
-                <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
+                <p className="max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
                   {active.description}
                 </p>
+
 
                 <ul className="mt-8 grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
                   {active.programs.map((p) => (

@@ -6,18 +6,16 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
   return (
     <Link
       to="/"
-      className={`group relative flex h-full min-w-0 items-center p-0 m-0 leading-none ${className}`}
+      className={`group relative flex h-full min-w-0 items-center overflow-hidden p-0 m-0 leading-none ${className}`}
       aria-label={`${SITE.name} home`}
     >
-      <span className="logo-shine relative inline-block transition-transform duration-500 ease-out group-hover:scale-[1.04]">
+      <span className="logo-shine relative inline-flex h-full items-center overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.03]">
         <img
           src={src}
           alt={`${SITE.name} logo`}
-          className="block w-auto max-w-none shrink-0 object-contain transition-[filter,transform] duration-500 ease-out group-hover:brightness-105"
+          className="block w-auto max-w-none shrink-0 object-contain object-left transition-[filter,transform] duration-500 ease-out group-hover:brightness-105"
           style={{
-            height: "76px",
-            transform: "scale(1.10)",
-            transformOrigin: "left center",
+            height: "68px",
             filter:
               "drop-shadow(0 0 6px color-mix(in oklab, var(--gold) 18%, transparent)) drop-shadow(0 1px 2px rgba(0,0,0,0.06))",
           }}
