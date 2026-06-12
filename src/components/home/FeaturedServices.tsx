@@ -154,7 +154,7 @@ export function FeaturedServices() {
                 </span>
 
                 <h3 className="mt-5 flex flex-nowrap items-baseline gap-x-2 whitespace-nowrap font-display text-xl font-bold leading-[1.08] sm:text-2xl md:text-3xl lg:text-4xl">
-                  <span>{active.headline.replace(active.country + ".", "").trim()}</span>
+                  <span>Visa &amp; Migration Services to</span>
                   <span className="relative inline-flex overflow-hidden">
                     <AnimatePresence mode="wait">
                       <motion.span
