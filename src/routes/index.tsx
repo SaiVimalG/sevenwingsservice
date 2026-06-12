@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Play, Sparkles, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal, RevealWords } from "@/components/motion/Reveal";
 import { FeaturedServices } from "@/components/home/FeaturedServices";
@@ -13,7 +13,8 @@ import { listDbPosts } from "@/lib/blog.functions";
 import { mergePosts } from "@/lib/blog-merge";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
-import realStoriesVideo from "@/assets/real-stories.mp4.asset.json";
+import realStoriesVideo from "@/assets/happy-client.mp4.asset.json";
+import realStoriesPoster from "@/assets/happy-client-poster.jpg.asset.json";
 import germanyImg from "@/assets/germany.jpg";
 
 export const Route = createFileRoute("/")({
@@ -319,7 +320,44 @@ function DestinationFeature() {
   );
 }
 
+function VideoStory() {
+  const [playing, setPlaying] = useState(false);
+  const ref = useRef<HTMLVideoElement | null>(null);
+  const handlePlay = () => {
+    setPlaying(true);
+    requestAnimationFrame(() => ref.current?.play());
+  };
+  return (
+    <div className="group relative h-full min-h-[500px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant">
+      <video
+        ref={ref}
+        src={realStoriesVideo.url}
+        poster={realStoriesPoster.url}
+        controls={playing}
+        playsInline
+        preload="metadata"
+        onEnded={() => setPlaying(false)}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {!playing && (
+        <button
+          type="button"
+          onClick={handlePlay}
+          aria-label="Play video"
+          className="absolute inset-0 z-10 flex items-center justify-center bg-navy-deep/20 transition-colors duration-300 hover:bg-navy-deep/40"
+        >
+          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/90 text-navy-deep shadow-elegant transition-all duration-300 group-hover:scale-110 group-hover:bg-gold group-hover:text-white">
+            <Play className="ml-1 h-8 w-8 fill-current" />
+          </span>
+        </button>
+      )}
+      <h5 className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</h5>
+    </div>
+  );
+}
+
 /* ───────── Testimonials (image-left, slider-right) ───────── */
+
 function Testimonials() {
   return (
     <section className="bg-cream py-14 md:py-10">
@@ -330,17 +368,7 @@ function Testimonials() {
         </div>
         <div className="mt-16 grid gap-8 lg:grid-cols-[5fr_7fr]">
           <Reveal>
-            <div className="group relative h-full min-h-[500px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant">
-              <video
-                src={realStoriesVideo.url}
-                poster={aboutImg}
-                controls
-                playsInline
-                preload="metadata"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <h5 className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</h5>
-            </div>
+            <VideoStory />
           </Reveal>
           <div className="grid gap-5 sm:grid-cols-2">
             {TESTIMONIALS.slice(0, 4).map((t, i) => (
