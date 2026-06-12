@@ -7,14 +7,16 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy-mesh text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-10 md:py-14 md:grid-cols-2 lg:grid-cols-4">
-        <div className="space-y-6">
-          <Logo variant="dark" />
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-6 sm:px-6 md:gap-12 md:py-14 md:grid-cols-2 lg:grid-cols-4">
+        <div className="space-y-4 md:space-y-6 md:col-span-2 lg:col-span-1">
+          <div className="-my-2">
+            <Logo variant="dark" />
+          </div>
           <p className="max-w-sm text-sm text-white/70">
             Hyderabad's premium immigration consultancy for Germany, Australia, Canada and JSS pathways.
             Soar beyond borders. Land with confidence.
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             {[
               { Icon: Instagram, href: SITE.social.instagram, label: "Instagram" },
               { Icon: Linkedin, href: SITE.social.linkedin, label: "LinkedIn" },
@@ -27,7 +29,7 @@ export function Footer() {
                 aria-label={label}
                 target="_blank"
                 rel="noreferrer"
-                className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold hover:-translate-y-0.5"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold hover:-translate-y-0.5"
               >
                 <Icon className="h-4 w-4" />
               </a>
