@@ -13,6 +13,7 @@ import { listDbPosts } from "@/lib/blog.functions";
 import { mergePosts } from "@/lib/blog-merge";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
+import realStoriesVideo from "@/assets/real-stories.mp4.asset.json";
 import germanyImg from "@/assets/germany.jpg";
 
 export const Route = createFileRoute("/")({
@@ -329,13 +330,16 @@ function Testimonials() {
         </div>
         <div className="mt-16 grid gap-8 lg:grid-cols-[5fr_7fr]">
           <Reveal>
-            <div className="relative h-full min-h-[400px] overflow-hidden rounded-3xl border border-black/5 shadow-elegant">
-              <img src={aboutImg} alt="Real client story" width={800} height={1000} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy-deep/20 to-transparent" />
-              <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" target="_blank" rel="noreferrer" className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gold text-navy-deep shadow-gold transition-transform hover:scale-110">
-                <Play className="h-6 w-6 fill-current" />
-              </a>
-              <h5 className="absolute bottom-6 left-6 font-display text-2xl font-bold text-white">Real Stories</h5>
+            <div className="group relative h-full min-h-[400px] overflow-hidden rounded-3xl border border-black/5 shadow-elegant">
+              <video
+                src={realStoriesVideo.url}
+                poster={aboutImg}
+                controls
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <h5 className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</h5>
             </div>
           </Reveal>
           <div className="grid gap-5 sm:grid-cols-2">
