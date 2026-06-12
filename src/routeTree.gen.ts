@@ -21,6 +21,7 @@ import { Route as BookConsultationRouteImport } from './routes/book-consultation
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
@@ -87,6 +88,11 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
   path: '/services/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EligibilityIndexRoute = EligibilityIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => EligibilityRoute,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -118,7 +124,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
-  '/eligibility': typeof EligibilityRoute
+  '/eligibility': typeof EligibilityRouteWithChildren
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -137,7 +144,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
-  '/eligibility': typeof EligibilityRoute
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -149,6 +155,7 @@ export interface FileRoutesByTo {
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/eligibility': typeof EligibilityIndexRoute
   '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
@@ -157,7 +164,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
-  '/eligibility': typeof EligibilityRoute
+  '/eligibility': typeof EligibilityRouteWithChildren
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -169,6 +176,7 @@ export interface FileRoutesById {
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
@@ -190,6 +198,7 @@ export interface FileRouteTypes {
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog/'
+    | '/eligibility/'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -197,7 +206,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-consultation'
     | '/contact'
-    | '/eligibility'
     | '/faq'
     | '/privacy'
     | '/refund'
@@ -209,6 +217,7 @@ export interface FileRouteTypes {
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog'
+    | '/eligibility'
     | '/services'
   id:
     | '__root__'
@@ -228,6 +237,7 @@ export interface FileRouteTypes {
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog/'
+    | '/eligibility/'
     | '/services/'
   fileRoutesById: FileRoutesById
 }
@@ -236,7 +246,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BookConsultationRoute: typeof BookConsultationRoute
   ContactRoute: typeof ContactRoute
-  EligibilityRoute: typeof EligibilityRoute
+  EligibilityRoute: typeof EligibilityRouteWithChildren
   FaqRoute: typeof FaqRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
@@ -337,6 +347,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eligibility/': {
+      id: '/eligibility/'
+      path: '/'
+      fullPath: '/eligibility/'
+      preLoaderRoute: typeof EligibilityIndexRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -375,12 +392,24 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface EligibilityRouteChildren {
+  EligibilityIndexRoute: typeof EligibilityIndexRoute
+}
+
+const EligibilityRouteChildren: EligibilityRouteChildren = {
+  EligibilityIndexRoute: EligibilityIndexRoute,
+}
+
+const EligibilityRouteWithChildren = EligibilityRoute._addFileChildren(
+  EligibilityRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BookConsultationRoute: BookConsultationRoute,
   ContactRoute: ContactRoute,
-  EligibilityRoute: EligibilityRoute,
+  EligibilityRoute: EligibilityRouteWithChildren,
   FaqRoute: FaqRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
@@ -397,3 +426,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
