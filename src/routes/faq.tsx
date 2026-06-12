@@ -33,7 +33,7 @@ function FAQ() {
   return (
     <PageShell>
       <PageHero eyebrow="FAQ" title="Everything you wanted to ask, in one place." subtitle="Don't see your question here? Reach out — we'll reply within 4 working hours." />
-      <section className="py-24">
+      <section className="py-12 md:py-10 md:py-12">
         <div className="mx-auto max-w-3xl space-y-3 px-6">
           {FAQS.map((f, i) => (
             <Reveal key={f.q} delay={i * 0.04}>

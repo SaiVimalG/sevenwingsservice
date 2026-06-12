@@ -27,7 +27,7 @@ function Services() {
         title="Immigration pathways, engineered around you."
         subtitle="Four flagship programmes covering the destinations our Hyderabad clients ask for most — each priced, planned and documented up front."
       />
-      <section className="py-24">
+      <section className="py-12 md:py-10 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-2">
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.08}>

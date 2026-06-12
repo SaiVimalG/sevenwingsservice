@@ -21,7 +21,7 @@ function Book() {
   return (
     <PageShell>
       <PageHero eyebrow="Book a Consultation" title="Free. 30 minutes. Senior counsellor." subtitle="We'll score your profile against every available pathway in one sitting — no obligation." />
-      <section className="py-24">
+      <section className="py-12 md:py-10 md:py-12">
         <div className="mx-auto max-w-3xl px-6">
           <Reveal>
             <div className="rounded-3xl border border-black/5 bg-white p-8 shadow-elegant">

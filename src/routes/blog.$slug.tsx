@@ -193,7 +193,7 @@ function BlogPostPage() {
       </section>
 
       {/* Body with sticky TOC */}
-      <article className="py-12 md:py-20">
+      <article className="py-12 md:py-10 md:py-14">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[260px_minmax(0,1fr)_220px]">
           {/* Left: TOC */}
           <aside className="hidden lg:block">
@@ -451,7 +451,7 @@ function BlogPostPage() {
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="border-t border-black/5 bg-cream py-16 md:py-20">
+        <section className="border-t border-black/5 bg-cream py-10 md:py-12 md:py-10 md:py-14">
           <div className="mx-auto max-w-7xl px-6">
             <div className="mb-10 flex items-end justify-between gap-6">
               <div>

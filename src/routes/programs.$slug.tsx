@@ -102,7 +102,7 @@ function ProgramPage() {
       </section>
 
       {/* Overview placeholder */}
-      <section className="py-20">
+      <section className="py-10 md:py-14">
         <div className="mx-auto max-w-4xl px-6">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Overview</p>
@@ -143,7 +143,7 @@ function ProgramPage() {
       </section>
 
       {/* CTA strip */}
-      <section className="bg-cream py-16">
+      <section className="bg-cream py-10 md:py-12">
         <div className="mx-auto grid max-w-6xl gap-6 px-6 sm:grid-cols-3">
           {[
             { icon: Calendar, label: "Book consultation", to: "/book-consultation" },
@@ -170,7 +170,7 @@ function ProgramPage() {
 
       {/* Related programs */}
       {related.length > 0 && (
-        <section className="py-20">
+        <section className="py-10 md:py-14">
           <div className="mx-auto max-w-7xl px-6">
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">More {country.country} programs</p>

@@ -23,7 +23,7 @@ function Contact() {
   return (
     <PageShell>
       <PageHero eyebrow="Contact" title="Let's plan your next chapter." subtitle="Drop us a line, give us a call, or walk into our Hyderabad office — every enquiry gets a senior counsellor's attention." />
-      <section className="py-24">
+      <section className="py-12 md:py-10 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_1.2fr]">
           <Reveal>
             <div className="space-y-6">
