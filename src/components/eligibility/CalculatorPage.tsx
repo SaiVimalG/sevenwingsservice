@@ -64,7 +64,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
       {/* Hero */}
       <section className="relative overflow-hidden bg-hero pt-32 pb-16 text-white">
         <div className="absolute inset-0 [background:radial-gradient(800px_400px_at_80%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
-        <div className="relative mx-auto max-w-6xl px-6">
+        <div className="relative mx-auto max-w-[1400px] px-6">
           <Breadcrumbs url={config.url} leaf={config.h1} />
           <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
@@ -90,7 +90,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
 
       {/* Calculator + sticky sidebar */}
       <section className="relative bg-background py-12 md:py-10">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-[1fr_360px]">
+        <div className="mx-auto grid max-w-[1400px] gap-8 px-6 lg:grid-cols-[1fr_360px]">
           <div className="space-y-5">
             {config.basePointsLabel && (
               <div className="rounded-2xl border border-gold/30 bg-gold/5 p-4 text-sm">

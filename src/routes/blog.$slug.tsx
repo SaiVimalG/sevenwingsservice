@@ -183,7 +183,7 @@ function BlogPostPage() {
 
       {/* Cover */}
       <section className="relative -mt-12 md:-mt-20">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-[1400px] px-6">
           <Reveal>
             <div className="overflow-hidden rounded-3xl border border-black/5 shadow-elegant">
               <img src={post.image} alt={post.title} className="aspect-[16/9] w-full object-cover" />
@@ -194,7 +194,7 @@ function BlogPostPage() {
 
       {/* Body with sticky TOC */}
       <article className="py-12 md:py-10">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[260px_minmax(0,1fr)_220px]">
+        <div className="mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-[260px_minmax(0,1fr)_220px]">
           {/* Left: TOC */}
           <aside className="hidden lg:block">
             <div className="sticky top-28">
@@ -452,7 +452,7 @@ function BlogPostPage() {
       {/* Related */}
       {related.length > 0 && (
         <section className="border-t border-black/5 bg-cream py-10 md:py-12">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-[1400px] px-6">
             <div className="mb-10 flex items-end justify-between gap-6">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Keep reading</p>
