@@ -198,13 +198,16 @@
   background: linear-gradient(115deg, transparent 35%, color-mix(in oklab, var(--gold-soft) 55%, transparent) 50%, transparent 65%);
   background-size: 250% 100%;
   background-position: 200% 0;
+  background-repeat: no-repeat;
   mix-blend-mode: screen;
-  opacity: 0.7;
+  opacity: 0;
   animation: logoShine 7s ease-in-out infinite;
 }
 @keyframes logoShine {
-  0%, 70%, 100% { background-position: 200% 0; }
-  85% { background-position: -150% 0; }
+  0%, 70% { background-position: 200% 0; opacity: 0; }
+  78% { opacity: 0.75; }
+  92% { opacity: 0.75; }
+  100% { background-position: -150% 0; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
