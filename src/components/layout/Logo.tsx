@@ -7,17 +7,17 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
   return (
     <Link
       to="/"
-      className={`group relative flex h-full min-w-0 items-center overflow-hidden p-0 m-0 leading-none ${className}`}
+      className={`group relative flex h-full min-w-0 items-center p-0 m-0 leading-none ${className}`}
       aria-label={`${SITE.name} home`}
     >
-      <span className="logo-shine relative inline-flex h-full items-center overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+      <span className="logo-shine relative inline-flex h-full items-center transition-transform duration-500 ease-out group-hover:scale-[1.03]">
         <img
           src={src}
           alt={`${SITE.name} logo`}
           className="block w-auto max-w-none shrink-0 object-contain object-left transition-[filter,transform] duration-500 ease-out group-hover:brightness-105"
           style={{
             height: "110px",
-            marginLeft: "-6px",
+            marginLeft: "0px",
             marginTop: "9px",
             mixBlendMode: isDark ? "normal" : "multiply",
             filter: isDark
