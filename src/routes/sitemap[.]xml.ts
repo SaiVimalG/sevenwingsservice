@@ -22,6 +22,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/eligibility/canada/quebec-skilled-worker-program",
           "/eligibility/germany/opportunity-card-calculator",
           "/eligibility/uk/skilled-worker-calculator",
+          "/eligibility/uk/skilled-worker-visa-calculator",
           ...SERVICES.map((s) => `/services/${s.slug}`),
           ...COUNTRY_PROGRAMS.flatMap((c) => c.programs.map((p) => `/programs/${p.slug}`)),
           ...BLOG.map((b) => `/blog/${b.slug}`),

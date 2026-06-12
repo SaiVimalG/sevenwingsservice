@@ -27,6 +27,7 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
 import { Route as EligibilityUkSkilledWorkerCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-calculator'
 import { Route as EligibilityGermanyOpportunityCardCalculatorRouteImport } from './routes/eligibility.germany.opportunity-card-calculator'
 import { Route as EligibilityCanadaSaskatchewanSinpCalculatorRouteImport } from './routes/eligibility.canada.saskatchewan-sinp-calculator'
@@ -127,6 +128,12 @@ const AdminBlogRoute = AdminBlogRouteImport.update({
   path: '/admin/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EligibilityUkSkilledWorkerVisaCalculatorRoute =
+  EligibilityUkSkilledWorkerVisaCalculatorRouteImport.update({
+    id: '/uk/skilled-worker-visa-calculator',
+    path: '/uk/skilled-worker-visa-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
 const EligibilityUkSkilledWorkerCalculatorRoute =
   EligibilityUkSkilledWorkerCalculatorRouteImport.update({
     id: '/uk/skilled-worker-calculator',
@@ -210,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/eligibility/canada/saskatchewan-sinp-calculator': typeof EligibilityCanadaSaskatchewanSinpCalculatorRoute
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
+  '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -238,6 +246,7 @@ export interface FileRoutesByTo {
   '/eligibility/canada/saskatchewan-sinp-calculator': typeof EligibilityCanadaSaskatchewanSinpCalculatorRoute
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
+  '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -268,6 +277,7 @@ export interface FileRoutesById {
   '/eligibility/canada/saskatchewan-sinp-calculator': typeof EligibilityCanadaSaskatchewanSinpCalculatorRoute
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
+  '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -299,6 +309,7 @@ export interface FileRouteTypes {
     | '/eligibility/canada/saskatchewan-sinp-calculator'
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
+    | '/eligibility/uk/skilled-worker-visa-calculator'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -327,6 +338,7 @@ export interface FileRouteTypes {
     | '/eligibility/canada/saskatchewan-sinp-calculator'
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
+    | '/eligibility/uk/skilled-worker-visa-calculator'
   id:
     | '__root__'
     | '/'
@@ -356,6 +368,7 @@ export interface FileRouteTypes {
     | '/eligibility/canada/saskatchewan-sinp-calculator'
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
+    | '/eligibility/uk/skilled-worker-visa-calculator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -506,6 +519,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eligibility/uk/skilled-worker-visa-calculator': {
+      id: '/eligibility/uk/skilled-worker-visa-calculator'
+      path: '/uk/skilled-worker-visa-calculator'
+      fullPath: '/eligibility/uk/skilled-worker-visa-calculator'
+      preLoaderRoute: typeof EligibilityUkSkilledWorkerVisaCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
     '/eligibility/uk/skilled-worker-calculator': {
       id: '/eligibility/uk/skilled-worker-calculator'
       path: '/uk/skilled-worker-calculator'
@@ -583,6 +603,7 @@ interface EligibilityRouteChildren {
   EligibilityCanadaSaskatchewanSinpCalculatorRoute: typeof EligibilityCanadaSaskatchewanSinpCalculatorRoute
   EligibilityGermanyOpportunityCardCalculatorRoute: typeof EligibilityGermanyOpportunityCardCalculatorRoute
   EligibilityUkSkilledWorkerCalculatorRoute: typeof EligibilityUkSkilledWorkerCalculatorRoute
+  EligibilityUkSkilledWorkerVisaCalculatorRoute: typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
 }
 
 const EligibilityRouteChildren: EligibilityRouteChildren = {
@@ -604,6 +625,8 @@ const EligibilityRouteChildren: EligibilityRouteChildren = {
     EligibilityGermanyOpportunityCardCalculatorRoute,
   EligibilityUkSkilledWorkerCalculatorRoute:
     EligibilityUkSkilledWorkerCalculatorRoute,
+  EligibilityUkSkilledWorkerVisaCalculatorRoute:
+    EligibilityUkSkilledWorkerVisaCalculatorRoute,
 }
 
 const EligibilityRouteWithChildren = EligibilityRoute._addFileChildren(
