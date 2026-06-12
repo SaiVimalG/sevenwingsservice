@@ -1,4 +1,4 @@
-import logo from "@/assets/7wings-logo-cropped.asset.json";
+import logo from "@/assets/7wings-logo-new.png.asset.json";
 
 export const SITE = {
   name: "7 Wings Immigration",
