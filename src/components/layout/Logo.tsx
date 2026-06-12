@@ -14,7 +14,7 @@ export function Logo({ className = "" }: { variant?: "light" | "dark"; className
           alt={`${SITE.name} logo`}
           className="block w-auto max-w-none shrink-0 object-contain transition-[filter,transform] duration-500 ease-out group-hover:brightness-105"
           style={{
-            height: "77px",
+            height: "79px",
             transform: "scale(1)",
             transformOrigin: "center",
             filter:
