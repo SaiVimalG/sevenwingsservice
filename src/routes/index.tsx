@@ -328,7 +328,7 @@ function VideoStory() {
     requestAnimationFrame(() => ref.current?.play());
   };
   return (
-    <div className="group relative h-full min-h-[500px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant">
+    <div className="group relative mx-auto h-[550px] w-full max-w-[430px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant lg:mx-0 lg:h-full lg:min-h-[500px] lg:max-w-none">
       <video
         ref={ref}
         src={realStoriesVideo.url}
