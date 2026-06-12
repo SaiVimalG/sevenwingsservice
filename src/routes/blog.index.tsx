@@ -57,7 +57,7 @@ function BlogIndex() {
 
       {/* Featured */}
       {featured && (
-        <section className="bg-cream py-10 md:py-12 md:py-14">
+        <section className="bg-cream py-10 md:py-12">
           <div className="mx-auto max-w-7xl px-6">
             <Reveal>
               <Link
@@ -97,7 +97,7 @@ function BlogIndex() {
       )}
 
       {/* Grid */}
-      <section className="py-10 md:py-12 md:py-14">
+      <section className="py-10 md:py-12">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10 flex items-end justify-between gap-6">
             <div>

@@ -451,7 +451,7 @@ function BlogPostPage() {
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="border-t border-black/5 bg-cream py-10 md:py-12 md:py-14">
+        <section className="border-t border-black/5 bg-cream py-10 md:py-12">
           <div className="mx-auto max-w-7xl px-6">
             <div className="mb-10 flex items-end justify-between gap-6">
               <div>
