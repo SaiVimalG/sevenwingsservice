@@ -17,7 +17,7 @@ export const Route = createFileRoute("/blog/")({
   },
   head: () => ({
     meta: [
-      { title: "Immigration Blog Hyderabad | Germany, Australia, Canada Visa Insights | 7 Wings" },
+      { title: "Immigration Blog Hyderabad | 7 Wings Immigration" },
       { name: "description", content: "Latest visa & PR updates, plain-English migration guides and policy news from Hyderabad's leading immigration consultancy — 7 Wings Immigration." },
       { property: "og:title", content: "Immigration Blog & Visa Insights | 7 Wings Immigration Hyderabad" },
       { property: "og:description", content: "Visa tips, PR updates and migration guides written by senior 7 Wings consultants in Hyderabad." },

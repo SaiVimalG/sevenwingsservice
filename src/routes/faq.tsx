@@ -6,7 +6,7 @@ import { FAQS } from "@/lib/site";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "Immigration FAQs Hyderabad | Germany, Australia, Canada PR | 7 Wings" },
+      { title: "Immigration FAQs Hyderabad | 7 Wings Immigration" },
       { name: "description", content: "Hyderabad's most-asked immigration questions answered — Germany Opportunity Card, Australia PR, Canada PR, JSS, eligibility, fees and timelines, by 7 Wings consultants." },
       { property: "og:title", content: "Immigration FAQs | 7 Wings Immigration Hyderabad" },
       { property: "og:description", content: "Common questions about migration, eligibility, fees and timelines — answered by Hyderabad's senior immigration consultants." },
