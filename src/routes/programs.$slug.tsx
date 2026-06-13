@@ -1,7 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check, Phone, MessageCircle, Calendar } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { findProgram, SITE, type CountryGroup, type Program } from "@/lib/site";
 
 type LoaderData = { country: CountryGroup; program: Program };
@@ -105,46 +108,158 @@ function ProgramPage() {
         </div>
       </section>
 
-      {/* Overview placeholder */}
-      <section className="py-10 md:py-14">
-        <div className="mx-auto max-w-4xl px-6">
-          <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Overview</p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="mt-3 font-display text-3xl font-bold text-navy-deep md:text-4xl">
-              Why Indian applicants choose the {program.title}.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              {program.short} Our Hyderabad senior team builds the application around your goals — eligibility scoring, document prep, financial proofs, lodgement and post-decision support — so you arrive in {country.country} prepared and compliant.
-            </p>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-              {[
-                "Senior-counsellor led file ownership",
-                "Transparent flat-fee pricing",
-                "End-to-end documentation & translations",
-                "Family pathway planning included",
-              ].map((b) => (
-                <li key={b} className="flex items-start gap-3 rounded-2xl border border-black/5 bg-cream p-4">
-                  <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold text-navy-deep">
-                    <Check className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="text-sm font-medium text-navy-deep">{b}</span>
-                </li>
+      {/* Overview / Detailed Content */}
+      {program.details ? (
+        <section className="py-12 md:py-16">
+          <div className="mx-auto max-w-4xl px-6">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Overview</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-5 font-display text-lg leading-[1.5] text-navy-deep md:text-xl">
+                {program.details.intro}
+              </p>
+            </Reveal>
+
+            <div className="mt-10 space-y-10">
+              {program.details.sections.map((section, i) => (
+                <Reveal key={section.heading} delay={i * 0.05}>
+                  <section>
+                    <div className="flex items-center gap-3">
+                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold font-display text-xs font-bold text-navy-deep">
+                        {i + 1}
+                      </span>
+                      <h2 className="font-display text-2xl font-bold leading-tight text-navy-deep md:text-3xl">
+                        {section.heading}
+                      </h2>
+                    </div>
+                    <div className="mt-4 space-y-2 pl-0 md:pl-10">
+                      {section.paragraphs.map((p, j) => (
+                        <ReactMarkdown
+                          key={j}
+                          remarkPlugins={[remarkGfm]}
+                          components={{
+                            p: ({ node, ...props }) => (
+                              <p className="text-[13.5px] leading-[1.55] text-slate-700 md:text-[14.5px]" {...props} />
+                            ),
+                            strong: ({ node, ...props }) => (
+                              <strong className="font-semibold text-navy-deep" {...props} />
+                            ),
+                          }}
+                        >
+                          {p}
+                        </ReactMarkdown>
+                      ))}
+                    </div>
+                  </section>
+                </Reveal>
               ))}
-            </ul>
-          </Reveal>
-          <Reveal delay={0.4}>
-            <p className="mt-8 rounded-2xl border border-gold/30 bg-gold/5 p-5 text-sm text-navy-deep">
-              <strong>Detailed guide coming soon.</strong> Full eligibility, documents, process timeline, cost breakdown, common mistakes and 10+ FAQs for this program are being published. In the meantime, book a free consultation and we'll send you the latest checklist by email.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+            </div>
+
+            <Reveal>
+              <div className="mt-14 overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-cream via-white to-cream p-7 md:p-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">
+                  Why apply through 7 Wings Immigration
+                </p>
+                <h3 className="mt-2 font-display text-2xl font-bold text-navy-deep md:text-3xl">
+                  What you get when you start with us
+                </h3>
+                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {program.details.why7Wings.map((w) => (
+                    <li
+                      key={w}
+                      className="flex items-start gap-3 rounded-2xl border border-black/5 bg-white p-4 text-sm leading-relaxed text-navy-deep shadow-[0_4px_12px_-8px_rgba(13,46,125,0.15)] md:text-[15px]"
+                    >
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-navy-deep">
+                        <Check className="h-3.5 w-3.5" />
+                      </span>
+                      {w}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <Link to="/book-consultation" className="inline-flex justify-center btn-gold btn-gold-hover">
+                    Check my Germany eligibility <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <a
+                    href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-navy-deep/20 px-6 py-3 text-sm font-medium text-navy-deep transition-all hover:border-gold-deep hover:text-gold-deep"
+                  >
+                    <Phone className="h-4 w-4" /> Call {SITE.phone}
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-14">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">
+                  Frequently asked questions
+                </p>
+                <h3 className="mt-2 font-display text-2xl font-bold text-navy-deep md:text-3xl">
+                  Everything you wanted to ask
+                </h3>
+                <Accordion type="single" collapsible className="mt-6 space-y-3">
+                  {program.details.faqs.map((f, idx) => (
+                    <AccordionItem
+                      key={idx}
+                      value={`faq-${idx}`}
+                      className="overflow-hidden rounded-2xl border border-black/10 bg-white px-5 shadow-[0_4px_12px_-10px_rgba(13,46,125,0.18)] data-[state=open]:border-gold/40 data-[state=open]:bg-gradient-to-br data-[state=open]:from-cream/60 data-[state=open]:to-white"
+                    >
+                      <AccordionTrigger className="py-4 text-left text-[15px] font-semibold text-navy-deep hover:text-gold-deep hover:no-underline">
+                        {f.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-5 text-[14.5px] leading-[1.6] text-slate-700">
+                        {f.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : (
+        <section className="py-10 md:py-14">
+          <div className="mx-auto max-w-4xl px-6">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Overview</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-3 font-display text-3xl font-bold text-navy-deep md:text-4xl">
+                Why Indian applicants choose the {program.title}.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+                {program.short} Our Hyderabad senior team builds the application around your goals — eligibility scoring, document prep, financial proofs, lodgement and post-decision support — so you arrive in {country.country} prepared and compliant.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                {[
+                  "Senior-counsellor led file ownership",
+                  "Transparent flat-fee pricing",
+                  "End-to-end documentation & translations",
+                  "Family pathway planning included",
+                ].map((b) => (
+                  <li key={b} className="flex items-start gap-3 rounded-2xl border border-black/5 bg-cream p-4">
+                    <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold text-navy-deep">
+                      <Check className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="text-sm font-medium text-navy-deep">{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={0.4}>
+              <p className="mt-8 rounded-2xl border border-gold/30 bg-gold/5 p-5 text-sm text-navy-deep">
+                <strong>Detailed guide coming soon.</strong> Full eligibility, documents, process timeline, cost breakdown, common mistakes and 10+ FAQs for this program are being published. In the meantime, book a free consultation and we'll send you the latest checklist by email.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* CTA strip */}
       <section className="bg-cream py-10 md:py-12">

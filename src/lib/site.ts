@@ -47,34 +47,39 @@ import jss from "@/assets/jss.jpg";
 export const SERVICES: Service[] = [
   {
     slug: "germany-opportunity-card",
-    title: "Germany Opportunity Card",
+    title: "Germany Opportunity Card (Chancenkarte) – Job Seeker Visa",
     short: "Chancenkarte for skilled professionals seeking work in Germany.",
     blurb: "A points-based residence permit that lets qualified professionals enter Germany to look for a job — even before securing one.",
     intro:
-      "Germany's Opportunity Card (Chancenkarte) opens the door to Europe's largest economy for skilled professionals from Hyderabad and across India. Our team at 7 Wings Immigration translates the points-based eligibility into a clear, document-ready strategy so you arrive in Germany prepared, compliant, and confident.",
+      "Looking to move to Germany to search for work? The Opportunity Card (Chancenkarte) is a new German visa (Section 20a of the Residence Act) that lets qualified foreign workers enter Germany for up to 12 months to find employment or complete recognition training. Introduced in June 2024, this visa is designed for non-EU professionals (such as Indian nationals) without a job offer. During your stay, you can attend interviews, work trials or part-time work (up to 20 hours/week) while searching for a job. Hyderabad-based 7 Wings Immigration helps Indian applicants navigate the Opportunity Card visa process from start to finish.",
     features: [
-      { title: "Points-based eligibility check", description: "We map your degree, work experience, German/English proficiency and age against the official points matrix." },
-      { title: "End-to-end documentation", description: "Notarised translations, ZAB recognition, proof of funds, health insurance and Visa appointment — handled together." },
-      { title: "Job-search runway", description: "12-month residence permit with part-time work rights while you secure a long-term offer." },
-      { title: "Family pathway", description: "Bring your spouse and children on dependent visas with full work and school access." },
+      { title: "Job-Search Stay (up to 12 months)", description: "Live in Germany for up to a year while you hunt for skilled employment." },
+      { title: "Flexible Work Trials", description: "Attend unpaid job trials or do part-time work (max 20 hrs/week) while you search." },
+      { title: "Training for Qualification", description: "Start training to get your foreign degree or qualification recognised in Germany." },
+      { title: "Pathway to Work Visa", description: "Once you find a job or get qualified, switch to a German Skilled Worker Visa or EU Blue Card." },
     ],
     process: [
-      "Free 30-minute profile review at our Hyderabad office (or online)",
-      "Points scoring + gap analysis report",
-      "Document collection, attestation & translation roadmap",
-      "ZAB recognition assistance and proof-of-funds setup",
-      "VFS appointment booking, mock interview and submission",
+      "Free profile review and points scoring against the official BAMF Chancenkarte matrix",
+      "ZAB Zeugnisbewertung / ANABIN recognition assistance for your Indian degree",
+      "Document pack — notarised translations, blocked account (€1,091/month in 2026), health insurance",
+      "Visa appointment booking via the Federal Foreign Office Visa Portal and mock VFS interview",
+      "Post-arrival switch support — Skilled Worker Visa or EU Blue Card once you secure an offer",
     ],
     faqs: [
-      { q: "Do I need to know German?", a: "No. A1/A2 German or B2 English alone earns you points; both is even better. We connect you with vetted language partners." },
-      { q: "How many points do I need?", a: "A minimum of 6 points across qualifications, experience, language, age, and Germany connection. We score you in the first call." },
-      { q: "Can I bring my family from day one?", a: "Yes. Spouses and minor children join you on dependent permits with work and school rights." },
+      { q: "What is the Opportunity Card (Chancenkarte)?", a: "A German visa (AufenthG §20a) for eligible non-EU nationals to come to Germany for up to 12 months to search for a job or start qualification training. It requires either a fully recognised degree or at least 6 points in the points system." },
+      { q: "Do I need a job offer to apply?", a: "No. The Opportunity Card is specifically for those without a job offer. It lets you enter Germany first, then look for work." },
+      { q: "How do I get the required 6 points?", a: "Points come from qualification recognition (4), shortage occupation (1), work experience (2–3), German language A2–B2+ (1–3), English C1+ (1), age (1–2), prior Germany stay (1) and a qualifying spouse (1). We score you on the first call." },
+      { q: "What if I already studied in Germany?", a: "If you completed a degree or training in Germany, you can apply for a job seeker permit (18 months) immediately, with part-time work allowed." },
+      { q: "How long is the Opportunity Card valid?", a: "Up to 12 months. If you find qualified work, you can switch to another visa before it expires. If not, you must leave when the visa ends." },
+      { q: "Can my spouse come with me?", a: "Yes — usually through family reunification. If your partner qualifies independently, it earns you +1 point in the matrix." },
+      { q: "How long does visa processing take?", a: "Typically 4–6 weeks at the German Embassy/Consulate in India after submission. Do not book flights until the visa is stamped." },
+      { q: "How can 7 Wings Immigration help?", a: "We offer end-to-end support — free eligibility scoring, ZAB recognition, document prep, blocked account and health insurance setup, and interview preparation." },
     ],
     image: germany,
     flag: "🇩🇪",
     country: "Germany",
-    metaTitle: "Germany Opportunity Card Consultants in Hyderabad | 7 Wings Immigration",
-    metaDescription: "Get Hyderabad's most trusted Germany Opportunity Card (Chancenkarte) guidance. Points scoring, ZAB recognition, document support and Visa appointment — handled end-to-end by 7 Wings Immigration.",
+    metaTitle: "Germany Opportunity Card (Chancenkarte) – Job Seeker Visa 2026 | 7 Wings Immigration Hyderabad",
+    metaDescription: "Check your eligibility for the Germany Opportunity Card (Chancenkarte) job seeker visa. 7 Wings Immigration in Hyderabad explains the requirements, points system, and application process based on official guidelines.",
   },
   {
     slug: "australia-pr",
@@ -504,6 +509,12 @@ export interface Program {
   slug: string;
   title: string;
   short: string;
+  details?: {
+    intro: string;
+    sections: { heading: string; paragraphs: string[] }[];
+    why7Wings: string[];
+    faqs: { q: string; a: string }[];
+  };
 }
 
 export interface CountryGroup {
@@ -528,7 +539,71 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
       "The Chancenkarte (Opportunity Card) is engineered for skilled professionals who want to enter Germany on their own terms — even before securing an offer. Our scoring, ZAB recognition and document team make every point count.",
     image: "https://images.unsplash.com/photo-1554072675-66db59dba46f?auto=format&fit=crop&w=1600&q=80",
     programs: [
-      { slug: "germany-opportunity-card", title: "Opportunity Card · Chancenkarte", short: "Points-based residence permit to enter Germany and seek work." },
+      {
+        slug: "germany-opportunity-card",
+        title: "Opportunity Card · Chancenkarte",
+        short: "Points-based residence permit to enter Germany and seek work.",
+        details: {
+          intro:
+            "Looking to move to Germany to search for work? The Opportunity Card (Chancenkarte) is a new German visa (Section 20a of the Residence Act) that lets qualified foreign workers enter Germany for up to 12 months to find employment or complete recognition training. Introduced in June 2024, it is designed for non-EU professionals (such as Indian nationals) without a job offer. During your stay you can attend interviews, work trials or part-time work (up to 20 hrs/week). Hyderabad-based 7 Wings Immigration helps Indian applicants navigate the Opportunity Card visa process from start to finish.",
+          sections: [
+            {
+              heading: "Opportunity Card Visa Benefits",
+              paragraphs: [
+                "**Job-Search Stay:** Live in Germany for up to 12 months to hunt for skilled employment.",
+                "**Flexible Work Trials:** Attend unpaid job trials or do part-time work (max 20 hrs/week) while you search.",
+                "**Training for Qualification:** Start training to get your foreign degree or qualification recognised in Germany.",
+                "**Pathway to Work Visa:** Once you find a job or get qualified, switch to a German Skilled Worker Visa or EU Blue Card.",
+              ],
+            },
+            {
+              heading: "Who is Eligible? (Key Requirements)",
+              paragraphs: [
+                "You must be a non-EU/EEA/Swiss national (e.g. an Indian citizen) and meet one of two routes:",
+                "**Option 1 – Recognised Qualification:** Foreign vocational or academic degree fully recognised in Germany, or earned in Germany. You qualify as a \"skilled worker\" without needing points.",
+                "**Option 2 – Points System (6+ points):** Without a fully recognised qualification, you must score at least 6 points and meet: a completed qualification recognised in your country of origin (with ANABIN / Zeugnisbewertung), German A1 or English B2 minimum, and proof of funds (blocked account ≈ €1,091/month in 2026).",
+              ],
+            },
+            {
+              heading: "Opportunity Card Points System (Option 2)",
+              paragraphs: [
+                "**Qualification Recognition (4 points):** Foreign qualification partially recognised in Germany.",
+                "**Shortage Occupation (1 point):** Qualification on Germany's official shortage list (IT, engineering, healthcare).",
+                "**Work Experience (2–3 points):** 2 pts for ≥2 yrs (last 5 yrs); 3 pts for ≥5 yrs (last 7 yrs).",
+                "**German Language (1–3 points):** A2 = 1, B1 = 2, B2+ = 3.",
+                "**English Language (1 point):** C1 or native.",
+                "**Age (1–2 points):** 2 pts if ≤35, 1 pt if 36–40.",
+                "**Previous Germany Stay (1 point):** 6+ continuous months legally in Germany in last 5 yrs.",
+                "**Spouse's Qualification (1 point):** Partner also qualifies for the Opportunity Card.",
+              ],
+            },
+            {
+              heading: "How to Apply",
+              paragraphs: [
+                "**Visa Application:** Apply at the German Embassy/Consulate in India via the Federal Foreign Office Visa Portal with proof of qualifications, points, funds and certified translations.",
+                "**Processing Time:** Approximately 4–6 weeks. Do not book flights until the visa is stamped.",
+                "**After Arrival:** Receive a residence permit (job seeker) valid up to 12 months. Once you secure qualified employment, switch to a Skilled Worker Visa or EU Blue Card.",
+              ],
+            },
+          ],
+          why7Wings: [
+            "We score your profile against the official BAMF matrix in the very first call - no guesswork.",
+            "Full ZAB recognition support so your Indian degree is accepted in Germany.",
+            "Notarised translation, blocked-account setup and health-insurance - handled in-house.",
+            "Mock VFS interview before your appointment so nothing surprises you on the day.",
+          ],
+          faqs: [
+            { q: "What is the Opportunity Card (Chancenkarte)?", a: "A German visa (AufenthG §20a) for eligible non-EU nationals to come to Germany for up to 12 months to search for a job or start qualification training. It requires either a fully recognised degree or at least 6 points in the points system." },
+            { q: "Do I need a job offer to apply?", a: "No. The Opportunity Card is specifically for those without a job offer. It lets you enter Germany first, then look for work." },
+            { q: "How do I get the required points?", a: "You accumulate points for qualifications, work experience, age, language, etc. For example, 4 points for a partially recognised degree, 3 points for 5+ years' experience." },
+            { q: "What if I already studied in Germany?", a: "If you completed a degree or training in Germany, you can apply for a job seeker permit (18 months) immediately, with part-time work allowed." },
+            { q: "How long is the Opportunity Card valid?", a: "Up to 12 months. If you find qualified work, switch to another visa before it expires. Otherwise, you must leave when the visa ends." },
+            { q: "Can my spouse come with me?", a: "Yes, usually via family reunification. If your partner qualifies independently, it earns +1 point in the matrix." },
+            { q: "What happens after I find a job in Germany?", a: "Apply to the local Foreigners Authority for a Skilled Worker Visa or Blue Card once you have a valid job offer and the required salary." },
+            { q: "How can 7 Wings Immigration help?", a: "7 Wings Immigration (Hyderabad) offers free guidance and end-to-end support — document review, points scoring, recognition, and interview preparation." },
+          ],
+        },
+      },
       { slug: "germany-skilled-worker-visa", title: "Skilled Worker Visa", short: "Long-term work visa for qualified professionals with a German job offer." },
       { slug: "germany-eu-blue-card", title: "EU Blue Card", short: "Fast-track residence for high-earning specialists across the EU." },
       { slug: "germany-job-seeker-visa", title: "Job Seeker Visa", short: "Six-month visa to search for a qualifying role on the ground." },
