@@ -62,7 +62,7 @@ function ServiceDetail() {
   return (
     <PageShell>
       <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+        <div className="mx-auto grid max-w-[1200px] gap-12 px-6 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div>
             <Reveal>
               <Link to="/services" className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">← All programmes</Link>
@@ -92,7 +92,7 @@ function ServiceDetail() {
       </section>
 
       <section className="py-12 md:py-10">
-        <div className="mx-auto max-w-[1400px] px-6">
+        <div className="mx-auto max-w-[1200px] px-6">
           <Reveal><h2 className="font-display text-3xl font-bold text-navy-deep md:text-4xl">What's included.</h2></Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {s.features.map((f, i) => (

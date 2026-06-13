@@ -30,7 +30,7 @@ function Services() {
         subtitle="Four flagship programmes covering the destinations our Hyderabad clients ask for most — each priced, planned and documented up front."
       />
       <section className="py-12 md:py-10">
-        <div className="mx-auto grid max-w-[1400px] gap-8 px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-[1200px] gap-8 px-6 md:grid-cols-2">
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.08}>
               <TiltCard className="group h-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-elegant">
