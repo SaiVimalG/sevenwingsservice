@@ -76,7 +76,7 @@ function ServiceDetail() {
               <h1 className="mt-5 font-display text-5xl font-bold leading-tight md:text-6xl">{s.title}</h1>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="mt-5 max-w-xl text-white/75">{s.intro}</p>
+              <p className="mt-5 max-w-xl text-white/90">{s.intro}</p>
             </Reveal>
             <Reveal delay={0.4}>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -153,7 +153,7 @@ function ServiceDetail() {
           <Reveal delay={0.1}>
             <Link to="/book-consultation" className="mt-8 inline-flex btn-gold btn-gold-hover">Book a free consultation <ArrowRight className="h-4 w-4" /></Link>
           </Reveal>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm text-white/60">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm text-white/95">
             <span>Other programmes:</span>
             {SERVICES.filter((x) => x.slug !== s.slug).map((x) => (
               <Link key={x.slug} to="/services/$slug" params={{ slug: x.slug }} className="rounded-full border border-white/15 px-3 py-1 transition-colors hover:border-gold hover:text-gold">{x.flag} {x.title}</Link>

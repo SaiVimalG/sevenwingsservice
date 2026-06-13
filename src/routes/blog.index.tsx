@@ -53,7 +53,7 @@ function BlogIndex() {
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <nav className="mt-3 flex items-center justify-center gap-2 text-xs text-white/70">
+            <nav className="mt-3 flex items-center justify-center gap-2 text-xs text-white/90">
               <Link to="/" className="hover:text-gold-soft">Home</Link>
               <span className="text-gold">›</span>
               <span>Our Blog</span>

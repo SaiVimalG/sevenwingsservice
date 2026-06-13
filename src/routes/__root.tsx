@@ -19,7 +19,7 @@ function NotFoundComponent() {
       <div className="px-6">
         <p className="font-display text-[9rem] leading-none text-gradient-gold">404</p>
         <h1 className="mt-2 font-display text-3xl">Looks like you've flown off course.</h1>
-        <p className="mx-auto mt-3 max-w-md text-sm text-white/70">
+        <p className="mx-auto mt-3 max-w-md text-sm text-white/90">
           The page you're looking for has migrated. Let's get you back on a clear pathway.
         </p>
         <a href="/" className="mt-8 inline-flex btn-gold btn-gold-hover">Back home</a>

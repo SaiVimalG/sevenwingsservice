@@ -40,7 +40,7 @@ export function PageHero({
         )}
         <h1 className="font-display text-2xl font-bold leading-tight md:text-4xl">{title}</h1>
         {subtitle && (
-          <p className="mx-auto mt-3 max-w-2xl text-sm text-white/75 md:text-base">{subtitle}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-white/90 md:text-base">{subtitle}</p>
         )}
       </div>
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
