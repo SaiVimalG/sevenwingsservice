@@ -20,6 +20,7 @@ import {
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
 import { BlogContactForm } from "@/components/forms/Forms";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BLOG_MAP, BLOG, SITE, type BlogPost } from "@/lib/site";
 import { getDbPost } from "@/lib/blog.functions";
 import { dbToBlogPost } from "@/lib/blog-merge";
