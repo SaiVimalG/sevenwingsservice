@@ -509,6 +509,12 @@ export interface Program {
   slug: string;
   title: string;
   short: string;
+  details?: {
+    intro: string;
+    sections: { heading: string; paragraphs: string[] }[];
+    why7Wings: string[];
+    faqs: { q: string; a: string }[];
+  };
 }
 
 export interface CountryGroup {
