@@ -30,13 +30,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { name: "description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS Program. 1000+ successful consultations, transparent fees, senior-led guidance." },
+      { name: "description", content: "7 Wings Immigration is Hyderabad's top-rated immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker & JSS programs. 1000+ successful cases, senior-led, transparent fees." },
       { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { property: "og:description", content: "Soar beyond borders. Land with confidence. Premium immigration consultancy in Hyderabad for Germany, Australia, Canada and JSS pathways." },
-      { property: "og:url", content: "/" },
+      { property: "og:description", content: "Hyderabad's trusted senior-led immigration consultancy for Germany, Australia, Canada, UK and JSS pathways. Free profile evaluation." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/" },
       { property: "og:image", content: heroImg },
+      { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
+      { name: "twitter:description", content: "Senior-led immigration consultancy in Hyderabad for Germany, Australia, Canada, UK and JSS. 1000+ successful clients." },
+      { name: "twitter:image", content: heroImg },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/" }],
   }),
   component: Home,
 });
