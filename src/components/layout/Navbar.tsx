@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 function HeaderTop() {
   return (
     <div className="hidden border-b border-white/10 bg-navy-deep text-white lg:block">
-      <div className="mx-auto flex h-11 max-w-[1400px] items-center justify-between px-6 text-sm">
+      <div className="mx-auto flex h-9 max-w-[1400px] items-center justify-between px-6 text-sm">
         <ul className="flex items-center gap-6 text-white/90">
           <li className="flex items-center gap-2">
             <span className="text-gold-soft">Help Line</span>
@@ -70,7 +70,7 @@ export function Navbar() {
             : ""
         }`}
       >
-        <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-6 overflow-visible">
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 overflow-visible">
           <Logo />
 
           <nav className="hidden items-center gap-1 lg:flex">
