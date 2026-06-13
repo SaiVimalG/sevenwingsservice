@@ -11,11 +11,13 @@ const sections = [
 export const Route = createFileRoute("/refund")({
   head: () => ({
     meta: [
-      { title: "Refund Policy | 7 Wings Immigration" },
-      { name: "description", content: "Our written refund policy for immigration consultancy engagements." },
-      { property: "og:url", content: "/refund" },
+      { title: "Refund Policy | 7 Wings Immigration Hyderabad" },
+      { name: "description", content: "Our written refund policy for 7 Wings Immigration consultancy engagements — Hyderabad's senior-led visa and PR consultancy." },
+      { property: "og:title", content: "Refund Policy | 7 Wings Immigration Hyderabad" },
+      { property: "og:description", content: "Transparent refund terms for immigration consultancy engagements." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/refund" },
     ],
-    links: [{ rel: "canonical", href: "/refund" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/refund" }],
   }),
   component: () => (
     <PageShell>
