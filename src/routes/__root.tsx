@@ -46,7 +46,6 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 const SITE_URL = "https://home.7wingsimmigration.com";
-const SHARE_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/28b4bd14-fa2e-478b-aa43-8112e8c9520f/id-preview-272f0f6b--194042d7-d400-4563-a5dc-ee36f53cbdd1.lovable.app-1781163543517.png";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
