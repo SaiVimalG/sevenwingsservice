@@ -15,19 +15,23 @@ export const Route = createFileRoute("/programs/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) return {};
     const { country, program } = loaderData;
-    const title = `${program.title} — ${country.country} | 7 Wings Immigration`;
-    const desc = `${program.short} 7 Wings Immigration helps Indian applicants apply for the ${program.title} with end-to-end documentation, scoring and lodgement support.`;
+    const title = `${program.title} from Hyderabad — ${country.country} | 7 Wings Immigration`;
+    const desc = `${program.short} 7 Wings Immigration (Hyderabad) helps Indian applicants apply for the ${program.title} with end-to-end documentation, points scoring and lodgement support.`;
+    const url = `https://home.7wingsimmigration.com/programs/${program.slug}`;
     return {
       meta: [
         { title },
         { name: "description", content: desc },
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
-        { property: "og:url", content: `/programs/${program.slug}` },
+        { property: "og:url", content: url },
         { property: "og:type", content: "article" },
         { property: "og:image", content: country.image },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: desc },
+        { name: "twitter:image", content: country.image },
       ],
-      links: [{ rel: "canonical", href: `/programs/${program.slug}` }],
+      links: [{ rel: "canonical", href: url }],
     };
   },
   component: ProgramPage,

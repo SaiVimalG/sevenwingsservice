@@ -17,12 +17,15 @@ export const Route = createFileRoute("/blog/")({
   },
   head: () => ({
     meta: [
-      { title: "Immigration Blog & Visa Insights | 7 Wings Immigration Hyderabad" },
-      { name: "description", content: "Latest visa news, PR updates and immigration guides for Germany, Australia, Canada and the JSS Program. Written by 7 Wings Immigration consultants in Hyderabad." },
-      { property: "og:title", content: "Immigration Blog & Visa Insights | 7 Wings Immigration" },
-      { property: "og:description", content: "Visa tips, PR updates and migration guides written by senior 7 Wings consultants." },
+      { title: "Immigration Blog Hyderabad | 7 Wings Immigration" },
+      { name: "description", content: "Latest visa & PR updates, plain-English migration guides and policy news from Hyderabad's leading immigration consultancy — 7 Wings Immigration." },
+      { property: "og:title", content: "Immigration Blog & Visa Insights | 7 Wings Immigration Hyderabad" },
+      { property: "og:description", content: "Visa tips, PR updates and migration guides written by senior 7 Wings consultants in Hyderabad." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/blog" },
+      { name: "twitter:title", content: "Immigration Blog | 7 Wings Hyderabad" },
+      { name: "twitter:description", content: "Visa news, PR updates and migration guides from Hyderabad's senior consultants." },
     ],
-    links: [{ rel: "canonical", href: "/blog" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/blog" }],
   }),
   component: BlogIndex,
 });

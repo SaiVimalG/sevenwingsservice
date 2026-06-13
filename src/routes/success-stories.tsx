@@ -6,13 +6,15 @@ import { TESTIMONIALS } from "@/lib/site";
 export const Route = createFileRoute("/success-stories")({
   head: () => ({
     meta: [
-      { title: "Success Stories | 7 Wings Immigration Hyderabad" },
-      { name: "description", content: "Read what our Hyderabad-based clients say about their Germany, Australia and Canada migration journeys with 7 Wings Immigration." },
-      { property: "og:title", content: "Success Stories | 7 Wings Immigration" },
-      { property: "og:description", content: "Real landings from real clients." },
-      { property: "og:url", content: "/success-stories" },
+      { title: "Visa Success Stories from Hyderabad Clients | 7 Wings Immigration" },
+      { name: "description", content: "Real Germany, Australia and Canada PR success stories from 7 Wings Immigration's Hyderabad clients — engineers, students and families who landed abroad with senior-led guidance." },
+      { property: "og:title", content: "Visa Success Stories | 7 Wings Immigration Hyderabad" },
+      { property: "og:description", content: "Real landings from real Hyderabad clients — Germany, Australia, Canada and UK." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/success-stories" },
+      { name: "twitter:title", content: "Visa Success Stories — 7 Wings Hyderabad" },
+      { name: "twitter:description", content: "Real Germany, Australia and Canada PR successes from our Hyderabad clients." },
     ],
-    links: [{ rel: "canonical", href: "/success-stories" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/success-stories" }],
   }),
   component: Stories,
 });

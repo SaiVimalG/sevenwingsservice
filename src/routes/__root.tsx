@@ -45,14 +45,20 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const SITE_URL = "https://home.7wingsimmigration.com";
+
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": ["Organization", "LocalBusiness"],
+  "@id": `${SITE_URL}/#organization`,
   name: SITE.name,
-  url: "/",
+  alternateName: "7 Wings Immigration Hyderabad",
+  url: SITE_URL,
   logo: SITE.logoUrl,
   image: SITE.logoUrl,
-  description: "Best immigration consultancy in Hyderabad for Germany Opportunity Card, Australia PR, Canada PR and JSS programs.",
+  description:
+    "Best immigration consultancy in Hyderabad for Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker visa and JSS career programs. Senior-led, transparent fees.",
+  priceRange: "₹₹",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Hitec City",
@@ -61,10 +67,30 @@ const orgJsonLd = {
     postalCode: "500081",
     addressCountry: "IN",
   },
+  geo: { "@type": "GeoCoordinates", latitude: 17.4435, longitude: 78.3772 },
   telephone: SITE.phone,
   email: SITE.email,
   areaServed: ["Hyderabad", "Telangana", "India"],
+  knowsAbout: [
+    "Germany Opportunity Card",
+    "Australia PR",
+    "Canada PR",
+    "UK Skilled Worker Visa",
+    "JSS Career Program",
+    "Study Abroad",
+    "Work Visa Consultancy",
+  ],
   sameAs: [SITE.social.instagram, SITE.social.linkedin, SITE.social.facebook, SITE.social.youtube],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: SITE.name,
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  inLanguage: "en-IN",
 };
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
@@ -73,18 +99,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#0D2E7D" },
-      { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { name: "description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS programs. Personalised guidance, transparent process, proven results." },
+      { name: "robots", content: "index,follow,max-image-preview:large,max-snippet:-1" },
+      { name: "googlebot", content: "index,follow" },
+      { name: "author", content: SITE.name },
+      { name: "geo.region", content: "IN-TG" },
+      { name: "geo.placename", content: "Hyderabad" },
+      { name: "geo.position", content: "17.4435;78.3772" },
+      { name: "ICBM", content: "17.4435, 78.3772" },
+      { title: "7 Wings Immigration — Hyderabad Visa & PR Consultancy" },
+      { name: "description", content: "Hyderabad's senior-led immigration consultancy for Germany, Australia, Canada, UK and JSS — transparent fees, 1000+ successes." },
+      { name: "keywords", content: "best immigration consultancy in Hyderabad, immigration consultants Hyderabad, Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker visa, JSS program, Hitec City" },
       { property: "og:site_name", content: SITE.name },
+      { property: "og:locale", content: "en_IN" },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { property: "og:description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS programs. Personalised guidance, transparent process, proven results." },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "robots", content: "index,follow" },
-      { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { name: "twitter:description", content: "Hyderabad's trusted immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR and JSS programs. Personalised guidance, transparent process, proven results." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/28b4bd14-fa2e-478b-aa43-8112e8c9520f/id-preview-272f0f6b--194042d7-d400-4563-a5dc-ee36f53cbdd1.lovable.app-1781163543517.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/28b4bd14-fa2e-478b-aa43-8112e8c9520f/id-preview-272f0f6b--194042d7-d400-4563-a5dc-ee36f53cbdd1.lovable.app-1781163543517.png" },
+      { name: "twitter:site", content: "@7wingsimmig" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -95,6 +124,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(orgJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
     ],
   }),
   shellComponent: RootShell,

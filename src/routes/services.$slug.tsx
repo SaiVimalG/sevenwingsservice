@@ -13,26 +13,37 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => {
     const s = loaderData?.service;
     if (!s) return {};
+    const url = `https://home.7wingsimmigration.com/services/${s.slug}`;
     return {
       meta: [
         { title: s.metaTitle },
         { name: "description", content: s.metaDescription },
         { property: "og:title", content: s.metaTitle },
         { property: "og:description", content: s.metaDescription },
-        { property: "og:url", content: `/services/${s.slug}` },
+        { property: "og:url", content: url },
         { property: "og:type", content: "article" },
         { property: "og:image", content: s.image },
+        { name: "twitter:title", content: s.metaTitle },
+        { name: "twitter:description", content: s.metaDescription },
+        { name: "twitter:image", content: s.image },
       ],
-      links: [{ rel: "canonical", href: `/services/${s.slug}` }],
+      links: [{ rel: "canonical", href: url }],
       scripts: [{
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
           name: s.title,
-          provider: { "@type": "Organization", name: "7 Wings Immigration", address: { "@type": "PostalAddress", addressLocality: "Hyderabad", addressRegion: "Telangana", addressCountry: "IN" } },
-          areaServed: s.country,
+          serviceType: s.title,
+          provider: {
+            "@type": "Organization",
+            name: "7 Wings Immigration",
+            url: "https://home.7wingsimmigration.com",
+            address: { "@type": "PostalAddress", addressLocality: "Hyderabad", addressRegion: "Telangana", addressCountry: "IN" },
+          },
+          areaServed: ["Hyderabad", "Telangana", "India", s.country],
           description: s.metaDescription,
+          url,
         }),
       }],
     };

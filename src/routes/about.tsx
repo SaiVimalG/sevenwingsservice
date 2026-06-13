@@ -8,13 +8,17 @@ import { SITE, WHY_CHOOSE_US } from "@/lib/site";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About 7 Wings Immigration | Best Immigration Consultancy in Hyderabad" },
-      { name: "description", content: "Meet 7 Wings Immigration — a senior-led, Hyderabad-based immigration consultancy. Our story, mission and the eagle-inspired values behind every successful landing." },
-      { property: "og:title", content: "About 7 Wings Immigration | Hyderabad" },
-      { property: "og:description", content: "A premium, transparent immigration consultancy built around your global ambition." },
-      { property: "og:url", content: "/about" },
+      { title: "About 7 Wings | Trusted Immigration Consultants in Hyderabad" },
+      { name: "description", content: "Senior-led immigration consultancy in Hitec City, Hyderabad. Meet the team, mission and proven process behind 1000+ Germany, Australia, Canada and UK visa successes." },
+      { property: "og:title", content: "About 7 Wings — Trusted Immigration Consultants in Hyderabad" },
+      { property: "og:description", content: "A senior-led, Hyderabad-based immigration consultancy built around transparent fees and 1000+ documented successes." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/about" },
+      { property: "og:image", content: aboutImg },
+      { name: "twitter:title", content: "About 7 Wings Immigration Hyderabad" },
+      { name: "twitter:description", content: "Senior-led immigration consultancy in Hyderabad with 1000+ successful visa cases." },
+      { name: "twitter:image", content: aboutImg },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/about" }],
   }),
   component: About,
 });

@@ -8,13 +8,15 @@ import { SITE } from "@/lib/site";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact 7 Wings Immigration | Hyderabad Office" },
-      { name: "description", content: "Visit 7 Wings Immigration at our Hyderabad office or book a free consultation online. Best immigration consultancy in Hyderabad for Germany, Australia, Canada and JSS." },
-      { property: "og:title", content: "Contact 7 Wings Immigration | Hyderabad" },
-      { property: "og:description", content: "Hyderabad office, phone, email and online enquiry form." },
-      { property: "og:url", content: "/contact" },
+      { title: "Contact 7 Wings Immigration Hyderabad | Call, Visit or Enquire" },
+      { name: "description", content: "Talk to Hyderabad's best immigration consultants. Visit our Hitec City office, call us, or send an enquiry — free 30-min consultation with a senior counsellor." },
+      { property: "og:title", content: "Contact 7 Wings Immigration | Hyderabad Office" },
+      { property: "og:description", content: "Hitec City Hyderabad office, phone, email and online enquiry form for Germany, Australia, Canada and UK visa support." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/contact" },
+      { name: "twitter:title", content: "Contact 7 Wings Immigration Hyderabad" },
+      { name: "twitter:description", content: "Visit, call or enquire — free 30-min consultation in Hitec City, Hyderabad." },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/contact" }],
   }),
   component: Contact,
 });

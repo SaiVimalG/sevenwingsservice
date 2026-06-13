@@ -27,11 +27,13 @@ const sections = [
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy | 7 Wings Immigration" },
-      { name: "description", content: "How 7 Wings Immigration collects, uses and protects your personal information." },
-      { property: "og:url", content: "/privacy" },
+      { title: "Privacy Policy | 7 Wings Immigration Hyderabad" },
+      { name: "description", content: "How 7 Wings Immigration (Hyderabad) collects, uses and protects the personal information of visa and PR applicants." },
+      { property: "og:title", content: "Privacy Policy | 7 Wings Immigration Hyderabad" },
+      { property: "og:description", content: "Our written privacy policy for immigration consultancy clients in Hyderabad." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/privacy" },
     ],
-    links: [{ rel: "canonical", href: "/privacy" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/privacy" }],
   }),
   component: () => (
     <PageShell>

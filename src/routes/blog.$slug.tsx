@@ -36,21 +36,48 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!post) throw notFound();
     return { post };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     const post = loaderData?.post;
+    if (!post) {
+      return { meta: [{ title: "Article not found | 7 Wings Immigration" }] };
+    }
+    const url = `https://home.7wingsimmigration.com/blog/${params.slug}`;
+    const title = `${post.title} | 7 Wings Immigration Blog`;
     return {
-      meta: post
-        ? [
-            { title: `${post.title} | 7 Wings Immigration Blog` },
-            { name: "description", content: post.excerpt },
-            { property: "og:title", content: post.title },
-            { property: "og:description", content: post.excerpt },
-            { property: "og:image", content: post.image },
-            { property: "og:type", content: "article" },
-            { property: "article:published_time", content: post.date },
-            { property: "article:author", content: post.author },
-          ]
-        : [{ title: "Article not found | 7 Wings Immigration" }],
+      meta: [
+        { title },
+        { name: "description", content: post.excerpt },
+        { property: "og:title", content: post.title },
+        { property: "og:description", content: post.excerpt },
+        { property: "og:image", content: post.image },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+        { property: "article:published_time", content: post.date },
+        { property: "article:author", content: post.author },
+        { property: "article:section", content: post.category },
+        { name: "twitter:title", content: post.title },
+        { name: "twitter:description", content: post.excerpt },
+        { name: "twitter:image", content: post.image },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [{
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description: post.excerpt,
+          image: [post.image],
+          datePublished: post.date,
+          author: { "@type": "Person", name: post.author },
+          publisher: {
+            "@type": "Organization",
+            name: "7 Wings Immigration",
+            logo: { "@type": "ImageObject", url: "https://home.7wingsimmigration.com/favicon.ico" },
+          },
+          mainEntityOfPage: url,
+        }),
+      }],
     };
   },
   errorComponent: ({ error }) => (

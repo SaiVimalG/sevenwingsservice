@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+
+Sitemap: https://home.7wingsimmigration.com/sitemap.xml
