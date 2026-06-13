@@ -10,17 +10,11 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
       className={`group relative flex h-full min-w-0 items-center p-0 m-0 leading-none ${className}`}
       aria-label={`${SITE.name} home`}
     >
-      <span className="logo-shine relative inline-flex h-full items-center transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+      <span className="relative inline-flex h-full items-center transition-transform duration-500 ease-out group-hover:scale-[1.03]">
         <img
           src={src}
           alt={`${SITE.name} logo`}
-          className="block h-14 w-auto max-w-none shrink-0 object-contain object-left transition-[filter,transform] duration-500 ease-out group-hover:brightness-105 sm:h-16 lg:h-[68px]"
-          style={{
-            mixBlendMode: isDark ? "normal" : "multiply",
-            filter: isDark
-              ? "drop-shadow(0 0 8px color-mix(in oklab, var(--gold) 25%, transparent)) drop-shadow(0 1px 2px rgba(0,0,0,0.4))"
-              : "drop-shadow(0 0 6px color-mix(in oklab, var(--gold) 18%, transparent)) drop-shadow(0 1px 2px rgba(0,0,0,0.06))",
-          }}
+          className="block h-14 w-auto max-w-none shrink-0 object-contain object-left transition-transform duration-500 ease-out sm:h-16 lg:h-[68px]"
         />
       </span>
     </Link>
