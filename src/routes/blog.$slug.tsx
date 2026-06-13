@@ -243,13 +243,13 @@ function BlogPostPage() {
                             remarkPlugins={[remarkGfm]}
                             components={{
                               p: ({ node, ...props }) => (
-                                <p className="text-[15px] leading-[1.65] text-muted-foreground md:text-[16px]" {...props} />
+                                <p className="text-[15.5px] leading-[1.55] text-slate-700 md:text-[16.5px]" {...props} />
                               ),
                               ul: ({ node, ...props }) => (
-                                <ul className="ml-5 list-disc space-y-1.5 text-[15px] leading-[1.65] text-muted-foreground md:text-[16px]" {...props} />
+                                <ul className="ml-5 list-disc space-y-1 text-[15.5px] leading-[1.55] text-slate-700 md:text-[16.5px]" {...props} />
                               ),
                               ol: ({ node, ...props }) => (
-                                <ol className="ml-5 list-decimal space-y-1.5 text-[15px] leading-[1.65] text-muted-foreground md:text-[16px]" {...props} />
+                                <ol className="ml-5 list-decimal space-y-1 text-[15.5px] leading-[1.55] text-slate-700 md:text-[16.5px]" {...props} />
                               ),
                               h3: ({ node, ...props }) => (
                                 <h3 className="mt-4 font-display text-xl font-bold leading-tight text-navy-deep" {...props} />
