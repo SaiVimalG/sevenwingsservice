@@ -4,6 +4,8 @@ import { toast } from "sonner";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { submitContact, submitConsultation } from "@/lib/forms.functions";
 import { SERVICES } from "@/lib/site";
+import { PhoneField } from "./PhoneField";
+
 
 export function ContactForm() {
   const fn = useServerFn(submitContact);
@@ -39,13 +41,14 @@ export function ContactForm() {
         <Input name="email" type="email" label="Email" required />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <Input name="phone" label="Phone (with country code)" required />
+        <PhoneField name="phone" label="Phone" required />
         <Select name="country_interest" label="Country of interest">
           <option value="">Select…</option>
           {SERVICES.map((s) => <option key={s.slug} value={s.country}>{s.country}</option>)}
           <option value="Other">Other</option>
         </Select>
       </div>
+
       <Textarea name="message" label="How can we help?" required rows={5} />
       <button type="submit" disabled={loading} className="btn-gold btn-gold-hover disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Submit Inquiry <ArrowRight className="h-4 w-4" /></>}
@@ -91,12 +94,13 @@ export function ConsultationForm() {
         <Input name="email" type="email" label="Email" required />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <Input name="phone" label="Phone (with country code)" required />
+        <PhoneField name="phone" label="Phone" required />
         <Select name="preferred_country" label="Preferred country" required>
           <option value="">Select…</option>
           {SERVICES.map((s) => <option key={s.slug} value={s.country}>{s.country}</option>)}
         </Select>
       </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <Input name="preferred_date" type="date" label="Preferred date" />
         <Select name="preferred_time" label="Preferred time">
