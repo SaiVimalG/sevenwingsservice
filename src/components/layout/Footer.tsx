@@ -24,14 +24,14 @@ export function Footer() {
                   aria-label={label}
                   target="_blank"
                   rel="noreferrer"
-                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold hover:-translate-y-0.5"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 text-white/90 transition-all hover:border-gold hover:text-gold hover:-translate-y-0.5"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
           </div>
-          <p className="max-w-sm text-sm text-white/70">
+          <p className="max-w-sm text-sm text-white/90">
             Hyderabad's premium immigration consultancy for Germany, Australia, Canada and JSS pathways.
             Soar beyond borders. Land with confidence.
           </p>
@@ -48,7 +48,7 @@ export function Footer() {
                 aria-label={label}
                 target="_blank"
                 rel="noreferrer"
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold hover:-translate-y-0.5"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/15 text-white/90 transition-all hover:border-gold hover:text-gold hover:-translate-y-0.5"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -58,7 +58,7 @@ export function Footer() {
 
         <div>
           <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Programs</h4>
-          <ul className="space-y-3 text-sm text-white/75">
+          <ul className="space-y-3 text-sm text-white/90">
             {SERVICES.map((s) => (
               <li key={s.slug}>
                 <Link
@@ -75,7 +75,7 @@ export function Footer() {
 
         <div>
           <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Company</h4>
-          <ul className="space-y-3 text-sm text-white/75">
+          <ul className="space-y-3 text-sm text-white/90">
             {[
               { to: "/about", label: "About Us" },
               { to: "/success-stories", label: "Success Stories" },
@@ -96,7 +96,7 @@ export function Footer() {
 
         <div className="col-span-2 lg:col-span-1">
           <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Contact</h4>
-          <ul className="space-y-4 text-sm text-white/75">
+          <ul className="space-y-4 text-sm text-white/90">
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
               <span>{SITE.address}</span>

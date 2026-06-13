@@ -9,7 +9,7 @@ function HeaderTop() {
   return (
     <div className="hidden border-b border-white/10 bg-navy-deep text-white lg:block">
       <div className="mx-auto flex h-11 max-w-[1400px] items-center justify-between px-6 text-xs">
-        <ul className="flex items-center gap-6 text-white/75">
+        <ul className="flex items-center gap-6 text-white/90">
           <li className="flex items-center gap-2">
             <span className="text-gold-soft">Help Line</span>
             <Phone className="h-3 w-3 text-gold" />
@@ -25,12 +25,12 @@ function HeaderTop() {
           </li>
         </ul>
         <div className="flex items-center gap-5">
-          <div className="flex items-center gap-2 text-white/75">
+          <div className="flex items-center gap-2 text-white/90">
             <Globe className="h-3 w-3 text-gold" />
             <span>English</span>
           </div>
           <span className="h-3 w-px bg-white/20" />
-          <div className="flex items-center gap-3 text-white/65">
+          <div className="flex items-center gap-3 text-white/95">
             <a href={SITE.social.linkedin} aria-label="LinkedIn" className="transition-colors hover:text-gold"><Linkedin className="h-3.5 w-3.5" /></a>
             <a href={SITE.social.facebook} aria-label="Facebook" className="transition-colors hover:text-gold"><Facebook className="h-3.5 w-3.5" /></a>
             <a href={SITE.social.instagram} aria-label="Instagram" className="transition-colors hover:text-gold"><Instagram className="h-3.5 w-3.5" /></a>

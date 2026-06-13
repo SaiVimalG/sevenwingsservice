@@ -185,7 +185,7 @@ export function FeaturedServices() {
             >
               {/* left: copy */}
               <div className="order-2 lg:order-1">
-                <p className="max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
+                <p className="max-w-xl text-sm leading-relaxed text-white/90 sm:text-base">
                   {active.description}
                 </p>
 

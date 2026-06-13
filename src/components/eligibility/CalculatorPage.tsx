@@ -75,8 +75,8 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
               <h1 className="mt-5 font-display text-3xl font-bold leading-tight md:text-5xl">
                 {config.h1}
               </h1>
-              <p className="mt-4 max-w-2xl text-white/75 md:text-lg">{config.subheading}</p>
-              <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/80">
+              <p className="mt-4 max-w-2xl text-white/90 md:text-lg">{config.subheading}</p>
+              <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/90">
                 {config.trustChips.map((c) => (
                   <li key={c} className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-gold" /> {c}
@@ -169,7 +169,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
           {/* Sticky Sidebar */}
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <div className={`overflow-hidden rounded-3xl border bg-gradient-to-br from-navy-deep via-navy to-navy-deep p-6 text-white shadow-elegant ring-1 ${status.ring}`}>
-              <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/60">
+              <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/95">
                 <span>Current Score</span>
                 <Calculator className="h-4 w-4" />
               </div>
@@ -182,7 +182,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
                 >
                   {score.total}
                 </motion.span>
-                <span className="text-white/60">/ {config.maxPoints} {config.scoreUnit ?? "pts"}</span>
+                <span className="text-white/95">/ {config.maxPoints} {config.scoreUnit ?? "pts"}</span>
               </div>
               <p className={`mt-1 text-sm font-semibold ${status.color}`}>● {status.label}</p>
               <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
@@ -193,7 +193,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
                   transition={{ duration: 0.4 }}
                 />
               </div>
-              <p className="mt-2 text-xs text-white/60">
+              <p className="mt-2 text-xs text-white/95">
                 Minimum to qualify: <span className="font-semibold text-white">{config.passingThreshold} {config.scoreUnit ?? "pts"}</span>
               </p>
 
@@ -203,7 +203,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
                   .filter(([, v]) => v > 0)
                   .map(([k, v]) => (
                     <div key={k} className="flex items-center justify-between text-xs">
-                      <span className="text-white/70">{k}</span>
+                      <span className="text-white/90">{k}</span>
                       <span className="font-semibold text-gold-soft">+{v}</span>
                     </div>
                   ))}
@@ -355,7 +355,7 @@ function Breadcrumbs({ url, leaf }: { url: string; leaf: string }) {
     crumbs.push({ name: i === parts.length - 1 ? leaf : p.replace(/-/g, " "), url: acc });
   });
   return (
-    <nav aria-label="Breadcrumb" className="text-xs text-white/60">
+    <nav aria-label="Breadcrumb" className="text-xs text-white/95">
       <ol className="flex flex-wrap items-center gap-1.5">
         {crumbs.map((c, i) => (
           <li key={c.url} className="flex items-center gap-1.5 capitalize">
@@ -414,7 +414,7 @@ function LeadCapture({ country }: { country: string }) {
           <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">
             Get your detailed {country} immigration report
           </h2>
-          <p className="mt-2 max-w-xl text-white/70">
+          <p className="mt-2 max-w-xl text-white/90">
             Speak to a {country} migration specialist for a personalised pathway, document checklist, and timeline.
           </p>
 
@@ -456,13 +456,13 @@ function Field({
 }: { id: string; label: string; value: string; onChange: (v: string) => void; type?: string }) {
   return (
     <div>
-      <Label htmlFor={id} className="text-xs uppercase tracking-widest text-white/60">{label}</Label>
+      <Label htmlFor={id} className="text-xs uppercase tracking-widest text-white/95">{label}</Label>
       <Input
         id={id}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 border-white/20 bg-white/5 text-white placeholder:text-white/40"
+        className="mt-1 border-white/20 bg-white/5 text-white placeholder:text-white/90"
       />
     </div>
   );

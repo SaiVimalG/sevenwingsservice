@@ -74,7 +74,7 @@ function Hero() {
       <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute right-1/3 top-24 h-32 w-32 rounded-full border border-gold/20" />
 
       {/* pagi numbers (visaway style) */}
-      <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-2 font-display text-xs text-white/40 lg:flex">
+      <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-2 font-display text-xs text-white/90 lg:flex">
         <span className="text-gold">03</span>
         <span className="h-12 w-px bg-white/15" />
         <span>05</span>
@@ -96,7 +96,7 @@ function Hero() {
           </h1>
 
           <Reveal delay={0.5}>
-            <p className="mt-7 max-w-xl text-base text-white/75 md:text-lg">
+            <p className="mt-7 max-w-xl text-base text-white/90 md:text-lg">
               7 Wings Immigration guides ambitious professionals, students and families from Hyderabad to confident landings in
               <span className="text-gold"> Germany, Australia, Canada </span> and beyond — through trusted, transparent immigration pathways.
             </p>
@@ -259,7 +259,7 @@ function ServiceRow({ s, index }: { s: (typeof SERVICES)[number]; index: number 
         <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">{s.flag} {s.country}</p>
       </div>
       <div className="relative">
-        <p className="text-sm text-muted-foreground transition-colors group-hover:text-white/80">{s.short}</p>
+        <p className="text-sm text-muted-foreground transition-colors group-hover:text-white/90">{s.short}</p>
       </div>
       <div className="relative flex md:justify-end">
         <span className="inline-flex items-center gap-2 text-sm font-semibold text-navy-deep transition-all group-hover:gap-3 group-hover:text-gold">
@@ -288,14 +288,14 @@ function DestinationFeature() {
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-5 max-w-xl text-base text-white/75">
+            <p className="mt-5 max-w-xl text-base text-white/90">
               The Chancenkarte (Opportunity Card) is engineered for skilled professionals who want to enter Germany on their own terms — even before securing an offer. Our scoring, ZAB recognition and document team make every point count.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-8 grid gap-y-3 text-sm sm:grid-cols-2">
               {["Opportunity Card · Chancenkarte", "Job Seeker Visa", "Skilled Worker Visa", "EU Blue Card", "Family Reunion Visa", "Study Pathway · DAAD"].map((b) => (
-                <div key={b} className="flex items-center gap-2 text-white/85">
+                <div key={b} className="flex items-center gap-2 text-white/95">
                   <ArrowRight className="h-3.5 w-3.5 shrink-0 text-gold" /> {b}
                 </div>
               ))}
@@ -437,7 +437,7 @@ function VideoBanner() {
           </h2>
         </Reveal>
         <Reveal delay={0.3}>
-          <p className="mx-auto mt-6 max-w-xl text-white/75">
+          <p className="mx-auto mt-6 max-w-xl text-white/90">
             Watch real client landings, behind-the-scenes from our Hyderabad office and inside looks at every visa pathway we run.
           </p>
         </Reveal>
@@ -500,7 +500,7 @@ function Counter() {
           <Reveal key={s.label} delay={i * 0.08}>
             <div className="bg-navy-deep/70 p-8 text-center">
               <p className="font-display text-5xl font-bold text-gradient-gold md:text-6xl"><CountUp end={s.value} suffix={s.suffix} /></p>
-              <p className="mt-3 text-xs uppercase tracking-[0.2em] text-white/65">{s.label}</p>
+              <p className="mt-3 text-xs uppercase tracking-[0.2em] text-white/95">{s.label}</p>
             </div>
           </Reveal>
         ))}
@@ -539,7 +539,7 @@ function BrandMarquee() {
     <section className="border-y border-black/5 bg-cream py-10">
       <Marquee>
         {COUNTRIES.map((c) => (
-          <span key={c.slug} className="flex items-center gap-3 font-display text-xl font-semibold tracking-wide text-navy/40 transition-colors hover:text-gold-deep md:text-2xl">
+          <span key={c.slug} className="flex items-center gap-3 font-display text-xl font-semibold tracking-wide text-navy/70 transition-colors hover:text-gold-deep md:text-2xl">
             <span className="text-3xl">{c.flag}</span> {c.name}
             <span className="text-gold">✦</span>
           </span>
@@ -608,7 +608,7 @@ function CTABanner() {
                 </h2>
               </Reveal>
               <Reveal delay={0.2}>
-                <p className="mt-4 max-w-xl text-white/75">Walk in for a senior-led eligibility scoring across Germany, Australia, Canada and JSS — written summary at the end of every call.</p>
+                <p className="mt-4 max-w-xl text-white/90">Walk in for a senior-led eligibility scoring across Germany, Australia, Canada and JSS — written summary at the end of every call.</p>
               </Reveal>
             </div>
             <div className="flex flex-col gap-3">

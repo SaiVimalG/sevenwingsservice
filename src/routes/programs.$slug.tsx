@@ -72,7 +72,7 @@ function ProgramPage() {
               </h1>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="mt-5 max-w-xl text-base text-white/80 md:text-lg">{program.short}</p>
+              <p className="mt-5 max-w-xl text-base text-white/90 md:text-lg">{program.short}</p>
             </Reveal>
             <Reveal delay={0.4}>
               <div className="mt-8 flex flex-wrap gap-3">

@@ -167,7 +167,7 @@ function BlogPostPage() {
         <div className="absolute inset-0 [background:radial-gradient(700px_350px_at_80%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
         <div className="relative mx-auto max-w-4xl px-6">
           <Reveal>
-            <nav className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-white/60">
+            <nav className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-white/95">
               <Link to="/" className="hover:text-gold">Home</Link>
               <ChevronRight className="h-3 w-3" />
               <Link to="/blog" className="hover:text-gold">Blog</Link>
@@ -186,7 +186,7 @@ function BlogPostPage() {
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-5 max-w-3xl text-base text-white/75 md:text-lg">{post.excerpt}</p>
+            <p className="mt-5 max-w-3xl text-base text-white/90 md:text-lg">{post.excerpt}</p>
           </Reveal>
           <Reveal delay={0.25}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -196,10 +196,10 @@ function BlogPostPage() {
                 </div>
                 <div className="min-w-0 leading-tight">
                   <p className="truncate text-sm font-semibold text-white">{post.author}</p>
-                  <p className="truncate text-[11px] uppercase tracking-widest text-white/60">7 Wings Immigration</p>
+                  <p className="truncate text-[11px] uppercase tracking-widest text-white/95">7 Wings Immigration</p>
                 </div>
               </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-widest text-white/70">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-widest text-white/90">
                 <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5 text-gold" /> {post.date}</span>
                 <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" /> {post.readTime}</span>
               </div>
