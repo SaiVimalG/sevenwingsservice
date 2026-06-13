@@ -41,7 +41,7 @@ function BlogIndex() {
       {/* Compact Hero (Breadcrumb-style banner like Visaway) */}
       <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
         <div className="absolute inset-0 [background:radial-gradient(500px_220px_at_85%_30%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
-        <div className="relative mx-auto max-w-[1400px] px-6 text-center">
+        <div className="relative mx-auto max-w-[1200px] px-6 text-center">
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-gold-soft backdrop-blur">
               Our Blog
@@ -65,7 +65,7 @@ function BlogIndex() {
 
       {/* Blog Grid (Visaway news-grid style: 3 cols, image-top with category badge, meta row, title, footer with author + arrow) */}
       <section className="bg-cream py-12 md:py-16">
-        <div className="mx-auto max-w-[1400px] px-6">
+        <div className="mx-auto max-w-[1200px] px-6">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {allPosts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 0.05}>

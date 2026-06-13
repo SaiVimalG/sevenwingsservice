@@ -80,7 +80,7 @@ function Hero() {
         <span>05</span>
       </div>
 
-      <div className="relative mx-auto grid max-w-[1400px] gap-12 px-0.5 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+      <div className="relative mx-auto grid max-w-[1200px] gap-12 px-0.5 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <div className="px-2 sm:px-0">
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft backdrop-blur">
@@ -137,7 +137,7 @@ function About() {
   return (
     <section className="relative overflow-hidden py-14 md:py-10">
       <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 80, repeat: Infinity, ease: "linear" }} className="pointer-events-none absolute right-10 top-10 h-40 w-40 rounded-full border border-gold/20" />
-      <div className="mx-auto grid max-w-[1400px] gap-16 px-6 lg:grid-cols-2 lg:items-center">
+      <div className="mx-auto grid max-w-[1200px] gap-16 px-6 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-sky/10 blur-2xl" />
@@ -199,7 +199,7 @@ function NumberedServices() {
     <section className="relative overflow-hidden bg-white py-12 md:py-16">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
       <div aria-hidden className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[60rem] -translate-x-1/2 rounded-full bg-gold/10 blur-3xl" />
-      <div className="relative mx-auto max-w-[1400px] px-6">
+      <div className="relative mx-auto max-w-[1200px] px-6">
         <div className="grid items-end gap-8 md:grid-cols-[1fr_auto] md:gap-12">
           <div>
             <Reveal>
@@ -230,7 +230,7 @@ function NumberedServices() {
           <span className="h-px flex-1 bg-gradient-to-r from-transparent via-black/15 to-transparent" />
         </div>
       </div>
-      <div className="mx-auto mt-14 max-w-[1400px] divide-y divide-black/10 border-y border-black/10 px-6">
+      <div className="mx-auto mt-14 max-w-[1200px] divide-y divide-black/10 border-y border-black/10 px-6">
         {SERVICES.map((s, i) => (
           <ServiceRow key={s.slug} s={s} index={i} />
         ))}
@@ -275,7 +275,7 @@ function DestinationFeature() {
   return (
     <section className="relative overflow-hidden bg-navy-mesh py-14 md:py-10 text-white">
       <div className="absolute inset-0 [background:radial-gradient(800px_400px_at_80%_20%,color-mix(in_oklab,var(--gold)_20%,transparent),transparent_60%)]" />
-      <div className="relative mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-2 lg:items-center">
+      <div className="relative mx-auto grid max-w-[1200px] gap-12 px-6 lg:grid-cols-2 lg:items-center">
         <div>
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">
@@ -365,7 +365,7 @@ function VideoStory() {
 function Testimonials() {
   return (
     <section className="bg-cream py-14 md:py-10">
-      <div className="mx-auto max-w-[1400px] px-6">
+      <div className="mx-auto max-w-[1200px] px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">What Our Clients Say</p></Reveal>
           <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Stories of <span className="text-gradient-gold">Successful Landings.</span></h2></Reveal>
@@ -450,7 +450,7 @@ function VideoBanner() {
 function FAQ() {
   return (
     <section className="py-14 md:py-10">
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[1fr_1.4fr]">
+      <div className="mx-auto grid max-w-[1200px] gap-12 px-6 lg:grid-cols-[1fr_1.4fr]">
         <div>
           <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Visa FAQs</p></Reveal>
           <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Got Questions? <span className="text-gradient-gold">We've Got Answers.</span></h2></Reveal>
@@ -491,11 +491,11 @@ function Counter() {
   return (
     <section className="relative overflow-hidden bg-hero py-12 md:py-10 text-white">
       <div className="absolute inset-0 [background:radial-gradient(600px_300px_at_20%_80%,color-mix(in_oklab,var(--gold)_25%,transparent),transparent_60%)]" />
-      <div className="relative mx-auto max-w-[1400px] px-6 text-center">
+      <div className="relative mx-auto max-w-[1200px] px-6 text-center">
         <Reveal><p className="inline-block rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Did You Know</p></Reveal>
         <Reveal delay={0.1}><h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">Our Achievements in <span className="text-gradient-gold">Numbers</span></h2></Reveal>
       </div>
-      <div className="relative mx-auto mt-16 grid max-w-[1400px] grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur md:grid-cols-4">
+      <div className="relative mx-auto mt-16 grid max-w-[1200px] grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur md:grid-cols-4">
         {STATS.map((s, i) => (
           <Reveal key={s.label} delay={i * 0.08}>
             <div className="bg-navy-deep/70 p-8 text-center">
@@ -513,7 +513,7 @@ function Counter() {
 function Awards() {
   return (
     <section className="py-12 md:py-10">
-      <div className="mx-auto max-w-[1400px] px-6">
+      <div className="mx-auto max-w-[1200px] px-6">
         <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
           {AWARDS.map((a, i) => (
             <Reveal key={a.title} delay={i * 0.06}>
@@ -553,7 +553,7 @@ function BrandMarquee() {
 function NewsTeaser({ posts }: { posts: BlogPost[] }) {
   return (
     <section className="bg-cream py-12 md:py-10">
-      <div className="mx-auto max-w-[1400px] px-6">
+      <div className="mx-auto max-w-[1200px] px-6">
         <div className="mb-12 flex items-end justify-between gap-6">
           <div>
             <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Latest Insights</p></Reveal>
@@ -596,7 +596,7 @@ function NewsTeaser({ posts }: { posts: BlogPost[] }) {
 function CTABanner() {
   return (
     <section className="relative overflow-hidden py-10 md:py-14">
-      <div className="mx-auto max-w-[1400px] px-6">
+      <div className="mx-auto max-w-[1200px] px-6">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-hero p-14 text-white shadow-elegant">
           <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute -right-20 -top-20 h-72 w-72 rounded-full border border-gold/20" />
           <div className="relative grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">

@@ -60,7 +60,7 @@ function EligibilityHub() {
         subtitle="Pick a country and program — get a real-time eligibility score, personalised recommendations and an expert assessment."
       />
       <section className="bg-background py-10 md:py-12">
-        <div className="mx-auto max-w-[1400px] px-6 space-y-14">
+        <div className="mx-auto max-w-[1200px] px-6 space-y-14">
           {CALCS.map((g) => (
             <div key={g.group}>
               <h2 className="font-display text-2xl font-bold text-foreground md:text-3xl">{g.group}</h2>

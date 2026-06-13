@@ -167,7 +167,7 @@ function BlogPostPage() {
       {/* Hero — content aligned with logo (left edge of container) */}
       <section className="relative overflow-hidden bg-hero pb-10 pt-24 text-white md:pb-12 md:pt-28 lg:pt-32">
         <div className="absolute inset-0 [background:radial-gradient(700px_300px_at_85%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
-        <div className="relative mx-auto max-w-[1400px] px-6">
+        <div className="relative mx-auto max-w-[1200px] px-6">
           <div className="max-w-4xl">
             <Reveal>
               <nav className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/95">
@@ -197,7 +197,7 @@ function BlogPostPage() {
 
       {/* Body: article left, sidebar (TOC + form + share) right */}
       <article className="py-12 md:py-10">
-        <div className="mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="mx-auto grid max-w-[1200px] gap-10 px-6 lg:grid-cols-[minmax(0,1fr)_320px]">
           {/* Left: Article body */}
           <div className="min-w-0">
             {/* Mobile TOC */}
@@ -447,7 +447,7 @@ function BlogPostPage() {
       {/* Related */}
       {related.length > 0 && (
         <section className="border-t border-black/5 bg-cream py-10 md:py-12">
-          <div className="mx-auto max-w-[1400px] px-6">
+          <div className="mx-auto max-w-[1200px] px-6">
             <div className="mb-10 flex items-end justify-between gap-6">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Keep reading</p>
