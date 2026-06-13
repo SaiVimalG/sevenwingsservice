@@ -8,13 +8,15 @@ import { SERVICES } from "@/lib/site";
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Immigration Services in Hyderabad | Germany, Australia, Canada, JSS | 7 Wings" },
-      { name: "description", content: "Explore 7 Wings Immigration's full programme list — Germany Opportunity Card, Australia PR, Canada PR and the JSS global career programme. Hyderabad's senior-led consultancy." },
-      { property: "og:title", content: "Immigration Services in Hyderabad | 7 Wings" },
-      { property: "og:description", content: "Four flagship immigration pathways, senior-led from Hyderabad." },
-      { property: "og:url", content: "/services" },
+      { title: "Immigration Services in Hyderabad — Germany, Australia, Canada, UK & JSS | 7 Wings" },
+      { name: "description", content: "Compare 7 Wings Immigration's flagship visa & PR services from Hyderabad — Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker and the JSS global career programme." },
+      { property: "og:title", content: "Immigration Services in Hyderabad | 7 Wings Immigration" },
+      { property: "og:description", content: "Flagship immigration pathways senior-led from Hyderabad — Germany, Australia, Canada, UK and JSS." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/services" },
+      { name: "twitter:title", content: "Immigration Services Hyderabad | 7 Wings" },
+      { name: "twitter:description", content: "Germany, Australia, Canada, UK and JSS visa pathways — senior-led from Hyderabad." },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/services" }],
   }),
   component: Services,
 });
