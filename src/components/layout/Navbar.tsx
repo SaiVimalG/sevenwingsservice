@@ -127,17 +127,18 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   to={item.to}
-                  className="px-3.5 py-2 text-sm font-medium text-navy-deep transition-colors hover:text-gold-deep"
-                  activeProps={{ className: "px-3.5 py-2 text-sm font-semibold text-gold-deep" }}
+                  className="px-3.5 py-2 text-[15px] font-medium text-navy-deep transition-colors hover:text-gold-deep"
+                  activeProps={{ className: "px-3.5 py-2 text-[15px] font-semibold text-gold-deep" }}
                   activeOptions={{ exact: item.to === "/" }}
                 >
                   {item.label}
                 </Link>
               );
             })}
-            <Link to="/eligibility" className="ml-3 btn-gold btn-gold-hover text-sm">
+            <Link to="/eligibility" className="ml-3 btn-gold btn-gold-hover text-[15px]">
               Free Eligibility Check <ArrowRight className="h-4 w-4" />
             </Link>
+
           </nav>
 
           <button
