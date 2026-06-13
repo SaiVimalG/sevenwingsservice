@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 function HeaderTop() {
   return (
     <div className="hidden border-b border-white/10 bg-navy-deep text-white lg:block">
-      <div className="mx-auto flex h-9 max-w-[1100px] items-center justify-between px-6 text-sm">
+      <div className="mx-auto flex h-9 max-w-[1200px] items-center justify-between px-6 text-sm">
         <ul className="flex items-center gap-6 text-white/90">
           <li className="flex items-center gap-2">
             <span className="text-gold-soft">Help Line</span>
