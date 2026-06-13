@@ -195,38 +195,10 @@ function BlogPostPage() {
 
 
 
-      {/* Body with sticky TOC */}
+      {/* Body: article left, sidebar (TOC + form + share) right */}
       <article className="py-12 md:py-10">
-        <div className="mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-[260px_minmax(0,1fr)_220px]">
-          {/* Left: TOC */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-28">
-              <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold-deep">
-                <List className="h-3.5 w-3.5" /> On this page
-              </p>
-              <ul className="mt-4 space-y-1 border-l border-black/10">
-                {toc.map((t) => {
-                  const active = activeId === t.id;
-                  return (
-                    <li key={t.id}>
-                      <a
-                        href={`#${t.id}`}
-                        className={`block border-l-2 -ml-px py-1.5 pl-4 text-sm leading-snug transition-colors ${
-                          active
-                            ? "border-gold font-semibold text-navy-deep"
-                            : "border-transparent text-muted-foreground hover:text-navy-deep"
-                        }`}
-                      >
-                        {t.label}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </aside>
-
-          {/* Center: Article body */}
+        <div className="mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+          {/* Left: Article body */}
           <div className="min-w-0">
             {/* Mobile TOC */}
             <details className="mb-8 rounded-2xl border border-black/10 bg-cream p-4 lg:hidden">
@@ -354,12 +326,38 @@ function BlogPostPage() {
                 </div>
               </div>
             </Reveal>
-
           </div>
 
-          {/* Right: Contact form + share */}
+          {/* Right: TOC + Contact form + Share — all stacked together */}
           <aside className="hidden lg:block">
             <div className="sticky top-28 space-y-6">
+              {/* TOC */}
+              <div className="rounded-2xl border border-black/10 bg-white p-5">
+                <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold-deep">
+                  <List className="h-3.5 w-3.5" /> On this page
+                </p>
+                <ul className="mt-4 space-y-1 border-l border-black/10">
+                  {toc.map((t) => {
+                    const active = activeId === t.id;
+                    return (
+                      <li key={t.id}>
+                        <a
+                          href={`#${t.id}`}
+                          className={`block border-l-2 -ml-px py-1.5 pl-4 text-sm leading-snug transition-colors ${
+                            active
+                              ? "border-gold font-semibold text-navy-deep"
+                              : "border-transparent text-muted-foreground hover:text-navy-deep"
+                          }`}
+                        >
+                          {t.label}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              {/* Contact form */}
               <div className="rounded-2xl border border-gold/30 bg-white p-5 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.18)]">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-deep">Talk to a consultant</p>
                 <h4 className="mt-1 font-display text-lg font-bold leading-tight text-navy-deep">
@@ -373,6 +371,7 @@ function BlogPostPage() {
                 </div>
               </div>
 
+              {/* Share */}
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-deep">Share</p>
                 <div className="mt-3 flex gap-2">
@@ -422,6 +421,7 @@ function BlogPostPage() {
 
         </div>
       </article>
+
 
       {/* Mobile share strip */}
       <div className="border-t border-black/5 bg-cream py-6 lg:hidden">
