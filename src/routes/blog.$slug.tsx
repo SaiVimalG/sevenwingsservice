@@ -20,6 +20,7 @@ import {
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
 import { BlogContactForm } from "@/components/forms/Forms";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BLOG_MAP, BLOG, SITE, type BlogPost } from "@/lib/site";
 import { getDbPost } from "@/lib/blog.functions";
 import { dbToBlogPost } from "@/lib/blog-merge";
@@ -327,6 +328,36 @@ function BlogPostPage() {
                 </div>
               </div>
             </Reveal>
+
+            {/* FAQs */}
+            {post.faqs && post.faqs.length > 0 && (
+              <Reveal>
+                <div className="mt-14">
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">
+                    Frequently asked questions
+                  </p>
+                  <h3 className="mt-2 font-display text-2xl font-bold text-navy-deep md:text-3xl">
+                    Everything you wanted to ask
+                  </h3>
+                  <Accordion type="single" collapsible className="mt-6 space-y-3">
+                    {post.faqs.map((f, idx) => (
+                      <AccordionItem
+                        key={idx}
+                        value={`faq-${idx}`}
+                        className="overflow-hidden rounded-2xl border border-black/10 bg-white px-5 shadow-[0_4px_12px_-10px_rgba(13,46,125,0.18)] data-[state=open]:border-gold/40 data-[state=open]:bg-gradient-to-br data-[state=open]:from-cream/60 data-[state=open]:to-white"
+                      >
+                        <AccordionTrigger className="py-4 text-left text-[15px] font-semibold text-navy-deep hover:text-gold-deep hover:no-underline">
+                          {f.q}
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-5 text-[14.5px] leading-[1.6] text-slate-700">
+                          {f.a}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
+              </Reveal>
+            )}
           </div>
 
           {/* Right: TOC + Contact form + Share — all stacked together */}

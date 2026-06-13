@@ -251,41 +251,65 @@ export interface BlogPost {
   intro: string;
   sections: { heading: string; paragraphs: string[] }[];
   why7Wings: string[];
+  faqs?: { q: string; a: string }[];
   cta: { label: string; to: string; slug?: string };
 }
 
 export const BLOG: BlogPost[] = [
   {
     slug: "germany-opportunity-card-2026-changes",
-    title: "Germany Opportunity Card 2026: What Hyderabad applicants need to know",
-    excerpt: "The new Chancenkarte rules favour skilled Indian professionals more than ever. Here is the simple, points-by-points breakdown.",
+    title: "Germany Opportunity Card (Chancenkarte) – Job Seeker Visa",
+    excerpt: "A complete guide to the Germany Opportunity Card (Chancenkarte) — eligibility, points system, and application process for Indian applicants.",
     date: "May 12, 2026",
-    readTime: "6 min read",
+    readTime: "8 min read",
     category: "Germany",
     author: "7 Wings Editorial",
     image: germany,
     intro:
-      "Germany's Opportunity Card (Chancenkarte) is a points-based residence permit that lets you fly to Germany and look for a job — even before you have an offer. The 2026 update makes it easier for Indian engineers, IT professionals, nurses and graduates to qualify.",
+      "Looking to move to Germany to search for work? The Opportunity Card (Chancenkarte) is a new German visa (Section 20a of the Residence Act) that lets qualified foreign workers enter Germany for up to 12 months to find employment or complete recognition training. Introduced in June 2024, it is designed for non-EU professionals (such as Indian nationals) without a job offer. During your stay, you can attend interviews, work trials, or part-time work (up to 20 hours/week) while searching for a job. Hyderabad-based 7 Wings Immigration helps Indian applicants navigate the Opportunity Card visa process from start to finish.",
     sections: [
       {
-        heading: "What changed in 2026",
+        heading: "Opportunity Card Visa Benefits",
         paragraphs: [
-          "The minimum German requirement is now A1 (basic) instead of A2, and B2 English alone earns you points. You can mix and match languages.",
-          "IT professionals with 2+ years of hands-on experience can now claim a dedicated experience point — even without a formal degree match.",
-          "You can switch from a Schengen tourist visa to an Opportunity Card from inside Germany in many cases.",
+          "**Job-Search Stay:** Live in Germany for up to 12 months to hunt for skilled employment.",
+          "**Flexible Work Trials:** Attend unpaid job trials or do part-time work (max 20 hrs/week) while you search.",
+          "**Training for Qualification:** You may also start training to get your foreign degree or qualification recognized in Germany.",
+          "**Pathway to Work Visa:** Once you find a job or get qualified, you can switch to a German work visa or EU Blue Card.",
         ],
       },
       {
-        heading: "Who should apply",
+        heading: "Who is Eligible? (Key Requirements)",
         paragraphs: [
-          "Engineers, IT and software professionals, nurses, electricians, chefs, accountants and recent graduates with a recognised degree.",
-          "You need a minimum of 6 points across qualification, experience, language, age and Germany connection. Most working professionals from Hyderabad score 6-10 points easily.",
+          "To qualify for the Opportunity Card, you must be a non-EU/EEA/Swiss national (e.g. an Indian citizen) and meet one of two main routes:",
+          "**Option 1 – Recognised Qualification:** You have a foreign vocational or academic degree fully recognised in Germany, or you earned your qualification in Germany. If so, you are considered a \"skilled worker\" under German law and do not need points. (German language skills are not mandatory for this route, though they help job hunting.)",
+          "**Option 2 – Points System (6+ points):** You do not have a recognised German qualification. Instead, you must score at least 6 points in the Opportunity Card points table and meet all following conditions:",
+          "**Valid Qualification:** You hold a completed vocational or academic training recognized in your country of origin. For university degrees, a positive Zeugnisbewertung (Statement of Comparability) or ANABIN entry is needed; for vocational certificates, a positive Digital Statement of Professional Qualification helps support your application.",
+          "**Language:** You have at least German A1 or English B2 skills. Higher language skills score extra points. Having German is recommended to improve job prospects.",
+          "**Funds:** You must prove you can support yourself. Typically this means a blocked account with €1,091 net per month (in 2026) or a formal commitment of funds.",
         ],
       },
       {
-        heading: "How long it takes",
+        heading: "Opportunity Card Points System (Option 2)",
         paragraphs: [
-          "Document preparation: 3-5 weeks. ZAB recognition: 4-8 weeks. Visa appointment to stamping: 4-6 weeks. Total: roughly 3 months from start to flight.",
+          "If you apply via the points route, you need ≥6 points in total. Points are awarded for:",
+          "**Qualification Recognition (4 points):** Your foreign qualification is partially recognized in Germany. (Fully recognized degrees use Option 1.)",
+          "**Shortage Occupation (1 point):** Your qualification is in a German shortage occupation (e.g. IT, engineering, healthcare).",
+          "**Work Experience (2–3 points):** Relevant experience after graduation — 2 points for ≥2 years (within last 5 years), 3 points for ≥5 years (within last 7 years).",
+          "**German Language (1–3 points):** 1 point for A2, 2 points for B1, 3 points for B2 or higher.",
+          "**English Language (1 point):** +1 point if English is at least C1 (or you're a native speaker).",
+          "**Age (1–2 points):** 2 points if you are ≤35 years old, 1 point if aged 36–40.",
+          "**Previous Germany Stay (1 point):** 1 point if you resided legally in Germany for at least 6 continuous months in the last 5 years.",
+          "**Spouse's Qualification (1 point):** 1 point if your spouse/partner also qualifies for the Opportunity Card under these rules.",
+          "**Important:** All claimed points must be backed by documents or certificates in your visa application.",
+        ],
+      },
+      {
+        heading: "How to Apply",
+        paragraphs: [
+          "**Visa Application:** Apply for the Opportunity Card visa at the German Embassy/Consulate in India (or your country) using the Federal Foreign Office's Visa Portal. You need to submit proof of your qualifications, points, funds, etc. Non-English/German documents must be certified translated.",
+          "**Processing Time:** It usually takes about 4–6 weeks for visa processing. Do not book flights until you have the visa.",
+          "**After Arrival:** Once granted, you receive a German residence permit (job seeker) for up to one year. You can then freely move to any region in Germany and search for jobs. If you find qualified employment, you may apply for a German work visa (Skilled Worker visa) or EU Blue Card. If not, the permit expires after one year.",
+          "Need help? 7 Wings Immigration in Hyderabad provides end-to-end support. Contact us or WhatsApp us for a free assessment of your Germany Opportunity Card eligibility.",
         ],
       },
     ],
@@ -294,6 +318,16 @@ export const BLOG: BlogPost[] = [
       "Full ZAB recognition support so your Indian degree is accepted in Germany.",
       "Notarised translation, blocked-account setup and health-insurance - handled in-house.",
       "Mock VFS interview before your appointment so nothing surprises you on the day.",
+    ],
+    faqs: [
+      { q: "What is the Opportunity Card (Chancenkarte)?", a: "A German visa (AufenthG §20a) for eligible non-EU nationals to come to Germany for up to 12 months to search for a job or start qualification training. It requires either a fully recognized degree or at least 6 points in the points system." },
+      { q: "Do I need a job offer to apply?", a: "No. The Opportunity Card is specifically for those without a job offer. It lets you enter Germany first, then look for work." },
+      { q: "How do I get the required points?", a: "You accumulate points for qualifications, work experience, age, language, etc. For example, 4 points for a partially recognized degree, 3 points for 5+ years' experience, and so on." },
+      { q: "What if I already studied in Germany?", a: "If you completed a degree or training in Germany, you can apply for a job seeker permit (18 months) immediately. This permit has more benefits (18 months stay, part-time work allowed). Contact us for details." },
+      { q: "How long is the Opportunity Card valid?", a: "It is issued up to 12 months. If you find qualified work, you can switch to another visa before it expires. If you don't, you must leave when the visa ends." },
+      { q: "Can my spouse come with me?", a: "You can bring your spouse or partner, but they also need their own visa (usually family reunification). If your partner qualifies independently, it can earn you +1 point." },
+      { q: "What happens after I find a job in Germany?", a: "You can apply to the local Foreigners Authority for a Skilled Worker Visa or Blue Card once you have a valid job offer and the required salary." },
+      { q: "How can 7 Wings Immigration help?", a: "7 Wings Immigration (Hyderabad) offers free guidance and end-to-end support for your Germany visa application, including document review and interview preparation. We ensure your application meets official requirements." },
     ],
     cta: { label: "Check my Germany eligibility", to: "/services/$slug", slug: "germany-opportunity-card" },
   },
