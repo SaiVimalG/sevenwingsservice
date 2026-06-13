@@ -38,13 +38,15 @@ const CALCS = [
 export const Route = createFileRoute("/eligibility/")({
   head: () => ({
     meta: [
-      { title: "Free Immigration Eligibility Calculators | 7 Wings Immigration" },
-      { name: "description", content: "Free, real-time eligibility calculators for Australia (189, 190, 491), Canada (FSWP, CRS, SINP, Quebec), Germany Opportunity Card and UK Skilled Worker visas. Get your migration score instantly." },
-      { property: "og:title", content: "Free Immigration Eligibility Calculators | 7 Wings Immigration" },
-      { property: "og:description", content: "Real-time points calculators for Australia, Canada, Germany and UK immigration programs." },
-      { property: "og:url", content: "https://sevenwingsservices.lovable.app/eligibility" },
+      { title: "Free Visa & PR Eligibility Calculators — Hyderabad | 7 Wings Immigration" },
+      { name: "description", content: "Free real-time PR calculators for Australia (189/190/491), Canada (CRS, FSWP, SINP, Quebec), Germany Opportunity Card and UK Skilled Worker — by Hyderabad's top immigration consultancy." },
+      { property: "og:title", content: "Free Immigration Eligibility Calculators | 7 Wings Hyderabad" },
+      { property: "og:description", content: "Instant points calculators for Australia, Canada, Germany and UK — built by Hyderabad's senior immigration consultants." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/eligibility" },
+      { name: "twitter:title", content: "Free PR & Visa Eligibility Calculators | 7 Wings Hyderabad" },
+      { name: "twitter:description", content: "Score your Australia, Canada, Germany or UK migration profile in seconds." },
     ],
-    links: [{ rel: "canonical", href: "https://sevenwingsservices.lovable.app/eligibility" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/eligibility" }],
   }),
   component: EligibilityHub,
 });
