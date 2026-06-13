@@ -19,10 +19,12 @@ import {
 } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
+import { BlogContactForm } from "@/components/forms/Forms";
 import { BLOG_MAP, BLOG, SITE, type BlogPost } from "@/lib/site";
 import { getDbPost } from "@/lib/blog.functions";
 import { dbToBlogPost } from "@/lib/blog-merge";
 import type { ServiceSlug } from "@/lib/site";
+
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => {
@@ -162,62 +164,54 @@ function BlogPostPage() {
         />
       </div>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
-        <div className="absolute inset-0 [background:radial-gradient(700px_350px_at_80%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
-        <div className="relative mx-auto max-w-4xl px-6">
-          <Reveal>
-            <nav className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-white/95">
-              <Link to="/" className="hover:text-gold">Home</Link>
-              <ChevronRight className="h-3 w-3" />
-              <Link to="/blog" className="hover:text-gold">Blog</Link>
-              <ChevronRight className="h-3 w-3" />
-              <span className="text-gold-soft">{post.category}</span>
-            </nav>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <span className="mt-6 inline-block rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep">
-              {post.category}
-            </span>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <h1 className="mt-5 font-display text-3xl font-bold leading-tight md:text-5xl lg:text-6xl">
-              {post.title}
-            </h1>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-5 max-w-3xl text-base text-white/90 md:text-lg">{post.excerpt}</p>
-          </Reveal>
-          <Reveal delay={0.25}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
-                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold font-display text-sm font-bold text-navy-deep">
-                  {post.author.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+      {/* Hero — compact, left-aligned, shares max width with the article column below */}
+      <section className="relative overflow-hidden bg-hero pb-8 pt-24 text-white md:pb-10 md:pt-28 lg:pt-32">
+        <div className="absolute inset-0 [background:radial-gradient(700px_300px_at_85%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
+        <div className="relative mx-auto max-w-[1400px] px-6">
+          <div className="lg:grid lg:grid-cols-[260px_minmax(0,1fr)_220px] lg:gap-10">
+            <div className="hidden lg:block" />
+            <div className="min-w-0">
+              <Reveal>
+                <nav className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/95">
+                  <Link to="/" className="hover:text-gold">Home</Link>
+                  <ChevronRight className="h-3 w-3" />
+                  <Link to="/blog" className="hover:text-gold">Blog</Link>
+                  <ChevronRight className="h-3 w-3" />
+                  <span className="text-gold-soft">{post.category}</span>
+                </nav>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h1 className="mt-4 font-display text-2xl font-bold leading-tight md:text-4xl lg:text-[2.6rem]">
+                  {post.title}
+                </h1>
+              </Reveal>
+              <Reveal delay={0.18}>
+                <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-widest text-white/90">
+                  <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5 text-gold" /> {post.date}</span>
+                  <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" /> {post.readTime}</span>
                 </div>
-                <div className="min-w-0 leading-tight">
-                  <p className="truncate text-sm font-semibold text-white">{post.author}</p>
-                  <p className="truncate text-[11px] uppercase tracking-widest text-white/95">7 Wings Immigration</p>
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-widest text-white/90">
-                <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5 text-gold" /> {post.date}</span>
-                <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" /> {post.readTime}</span>
-              </div>
+              </Reveal>
             </div>
-          </Reveal>
+            <div className="hidden lg:block" />
+          </div>
         </div>
       </section>
 
-      {/* Cover */}
-      <section className="relative -mt-12 md:-mt-20">
+      {/* Cover — sized to the article column, not full bleed */}
+      <section className="bg-cream py-8 md:py-10">
         <div className="mx-auto max-w-[1400px] px-6">
-          <Reveal>
-            <div className="overflow-hidden rounded-3xl border border-black/5 shadow-elegant">
-              <img src={post.image} alt={post.title} className="aspect-[16/9] w-full object-cover" />
-            </div>
-          </Reveal>
+          <div className="lg:grid lg:grid-cols-[260px_minmax(0,1fr)_220px] lg:gap-10">
+            <div className="hidden lg:block" />
+            <Reveal>
+              <div className="overflow-hidden rounded-2xl border border-black/5 shadow-elegant">
+                <img src={post.image} alt={post.title} className="aspect-[16/8] w-full object-cover" />
+              </div>
+            </Reveal>
+            <div className="hidden lg:block" />
+          </div>
         </div>
       </section>
+
 
       {/* Body with sticky TOC */}
       <article className="py-12 md:py-10">
@@ -247,15 +241,6 @@ function BlogPostPage() {
                   );
                 })}
               </ul>
-              <div className="mt-8 rounded-2xl border border-gold/30 bg-cream p-5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-deep">Need help?</p>
-                <p className="mt-2 text-sm leading-relaxed text-navy-deep">
-                  Talk to a senior consultant — free 15-minute eligibility call.
-                </p>
-                <Link to="/book-consultation" className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-deep hover:text-gold">
-                  Book a call <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
             </div>
           </aside>
 
@@ -388,71 +373,71 @@ function BlogPostPage() {
               </div>
             </Reveal>
 
-            {/* Author card */}
-            <Reveal>
-              <div className="mt-12 grid grid-cols-[auto_minmax(0,1fr)] gap-5 rounded-3xl border border-black/5 bg-white p-6 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] md:p-8">
-                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-navy-deep font-display text-lg font-bold text-gold">
-                  {post.author.split(" ").map((n) => n[0]).join("").slice(0, 2)}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[11px] uppercase tracking-[0.25em] text-gold-deep">Written by</p>
-                  <h4 className="mt-1 font-display text-xl font-bold text-navy-deep">{post.author}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    Senior consultants at 7 Wings Immigration, Hyderabad — helping skilled professionals
-                    move to Germany, Australia, Canada, UK and the UAE for over a decade.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
           </div>
 
-          {/* Right: Share rail */}
+          {/* Right: Contact form + share */}
           <aside className="hidden lg:block">
-            <div className="sticky top-28 space-y-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-gold-deep">Share</p>
-              <div className="flex flex-col gap-2">
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${shareText}&url=${enc}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on Twitter"
-                  className="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white text-navy-deep transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold-deep"
-                >
-                  <Twitter className="h-4 w-4" />
-                </a>
-                <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${enc}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on LinkedIn"
-                  className="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white text-navy-deep transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold-deep"
-                >
-                  <Linkedin className="h-4 w-4" />
-                </a>
-                <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${enc}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on Facebook"
-                  className="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white text-navy-deep transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold-deep"
-                >
-                  <Facebook className="h-4 w-4" />
-                </a>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (typeof navigator !== "undefined" && navigator.clipboard) {
-                      navigator.clipboard.writeText(shareUrl);
-                    }
-                  }}
-                  aria-label="Copy link"
-                  className="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white text-navy-deep transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold-deep"
-                >
-                  <LinkIcon className="h-4 w-4" />
-                </button>
+            <div className="sticky top-28 space-y-6">
+              <div className="rounded-2xl border border-gold/30 bg-white p-5 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.18)]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-deep">Talk to a consultant</p>
+                <h4 className="mt-1 font-display text-lg font-bold leading-tight text-navy-deep">
+                  Free 15-min eligibility call
+                </h4>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                  Share your details — a senior counsellor will call you back.
+                </p>
+                <div className="mt-4">
+                  <BlogContactForm />
+                </div>
+              </div>
+
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-deep">Share</p>
+                <div className="mt-3 flex gap-2">
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${shareText}&url=${enc}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Share on Twitter"
+                    className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-white text-navy-deep transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold-deep"
+                  >
+                    <Twitter className="h-4 w-4" />
+                  </a>
+                  <a
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${enc}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Share on LinkedIn"
+                    className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-white text-navy-deep transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold-deep"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${enc}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Share on Facebook"
+                    className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-white text-navy-deep transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold-deep"
+                  >
+                    <Facebook className="h-4 w-4" />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (typeof navigator !== "undefined" && navigator.clipboard) {
+                        navigator.clipboard.writeText(shareUrl);
+                      }
+                    }}
+                    aria-label="Copy link"
+                    className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-white text-navy-deep transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold-deep"
+                  >
+                    <LinkIcon className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </aside>
+
         </div>
       </article>
 
