@@ -136,7 +136,7 @@ function BlogPostPage() {
       </div>
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-hero pb-20 pt-36 text-white lg:pt-44">
+      <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
         <div className="absolute inset-0 [background:radial-gradient(700px_350px_at_80%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
         <div className="relative mx-auto max-w-4xl px-6">
           <Reveal>

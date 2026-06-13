@@ -50,7 +50,7 @@ function ProgramPage() {
   return (
     <PageShell>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-hero pb-20 pt-36 text-white lg:pt-44">
+      <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
         <div className="absolute inset-0 [background:radial-gradient(800px_400px_at_85%_15%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
         <div className="relative mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
