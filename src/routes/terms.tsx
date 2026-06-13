@@ -12,11 +12,13 @@ const sections = [
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions | 7 Wings Immigration" },
-      { name: "description", content: "Terms governing engagement with 7 Wings Immigration." },
-      { property: "og:url", content: "/terms" },
+      { title: "Terms & Conditions | 7 Wings Immigration Hyderabad" },
+      { name: "description", content: "Terms governing engagement with 7 Wings Immigration — Hyderabad's senior-led visa and PR consultancy." },
+      { property: "og:title", content: "Terms & Conditions | 7 Wings Immigration Hyderabad" },
+      { property: "og:description", content: "Engagement terms for 7 Wings Immigration consultancy services." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/terms" },
     ],
-    links: [{ rel: "canonical", href: "/terms" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/terms" }],
   }),
   component: () => (
     <PageShell>
