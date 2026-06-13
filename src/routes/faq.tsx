@@ -6,13 +6,15 @@ import { FAQS } from "@/lib/site";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ | Best Immigration Consultancy in Hyderabad | 7 Wings" },
-      { name: "description", content: "Frequently asked questions about Germany Opportunity Card, Australia PR, Canada PR and the JSS programme — answered by 7 Wings Immigration in Hyderabad." },
-      { property: "og:title", content: "FAQ | 7 Wings Immigration" },
-      { property: "og:description", content: "Common questions about migration, eligibility and timelines." },
-      { property: "og:url", content: "/faq" },
+      { title: "Immigration FAQs Hyderabad | Germany, Australia, Canada PR | 7 Wings" },
+      { name: "description", content: "Hyderabad's most-asked immigration questions answered — Germany Opportunity Card, Australia PR, Canada PR, JSS, eligibility, fees and timelines, by 7 Wings consultants." },
+      { property: "og:title", content: "Immigration FAQs | 7 Wings Immigration Hyderabad" },
+      { property: "og:description", content: "Common questions about migration, eligibility, fees and timelines — answered by Hyderabad's senior immigration consultants." },
+      { property: "og:url", content: "https://home.7wingsimmigration.com/faq" },
+      { name: "twitter:title", content: "Immigration FAQs | 7 Wings Hyderabad" },
+      { name: "twitter:description", content: "Germany, Australia, Canada PR and JSS questions answered by Hyderabad's senior consultants." },
     ],
-    links: [{ rel: "canonical", href: "/faq" }],
+    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/faq" }],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
