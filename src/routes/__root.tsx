@@ -148,6 +148,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(orgJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(sitelinksJsonLd) },
     ],
   }),
   shellComponent: RootShell,
