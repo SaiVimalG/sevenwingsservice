@@ -119,6 +119,49 @@ export function ConsultationForm() {
   );
 }
 
+/**
+ * Compact sidebar form for blog posts: Name, Email, Phone only.
+ * Submits through the existing contact pipeline.
+ */
+export function BlogContactForm() {
+  const fn = useServerFn(submitContact);
+  const [loading, setLoading] = useState(false);
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    setLoading(true);
+    try {
+      await fn({
+        data: {
+          name: String(f.get("name") || ""),
+          email: String(f.get("email") || ""),
+          phone: String(f.get("phone") || ""),
+          country_interest: null,
+          message: "Blog sidebar enquiry — please call back.",
+        },
+      });
+      toast.success("Thanks! A senior counsellor will call you within 4 working hours.");
+      (e.target as HTMLFormElement).reset();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Submission failed");
+    }
+    setLoading(false);
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="space-y-3">
+      <Input name="name" label="Full name" required />
+      <Input name="email" type="email" label="Email" required />
+      <PhoneField name="phone" label="Phone" required />
+      <button type="submit" disabled={loading} className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60">
+        {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Request a callback <ArrowRight className="h-4 w-4" /></>}
+      </button>
+    </form>
+  );
+}
+
+
 function fieldClass() {
   return "w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-muted-foreground/60 transition-all focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30";
 }
