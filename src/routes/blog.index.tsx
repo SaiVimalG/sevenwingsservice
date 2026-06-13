@@ -31,114 +31,83 @@ function BlogIndex() {
   const { posts } = Route.useLoaderData() as { posts: BlogPost[] };
   const [featured, ...rest] = posts;
 
+  const allPosts = featured ? [featured, ...rest] : rest;
+
   return (
     <PageShell>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-hero pb-20 pt-40 text-white lg:pt-48">
-        <div className="absolute inset-0 [background:radial-gradient(700px_350px_at_80%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
+      {/* Compact Hero (Breadcrumb-style banner like Visaway) */}
+      <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
+        <div className="absolute inset-0 [background:radial-gradient(500px_220px_at_85%_30%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
         <div className="relative mx-auto max-w-[1400px] px-6 text-center">
           <Reveal>
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft backdrop-blur">
-              Visa Tips &amp; Migration Guides
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-gold-soft backdrop-blur">
+              Our Blog
             </p>
           </Reveal>
-          <Reveal delay={0.1}>
-            <h1 className="mt-6 font-display text-4xl font-bold leading-tight md:text-6xl">
-              Latest Insights &amp; <span className="text-gradient-gold">Updates</span>
+          <Reveal delay={0.05}>
+            <h1 className="mt-3 font-display text-2xl font-bold leading-tight md:text-4xl">
+              Visa Insights &amp; <span className="text-gradient-gold">Migration Guides</span>
             </h1>
           </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mx-auto mt-5 max-w-2xl text-base text-white/75 md:text-lg">
-              Plain-English guides on Germany Opportunity Card, Australia PR, Canada PR and the JSS Program — written by senior consultants at 7 Wings Immigration.
-            </p>
+          <Reveal delay={0.1}>
+            <nav className="mt-3 flex items-center justify-center gap-2 text-xs text-white/70">
+              <Link to="/" className="hover:text-gold-soft">Home</Link>
+              <span className="text-gold">›</span>
+              <span>Our Blog</span>
+            </nav>
           </Reveal>
         </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
       </section>
 
-      {/* Featured */}
-      {featured && (
-        <section className="bg-cream py-10 md:py-12">
-          <div className="mx-auto max-w-[1400px] px-6">
-            <Reveal>
-              <Link
-                to="/blog/$slug"
-                params={{ slug: featured.slug }}
-                className="group grid gap-8 overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:shadow-gold md:grid-cols-2"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto">
-                  <img
-                    src={featured.image}
-                    alt={featured.title}
-                    className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <span className="absolute left-4 top-4 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep">
-                    Featured · {featured.category}
-                  </span>
-                </div>
-                <div className="flex flex-col justify-center p-6 md:p-10">
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-widest text-muted-foreground">
-                    <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5 text-gold" /> {featured.date}</span>
-                    <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" /> {featured.readTime}</span>
-                    <span className="flex items-center gap-1.5"><User className="h-3.5 w-3.5 text-gold" /> {featured.author}</span>
-                  </div>
-                  <h2 className="mt-4 font-display text-2xl font-bold text-navy-deep transition-colors group-hover:text-gold-deep md:text-3xl">
-                    {featured.title}
-                  </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">{featured.excerpt}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep">
-                    Read full article <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* Grid */}
-      <section className="py-10 md:py-12">
+      {/* Blog Grid (Visaway news-grid style: 3 cols, image-top with category badge, meta row, title, footer with author + arrow) */}
+      <section className="bg-cream py-12 md:py-16">
         <div className="mx-auto max-w-[1400px] px-6">
-          <div className="mb-10 flex items-end justify-between gap-6">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">More Articles</p>
-              <h2 className="mt-2 font-display text-3xl font-bold text-navy-deep md:text-4xl">All Posts</h2>
-            </div>
-          </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map((post, i) => (
-              <Reveal key={post.slug} delay={i * 0.06}>
-                <Link
-                  to="/blog/$slug"
-                  params={{ slug: post.slug }}
-                  className="group block h-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:shadow-gold"
-                >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110"
-                    />
-                    <span className="absolute left-4 top-4 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep">
-                      {post.category}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-widest text-muted-foreground">
-                      <span>{post.date}</span>
-                      <span className="h-1 w-1 rounded-full bg-gold" />
-                      <span>{post.readTime}</span>
+            {allPosts.map((post, i) => (
+              <Reveal key={post.slug} delay={i * 0.05}>
+                <article className="group h-full overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_-20px_rgba(13,46,125,0.25)] transition-all duration-500 hover:-translate-y-1 hover:shadow-gold">
+                  <Link to="/blog/$slug" params={{ slug: post.slug }} className="block">
+                    <div className="relative aspect-[16/11] overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
+                      />
+                      <span className="absolute left-4 top-4 rounded-md bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep shadow">
+                        {post.category}
+                      </span>
                     </div>
-                    <h3 className="mt-3 line-clamp-2 font-display text-lg font-bold text-navy-deep transition-colors group-hover:text-gold-deep">
-                      {post.title}
+                  </Link>
+                  <div className="p-6">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                      <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5 text-gold" /> {post.date}</span>
+                      <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" /> {post.readTime}</span>
+                    </div>
+                    <h3 className="mt-3 font-display text-lg font-bold leading-snug text-navy-deep transition-colors group-hover:text-gold-deep md:text-xl">
+                      <Link to="/blog/$slug" params={{ slug: post.slug }} className="line-clamp-2">
+                        {post.title}
+                      </Link>
                     </h3>
-                    <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{post.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep">
-                      Read article <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
+                    <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
+                    <div className="mt-5 flex items-center justify-between border-t border-black/5 pt-4">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-navy-deep">
+                        <span className="grid h-7 w-7 place-items-center rounded-full bg-navy-deep/5 text-gold-deep">
+                          <User className="h-3.5 w-3.5" />
+                        </span>
+                        By {post.author}
+                      </div>
+                      <Link
+                        to="/blog/$slug"
+                        params={{ slug: post.slug }}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-gold-deep transition-colors hover:text-navy-deep"
+                      >
+                        View Article <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </div>
                   </div>
-                </Link>
+                </article>
               </Reveal>
             ))}
           </div>
