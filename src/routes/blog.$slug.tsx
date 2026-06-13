@@ -236,23 +236,23 @@ function BlogPostPage() {
                           {section.heading}
                         </h2>
                       </div>
-                      <div className="prose-blog mt-5 space-y-4 pl-0 md:pl-10">
+                      <div className="prose-blog mt-4 space-y-3 pl-0 md:pl-10">
                         {section.paragraphs.map((p, j) => (
                           <ReactMarkdown
                             key={j}
                             remarkPlugins={[remarkGfm]}
                             components={{
                               p: ({ node, ...props }) => (
-                                <p className="text-base leading-[1.85] text-muted-foreground md:text-[17px]" {...props} />
+                                <p className="text-[15px] leading-[1.65] text-muted-foreground md:text-[16px]" {...props} />
                               ),
                               ul: ({ node, ...props }) => (
-                                <ul className="ml-5 list-disc space-y-2 text-base leading-[1.85] text-muted-foreground md:text-[17px]" {...props} />
+                                <ul className="ml-5 list-disc space-y-1.5 text-[15px] leading-[1.65] text-muted-foreground md:text-[16px]" {...props} />
                               ),
                               ol: ({ node, ...props }) => (
-                                <ol className="ml-5 list-decimal space-y-2 text-base leading-[1.85] text-muted-foreground md:text-[17px]" {...props} />
+                                <ol className="ml-5 list-decimal space-y-1.5 text-[15px] leading-[1.65] text-muted-foreground md:text-[16px]" {...props} />
                               ),
                               h3: ({ node, ...props }) => (
-                                <h3 className="font-display text-xl font-bold text-navy-deep" {...props} />
+                                <h3 className="mt-4 font-display text-xl font-bold leading-tight text-navy-deep" {...props} />
                               ),
                               a: ({ node, ...props }) => (
                                 <a className="text-gold-deep underline-offset-4 hover:underline" {...props} />
@@ -275,6 +275,7 @@ function BlogPostPage() {
                           </ReactMarkdown>
                         ))}
                       </div>
+
                     </section>
                   </Reveal>
                 );
