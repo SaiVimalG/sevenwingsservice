@@ -50,7 +50,7 @@ function ServiceDetail() {
   const { service: s } = Route.useLoaderData() as { service: Service };
   return (
     <PageShell>
-      <section className="relative overflow-hidden bg-hero pb-20 pt-36 text-white">
+      <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
         <div className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div>
             <Reveal>

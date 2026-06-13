@@ -62,7 +62,7 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
   return (
     <PageShell>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-hero pt-32 pb-16 text-white">
+      <section className="relative overflow-hidden bg-hero pt-28 pb-10 text-white md:pt-32 md:pb-12 lg:pt-36">
         <div className="absolute inset-0 [background:radial-gradient(800px_400px_at_80%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
         <div className="relative mx-auto max-w-[1400px] px-6">
           <Breadcrumbs url={config.url} leaf={config.h1} />
