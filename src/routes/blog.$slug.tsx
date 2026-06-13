@@ -19,10 +19,12 @@ import {
 } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
+import { BlogContactForm } from "@/components/forms/Forms";
 import { BLOG_MAP, BLOG, SITE, type BlogPost } from "@/lib/site";
 import { getDbPost } from "@/lib/blog.functions";
 import { dbToBlogPost } from "@/lib/blog-merge";
 import type { ServiceSlug } from "@/lib/site";
+
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => {
@@ -162,62 +164,54 @@ function BlogPostPage() {
         />
       </div>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
-        <div className="absolute inset-0 [background:radial-gradient(700px_350px_at_80%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
-        <div className="relative mx-auto max-w-4xl px-6">
-          <Reveal>
-            <nav className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-white/95">
-              <Link to="/" className="hover:text-gold">Home</Link>
-              <ChevronRight className="h-3 w-3" />
-              <Link to="/blog" className="hover:text-gold">Blog</Link>
-              <ChevronRight className="h-3 w-3" />
-              <span className="text-gold-soft">{post.category}</span>
-            </nav>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <span className="mt-6 inline-block rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep">
-              {post.category}
-            </span>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <h1 className="mt-5 font-display text-3xl font-bold leading-tight md:text-5xl lg:text-6xl">
-              {post.title}
-            </h1>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-5 max-w-3xl text-base text-white/90 md:text-lg">{post.excerpt}</p>
-          </Reveal>
-          <Reveal delay={0.25}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
-                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold font-display text-sm font-bold text-navy-deep">
-                  {post.author.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+      {/* Hero — compact, left-aligned, shares max width with the article column below */}
+      <section className="relative overflow-hidden bg-hero pb-8 pt-24 text-white md:pb-10 md:pt-28 lg:pt-32">
+        <div className="absolute inset-0 [background:radial-gradient(700px_300px_at_85%_20%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
+        <div className="relative mx-auto max-w-[1400px] px-6">
+          <div className="lg:grid lg:grid-cols-[260px_minmax(0,1fr)_220px] lg:gap-10">
+            <div className="hidden lg:block" />
+            <div className="min-w-0">
+              <Reveal>
+                <nav className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/95">
+                  <Link to="/" className="hover:text-gold">Home</Link>
+                  <ChevronRight className="h-3 w-3" />
+                  <Link to="/blog" className="hover:text-gold">Blog</Link>
+                  <ChevronRight className="h-3 w-3" />
+                  <span className="text-gold-soft">{post.category}</span>
+                </nav>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h1 className="mt-4 font-display text-2xl font-bold leading-tight md:text-4xl lg:text-[2.6rem]">
+                  {post.title}
+                </h1>
+              </Reveal>
+              <Reveal delay={0.18}>
+                <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-widest text-white/90">
+                  <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5 text-gold" /> {post.date}</span>
+                  <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" /> {post.readTime}</span>
                 </div>
-                <div className="min-w-0 leading-tight">
-                  <p className="truncate text-sm font-semibold text-white">{post.author}</p>
-                  <p className="truncate text-[11px] uppercase tracking-widest text-white/95">7 Wings Immigration</p>
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-widest text-white/90">
-                <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5 text-gold" /> {post.date}</span>
-                <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" /> {post.readTime}</span>
-              </div>
+              </Reveal>
             </div>
-          </Reveal>
+            <div className="hidden lg:block" />
+          </div>
         </div>
       </section>
 
-      {/* Cover */}
-      <section className="relative -mt-12 md:-mt-20">
+      {/* Cover — sized to the article column, not full bleed */}
+      <section className="bg-cream py-8 md:py-10">
         <div className="mx-auto max-w-[1400px] px-6">
-          <Reveal>
-            <div className="overflow-hidden rounded-3xl border border-black/5 shadow-elegant">
-              <img src={post.image} alt={post.title} className="aspect-[16/9] w-full object-cover" />
-            </div>
-          </Reveal>
+          <div className="lg:grid lg:grid-cols-[260px_minmax(0,1fr)_220px] lg:gap-10">
+            <div className="hidden lg:block" />
+            <Reveal>
+              <div className="overflow-hidden rounded-2xl border border-black/5 shadow-elegant">
+                <img src={post.image} alt={post.title} className="aspect-[16/8] w-full object-cover" />
+              </div>
+            </Reveal>
+            <div className="hidden lg:block" />
+          </div>
         </div>
       </section>
+
 
       {/* Body with sticky TOC */}
       <article className="py-12 md:py-10">
