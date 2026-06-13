@@ -217,7 +217,7 @@ function BlogPostPage() {
             </details>
 
             <Reveal>
-              <p className="font-display text-xl leading-relaxed text-navy-deep md:text-2xl">
+              <p className="font-display text-lg leading-[1.5] text-navy-deep md:text-xl">
                 {post.intro}
               </p>
             </Reveal>
