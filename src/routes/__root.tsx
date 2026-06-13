@@ -89,8 +89,31 @@ const websiteJsonLd = {
   "@id": `${SITE_URL}/#website`,
   url: SITE_URL,
   name: SITE.name,
+  alternateName: ["7 Wings Immigration Hyderabad", "Seven Wings Immigration", "7Wings Immigration"],
   publisher: { "@id": `${SITE_URL}/#organization` },
   inLanguage: "en-IN",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/blog?q={search_term_string}` },
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const sitelinksJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "7 Wings Immigration Services",
+  itemListElement: [
+    { "@type": "SiteNavigationElement", position: 1, name: "Germany Opportunity Card", url: `${SITE_URL}/services/germany-opportunity-card`, description: "Germany Opportunity Card (Chancenkarte) consultancy from Hyderabad." },
+    { "@type": "SiteNavigationElement", position: 2, name: "Australia PR", url: `${SITE_URL}/services/australia-pr`, description: "Australia Permanent Residency visa consultants in Hyderabad." },
+    { "@type": "SiteNavigationElement", position: 3, name: "Canada PR", url: `${SITE_URL}/services/canada-pr`, description: "Canada Express Entry & PR consultancy in Hyderabad." },
+    { "@type": "SiteNavigationElement", position: 4, name: "JSS Program", url: `${SITE_URL}/services/jss-program`, description: "JSS global career & overseas placement program." },
+    { "@type": "SiteNavigationElement", position: 5, name: "All Services", url: `${SITE_URL}/services`, description: "All immigration services offered by 7 Wings, Hyderabad." },
+    { "@type": "SiteNavigationElement", position: 6, name: "Eligibility Calculator", url: `${SITE_URL}/eligibility`, description: "Free PR & visa points calculators for Canada, Australia, Germany, UK." },
+    { "@type": "SiteNavigationElement", position: 7, name: "Book Consultation", url: `${SITE_URL}/book-consultation`, description: "Book a free immigration consultation in Hyderabad." },
+    { "@type": "SiteNavigationElement", position: 8, name: "About Us", url: `${SITE_URL}/about`, description: "About 7 Wings Immigration, Hitec City Hyderabad." },
+    { "@type": "SiteNavigationElement", position: 9, name: "Contact", url: `${SITE_URL}/contact`, description: "Contact 7 Wings Immigration Hyderabad." },
+  ],
 };
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
@@ -125,6 +148,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(orgJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(sitelinksJsonLd) },
     ],
   }),
   shellComponent: RootShell,
