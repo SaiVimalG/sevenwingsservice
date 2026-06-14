@@ -29,14 +29,14 @@ export const Route = createFileRoute("/")({
   },
   head: () => ({
     meta: [
-      { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { name: "description", content: "7 Wings Immigration is Hyderabad's top-rated immigration consultancy for Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker & JSS programs. 1000+ successful cases, senior-led, transparent fees." },
-      { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { property: "og:description", content: "Hyderabad's trusted senior-led immigration consultancy for Germany, Australia, Canada, UK and JSS pathways. Free profile evaluation." },
+      { title: "Immigration Consultancy in Hyderabad | 7 Wings" },
+      { name: "description", content: "Hyderabad's senior-led immigration consultancy — Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker & JSS. 1000+ successful cases." },
+      { property: "og:title", content: "Immigration Consultancy in Hyderabad | 7 Wings" },
+      { property: "og:description", content: "Senior-led visa & PR consultancy in Hyderabad. Free profile evaluation across Germany, Australia, Canada, UK and JSS." },
       { property: "og:url", content: "https://home.7wingsimmigration.com/" },
       { property: "og:image", content: heroImg },
-      { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { name: "twitter:description", content: "Senior-led immigration consultancy in Hyderabad for Germany, Australia, Canada, UK and JSS. 1000+ successful clients." },
+      { name: "twitter:title", content: "Immigration Consultancy in Hyderabad | 7 Wings" },
+      { name: "twitter:description", content: "Senior-led visa & PR consultancy in Hyderabad — Germany, Australia, Canada, UK, JSS." },
       { name: "twitter:image", content: heroImg },
     ],
     links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/" }],
@@ -426,9 +426,9 @@ function VideoBanner() {
       </motion.div>
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <Reveal>
-          <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" target="_blank" rel="noreferrer" className="group inline-grid h-24 w-24 place-items-center rounded-full bg-white/10 backdrop-blur transition-all hover:bg-gold">
-            <span className="absolute h-24 w-24 animate-ping rounded-full bg-gold/30" />
-            <Play className="relative h-7 w-7 fill-current text-white transition-colors group-hover:text-navy-deep" />
+          <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" target="_blank" rel="noreferrer" aria-label="Play video gallery on YouTube" className="group inline-grid h-24 w-24 place-items-center rounded-full bg-white/10 backdrop-blur transition-all hover:bg-gold">
+            <span aria-hidden className="absolute h-24 w-24 animate-ping rounded-full bg-gold/30" />
+            <Play aria-hidden className="relative h-7 w-7 fill-current text-white transition-colors group-hover:text-navy-deep" />
           </a>
         </Reveal>
         <Reveal delay={0.2}>
