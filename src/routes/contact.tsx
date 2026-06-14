@@ -57,7 +57,7 @@ function Contact() {
                 </div>
               </div>
               <div className="overflow-hidden rounded-2xl border border-black/5">
-                <iframe title="Hyderabad office map" width="100%" height="280" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Hitec+City+Hyderabad&output=embed" />
+                <iframe title="Hyderabad office map" width="100%" height="280" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Gokhale+Nagar+Amberpet+Hyderabad+500013&output=embed" />
               </div>
             </div>
           </Reveal>
