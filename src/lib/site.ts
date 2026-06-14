@@ -476,7 +476,7 @@ export const PRICING = [
     name: "Profile Assessment",
     price: "Free",
     cadence: "30-minute consultation",
-    description: "Sit with a senior counsellor at our Hitec City office or on video. Walk away with a written eligibility summary, country fit and next steps.",
+    description: "Sit with a senior counsellor at our Amberpet office or on video. Walk away with a written eligibility summary, country fit and next steps.",
     features: ["1:1 senior-led call", "Points and occupation scoring", "Written eligibility note", "Recommended pathway"],
     cta: "Book now",
     href: "/book-consultation",

@@ -9,7 +9,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About 7 Wings | Immigration Consultants Hyderabad" },
-      { name: "description", content: "Senior-led immigration consultancy in Hitec City, Hyderabad. 1000+ Germany, Australia, Canada and UK visa successes." },
+      { name: "description", content: "Senior-led immigration consultancy in Amberpet, Hyderabad. 1000+ Germany, Australia, Canada and UK visa successes." },
       { property: "og:title", content: "About 7 Wings | Immigration Consultants Hyderabad" },
       { property: "og:description", content: "A senior-led, Hyderabad-based immigration consultancy built around transparent fees and 1000+ documented successes." },
       { property: "og:url", content: "https://www.7wingsimmigration.com/about" },
