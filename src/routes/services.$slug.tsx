@@ -1,8 +1,16 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, List } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
+import { BlogContactForm } from "@/components/forms/Forms";
 import { SERVICE_MAP, SERVICES, type Service, type ServiceSlug } from "@/lib/site";
+
+const TOC = [
+  { id: "whats-included", label: "What's included" },
+  { id: "process", label: "Our process" },
+  { id: "faqs", label: "FAQs" },
+  { id: "get-started", label: "Get started" },
+];
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
