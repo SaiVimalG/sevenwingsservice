@@ -8,9 +8,9 @@ export const SITE = {
   tagline: "Soar Beyond Borders. Land With Confidence.",
   city: "Hyderabad",
   email: "hello@7wingsimmigration.com",
-  phone: "+91 90000 70000",
-  whatsapp: "+91 90000 70000",
-  address: "Hitec City, Hyderabad, Telangana 500081, India",
+  phone: "+91 80621 80254",
+  whatsapp: "+91 80621 80254",
+  address: "H.No. 3-10-102/1, Gokhale Nagar, Srinivasapuram (Hyderabad), Amberpet, Hyderabad - 500013, Telangana, India",
   logoUrl: logo.url,
   logoUrlDark: logoDark.url,
   social: {
