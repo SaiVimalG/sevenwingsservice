@@ -9,12 +9,12 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact 7 Wings Immigration Hyderabad | Call, Visit or Enquire" },
-      { name: "description", content: "Talk to Hyderabad's best immigration consultants. Visit our Hitec City office, call us, or send an enquiry — free 30-min consultation with a senior counsellor." },
+      { name: "description", content: "Talk to Hyderabad's best immigration consultants. Visit our Amberpet (Gokhale Nagar) office, call us, or send an enquiry — free 30-min consultation with a senior counsellor." },
       { property: "og:title", content: "Contact 7 Wings Immigration | Hyderabad Office" },
-      { property: "og:description", content: "Hitec City Hyderabad office, phone, email and online enquiry form for Germany, Australia, Canada and UK visa support." },
+      { property: "og:description", content: "Amberpet, Hyderabad office, phone, email and online enquiry form for Germany, Australia, Canada and UK visa support." },
       { property: "og:url", content: "https://www.7wingsimmigration.com/contact" },
       { name: "twitter:title", content: "Contact 7 Wings Immigration Hyderabad" },
-      { name: "twitter:description", content: "Visit, call or enquire — free 30-min consultation in Hitec City, Hyderabad." },
+      { name: "twitter:description", content: "Visit, call or enquire — free 30-min consultation in Amberpet, Hyderabad." },
     ],
     links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/contact" }],
   }),
@@ -57,7 +57,7 @@ function Contact() {
                 </div>
               </div>
               <div className="overflow-hidden rounded-2xl border border-black/5">
-                <iframe title="Hyderabad office map" width="100%" height="280" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Hitec+City+Hyderabad&output=embed" />
+                <iframe title="Hyderabad office map" width="100%" height="280" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Gokhale+Nagar+Amberpet+Hyderabad+500013&output=embed" />
               </div>
             </div>
           </Reveal>
