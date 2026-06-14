@@ -1,11 +1,16 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, Check, Phone, MessageCircle, Calendar } from "lucide-react";
+import { ArrowRight, Check, Phone, MessageCircle, Calendar, List } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { BlogContactForm } from "@/components/forms/Forms";
 import { findProgram, SITE, type CountryGroup, type Program } from "@/lib/site";
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
 
 type LoaderData = { country: CountryGroup; program: Program };
 
