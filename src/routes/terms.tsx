@@ -16,9 +16,9 @@ export const Route = createFileRoute("/terms")({
       { name: "description", content: "Terms governing engagement with 7 Wings Immigration — Hyderabad's senior-led visa and PR consultancy." },
       { property: "og:title", content: "Terms & Conditions | 7 Wings Immigration Hyderabad" },
       { property: "og:description", content: "Engagement terms for 7 Wings Immigration consultancy services." },
-      { property: "og:url", content: "https://home.7wingsimmigration.com/terms" },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/terms" },
     ],
-    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/terms" }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/terms" }],
   }),
   component: () => (
     <PageShell>

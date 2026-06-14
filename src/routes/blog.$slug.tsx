@@ -44,7 +44,7 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!post) {
       return { meta: [{ title: "Article not found | 7 Wings Immigration" }] };
     }
-    const url = `https://home.7wingsimmigration.com/blog/${params.slug}`;
+    const url = `https://www.7wingsimmigration.com/blog/${params.slug}`;
     const title = `${post.title} | 7 Wings Immigration Blog`;
     return {
       meta: [
@@ -76,7 +76,7 @@ export const Route = createFileRoute("/blog/$slug")({
           publisher: {
             "@type": "Organization",
             name: "7 Wings Immigration",
-            logo: { "@type": "ImageObject", url: "https://home.7wingsimmigration.com/favicon.ico" },
+            logo: { "@type": "ImageObject", url: "https://www.7wingsimmigration.com/favicon.ico" },
           },
           mainEntityOfPage: url,
         }),

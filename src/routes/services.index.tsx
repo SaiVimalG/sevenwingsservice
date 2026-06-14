@@ -12,11 +12,11 @@ export const Route = createFileRoute("/services/")({
       { name: "description", content: "Compare 7 Wings Immigration's flagship visa & PR services from Hyderabad — Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker and the JSS global career programme." },
       { property: "og:title", content: "Immigration Services in Hyderabad | 7 Wings Immigration" },
       { property: "og:description", content: "Flagship immigration pathways senior-led from Hyderabad — Germany, Australia, Canada, UK and JSS." },
-      { property: "og:url", content: "https://home.7wingsimmigration.com/services" },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/services" },
       { name: "twitter:title", content: "Immigration Services Hyderabad | 7 Wings" },
       { name: "twitter:description", content: "Germany, Australia, Canada, UK and JSS visa pathways — senior-led from Hyderabad." },
     ],
-    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/services" }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/services" }],
   }),
   component: Services,
 });

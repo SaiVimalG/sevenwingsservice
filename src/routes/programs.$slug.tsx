@@ -25,7 +25,7 @@ export const Route = createFileRoute("/programs/$slug")({
     const { country, program } = loaderData;
     const title = `${program.title} from Hyderabad — ${country.country} | 7 Wings Immigration`;
     const desc = `${program.short} 7 Wings Immigration (Hyderabad) helps Indian applicants apply for the ${program.title} with end-to-end documentation, points scoring and lodgement support.`;
-    const url = `https://home.7wingsimmigration.com/programs/${program.slug}`;
+    const url = `https://www.7wingsimmigration.com/programs/${program.slug}`;
     return {
       meta: [
         { title },

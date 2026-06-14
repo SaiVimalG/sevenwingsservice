@@ -10,11 +10,11 @@ export const Route = createFileRoute("/success-stories")({
       { name: "description", content: "Real Germany, Australia and Canada PR success stories from 7 Wings Immigration's Hyderabad clients — engineers, students and families who landed abroad with senior-led guidance." },
       { property: "og:title", content: "Visa Success Stories | 7 Wings Immigration Hyderabad" },
       { property: "og:description", content: "Real landings from real Hyderabad clients — Germany, Australia, Canada and UK." },
-      { property: "og:url", content: "https://home.7wingsimmigration.com/success-stories" },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/success-stories" },
       { name: "twitter:title", content: "Visa Success Stories — 7 Wings Hyderabad" },
       { name: "twitter:description", content: "Real Germany, Australia and Canada PR successes from our Hyderabad clients." },
     ],
-    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/success-stories" }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/success-stories" }],
   }),
   component: Stories,
 });
