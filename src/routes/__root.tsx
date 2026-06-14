@@ -120,7 +120,7 @@ const sitelinksJsonLd = {
     { "@type": "SiteNavigationElement", position: 5, name: "All Services", url: `${SITE_URL}/services`, description: "All immigration services offered by 7 Wings, Hyderabad." },
     { "@type": "SiteNavigationElement", position: 6, name: "Eligibility Calculator", url: `${SITE_URL}/eligibility`, description: "Free PR & visa points calculators for Canada, Australia, Germany, UK." },
     { "@type": "SiteNavigationElement", position: 7, name: "Book Consultation", url: `${SITE_URL}/book-consultation`, description: "Book a free immigration consultation in Hyderabad." },
-    { "@type": "SiteNavigationElement", position: 8, name: "About Us", url: `${SITE_URL}/about`, description: "About 7 Wings Immigration, Hitec City Hyderabad." },
+    { "@type": "SiteNavigationElement", position: 8, name: "About Us", url: `${SITE_URL}/about`, description: "About 7 Wings Immigration, Amberpet Hyderabad." },
     { "@type": "SiteNavigationElement", position: 9, name: "Contact", url: `${SITE_URL}/contact`, description: "Contact 7 Wings Immigration Hyderabad." },
   ],
 };
