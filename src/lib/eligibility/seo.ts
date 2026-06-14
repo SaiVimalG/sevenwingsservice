@@ -1,6 +1,6 @@
 import type { CalculatorConfig } from "./types";
 
-const BASE = "https://home.7wingsimmigration.com";
+const BASE = "https://www.7wingsimmigration.com";
 
 export function buildHead(cfg: CalculatorConfig) {
   const absUrl = `${BASE}${cfg.url}`;

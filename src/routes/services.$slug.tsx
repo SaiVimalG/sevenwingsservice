@@ -21,7 +21,7 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => {
     const s = loaderData?.service;
     if (!s) return {};
-    const url = `https://home.7wingsimmigration.com/services/${s.slug}`;
+    const url = `https://www.7wingsimmigration.com/services/${s.slug}`;
     return {
       meta: [
         { title: s.metaTitle },
@@ -46,7 +46,7 @@ export const Route = createFileRoute("/services/$slug")({
           provider: {
             "@type": "Organization",
             name: "7 Wings Immigration",
-            url: "https://home.7wingsimmigration.com",
+            url: "https://www.7wingsimmigration.com",
             address: { "@type": "PostalAddress", addressLocality: "Hyderabad", addressRegion: "Telangana", addressCountry: "IN" },
           },
           areaServed: ["Hyderabad", "Telangana", "India", s.country],

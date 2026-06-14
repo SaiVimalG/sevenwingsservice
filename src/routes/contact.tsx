@@ -12,11 +12,11 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Talk to Hyderabad's best immigration consultants. Visit our Hitec City office, call us, or send an enquiry — free 30-min consultation with a senior counsellor." },
       { property: "og:title", content: "Contact 7 Wings Immigration | Hyderabad Office" },
       { property: "og:description", content: "Hitec City Hyderabad office, phone, email and online enquiry form for Germany, Australia, Canada and UK visa support." },
-      { property: "og:url", content: "https://home.7wingsimmigration.com/contact" },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/contact" },
       { name: "twitter:title", content: "Contact 7 Wings Immigration Hyderabad" },
       { name: "twitter:description", content: "Visit, call or enquire — free 30-min consultation in Hitec City, Hyderabad." },
     ],
-    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/contact" }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/contact" }],
   }),
   component: Contact,
 });

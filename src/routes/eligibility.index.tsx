@@ -42,11 +42,11 @@ export const Route = createFileRoute("/eligibility/")({
       { name: "description", content: "Free real-time PR calculators for Australia (189/190/491), Canada (CRS, FSWP, SINP, Quebec), Germany Opportunity Card and UK Skilled Worker — by Hyderabad's top immigration consultancy." },
       { property: "og:title", content: "Free Immigration Eligibility Calculators | 7 Wings Hyderabad" },
       { property: "og:description", content: "Instant points calculators for Australia, Canada, Germany and UK — built by Hyderabad's senior immigration consultants." },
-      { property: "og:url", content: "https://home.7wingsimmigration.com/eligibility" },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/eligibility" },
       { name: "twitter:title", content: "Free PR & Visa Eligibility Calculators | 7 Wings Hyderabad" },
       { name: "twitter:description", content: "Score your Australia, Canada, Germany or UK migration profile in seconds." },
     ],
-    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/eligibility" }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/eligibility" }],
   }),
   component: EligibilityHub,
 });

@@ -10,11 +10,11 @@ export const Route = createFileRoute("/faq")({
       { name: "description", content: "Hyderabad's most-asked immigration questions answered — Germany Opportunity Card, Australia PR, Canada PR, JSS, eligibility, fees and timelines, by 7 Wings consultants." },
       { property: "og:title", content: "Immigration FAQs | 7 Wings Immigration Hyderabad" },
       { property: "og:description", content: "Common questions about migration, eligibility, fees and timelines — answered by Hyderabad's senior immigration consultants." },
-      { property: "og:url", content: "https://home.7wingsimmigration.com/faq" },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/faq" },
       { name: "twitter:title", content: "Immigration FAQs | 7 Wings Hyderabad" },
       { name: "twitter:description", content: "Germany, Australia, Canada PR and JSS questions answered by Hyderabad's senior consultants." },
     ],
-    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/faq" }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/faq" }],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({

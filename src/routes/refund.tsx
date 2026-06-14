@@ -15,9 +15,9 @@ export const Route = createFileRoute("/refund")({
       { name: "description", content: "Our written refund policy for 7 Wings Immigration consultancy engagements — Hyderabad's senior-led visa and PR consultancy." },
       { property: "og:title", content: "Refund Policy | 7 Wings Immigration Hyderabad" },
       { property: "og:description", content: "Transparent refund terms for immigration consultancy engagements." },
-      { property: "og:url", content: "https://home.7wingsimmigration.com/refund" },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/refund" },
     ],
-    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/refund" }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/refund" }],
   }),
   component: () => (
     <PageShell>

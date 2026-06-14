@@ -10,11 +10,11 @@ export const Route = createFileRoute("/book-consultation")({
       { name: "description", content: "Book a free 30-minute immigration consultation with Hyderabad's top-rated visa consultants. Profile scoring for Germany, Australia, Canada PR, UK & JSS — no obligation." },
       { property: "og:title", content: "Book a Free Immigration Consultation | 7 Wings Hyderabad" },
       { property: "og:description", content: "Pick a slot. Score your profile. Plan your move — with Hyderabad's senior immigration consultants." },
-      { property: "og:url", content: "https://home.7wingsimmigration.com/book-consultation" },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/book-consultation" },
       { name: "twitter:title", content: "Book Free Immigration Consultation | 7 Wings Hyderabad" },
       { name: "twitter:description", content: "Free 30-minute consultation with a senior immigration counsellor in Hyderabad." },
     ],
-    links: [{ rel: "canonical", href: "https://home.7wingsimmigration.com/book-consultation" }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/book-consultation" }],
   }),
   component: Book,
 });
