@@ -149,8 +149,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/__l5e/assets-v1/aaf1cf8d-74fc-4380-866c-1b94db8e449e/7wings-logo-dark.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/__l5e/assets-v1/aaf1cf8d-74fc-4380-866c-1b94db8e449e/7wings-logo-dark.png" },
+      { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: LOGO_URL_192 },
+      { rel: "icon", type: "image/png", sizes: "512x512", href: LOGO_URL_512 },
+      { rel: "apple-touch-icon", sizes: "192x192", href: LOGO_URL_192 },
+      { rel: "shortcut icon", href: "/favicon.ico" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" },
