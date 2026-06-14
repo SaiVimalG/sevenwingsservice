@@ -45,7 +45,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const SITE_URL = "https://home.7wingsimmigration.com";
+const SITE_URL = "https://www.7wingsimmigration.com";
+const LOGO_URL_512 = `${SITE_URL}/__l5e/assets-v1/425f8967-63a8-4c20-adde-1d7a2cb30029/7wings-logo-512.png`;
+const LOGO_URL_192 = `${SITE_URL}/__l5e/assets-v1/57090733-0d12-4794-abd6-0ce3e983015b/7wings-logo-192.png`;
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -54,8 +56,15 @@ const orgJsonLd = {
   name: SITE.name,
   alternateName: "7 Wings Immigration Hyderabad",
   url: SITE_URL,
-  logo: SITE.logoUrl,
-  image: SITE.logoUrl,
+  logo: {
+    "@type": "ImageObject",
+    url: LOGO_URL_512,
+    contentUrl: LOGO_URL_512,
+    width: 512,
+    height: 512,
+    caption: SITE.name,
+  },
+  image: LOGO_URL_512,
   description:
     "Best immigration consultancy in Hyderabad for Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker visa and JSS career programs. Senior-led, transparent fees.",
   priceRange: "₹₹",
