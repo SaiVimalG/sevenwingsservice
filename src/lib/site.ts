@@ -78,8 +78,8 @@ export const SERVICES: Service[] = [
     image: germany,
     flag: "🇩🇪",
     country: "Germany",
-    metaTitle: "Germany Opportunity Card (Chancenkarte) – Job Seeker Visa 2026 | 7 Wings Immigration Hyderabad",
-    metaDescription: "Check your eligibility for the Germany Opportunity Card (Chancenkarte) job seeker visa. 7 Wings Immigration in Hyderabad explains the requirements, points system, and application process based on official guidelines.",
+    metaTitle: "Germany Opportunity Card (Chancenkarte) | 7 Wings",
+    metaDescription: "Germany Opportunity Card eligibility, points system and application process — explained by 7 Wings Immigration, Hyderabad.",
   },
   {
     slug: "australia-pr",
@@ -109,8 +109,8 @@ export const SERVICES: Service[] = [
     image: australia,
     flag: "🇦🇺",
     country: "Australia",
-    metaTitle: "Australia PR Consultants in Hyderabad | Skilled Migration | 7 Wings",
-    metaDescription: "Australia PR done right. 7 Wings Immigration in Hyderabad guides professionals through skills assessment, points uplift, state nomination and Subclass 189/190/491 visa grants.",
+    metaTitle: "Australia PR Consultants in Hyderabad | 7 Wings",
+    metaDescription: "Australia PR done right — skills assessment, points uplift, state nomination and Subclass 189/190/491 grants by 7 Wings Hyderabad.",
   },
   {
     slug: "canada-pr",
@@ -140,8 +140,8 @@ export const SERVICES: Service[] = [
     image: canada,
     flag: "🇨🇦",
     country: "Canada",
-    metaTitle: "Canada PR Consultants in Hyderabad | Express Entry & PNP | 7 Wings",
-    metaDescription: "Hyderabad's premium Canada PR consultancy. 7 Wings Immigration handles Express Entry, PNP, ECA, IELTS/CELPIP and family sponsorship with transparent, fixed-fee guidance.",
+    metaTitle: "Canada PR Consultants in Hyderabad | 7 Wings",
+    metaDescription: "Canada PR consultancy in Hyderabad — Express Entry, PNP, ECA, IELTS/CELPIP and family sponsorship with transparent fees.",
   },
   {
     slug: "jss-program",
@@ -171,8 +171,8 @@ export const SERVICES: Service[] = [
     image: jss,
     flag: "🌍",
     country: "Global",
-    metaTitle: "JSS Job-Search Support Program | Global Career Migration | 7 Wings Hyderabad",
-    metaDescription: "7 Wings Immigration's JSS Program connects Hyderabad professionals to global employers — CV rebuild, recruiter outreach, interview prep and relocation, end-to-end.",
+    metaTitle: "JSS Job-Search Support Program | 7 Wings Hyderabad",
+    metaDescription: "JSS connects Hyderabad professionals to global employers — CV rebuild, recruiter outreach, interview prep and relocation, end-to-end.",
   },
 ];
 

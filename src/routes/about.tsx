@@ -8,9 +8,9 @@ import { SITE, WHY_CHOOSE_US } from "@/lib/site";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About 7 Wings | Trusted Immigration Consultants in Hyderabad" },
-      { name: "description", content: "Senior-led immigration consultancy in Hitec City, Hyderabad. Meet the team, mission and proven process behind 1000+ Germany, Australia, Canada and UK visa successes." },
-      { property: "og:title", content: "About 7 Wings — Trusted Immigration Consultants in Hyderabad" },
+      { title: "About 7 Wings | Immigration Consultants Hyderabad" },
+      { name: "description", content: "Senior-led immigration consultancy in Hitec City, Hyderabad. 1000+ Germany, Australia, Canada and UK visa successes." },
+      { property: "og:title", content: "About 7 Wings | Immigration Consultants Hyderabad" },
       { property: "og:description", content: "A senior-led, Hyderabad-based immigration consultancy built around transparent fees and 1000+ documented successes." },
       { property: "og:url", content: "https://home.7wingsimmigration.com/about" },
       { property: "og:image", content: aboutImg },
