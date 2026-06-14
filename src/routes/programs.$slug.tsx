@@ -116,7 +116,8 @@ function ProgramPage() {
       {/* Overview / Detailed Content */}
       {program.details ? (
         <section className="py-12 md:py-16">
-          <div className="mx-auto max-w-4xl px-6">
+          <div className="mx-auto grid max-w-[1200px] gap-10 px-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div className="min-w-0">
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Overview</p>
             </Reveal>
@@ -126,10 +127,27 @@ function ProgramPage() {
               </p>
             </Reveal>
 
+            {/* Mobile TOC */}
+            <details className="mt-8 rounded-2xl border border-black/10 bg-cream/60 p-4 lg:hidden">
+              <summary className="flex cursor-pointer items-center gap-2 text-sm font-semibold text-navy-deep">
+                <List className="h-4 w-4 text-gold-deep" /> On this page
+              </summary>
+              <ul className="mt-3 space-y-2 pl-6 text-sm text-slate-700">
+                {program.details.sections.map((s, i) => (
+                  <li key={i}>
+                    <a href={`#${slugify(s.heading)}`} className="hover:text-gold-deep">{s.heading}</a>
+                  </li>
+                ))}
+                <li><a href="#why-7-wings" className="hover:text-gold-deep">Why 7 Wings</a></li>
+                <li><a href="#faqs" className="hover:text-gold-deep">FAQs</a></li>
+                <li><a href="#get-started" className="hover:text-gold-deep">Get started</a></li>
+              </ul>
+            </details>
+
             <div className="mt-10 space-y-10">
               {program.details.sections.map((section, i) => (
                 <Reveal key={section.heading} delay={i * 0.05}>
-                  <section>
+                  <section id={slugify(section.heading)} className="scroll-mt-28">
                     <div className="flex items-center gap-3">
                       <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold font-display text-xs font-bold text-navy-deep">
                         {i + 1}
@@ -162,7 +180,7 @@ function ProgramPage() {
             </div>
 
             <Reveal>
-              <div className="mt-14 overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-cream via-white to-cream p-7 md:p-10">
+              <div id="why-7-wings" className="mt-14 scroll-mt-28 overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-cream via-white to-cream p-7 md:p-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">
                   Why apply through 7 Wings Immigration
                 </p>
@@ -184,7 +202,7 @@ function ProgramPage() {
                 </ul>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link to="/book-consultation" className="inline-flex justify-center btn-gold btn-gold-hover">
-                    Check my Germany eligibility <ArrowRight className="h-4 w-4" />
+                    Check my {country.country} eligibility <ArrowRight className="h-4 w-4" />
                   </Link>
                   <a
                     href={`tel:${SITE.phone.replace(/\s/g, "")}`}
@@ -197,7 +215,7 @@ function ProgramPage() {
             </Reveal>
 
             <Reveal>
-              <div className="mt-14">
+              <div id="faqs" className="mt-14 scroll-mt-28">
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">
                   Frequently asked questions
                 </p>
@@ -222,6 +240,47 @@ function ProgramPage() {
                 </Accordion>
               </div>
             </Reveal>
+
+            {/* Inline form for mobile */}
+            <Reveal>
+              <div id="get-started" className="mt-14 scroll-mt-28 rounded-3xl border border-gold/30 bg-white p-6 md:p-8 lg:hidden">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Talk to a consultant</p>
+                <h3 className="mt-2 font-display text-2xl font-bold text-navy-deep">Free 15-min eligibility call</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Share your details — a senior counsellor will call back within 4 working hours.</p>
+                <div className="mt-5">
+                  <BlogContactForm />
+                </div>
+              </div>
+            </Reveal>
+            </div>
+
+            {/* Sticky right rail */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-28 space-y-6">
+                <div className="rounded-2xl border border-black/10 bg-white p-5">
+                  <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-deep">
+                    <List className="h-3.5 w-3.5" /> On this page
+                  </p>
+                  <ul className="mt-3 space-y-2 border-l border-black/10 pl-4 text-[13px] text-slate-700">
+                    {program.details.sections.map((s, i) => (
+                      <li key={i}>
+                        <a href={`#${slugify(s.heading)}`} className="hover:text-gold-deep">{s.heading}</a>
+                      </li>
+                    ))}
+                    <li><a href="#why-7-wings" className="hover:text-gold-deep">Why 7 Wings</a></li>
+                    <li><a href="#faqs" className="hover:text-gold-deep">FAQs</a></li>
+                  </ul>
+                </div>
+                <div className="rounded-2xl border border-gold/30 bg-white p-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-deep">Talk to a consultant</p>
+                  <h3 className="mt-1 font-display text-lg font-bold text-navy-deep">Free 15-min call</h3>
+                  <p className="mt-1 text-xs text-muted-foreground">A senior counsellor will call within 4 working hours.</p>
+                  <div className="mt-4">
+                    <BlogContactForm />
+                  </div>
+                </div>
+              </div>
+            </aside>
           </div>
         </section>
       ) : (
@@ -258,9 +317,14 @@ function ProgramPage() {
               </ul>
             </Reveal>
             <Reveal delay={0.4}>
-              <p className="mt-8 rounded-2xl border border-gold/30 bg-gold/5 p-5 text-sm text-navy-deep">
-                <strong>Detailed guide coming soon.</strong> Full eligibility, documents, process timeline, cost breakdown, common mistakes and 10+ FAQs for this program are being published. In the meantime, book a free consultation and we'll send you the latest checklist by email.
-              </p>
+              <div className="mt-10 rounded-3xl border border-gold/30 bg-white p-6 md:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Talk to a consultant</p>
+                <h3 className="mt-2 font-display text-2xl font-bold text-navy-deep">Free 15-min eligibility call</h3>
+                <p className="mt-2 text-sm text-muted-foreground">A senior counsellor will call back within 4 working hours.</p>
+                <div className="mt-5 max-w-md">
+                  <BlogContactForm />
+                </div>
+              </div>
             </Reveal>
           </div>
         </section>
