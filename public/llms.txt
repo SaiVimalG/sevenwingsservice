@@ -1,0 +1,42 @@
+# 7 Wings Immigration
+
+> Senior-led immigration consultancy in Hyderabad. Visa & PR guidance for Germany, Australia, Canada, the UK and our JSS global-career program.
+
+7 Wings Immigration helps professionals, students and families from India migrate through transparent, evidence-based pathways. Senior counsellors lead every case — eligibility scoring, document prep, embassy submission and post-landing support.
+
+## Pages
+
+- [Home](/): Overview of services, success metrics and consultation booking.
+- [About](/about): Mission, values and the senior-led team behind 1000+ visa successes.
+- [Services](/services): All immigration services and country pathways.
+- [Success Stories](/success-stories): Real client landings across Germany, Australia, Canada and the UK.
+- [Book a Consultation](/book-consultation): Free 30-minute eligibility call with a senior counsellor.
+- [Contact](/contact): Hitec City, Hyderabad office details and enquiry form.
+- [FAQ](/faq): Common questions on visa pathways, fees and timelines.
+- [Blog](/blog): Migration news, policy updates and country guides.
+
+## Services
+
+- [Germany Opportunity Card](/services/germany-opportunity-card): Chancenkarte points system, ZAB recognition and application.
+- [Australia PR](/services/australia-pr): Subclass 189/190/491 skilled migration.
+- [Canada PR](/services/canada-pr): Express Entry, PNP and family sponsorship.
+- [JSS Program](/services/jss-program): Global job-search support and placement.
+
+## Eligibility Calculators
+
+- [Eligibility Hub](/eligibility): Free PR and visa points calculators.
+- [Canada CRS Calculator](/eligibility/canada/crs-calculator): Express Entry CRS score.
+- [Canada FSW](/eligibility/canada/federal-skilled-worker-program): Federal Skilled Worker eligibility.
+- [Canada Saskatchewan SINP](/eligibility/canada/saskatchewan-sinp-calculator): SINP points.
+- [Canada Quebec](/eligibility/canada/quebec-skilled-worker-program): QSWP eligibility.
+- [Australia 189 Points](/eligibility/australia/189-points-calculator): Independent skilled visa.
+- [Australia 190 Points](/eligibility/australia/190-points-calculator): State-nominated points.
+- [Australia 491 Points](/eligibility/australia/491-points-calculator): Regional sponsored points.
+- [Germany Opportunity Card](/eligibility/germany/opportunity-card-calculator): Chancenkarte points.
+- [UK Skilled Worker](/eligibility/uk/skilled-worker-visa-calculator): Skilled Worker visa eligibility.
+
+## Optional
+
+- [Privacy Policy](/privacy)
+- [Terms of Service](/terms)
+- [Refund Policy](/refund)
