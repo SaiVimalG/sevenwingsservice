@@ -15,8 +15,8 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
           src={src}
           alt={`${SITE.name} logo`}
           className="block h-14 w-auto max-w-none shrink-0 object-contain object-left transition-transform duration-500 ease-out sm:h-16 lg:h-[68px]"
-          style={isDark ? { filter: "brightness(0) invert(1)" } : undefined}
         />
+
 
       </span>
     </Link>
