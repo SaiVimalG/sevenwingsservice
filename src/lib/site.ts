@@ -15,7 +15,7 @@ export const SITE = {
   logoUrlDark: logoDark.url,
   social: {
     instagram: "https://instagram.com/",
-    facebook: "https://facebook.com/",
+    facebook: "https://www.facebook.com/7wingsimmigration/",
     linkedin: "https://linkedin.com/",
     youtube: "https://youtube.com/",
   },
