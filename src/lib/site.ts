@@ -1,5 +1,5 @@
 import logo from "@/assets/7wings-logo-transparent.png.asset.json";
-import logoDark from "@/assets/7wings-logo-transparent.png.asset.json";
+import logoDark from "@/assets/7wings-logo-dark.png.asset.json";
 
 
 export const SITE = {
