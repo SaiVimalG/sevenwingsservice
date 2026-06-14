@@ -37,6 +37,7 @@ import { Route as EligibilityCanadaCrsCalculatorRouteImport } from './routes/eli
 import { Route as EligibilityAustralia491PointsCalculatorRouteImport } from './routes/eligibility.australia.491-points-calculator'
 import { Route as EligibilityAustralia190PointsCalculatorRouteImport } from './routes/eligibility.australia.190-points-calculator'
 import { Route as EligibilityAustralia189PointsCalculatorRouteImport } from './routes/eligibility.australia.189-points-calculator'
+import { Route as ApiPublicGscSubmitSitemapRouteImport } from './routes/api/public/gsc/submit-sitemap'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -188,6 +189,12 @@ const EligibilityAustralia189PointsCalculatorRoute =
     path: '/australia/189-points-calculator',
     getParentRoute: () => EligibilityRoute,
   } as any)
+const ApiPublicGscSubmitSitemapRoute =
+  ApiPublicGscSubmitSitemapRouteImport.update({
+    id: '/api/public/gsc/submit-sitemap',
+    path: '/api/public/gsc/submit-sitemap',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -218,6 +225,7 @@ export interface FileRoutesByFullPath {
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
+  '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -247,6 +255,7 @@ export interface FileRoutesByTo {
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
+  '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -278,6 +287,7 @@ export interface FileRoutesById {
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
+  '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -310,6 +320,7 @@ export interface FileRouteTypes {
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
+    | '/api/public/gsc/submit-sitemap'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -339,6 +350,7 @@ export interface FileRouteTypes {
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
+    | '/api/public/gsc/submit-sitemap'
   id:
     | '__root__'
     | '/'
@@ -369,6 +381,7 @@ export interface FileRouteTypes {
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
+    | '/api/public/gsc/submit-sitemap'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -389,6 +402,7 @@ export interface RootRouteChildren {
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  ApiPublicGscSubmitSitemapRoute: typeof ApiPublicGscSubmitSitemapRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -589,6 +603,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EligibilityAustralia189PointsCalculatorRouteImport
       parentRoute: typeof EligibilityRoute
     }
+    '/api/public/gsc/submit-sitemap': {
+      id: '/api/public/gsc/submit-sitemap'
+      path: '/api/public/gsc/submit-sitemap'
+      fullPath: '/api/public/gsc/submit-sitemap'
+      preLoaderRoute: typeof ApiPublicGscSubmitSitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -651,6 +672,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  ApiPublicGscSubmitSitemapRoute: ApiPublicGscSubmitSitemapRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
