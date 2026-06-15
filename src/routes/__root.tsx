@@ -46,8 +46,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 const SITE_URL = "https://www.7wingsimmigration.com";
-const LOGO_URL_512 = `${SITE_URL}/__l5e/assets-v1/425f8967-63a8-4c20-adde-1d7a2cb30029/7wings-logo-512.png`;
-const LOGO_URL_192 = `${SITE_URL}/__l5e/assets-v1/57090733-0d12-4794-abd6-0ce3e983015b/7wings-logo-192.png`;
+const LOGO_URL_512 = `${SITE_URL}/__l5e/assets-v1/18f658ae-cbc6-4251-87ed-48ea0493af2f/7wings-favicon-512.png`;
+const LOGO_URL_192 = LOGO_URL_512;
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -138,9 +138,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "geo.placename", content: "Hyderabad" },
       { name: "geo.position", content: "17.4435;78.3772" },
       { name: "ICBM", content: "17.4435, 78.3772" },
-      { title: "7 Wings Immigration — Hyderabad Visa Consultancy" },
-      { name: "description", content: "Senior-led visa & PR consultancy in Hyderabad. Germany, Australia, Canada, UK and JSS pathways. Transparent fees." },
-      { name: "keywords", content: "immigration consultancy Hyderabad, Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker visa, JSS program" },
+      { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
+      { name: "description", content: "Best immigration consultancy in Hyderabad — senior-led visa & PR services for Germany, Australia, Canada, UK and JSS. Transparent fees, 1000+ cases." },
+      { name: "keywords", content: "best immigration consultancy in Hyderabad, immigration consultants Hyderabad, Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker visa, JSS program" },
       { property: "og:site_name", content: SITE.name },
       { property: "og:locale", content: "en_IN" },
       { property: "og:type", content: "website" },

@@ -1,4 +1,4 @@
-import logo from "@/assets/7wings-logo-512.png.asset.json";
+import logo from "@/assets/7wings-navbar-logo.svg.asset.json";
 
 
 export const SITE = {
@@ -77,8 +77,8 @@ export const SERVICES: Service[] = [
     image: germany,
     flag: "🇩🇪",
     country: "Germany",
-    metaTitle: "Germany Opportunity Card (Chancenkarte) | 7 Wings",
-    metaDescription: "Germany Opportunity Card eligibility, points system and application process — explained by 7 Wings Immigration, Hyderabad.",
+    metaTitle: "Best Immigration Consultancy in Hyderabad for Germany Opportunity Card | 7 Wings",
+    metaDescription: "Best immigration consultancy in Hyderabad for Germany Opportunity Card (Chancenkarte) — eligibility, points system and full application support by 7 Wings Immigration.",
   },
   {
     slug: "australia-pr",
@@ -108,8 +108,8 @@ export const SERVICES: Service[] = [
     image: australia,
     flag: "🇦🇺",
     country: "Australia",
-    metaTitle: "Australia PR Consultants in Hyderabad | 7 Wings",
-    metaDescription: "Australia PR done right — skills assessment, points uplift, state nomination and Subclass 189/190/491 grants by 7 Wings Hyderabad.",
+    metaTitle: "Best Immigration Consultancy in Hyderabad for Australia PR | 7 Wings",
+    metaDescription: "Best immigration consultancy in Hyderabad for Australia PR — skills assessment, points uplift, state nomination and Subclass 189/190/491 by 7 Wings.",
   },
   {
     slug: "canada-pr",
@@ -139,8 +139,8 @@ export const SERVICES: Service[] = [
     image: canada,
     flag: "🇨🇦",
     country: "Canada",
-    metaTitle: "Canada PR Consultants in Hyderabad | 7 Wings",
-    metaDescription: "Canada PR consultancy in Hyderabad — Express Entry, PNP, ECA, IELTS/CELPIP and family sponsorship with transparent fees.",
+    metaTitle: "Best Immigration Consultancy in Hyderabad for Canada PR | 7 Wings",
+    metaDescription: "Best immigration consultancy in Hyderabad for Canada PR — Express Entry, PNP, ECA, IELTS/CELPIP and family sponsorship with transparent fees.",
   },
   {
     slug: "jss-program",
@@ -170,8 +170,8 @@ export const SERVICES: Service[] = [
     image: jss,
     flag: "🌍",
     country: "Global",
-    metaTitle: "JSS Job-Search Support Program | 7 Wings Hyderabad",
-    metaDescription: "JSS connects Hyderabad professionals to global employers — CV rebuild, recruiter outreach, interview prep and relocation, end-to-end.",
+    metaTitle: "Best Immigration Consultancy in Hyderabad for JSS Program | 7 Wings",
+    metaDescription: "Best immigration consultancy in Hyderabad for the JSS Program — CV rebuild, recruiter outreach, interview prep and relocation by 7 Wings.",
   },
 ];
 
