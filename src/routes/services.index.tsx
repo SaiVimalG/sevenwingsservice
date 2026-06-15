@@ -8,7 +8,7 @@ import { SERVICES } from "@/lib/site";
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Immigration Services Hyderabad | 7 Wings Immigration" },
+      { title: "Best Immigration Consultancy in Hyderabad — Services | 7 Wings" },
       { name: "description", content: "Compare 7 Wings Immigration's flagship visa & PR services from Hyderabad — Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker and the JSS global career programme." },
       { property: "og:title", content: "Immigration Services in Hyderabad | 7 Wings Immigration" },
       { property: "og:description", content: "Flagship immigration pathways senior-led from Hyderabad — Germany, Australia, Canada, UK and JSS." },
