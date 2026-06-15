@@ -1,5 +1,4 @@
-import logo from "@/assets/7wings-logo-transparent.png.asset.json";
-import logoDark from "@/assets/7wings-logo-dark.png.asset.json";
+import logo from "@/assets/7wings-logo-512.png.asset.json";
 
 
 export const SITE = {
@@ -12,7 +11,7 @@ export const SITE = {
   whatsapp: "+91 80621 80254",
   address: "H.No. 3-10-102/1, Gokhale Nagar, Srinivasapuram (Hyderabad), Amberpet, Hyderabad - 500013, Telangana, India",
   logoUrl: logo.url,
-  logoUrlDark: logoDark.url,
+  logoUrlDark: logo.url,
   social: {
     instagram: "https://instagram.com/",
     facebook: "https://www.facebook.com/7wingsimmigration/",
