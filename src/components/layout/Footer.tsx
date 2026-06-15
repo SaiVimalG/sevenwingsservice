@@ -83,7 +83,7 @@ export function Footer() {
               { to: "/contact", label: "Contact" },
               { to: "/privacy", label: "Privacy Policy" },
               { to: "/terms", label: "Terms & Conditions" },
-              { to: "/refund", label: "Refund Policy" },
+              { to: "/refund", label: "Cancellation & Refund Policy" },
             ].map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="transition-colors hover:text-gold">
