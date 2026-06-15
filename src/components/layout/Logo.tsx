@@ -14,7 +14,7 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
         <img
           src={src}
           alt={`${SITE.name} logo`}
-          className="block h-20 w-auto max-w-none shrink-0 scale-[1.6] origin-left object-contain object-left transition-transform duration-500 ease-out sm:h-24 lg:h-28"
+          className="block h-16 w-auto max-w-none shrink-0 scale-[1.35] origin-left object-contain object-left transition-transform duration-500 ease-out sm:h-20 lg:h-24"
         />
 
 
