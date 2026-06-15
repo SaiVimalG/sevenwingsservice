@@ -13,10 +13,10 @@ export const SITE = {
   logoUrl: logo.url,
   logoUrlDark: logo.url,
   social: {
-    instagram: "https://instagram.com/",
+    instagram: "https://www.instagram.com/7wingsimmigration/",
     facebook: "https://www.facebook.com/7wingsimmigration/",
     linkedin: "https://linkedin.com/",
-    youtube: "https://youtube.com/",
+    youtube: "https://www.youtube.com/@7WingsImmigration",
   },
 };
 
