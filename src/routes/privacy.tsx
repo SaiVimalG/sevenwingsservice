@@ -1,26 +1,90 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 
-const sections = [
+type Section = {
+  title: string;
+  body?: string;
+  list?: string[];
+  listIntro?: string;
+};
+
+const sections: Section[] = [
+  {
+    title: "Introduction",
+    body: "At 7 Wings Immigration, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect the information you provide while using our website and immigration consultancy services.",
+  },
   {
     title: "Information We Collect",
-    body: "We collect the information you voluntarily share through our contact and consultation forms — name, phone, email, country of interest and any details you choose to add about your profile.",
+    listIntro: "We may collect:",
+    list: [
+      "Full Name",
+      "Email Address",
+      "Phone Number",
+      "Residential Address",
+      "Passport Information (when required)",
+      "Educational Qualifications",
+      "Employment Details",
+      "Immigration Preferences",
+      "Documents submitted for assessment purposes",
+    ],
   },
   {
     title: "How We Use Your Information",
-    body: "Solely to respond to your enquiry, prepare an eligibility assessment, and (with your consent) keep you informed about programmes relevant to your goals.",
+    listIntro: "Your information may be used to:",
+    list: [
+      "Assess your immigration eligibility",
+      "Provide immigration consultation services",
+      "Contact you regarding your application",
+      "Improve our services and website experience",
+      "Send important updates and service notifications",
+      "Comply with legal and regulatory obligations",
+    ],
   },
   {
-    title: "Sharing",
-    body: "We never sell your data. We share information only with sub-processors strictly required to deliver our service (e.g. document translators, visa application platforms) and only when you instruct us to proceed.",
+    title: "Data Protection",
+    body: "We implement appropriate technical and organizational security measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction.",
+  },
+  {
+    title: "Information Sharing",
+    listIntro:
+      "7 Wings Immigration does not sell, rent, or trade personal information. Information may be shared only with:",
+    list: [
+      "Government authorities",
+      "Immigration departments",
+      "Visa processing agencies",
+      "Educational institutions",
+      "Authorized service partners",
+    ],
+    body: "Such sharing occurs only when necessary for processing your application.",
+  },
+  {
+    title: "Cookies",
+    body: "Our website may use cookies to improve user experience, analyze website traffic, and optimize marketing campaigns.",
+  },
+  {
+    title: "Third-Party Links",
+    body: "Our website may contain links to external websites. We are not responsible for the privacy practices of third-party websites.",
   },
   {
     title: "Data Retention",
-    body: "Active client data is retained for the duration of our engagement plus 7 years for record-keeping. You may request deletion at any time by writing to our office.",
+    body: "We retain personal information only as long as necessary to provide services and meet legal obligations.",
   },
   {
     title: "Your Rights",
-    body: "You may request access, correction or deletion of your personal data. Please write to hello@7wingsimmigration.com.",
+    listIntro: "You may request:",
+    list: [
+      "Access to your personal information",
+      "Correction of inaccurate information",
+      "Deletion of personal information where legally permissible",
+    ],
+  },
+  {
+    title: "Disclaimer",
+    body: "7 Wings Immigration is an immigration consultancy firm. We do not guarantee visa approval, permanent residency approval, job placement, or immigration success. Final decisions are made solely by the respective government authorities.",
+  },
+  {
+    title: "Contact Us",
+    body: "7 Wings Immigration — Hyderabad, Telangana, India. Email: info@7wingsimmigration.com. Phone: +91 80621 80254.",
   },
 ];
 
@@ -43,7 +107,15 @@ export const Route = createFileRoute("/privacy")({
           {sections.map((s) => (
             <div key={s.title}>
               <h2 className="font-display text-2xl font-semibold text-navy-deep">{s.title}</h2>
-              <p className="mt-2 text-muted-foreground">{s.body}</p>
+              {s.listIntro && <p className="mt-2 text-muted-foreground">{s.listIntro}</p>}
+              {s.list && (
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-muted-foreground">
+                  {s.list.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              )}
+              {s.body && <p className="mt-2 text-muted-foreground">{s.body}</p>}
             </div>
           ))}
         </div>
