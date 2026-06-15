@@ -11,34 +11,23 @@ function HeaderTop() {
       <div className="mx-auto flex h-9 max-w-[1200px] items-center justify-between px-6 text-sm">
         <ul className="flex items-center gap-6 text-white/90">
           <li className="flex items-center gap-2">
-            <span className="text-gold-soft">Help Line</span>
             <Phone className="h-3 w-3 text-gold" />
             <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="font-medium text-white hover:text-gold transition-colors">{SITE.phone}</a>
-          </li>
-          <li className="flex items-center gap-2">
-            <MapPin className="h-3 w-3 text-gold" />
-            <span>{SITE.address}</span>
           </li>
           <li className="flex items-center gap-2">
             <Mail className="h-3 w-3 text-gold" />
             <a href={`mailto:${SITE.email}`} className="hover:text-gold transition-colors">{SITE.email}</a>
           </li>
         </ul>
-        <div className="flex items-center gap-5">
-          <div className="flex items-center gap-2 text-white/90">
-            <Globe className="h-3 w-3 text-gold" />
-            <span>English</span>
-          </div>
-          <span className="h-3 w-px bg-white/20" />
-          <div className="flex items-center gap-3 text-white/95">
-            <a href={SITE.social.linkedin} aria-label="LinkedIn" className="transition-colors hover:text-gold"><Linkedin className="h-3.5 w-3.5" /></a>
-            <a href={SITE.social.facebook} aria-label="Facebook" className="transition-colors hover:text-gold"><Facebook className="h-3.5 w-3.5" /></a>
-            <a href={SITE.social.instagram} aria-label="Instagram" className="transition-colors hover:text-gold"><Instagram className="h-3.5 w-3.5" /></a>
-            <a href={SITE.social.youtube} aria-label="YouTube" className="transition-colors hover:text-gold"><Youtube className="h-3.5 w-3.5" /></a>
-          </div>
+        <div className="flex items-center gap-3 text-white/95">
+          <a href={SITE.social.linkedin} aria-label="LinkedIn" className="transition-colors hover:text-gold"><Linkedin className="h-3.5 w-3.5" /></a>
+          <a href={SITE.social.facebook} aria-label="Facebook" className="transition-colors hover:text-gold"><Facebook className="h-3.5 w-3.5" /></a>
+          <a href={SITE.social.instagram} aria-label="Instagram" className="transition-colors hover:text-gold"><Instagram className="h-3.5 w-3.5" /></a>
+          <a href={SITE.social.youtube} aria-label="YouTube" className="transition-colors hover:text-gold"><Youtube className="h-3.5 w-3.5" /></a>
         </div>
       </div>
     </div>
+
   );
 }
 
