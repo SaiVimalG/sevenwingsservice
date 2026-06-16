@@ -1,90 +1,68 @@
-
 ## Goal
-Restructure `/eligibility` into individual SEO landing pages (one per calculator) and build a full Australia SkillSelect calculator with live points logic. Apply the same SEO scaffold to every Canada calculator and stub Germany + UK.
 
-## New URL structure
-```
-/eligibility                                              (hub - links to all calculators)
-/eligibility/australia/189-points-calculator
-/eligibility/australia/190-points-calculator
-/eligibility/australia/491-points-calculator
-/eligibility/canada/federal-skilled-worker-program        (FSWP - 67 pt grid)
-/eligibility/canada/crs-calculator                        (Express Entry CRS, 1200 pt)
-/eligibility/canada/saskatchewan-sinp-calculator          (SINP 100 pt)
-/eligibility/canada/quebec-skilled-worker-program         (QSWP)
-/eligibility/germany/opportunity-card-calculator          (Chancenkarte 6+ pt)
-/eligibility/uk/skilled-worker-calculator                 (UK 70 pt)
-```
+Create a `/leads` admin CRM page (noindex) that shows every enquiry submitted through the website in one searchable, filterable list with a detail drawer and a status workflow. Since the pasted JSX came through stripped, I'll build a clean equivalent matching the structure and behavior you described.
 
-All under a TanStack layout route `eligibility.tsx` rendering `<Outlet />`, with a `eligibility.index.tsx` hub page.
+## What I'll build
 
-## Shared building blocks (new in `src/components/eligibility/`)
+### 1. Database migration
+Add a `status` column to both submission tables:
+- `public.contact_submissions.status` — text, default `'new'`, NOT NULL.
+- `public.consultation_requests.status` — text, default `'new'`, NOT NULL.
+- CHECK allows: `new | contacted | qualified | converted | closed`.
 
-- `CalculatorShell.tsx` — page chrome: hero (badge + H1 + sub + trust strip), 2‑col layout (form + sticky score sidebar), eligibility meter, recommendations, lead form, breadcrumb.
-- `ScoreSidebar.tsx` — animated big number, status (Eligible / Competitive / Needs Improvement), per‑category breakdown bars, threshold meter.
-- `QuestionCard.tsx` — uniform expandable card with tooltip + options (radio/select).
-- `LeadForm.tsx` — name/email/phone/occupation/experience → posts to existing `forms.functions.ts`.
-- `SeoContent.tsx` — renders the long‑form 1500‑2500 word block from structured data (sections, comparison table, FAQ accordion).
-- `SeoHead.ts` helper — builds `meta` + `links` + JSON‑LD scripts (FAQPage, BreadcrumbList, SoftwareApplication for the calculator) for `head()`.
-- `calculators/` data files — one per calculator: title, description, H1, intro, sections, factor explanations, comparison rows, FAQs, scoring config.
+### 2. New runtime secret
+- `LEADS_ADMIN_TOKEN` — separate password from the blog admin. I'll prompt you to enter the value.
 
-## Australia engine (`src/lib/eligibility/australia.ts`)
-Pure function `score(visa, answers) → { total, breakdown[], status }` covering: visa base (189=0, 190=+5, 491=+15), age, English (Competent 0 / Proficient 10 / Superior 20), overseas exp tiers, AU exp tiers, education tiers, AU study, STEM Masters/PhD, NAATI, partner (0/5/10), Professional Year, regional study, state nom (auto from visa).
+### 3. Server functions — `src/lib/leads.functions.ts`
+Three `createServerFn`s, each verifying the token against `process.env.LEADS_ADMIN_TOKEN` (timing-safe compare). `supabaseAdmin` is dynamically imported inside handlers.
 
-Same shape engines for Canada FSWP (67‑pt), CRS (simplified 1200), SINP (100), QSWP, Germany OC, UK SW.
+- `verifyLeadsToken({ token })` → `{ ok }` / `{ ok:false, error }`.
+- `listLeads({ token })` → merges both tables into a unified `Lead[]` sorted newest first:
+  ```ts
+  type LeadSource = "contact" | "blog" | "eligibility" | "consultation";
+  type Lead = {
+    id: string;            // "contact:<uuid>" | "consultation:<uuid>"
+    source: LeadSource;
+    sourceLabel: string;
+    name: string;
+    email: string;
+    phone: string;
+    country: string | null;
+    pageUrl: string | null;   // null today
+    summary: string;          // short preview
+    status: "new"|"contacted"|"qualified"|"converted"|"closed";
+    createdAt: string;        // ISO
+    fields: { label: string; value: string }[]; // full submission for drawer
+  };
+  ```
+- `updateLeadStatus({ token, id, status })` — parses the prefixed id, updates the right table.
 
-## Per‑page SEO (each calculator route)
-`head()` returns:
-- `<title>` and `<meta name="description">` exactly as specified per calc
-- canonical + og:title/description/url/type=website + twitter card
-- JSON‑LD: `BreadcrumbList`, `FAQPage` from page FAQs, `SoftwareApplication` (applicationCategory=BusinessApplication) for the calculator widget.
+### 4. Frontend — `src/routes/leads.tsx`
+Single self-contained route, reconstructed faithfully:
 
-## SEO content section (under calculator on every page)
-Rendered from data file:
-1. What is this calculator (SkillSelect / Express Entry / etc.)
-2. How points are calculated (per factor)
-3. How to improve your score
-4. Comparison table (189 vs 190 vs 491, or FSWP vs CRS vs SINP, etc.)
-5. 15+ FAQs in accordion (same items feed FAQPage JSON‑LD)
-6. Lead capture CTA strip (Book consultation / WhatsApp / Talk to expert)
+- **Route**: `/leads`, `head()` sets title `Leads | 7 Wings CRM` and `robots: noindex, nofollow`.
+- **`LeadsPage`** (auth gate): token persisted in `localStorage` under `admin_blog_token` (matches your code). On mount, calls `verifyLeadsToken`; if invalid, clears storage. Renders a centered login card (cream bg, navy heading, gold submit) when unauthenticated.
+- **`LeadsDashboard`**:
+  - Navy header bar with title, subtitle, inline search (mobile + desktop), Refresh + Sign-out buttons.
+  - Filter row: search input, `FilterSelect` for Source / Status / Country, `DateRangeFilter` (popover using existing `@/components/ui/calendar` + `popover`).
+  - Responsive table (horizontal scroll on mobile) with rows: index, Name, Source badge, Email, Phone, Country, URL (truncated + copy), Date, Status badge. Name / Email / Phone are click-to-copy. Row click opens drawer.
+  - "Showing X of Y leads." footer.
+- **`LeadDrawer`**: right slide-over with backdrop. Header shows source pill + name + close. Body: ContactRow list (Mail / Phone / Globe / Link) with copy buttons; status pill selector; full submission fields with per-field copy; WhatsApp + Email quick-action buttons; "Copy all" via `buildLeadText`.
+- **Helpers in same file**: `StatCard`, `StatusBadge`, `LeadRow`, `FilterSelect`, `DateRangeFilter`, `ContactRow`, `CopyButton`, `buildLeadText`, `fmtDate`, `truncateUrl`.
+- Toasts via `sonner`. Uses existing theme tokens (`cream`, `navy-deep`, `gold`, `gold-deep`).
 
-## Navbar
-"Free Eligibility Check" stays, links to `/eligibility` hub.
+### 5. Discoverability
+**Not** linked from public navbar/footer — admin-only. Access by typing `/leads`.
 
-## Files
-**New routes**
-- `src/routes/eligibility.tsx` → layout `<Outlet />`
-- `src/routes/eligibility.index.tsx` → hub grid of all calculators (replaces current page)
-- `src/routes/eligibility.australia.189-points-calculator.tsx`
-- `src/routes/eligibility.australia.190-points-calculator.tsx`
-- `src/routes/eligibility.australia.491-points-calculator.tsx`
-- `src/routes/eligibility.canada.federal-skilled-worker-program.tsx`
-- `src/routes/eligibility.canada.crs-calculator.tsx`
-- `src/routes/eligibility.canada.saskatchewan-sinp-calculator.tsx`
-- `src/routes/eligibility.canada.quebec-skilled-worker-program.tsx`
-- `src/routes/eligibility.germany.opportunity-card-calculator.tsx`
-- `src/routes/eligibility.uk.skilled-worker-calculator.tsx`
+## Out of scope
+- No `page_url` column added to submission tables (drawer's URL row simply hides when null). Easy follow-up if you want per-submission page tracking.
+- Existing contact / consultation form submit paths are untouched (new rows just default to `status='new'`).
+- Blog admin (`ADMIN_BLOG_TOKEN`) is untouched.
 
-**New components/lib**
-- `src/components/eligibility/{CalculatorShell,ScoreSidebar,QuestionCard,LeadForm,SeoContent,EligibilityMeter,RecommendationList,ComparisonTable,FaqAccordion}.tsx`
-- `src/lib/eligibility/{australia,canada-fswp,canada-crs,canada-sinp,canada-qswp,germany-oc,uk-sw,types,seo}.ts`
-- `src/lib/eligibility/content/*.ts` — per‑calc SEO copy + FAQs + sections
+## Execution order
+1. Run the migration (status columns).
+2. Prompt for `LEADS_ADMIN_TOKEN` secret.
+3. Write `src/lib/leads.functions.ts`.
+4. Write `src/routes/leads.tsx`.
 
-**Edits**
-- `src/routes/eligibility.tsx` (current monolith) → converted to layout
-- `public/robots.txt` / `src/routes/sitemap[.]xml.ts` → add new URLs
-
-## Technical notes
-- Theme tokens added: `--au-navy: #071D5A`, `--au-gold: #D4AF37` in `src/styles.css` (used only on Australia pages via a wrapper class to keep brand consistent elsewhere).
-- Live scoring via `useMemo` over a `Record<string, string>` answer state.
-- Sticky sidebar on `lg:` and up; on mobile the score floats as a bottom bar.
-- Lead form submits via existing `submitLead` server fn (will reuse `forms.functions.ts`; if a matching fn doesn't exist I'll add one).
-
-## Scope question
-This is ~10 new SEO pages + 7 scoring engines + shared UI + content (~1500 words each). That is a large build. Two options:
-
-**A. Full build now** — all 9 calculator pages with complete long‑form SEO copy, FAQs, schema, and working scoring engines in one go (large diff, longer turn).
-
-**B. Phased** — Phase 1: layout + hub + 3 Australia pages fully built (calc + SEO + schema). Phase 2: 4 Canada pages. Phase 3: Germany + UK. Each phase shippable.
-
-I recommend **B (phased)** so you can review the Australia pages as the template before I replicate to Canada/UK/Germany. Tell me A or B and I'll proceed.
+Approve and I'll execute in that order.
