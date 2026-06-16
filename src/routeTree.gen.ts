@@ -14,6 +14,7 @@ import { Route as SuccessStoriesRouteImport } from './routes/success-stories'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as LeadsRouteImport } from './routes/leads'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EligibilityRouteImport } from './routes/eligibility'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -62,6 +63,11 @@ const RefundRoute = RefundRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeadsRoute = LeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -203,6 +209,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/eligibility': typeof EligibilityRouteWithChildren
   '/faq': typeof FaqRoute
+  '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -233,6 +240,7 @@ export interface FileRoutesByTo {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -265,6 +273,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/eligibility': typeof EligibilityRouteWithChildren
   '/faq': typeof FaqRoute
+  '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -298,6 +307,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/eligibility'
     | '/faq'
+    | '/leads'
     | '/privacy'
     | '/refund'
     | '/sitemap.xml'
@@ -328,6 +338,7 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/faq'
+    | '/leads'
     | '/privacy'
     | '/refund'
     | '/sitemap.xml'
@@ -359,6 +370,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/eligibility'
     | '/faq'
+    | '/leads'
     | '/privacy'
     | '/refund'
     | '/sitemap.xml'
@@ -391,6 +403,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EligibilityRoute: typeof EligibilityRouteWithChildren
   FaqRoute: typeof FaqRoute
+  LeadsRoute: typeof LeadsRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -440,6 +453,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leads': {
+      id: '/leads'
+      path: '/leads'
+      fullPath: '/leads'
+      preLoaderRoute: typeof LeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -661,6 +681,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EligibilityRoute: EligibilityRouteWithChildren,
   FaqRoute: FaqRoute,
+  LeadsRoute: LeadsRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
