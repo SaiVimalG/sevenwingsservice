@@ -63,7 +63,7 @@ const DEST_COUNTRIES = [
 function genFormId() {
   const rand = Math.random().toString(36).slice(2, 8).toUpperCase();
   const ts = Date.now().toString(36).toUpperCase();
-  return `7W-PL-${ts}-${rand}`;
+  return `7WFI-PL-${ts}-${rand}`;
 }
 
 export function PopupLeadForm() {

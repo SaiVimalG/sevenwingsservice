@@ -21,14 +21,27 @@ import { PhoneField } from "./PhoneField";
 function makeFormId(prefix: string) {
   const rand = Math.random().toString(36).slice(2, 8).toUpperCase();
   const ts = Date.now().toString(36).toUpperCase();
-  return `7W-${prefix}-${ts}-${rand}`;
+  return `7WFI-${prefix}-${ts}-${rand}`;
 }
 
-function Disclaimer({ formId }: { formId: string }) {
+function ConsentCheckbox({
+  checked,
+  onChange,
+}: {
+  checked: boolean;
+  onChange: (v: boolean) => void;
+}) {
   return (
-    <>
-      <p className="text-[11px] leading-relaxed text-muted-foreground">
-        We will use your details only to call you back about your enquiry. By submitting, you accept our{" "}
+    <label className="flex items-start gap-2 pt-1 text-[11px] leading-relaxed text-muted-foreground">
+      <input
+        type="checkbox"
+        required
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-gold"
+      />
+      <span>
+        I agree to be contacted about my enquiry and accept the{" "}
         <Link to="/terms" className="text-gold-deep underline hover:text-gold" target="_blank">
           Terms &amp; Conditions
         </Link>{" "}
@@ -36,17 +49,23 @@ function Disclaimer({ formId }: { formId: string }) {
         <Link to="/privacy" className="text-gold-deep underline hover:text-gold" target="_blank">
           Privacy Policy
         </Link>
-        .
-      </p>
-      <p className="text-[10px] tracking-wider text-muted-foreground/70">Ref ID: {formId}</p>
-    </>
+        . *
+      </span>
+    </label>
+  );
+}
+
+function Disclaimer({ formId }: { formId: string }) {
+  return (
+    <p className="text-[10px] tracking-wider text-muted-foreground/70">Ref ID: {formId}</p>
   );
 }
 
 export function ContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
-  const formId = useMemo(() => makeFormId("CT"), []);
+  const [accepted, setAccepted] = useState(false);
+  const formId = useMemo(() => makeFormId("CU"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -83,7 +102,8 @@ export function ContactForm() {
         <option value="Other">Other</option>
       </Select>
       <Textarea name="message" label="How can we help?" icon={MessageSquare} required rows={5} />
-      <button type="submit" disabled={loading} className="btn-gold btn-gold-hover disabled:opacity-60">
+      <ConsentCheckbox checked={accepted} onChange={setAccepted} />
+      <button type="submit" disabled={loading || !accepted} className="btn-gold btn-gold-hover disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Submit Inquiry <ArrowRight className="h-4 w-4" /></>}
       </button>
       <Disclaimer formId={formId} />
@@ -94,7 +114,8 @@ export function ContactForm() {
 export function ConsultationForm() {
   const fn = useServerFn(submitConsultation);
   const [loading, setLoading] = useState(false);
-  const formId = useMemo(() => makeFormId("CN"), []);
+  const [accepted, setAccepted] = useState(false);
+  const formId = useMemo(() => makeFormId("CB"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -144,7 +165,8 @@ export function ConsultationForm() {
       </div>
       <Input name="current_status" label="Current role / qualification" icon={Briefcase} placeholder="e.g. Software Engineer, B.Tech CSE, 4 yrs exp" />
       <Textarea name="notes" label="Anything else we should know?" icon={FileText} rows={4} />
-      <button type="submit" disabled={loading} className="btn-gold btn-gold-hover disabled:opacity-60">
+      <ConsentCheckbox checked={accepted} onChange={setAccepted} />
+      <button type="submit" disabled={loading || !accepted} className="btn-gold btn-gold-hover disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Book Consultation <ArrowRight className="h-4 w-4" /></>}
       </button>
       <Disclaimer formId={formId} />
@@ -158,6 +180,7 @@ export function ConsultationForm() {
 export function BlogContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
+  const [accepted, setAccepted] = useState(false);
   const formId = useMemo(() => makeFormId("BL"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -188,7 +211,8 @@ export function BlogContactForm() {
       <Input name="name" label="Full name" icon={User} required />
       <Input name="email" type="email" label="Email" icon={Mail} required />
       <PhoneField name="phone" label="Phone" required />
-      <button type="submit" disabled={loading} className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60">
+      <ConsentCheckbox checked={accepted} onChange={setAccepted} />
+      <button type="submit" disabled={loading || !accepted} className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Request a callback <ArrowRight className="h-4 w-4" /></>}
       </button>
       <Disclaimer formId={formId} />
