@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
+import { PopupLeadForm } from "./PopupLeadForm";
 
 export function PageShell({ children }: { children: ReactNode }) {
   return (
@@ -16,6 +17,7 @@ export function PageShell({ children }: { children: ReactNode }) {
         {children}
       </motion.main>
       <Footer />
+      <PopupLeadForm />
     </div>
   );
 }
