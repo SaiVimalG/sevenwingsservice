@@ -76,6 +76,10 @@ export function PopupLeadForm() {
   const formId = useMemo(() => genFormId(), []);
   const fn = useServerFn(submitContact);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const submitBtnRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
 
   useEffect(() => {
     if (typeof window === "undefined") return;
