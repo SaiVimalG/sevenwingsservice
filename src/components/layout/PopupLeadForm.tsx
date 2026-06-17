@@ -235,7 +235,7 @@ export function PopupLeadForm() {
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !accepted}
                 className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60"
               >
                 {loading ? (
