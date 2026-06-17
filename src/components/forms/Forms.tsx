@@ -165,7 +165,8 @@ export function ConsultationForm() {
       </div>
       <Input name="current_status" label="Current role / qualification" icon={Briefcase} placeholder="e.g. Software Engineer, B.Tech CSE, 4 yrs exp" />
       <Textarea name="notes" label="Anything else we should know?" icon={FileText} rows={4} />
-      <button type="submit" disabled={loading} className="btn-gold btn-gold-hover disabled:opacity-60">
+      <ConsentCheckbox checked={accepted} onChange={setAccepted} />
+      <button type="submit" disabled={loading || !accepted} className="btn-gold btn-gold-hover disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Book Consultation <ArrowRight className="h-4 w-4" /></>}
       </button>
       <Disclaimer formId={formId} />
