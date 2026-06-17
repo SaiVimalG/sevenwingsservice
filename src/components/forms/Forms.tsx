@@ -64,7 +64,8 @@ function Disclaimer({ formId }: { formId: string }) {
 export function ContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
-  const formId = useMemo(() => makeFormId("CT"), []);
+  const [accepted, setAccepted] = useState(false);
+  const formId = useMemo(() => makeFormId("CU"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
