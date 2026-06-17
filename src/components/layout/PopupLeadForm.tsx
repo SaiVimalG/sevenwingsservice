@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import {
   X,
   ArrowRight,
@@ -72,21 +72,18 @@ export function PopupLeadForm() {
   const [accepted, setAccepted] = useState(false);
   const formId = useMemo(() => genFormId(), []);
   const fn = useServerFn(submitContact);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    try {
-      if (sessionStorage.getItem(STORAGE_KEY)) return;
-    } catch {}
+    setOpen(false);
+    setAccepted(false);
     const t = setTimeout(() => setOpen(true), 5000);
     return () => clearTimeout(t);
-  }, []);
+  }, [pathname]);
 
   function close() {
     setOpen(false);
-    try {
-      sessionStorage.setItem(STORAGE_KEY, "1");
-    } catch {}
   }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -238,7 +235,7 @@ export function PopupLeadForm() {
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !accepted}
                 className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60"
               >
                 {loading ? (
