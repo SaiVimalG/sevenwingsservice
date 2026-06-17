@@ -13,6 +13,8 @@ import {
   Briefcase,
   MapPin,
   Languages,
+  CheckCircle2,
+  Phone as PhoneIcon,
 } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
