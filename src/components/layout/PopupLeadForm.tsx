@@ -287,6 +287,8 @@ export function PopupLeadForm() {
                 )}
               </button>
             </form>
+            </>
+            )}
           </motion.div>
         </motion.div>
       )}
