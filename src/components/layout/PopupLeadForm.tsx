@@ -123,6 +123,15 @@ export function PopupLeadForm() {
         },
       });
       setSubmitted(true);
+      toast.success("Thank you! We will contact you shortly.", {
+        description: "A counsellor will call you within 4 working hours.",
+      });
+      setTimeout(() => {
+        setOpen(false);
+        toast.success("Thank you! We will contact you shortly.", {
+          description: "A counsellor will call you within 4 working hours.",
+        });
+      }, 4000);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
     } finally {
