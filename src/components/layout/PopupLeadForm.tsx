@@ -86,13 +86,27 @@ export function PopupLeadForm() {
     setOpen(false);
     setAccepted(false);
     setSubmitted(false);
+    triggerRef.current = (document.activeElement as HTMLElement) ?? null;
     const t = setTimeout(() => setOpen(true), 5000);
     return () => clearTimeout(t);
   }, [pathname]);
 
+  // Focus submit button when popup opens; close button when success view renders
+  useEffect(() => {
+    if (!open) return;
+    const id = setTimeout(() => {
+      if (submitted) closeBtnRef.current?.focus();
+      else submitBtnRef.current?.focus();
+    }, 250);
+    return () => clearTimeout(id);
+  }, [open, submitted]);
+
   function close() {
     setOpen(false);
+    // Return focus to whatever was focused before popup opened
+    setTimeout(() => triggerRef.current?.focus?.(), 0);
   }
+
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
