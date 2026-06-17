@@ -55,10 +55,8 @@ function ConsentCheckbox({
   );
 }
 
-function Disclaimer({ formId }: { formId: string }) {
-  return (
-    <p className="text-[10px] tracking-wider text-muted-foreground/70">Ref ID: {formId}</p>
-  );
+function Disclaimer(_props: { formId: string }) {
+  return null;
 }
 
 export function ContactForm() {
