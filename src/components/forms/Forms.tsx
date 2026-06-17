@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import {
   ArrowRight,
@@ -17,9 +18,35 @@ import { submitContact, submitConsultation } from "@/lib/forms.functions";
 import { SERVICES } from "@/lib/site";
 import { PhoneField } from "./PhoneField";
 
+function makeFormId(prefix: string) {
+  const rand = Math.random().toString(36).slice(2, 8).toUpperCase();
+  const ts = Date.now().toString(36).toUpperCase();
+  return `7W-${prefix}-${ts}-${rand}`;
+}
+
+function Disclaimer({ formId }: { formId: string }) {
+  return (
+    <>
+      <p className="text-[11px] leading-relaxed text-muted-foreground">
+        We will use your details only to call you back about your enquiry. By submitting, you accept our{" "}
+        <Link to="/terms" className="text-gold-deep underline hover:text-gold" target="_blank">
+          Terms &amp; Conditions
+        </Link>{" "}
+        and{" "}
+        <Link to="/privacy" className="text-gold-deep underline hover:text-gold" target="_blank">
+          Privacy Policy
+        </Link>
+        .
+      </p>
+      <p className="text-[10px] tracking-wider text-muted-foreground/70">Ref ID: {formId}</p>
+    </>
+  );
+}
+
 export function ContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
+  const formId = useMemo(() => makeFormId("CT"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,10 +59,10 @@ export function ContactForm() {
           email: String(f.get("email") || ""),
           phone: String(f.get("phone") || ""),
           country_interest: String(f.get("country_interest") || "") || null,
-          message: String(f.get("message") || ""),
+          message: `${String(f.get("message") || "")}\n\n---\nForm ID: ${formId}\nSource: contact_page`,
         },
       });
-      toast.success("Thanks! Our team will reply within 4 working hours.");
+      toast.success(`Thanks! Ref: ${formId}. Our team will reply within 4 working hours.`);
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
@@ -45,11 +72,12 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form id={formId} data-form-id={formId} data-form-source="contact_page" onSubmit={onSubmit} className="space-y-4">
+      <input type="hidden" name="form_id" value={formId} />
       <Input name="name" label="Full name" icon={User} required />
       <Input name="email" type="email" label="Email" icon={Mail} required />
       <PhoneField name="phone" label="Phone" required />
-      <Select name="country_interest" label="Country of interest" icon={Globe2}>
+      <Select name="country_interest" label="Country of interest" icon={Globe2} required>
         <option value="">Select…</option>
         {SERVICES.map((s) => <option key={s.slug} value={s.country}>{s.country}</option>)}
         <option value="Other">Other</option>
@@ -58,6 +86,7 @@ export function ContactForm() {
       <button type="submit" disabled={loading} className="btn-gold btn-gold-hover disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Submit Inquiry <ArrowRight className="h-4 w-4" /></>}
       </button>
+      <Disclaimer formId={formId} />
     </form>
   );
 }
@@ -65,12 +94,14 @@ export function ContactForm() {
 export function ConsultationForm() {
   const fn = useServerFn(submitConsultation);
   const [loading, setLoading] = useState(false);
+  const formId = useMemo(() => makeFormId("CN"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
     setLoading(true);
     try {
+      const notes = String(f.get("notes") || "");
       await fn({
         data: {
           name: String(f.get("name") || ""),
@@ -80,10 +111,10 @@ export function ConsultationForm() {
           preferred_date: String(f.get("preferred_date") || "") || null,
           preferred_time: String(f.get("preferred_time") || "") || null,
           current_status: String(f.get("current_status") || "") || null,
-          notes: String(f.get("notes") || "") || null,
+          notes: `${notes}\n\n---\nForm ID: ${formId}\nSource: book_consultation`.trim(),
         },
       });
-      toast.success("Consultation booked. We'll confirm your slot shortly.");
+      toast.success(`Consultation booked. Ref: ${formId}. We'll confirm your slot shortly.`);
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Booking failed");
@@ -93,7 +124,8 @@ export function ConsultationForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form id={formId} data-form-id={formId} data-form-source="book_consultation" onSubmit={onSubmit} className="space-y-4">
+      <input type="hidden" name="form_id" value={formId} />
       <Input name="name" label="Full name" icon={User} required />
       <Input name="email" type="email" label="Email" icon={Mail} required />
       <PhoneField name="phone" label="Phone" required />
@@ -115,6 +147,7 @@ export function ConsultationForm() {
       <button type="submit" disabled={loading} className="btn-gold btn-gold-hover disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Book Consultation <ArrowRight className="h-4 w-4" /></>}
       </button>
+      <Disclaimer formId={formId} />
     </form>
   );
 }
@@ -125,6 +158,7 @@ export function ConsultationForm() {
 export function BlogContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
+  const formId = useMemo(() => makeFormId("BL"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -137,10 +171,10 @@ export function BlogContactForm() {
           email: String(f.get("email") || ""),
           phone: String(f.get("phone") || ""),
           country_interest: null,
-          message: "Blog sidebar enquiry — please call back.",
+          message: `Blog sidebar enquiry — please call back.\n\n---\nForm ID: ${formId}\nSource: blog_sidebar\nPage: ${typeof window !== "undefined" ? window.location.pathname : "—"}`,
         },
       });
-      toast.success("Thanks! A senior counsellor will call you within 4 working hours.");
+      toast.success(`Thanks! Ref: ${formId}. A senior counsellor will call you within 4 working hours.`);
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
@@ -149,13 +183,15 @@ export function BlogContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-3">
+    <form id={formId} data-form-id={formId} data-form-source="blog_sidebar" onSubmit={onSubmit} className="space-y-3">
+      <input type="hidden" name="form_id" value={formId} />
       <Input name="name" label="Full name" icon={User} required />
       <Input name="email" type="email" label="Email" icon={Mail} required />
       <PhoneField name="phone" label="Phone" required />
       <button type="submit" disabled={loading} className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Request a callback <ArrowRight className="h-4 w-4" /></>}
       </button>
+      <Disclaimer formId={formId} />
     </form>
   );
 }
