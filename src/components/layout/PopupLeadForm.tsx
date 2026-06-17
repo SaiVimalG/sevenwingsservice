@@ -121,7 +121,7 @@ export function PopupLeadForm() {
           message: `Popup lead — please call back.\n\n${extras}`,
         },
       });
-      toast.success(`Thanks! Ref: ${formId}. We'll reach out within 4 working hours.`);
+      toast.success("Thanks! We'll reach out within 4 working hours.");
       close();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
