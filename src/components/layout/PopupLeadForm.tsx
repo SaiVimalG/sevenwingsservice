@@ -176,6 +176,7 @@ export function PopupLeadForm() {
             className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl max-h-[92vh] overflow-y-auto"
           >
             <button
+              ref={closeBtnRef}
               type="button"
               aria-label="Close"
               onClick={close}
