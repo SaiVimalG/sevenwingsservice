@@ -79,7 +79,7 @@ export function ContactForm() {
           message: `${String(f.get("message") || "")}\n\n---\nForm ID: ${formId}\nSource: contact_page`,
         },
       });
-      toast.success(`Thanks! Ref: ${formId}. Our team will reply within 4 working hours.`);
+      toast.success("Thanks! Our team will reply within 4 working hours.");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
