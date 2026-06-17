@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
@@ -76,19 +76,37 @@ export function PopupLeadForm() {
   const formId = useMemo(() => genFormId(), []);
   const fn = useServerFn(submitContact);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const submitBtnRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     setOpen(false);
     setAccepted(false);
     setSubmitted(false);
+    triggerRef.current = (document.activeElement as HTMLElement) ?? null;
     const t = setTimeout(() => setOpen(true), 5000);
     return () => clearTimeout(t);
   }, [pathname]);
 
+  // Focus submit button when popup opens; close button when success view renders
+  useEffect(() => {
+    if (!open) return;
+    const id = setTimeout(() => {
+      if (submitted) closeBtnRef.current?.focus();
+      else submitBtnRef.current?.focus();
+    }, 250);
+    return () => clearTimeout(id);
+  }, [open, submitted]);
+
   function close() {
     setOpen(false);
+    // Return focus to whatever was focused before popup opened
+    setTimeout(() => triggerRef.current?.focus?.(), 0);
   }
+
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -158,6 +176,7 @@ export function PopupLeadForm() {
             className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl max-h-[92vh] overflow-y-auto"
           >
             <button
+              ref={closeBtnRef}
               type="button"
               aria-label="Close"
               onClick={close}
@@ -286,6 +305,7 @@ export function PopupLeadForm() {
               </label>
 
               <button
+                ref={submitBtnRef}
                 type="submit"
                 disabled={loading || submitted || !accepted}
                 aria-busy={loading}
