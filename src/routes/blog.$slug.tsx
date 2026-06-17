@@ -362,7 +362,7 @@ function BlogPostPage() {
 
           {/* Right: TOC + Contact form + Share — all stacked together */}
           <aside className="hidden lg:block">
-            <div className="sticky top-28 max-h-[calc(100vh-8rem)] space-y-6 overflow-y-auto pr-2 [scrollbar-width:thin]">
+            <div className="sticky top-[100px] space-y-6 self-start">
               {/* TOC */}
               <div className="rounded-2xl border border-black/10 bg-white p-5">
                 <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold-deep">
