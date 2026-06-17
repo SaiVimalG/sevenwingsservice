@@ -38,6 +38,7 @@ import { Route as EligibilityCanadaCrsCalculatorRouteImport } from './routes/eli
 import { Route as EligibilityAustralia491PointsCalculatorRouteImport } from './routes/eligibility.australia.491-points-calculator'
 import { Route as EligibilityAustralia190PointsCalculatorRouteImport } from './routes/eligibility.australia.190-points-calculator'
 import { Route as EligibilityAustralia189PointsCalculatorRouteImport } from './routes/eligibility.australia.189-points-calculator'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as ApiPublicGscSubmitSitemapRouteImport } from './routes/api/public/gsc/submit-sitemap'
 
 const TermsRoute = TermsRouteImport.update({
@@ -195,6 +196,12 @@ const EligibilityAustralia189PointsCalculatorRoute =
     path: '/australia/189-points-calculator',
     getParentRoute: () => EligibilityRoute,
   } as any)
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicGscSubmitSitemapRoute =
   ApiPublicGscSubmitSitemapRouteImport.update({
     id: '/api/public/gsc/submit-sitemap',
@@ -233,6 +240,7 @@ export interface FileRoutesByFullPath {
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
   '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -264,6 +272,7 @@ export interface FileRoutesByTo {
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
   '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -297,6 +306,7 @@ export interface FileRoutesById {
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
   '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -331,6 +341,7 @@ export interface FileRouteTypes {
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
     | '/api/public/gsc/submit-sitemap'
+    | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -362,6 +373,7 @@ export interface FileRouteTypes {
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
     | '/api/public/gsc/submit-sitemap'
+    | '/lovable/email/queue/process'
   id:
     | '__root__'
     | '/'
@@ -394,6 +406,7 @@ export interface FileRouteTypes {
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
     | '/api/public/gsc/submit-sitemap'
+    | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -416,6 +429,7 @@ export interface RootRouteChildren {
   BlogIndexRoute: typeof BlogIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ApiPublicGscSubmitSitemapRoute: typeof ApiPublicGscSubmitSitemapRoute
+  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -623,6 +637,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EligibilityAustralia189PointsCalculatorRouteImport
       parentRoute: typeof EligibilityRoute
     }
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/gsc/submit-sitemap': {
       id: '/api/public/gsc/submit-sitemap'
       path: '/api/public/gsc/submit-sitemap'
@@ -694,17 +715,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogIndexRoute: BlogIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ApiPublicGscSubmitSitemapRoute: ApiPublicGscSubmitSitemapRoute,
+  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

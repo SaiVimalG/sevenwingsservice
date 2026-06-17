@@ -24,6 +24,9 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 const canonicalHostMiddleware = createMiddleware().server(async ({ next, request }) => {
   try {
     const url = new URL(request.url);
+    if (url.pathname.startsWith("/lovable/") || url.pathname === "/email/unsubscribe") {
+      return next();
+    }
     const host = url.hostname.toLowerCase();
     if (host === "home.7wingsimmigration.com" || host === "7wingsimmigration.com") {
       url.hostname = "www.7wingsimmigration.com";
