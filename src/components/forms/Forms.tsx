@@ -133,7 +133,7 @@ export function ConsultationForm() {
           notes: `${notes}\n\n---\nForm ID: ${formId}\nSource: book_consultation`.trim(),
         },
       });
-      toast.success(`Consultation booked. Ref: ${formId}. We'll confirm your slot shortly.`);
+      toast.success("Consultation booked. We'll confirm your slot shortly.");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Booking failed");
