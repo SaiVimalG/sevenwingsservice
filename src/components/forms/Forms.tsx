@@ -195,7 +195,7 @@ export function BlogContactForm() {
           message: `Blog sidebar enquiry — please call back.\n\n---\nForm ID: ${formId}\nSource: blog_sidebar\nPage: ${typeof window !== "undefined" ? window.location.pathname : "—"}`,
         },
       });
-      toast.success(`Thanks! Ref: ${formId}. A senior counsellor will call you within 4 working hours.`);
+      toast.success("Thanks! A senior counsellor will call you within 4 working hours.");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
