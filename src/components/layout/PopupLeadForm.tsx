@@ -247,10 +247,6 @@ export function PopupLeadForm() {
                   <>Request Callback <ArrowRight className="h-4 w-4" /></>
                 )}
               </button>
-
-              <p className="text-center text-[10px] tracking-wider text-muted-foreground/80">
-                Ref ID: {formId}
-              </p>
             </form>
           </motion.div>
         </motion.div>
