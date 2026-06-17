@@ -102,7 +102,8 @@ export function ContactForm() {
         <option value="Other">Other</option>
       </Select>
       <Textarea name="message" label="How can we help?" icon={MessageSquare} required rows={5} />
-      <button type="submit" disabled={loading} className="btn-gold btn-gold-hover disabled:opacity-60">
+      <ConsentCheckbox checked={accepted} onChange={setAccepted} />
+      <button type="submit" disabled={loading || !accepted} className="btn-gold btn-gold-hover disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Submit Inquiry <ArrowRight className="h-4 w-4" /></>}
       </button>
       <Disclaimer formId={formId} />
