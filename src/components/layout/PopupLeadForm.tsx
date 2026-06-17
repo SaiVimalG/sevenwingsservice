@@ -1,17 +1,76 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, ArrowRight, Loader2, User, Mail, Globe2, Sparkles } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import {
+  X,
+  ArrowRight,
+  Loader2,
+  User,
+  Mail,
+  Globe2,
+  Sparkles,
+  GraduationCap,
+  Briefcase,
+  MapPin,
+  Languages,
+} from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { submitContact } from "@/lib/forms.functions";
-import { SERVICES } from "@/lib/site";
 import { PhoneField } from "@/components/forms/PhoneField";
 
 const STORAGE_KEY = "7w_popup_shown_v1";
+const FORM_SOURCE = "popup_lead_v2";
+
+const ENGLISH_LEVELS = [
+  "Excellent (8+ Band)",
+  "Good (7 Band)",
+  "Average (6 Band)",
+  "Poor (5 Band)",
+  "Very Poor (4 Band)",
+];
+const EDUCATION = [
+  "PHD / Doctorate",
+  "Masters",
+  "Post Graduation",
+  "Two or more Certificates",
+  "Graduation",
+  "Intermediate / 12th",
+  "Matriculation / 10th",
+  "Diploma 3 years",
+];
+const VISA_TYPES = [
+  "Express Entry",
+  "PNP",
+  "Business Investor Program",
+  "Work Permit",
+  "Study Visa",
+  "Visitor Visa",
+  "Tourist",
+  "Others",
+];
+const DEST_COUNTRIES = [
+  "Canada",
+  "Australia",
+  "Germany",
+  "UK",
+  "United Arab Emirates",
+  "United States",
+  "Spain",
+  "Others",
+];
+
+function genFormId() {
+  const rand = Math.random().toString(36).slice(2, 8).toUpperCase();
+  const ts = Date.now().toString(36).toUpperCase();
+  return `7W-PL-${ts}-${rand}`;
+}
 
 export function PopupLeadForm() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [accepted, setAccepted] = useState(false);
+  const formId = useMemo(() => genFormId(), []);
   const fn = useServerFn(submitContact);
 
   useEffect(() => {
@@ -32,7 +91,25 @@ export function PopupLeadForm() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!accepted) {
+      toast.error("Please accept the Terms & Conditions to continue.");
+      return;
+    }
     const f = new FormData(e.currentTarget);
+    const country = String(f.get("country_to_immigrate") || "");
+    const visa = String(f.get("visa_type") || "");
+
+    const extras = [
+      `Form ID: ${formId}`,
+      `Source: ${FORM_SOURCE}`,
+      `English level: ${f.get("english_level") || "—"}`,
+      `Current country: ${f.get("current_country") || "—"}`,
+      `Education: ${f.get("education") || "—"}`,
+      `Visa type: ${visa}`,
+      `Country to immigrate: ${country}`,
+      `Page: ${typeof window !== "undefined" ? window.location.pathname : "—"}`,
+    ].join("\n");
+
     setLoading(true);
     try {
       await fn({
@@ -40,11 +117,11 @@ export function PopupLeadForm() {
           name: String(f.get("name") || ""),
           email: String(f.get("email") || ""),
           phone: String(f.get("phone") || ""),
-          country_interest: String(f.get("country_interest") || "") || null,
-          message: "Popup lead — please call back.",
+          country_interest: country || null,
+          message: `Popup lead — please call back.\n\n${extras}`,
         },
       });
-      toast.success("Thanks! Our team will reach out within 4 working hours.");
+      toast.success(`Thanks! Ref: ${formId}. We'll reach out within 4 working hours.`);
       close();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
@@ -69,7 +146,7 @@ export function PopupLeadForm() {
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl"
+            className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl max-h-[92vh] overflow-y-auto"
           >
             <button
               aria-label="Close"
@@ -91,23 +168,74 @@ export function PopupLeadForm() {
               </p>
             </div>
 
-            <form onSubmit={onSubmit} className="space-y-3 p-6">
-              <Field icon={User}>
-                <input name="name" required placeholder="Full name" className={input} />
-              </Field>
-              <Field icon={Mail}>
-                <input name="email" type="email" required placeholder="Email" className={input} />
-              </Field>
-              <PhoneField name="phone" label="" required />
-              <Field icon={Globe2}>
-                <select name="country_interest" className={`${input} appearance-none pr-8`} defaultValue="">
-                  <option value="" disabled>Country of interest</option>
-                  {SERVICES.map((s) => (
-                    <option key={s.slug} value={s.country}>{s.country}</option>
-                  ))}
-                  <option value="Other">Other</option>
+            <form
+              id={formId}
+              data-form-id={formId}
+              data-form-source={FORM_SOURCE}
+              onSubmit={onSubmit}
+              className="space-y-3 p-6"
+            >
+              <input type="hidden" name="form_id" value={formId} />
+
+              <Field icon={Languages}>
+                <select name="english_level" className={`${input} appearance-none pr-8`} defaultValue="">
+                  <option value="" disabled>What is your English level (optional)</option>
+                  {ENGLISH_LEVELS.map((v) => <option key={v} value={v}>{v}</option>)}
                 </select>
               </Field>
+
+              <Field icon={User}>
+                <input name="name" required placeholder="Full name *" className={input} />
+              </Field>
+
+              <Field icon={Mail}>
+                <input name="email" type="email" required placeholder="Email *" className={input} />
+              </Field>
+
+              <Field icon={MapPin}>
+                <input name="current_country" placeholder="Current country (optional)" className={input} />
+              </Field>
+
+              <PhoneField name="phone" label="" required />
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Field icon={GraduationCap}>
+                  <select name="education" className={`${input} appearance-none pr-8`} defaultValue="">
+                    <option value="" disabled>Education (optional)</option>
+                    {EDUCATION.map((v) => <option key={v} value={v}>{v}</option>)}
+                  </select>
+                </Field>
+                <Field icon={Briefcase}>
+                  <select name="visa_type" required className={`${input} appearance-none pr-8`} defaultValue="">
+                    <option value="" disabled>Visa Type *</option>
+                    {VISA_TYPES.map((v) => <option key={v} value={v}>{v}</option>)}
+                  </select>
+                </Field>
+              </div>
+
+              <Field icon={Globe2}>
+                <select name="country_to_immigrate" required className={`${input} appearance-none pr-8`} defaultValue="">
+                  <option value="" disabled>Country to immigrate *</option>
+                  {DEST_COUNTRIES.map((v) => <option key={v} value={v}>{v}</option>)}
+                </select>
+              </Field>
+
+              <label className="flex items-start gap-2 pt-1 text-[11px] leading-relaxed text-muted-foreground">
+                <input
+                  type="checkbox"
+                  checked={accepted}
+                  onChange={(e) => setAccepted(e.target.checked)}
+                  className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-gold"
+                  required
+                />
+                <span>
+                  We will use your details only to call you back about your enquiry. By submitting, you accept our{" "}
+                  <Link to="/terms" className="text-gold-deep underline hover:text-gold" target="_blank">Terms &amp; Conditions</Link>{" "}
+                  and{" "}
+                  <Link to="/privacy" className="text-gold-deep underline hover:text-gold" target="_blank">Privacy Policy</Link>.
+                </span>
+              </label>
+
               <button
                 type="submit"
                 disabled={loading}
@@ -119,8 +247,9 @@ export function PopupLeadForm() {
                   <>Request Callback <ArrowRight className="h-4 w-4" /></>
                 )}
               </button>
-              <p className="text-center text-[11px] text-muted-foreground">
-                Your details are confidential. No spam, ever.
+
+              <p className="text-center text-[10px] tracking-wider text-muted-foreground/80">
+                Ref ID: {formId}
               </p>
             </form>
           </motion.div>
