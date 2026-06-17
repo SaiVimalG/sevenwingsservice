@@ -21,14 +21,27 @@ import { PhoneField } from "./PhoneField";
 function makeFormId(prefix: string) {
   const rand = Math.random().toString(36).slice(2, 8).toUpperCase();
   const ts = Date.now().toString(36).toUpperCase();
-  return `7W-${prefix}-${ts}-${rand}`;
+  return `7WFI-${prefix}-${ts}-${rand}`;
 }
 
-function Disclaimer({ formId }: { formId: string }) {
+function ConsentCheckbox({
+  checked,
+  onChange,
+}: {
+  checked: boolean;
+  onChange: (v: boolean) => void;
+}) {
   return (
-    <>
-      <p className="text-[11px] leading-relaxed text-muted-foreground">
-        We will use your details only to call you back about your enquiry. By submitting, you accept our{" "}
+    <label className="flex items-start gap-2 pt-1 text-[11px] leading-relaxed text-muted-foreground">
+      <input
+        type="checkbox"
+        required
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-gold"
+      />
+      <span>
+        I agree to be contacted about my enquiry and accept the{" "}
         <Link to="/terms" className="text-gold-deep underline hover:text-gold" target="_blank">
           Terms &amp; Conditions
         </Link>{" "}
@@ -36,10 +49,15 @@ function Disclaimer({ formId }: { formId: string }) {
         <Link to="/privacy" className="text-gold-deep underline hover:text-gold" target="_blank">
           Privacy Policy
         </Link>
-        .
-      </p>
-      <p className="text-[10px] tracking-wider text-muted-foreground/70">Ref ID: {formId}</p>
-    </>
+        . *
+      </span>
+    </label>
+  );
+}
+
+function Disclaimer({ formId }: { formId: string }) {
+  return (
+    <p className="text-[10px] tracking-wider text-muted-foreground/70">Ref ID: {formId}</p>
   );
 }
 
