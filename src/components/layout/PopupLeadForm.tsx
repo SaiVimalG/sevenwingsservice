@@ -72,6 +72,7 @@ export function PopupLeadForm() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const formId = useMemo(() => genFormId(), []);
   const fn = useServerFn(submitContact);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -80,6 +81,7 @@ export function PopupLeadForm() {
     if (typeof window === "undefined") return;
     setOpen(false);
     setAccepted(false);
+    setSubmitted(false);
     const t = setTimeout(() => setOpen(true), 5000);
     return () => clearTimeout(t);
   }, [pathname]);
