@@ -305,6 +305,7 @@ export function PopupLeadForm() {
               </label>
 
               <button
+                ref={submitBtnRef}
                 type="submit"
                 disabled={loading || submitted || !accepted}
                 aria-busy={loading}
