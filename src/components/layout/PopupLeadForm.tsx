@@ -156,6 +156,44 @@ export function PopupLeadForm() {
               <X className="h-4 w-4" />
             </button>
 
+            {submitted ? (
+              <div className="px-6 py-10 text-center">
+                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-100 text-emerald-600">
+                  <CheckCircle2 className="h-9 w-9" />
+                </div>
+                <h3 className="mt-5 font-display text-2xl font-bold text-navy-deep">
+                  Thank you! Your request is received.
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  A senior immigration counsellor from 7 Wings will contact you shortly —
+                  typically within <span className="font-semibold text-navy-deep">4 working hours</span>.
+                  Please keep your phone reachable.
+                </p>
+                <div className="mt-5 rounded-xl border border-black/10 bg-cream/50 p-4 text-left text-xs text-muted-foreground">
+                  <p className="font-semibold uppercase tracking-wider text-navy-deep">What happens next?</p>
+                  <ul className="mt-2 space-y-1.5">
+                    <li>• Quick eligibility check on your profile</li>
+                    <li>• A free 15-minute consultation call</li>
+                    <li>• Personalised pathway &amp; next steps</li>
+                  </ul>
+                </div>
+                <div className="mt-5 flex flex-col items-center gap-2">
+                  <a
+                    href="tel:+919876543210"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-gold-deep hover:text-gold"
+                  >
+                    <PhoneIcon className="h-4 w-4" /> Need us sooner? Call us now
+                  </a>
+                  <button
+                    onClick={close}
+                    className="mt-2 rounded-full border border-black/10 px-5 py-2 text-xs font-semibold uppercase tracking-wider text-navy-deep hover:bg-black/5"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            ) : (
+            <>
             <div className="bg-hero px-6 py-5 text-white">
               <p className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-soft">
                 <Sparkles className="h-3 w-3" /> Free Consultation
@@ -167,6 +205,7 @@ export function PopupLeadForm() {
                 Share your details — we'll call you back within 4 working hours.
               </p>
             </div>
+
 
             <form
               id={formId}
