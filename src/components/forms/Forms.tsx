@@ -180,6 +180,7 @@ export function ConsultationForm() {
 export function BlogContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
+  const [accepted, setAccepted] = useState(false);
   const formId = useMemo(() => makeFormId("BL"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
