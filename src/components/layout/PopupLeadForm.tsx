@@ -278,11 +278,12 @@ export function PopupLeadForm() {
 
               <button
                 type="submit"
-                disabled={loading || !accepted}
-                className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60"
+                disabled={loading || submitted || !accepted}
+                aria-busy={loading}
+                className="btn-gold btn-gold-hover w-full justify-center disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
                 ) : (
                   <>Request Callback <ArrowRight className="h-4 w-4" /></>
                 )}
