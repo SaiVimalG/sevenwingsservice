@@ -149,11 +149,12 @@ export function PopupLeadForm() {
             className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl max-h-[92vh] overflow-y-auto"
           >
             <button
+              type="button"
               aria-label="Close"
               onClick={close}
-              className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-black/5 text-navy-deep transition-colors hover:bg-black/10"
+              className="absolute right-3 top-3 z-20 grid h-10 w-10 place-items-center rounded-full bg-white text-navy-deep shadow-lg ring-1 ring-black/10 transition-all hover:bg-navy-deep hover:text-white hover:scale-105"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" strokeWidth={2.5} />
             </button>
 
             {submitted ? (
