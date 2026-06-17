@@ -55,10 +55,8 @@ function ConsentCheckbox({
   );
 }
 
-function Disclaimer({ formId }: { formId: string }) {
-  return (
-    <p className="text-[10px] tracking-wider text-muted-foreground/70">Ref ID: {formId}</p>
-  );
+function Disclaimer(_props: { formId: string }) {
+  return null;
 }
 
 export function ContactForm() {
@@ -81,7 +79,7 @@ export function ContactForm() {
           message: `${String(f.get("message") || "")}\n\n---\nForm ID: ${formId}\nSource: contact_page`,
         },
       });
-      toast.success(`Thanks! Ref: ${formId}. Our team will reply within 4 working hours.`);
+      toast.success("Thanks! Our team will reply within 4 working hours.");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
@@ -135,7 +133,7 @@ export function ConsultationForm() {
           notes: `${notes}\n\n---\nForm ID: ${formId}\nSource: book_consultation`.trim(),
         },
       });
-      toast.success(`Consultation booked. Ref: ${formId}. We'll confirm your slot shortly.`);
+      toast.success("Consultation booked. We'll confirm your slot shortly.");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Booking failed");
@@ -197,7 +195,7 @@ export function BlogContactForm() {
           message: `Blog sidebar enquiry — please call back.\n\n---\nForm ID: ${formId}\nSource: blog_sidebar\nPage: ${typeof window !== "undefined" ? window.location.pathname : "—"}`,
         },
       });
-      toast.success(`Thanks! Ref: ${formId}. A senior counsellor will call you within 4 working hours.`);
+      toast.success("Thanks! A senior counsellor will call you within 4 working hours.");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
