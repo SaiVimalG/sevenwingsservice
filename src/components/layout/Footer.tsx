@@ -115,10 +115,11 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-[1200px] px-6 py-5">
-          <p className="text-center text-[11px] leading-relaxed text-white/70 md:text-xs">
-            <span className="font-semibold text-gold">Service Commitment:</span> 7 Wings Immigration provides professional guidance and end-to-end application processing only.
-            We do not guarantee visa approvals or job placements — all final decisions rest with the respective immigration authorities, embassies and employers.
-            Our role is to maximise your success through accurate documentation, transparent advice and dedicated support at every step.
+          <p className="text-center text-[11px] leading-relaxed md:text-xs">
+            <span className="font-semibold text-red-500">Service Commitment:</span>{" "}
+            <span className="text-sky">
+              7 Wings Immigration offers professional guidance and full application processing. We don't guarantee visa approvals or job placements — final decisions rest with immigration authorities, embassies and employers. We maximise your success with accurate documentation, transparent advice and dedicated support.
+            </span>
           </p>
         </div>
       </div>
