@@ -114,7 +114,8 @@ export function ContactForm() {
 export function ConsultationForm() {
   const fn = useServerFn(submitConsultation);
   const [loading, setLoading] = useState(false);
-  const formId = useMemo(() => makeFormId("CN"), []);
+  const [accepted, setAccepted] = useState(false);
+  const formId = useMemo(() => makeFormId("CB"), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
