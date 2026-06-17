@@ -211,7 +211,8 @@ export function BlogContactForm() {
       <Input name="name" label="Full name" icon={User} required />
       <Input name="email" type="email" label="Email" icon={Mail} required />
       <PhoneField name="phone" label="Phone" required />
-      <button type="submit" disabled={loading} className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60">
+      <ConsentCheckbox checked={accepted} onChange={setAccepted} />
+      <button type="submit" disabled={loading || !accepted} className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60">
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Request a callback <ArrowRight className="h-4 w-4" /></>}
       </button>
       <Disclaimer formId={formId} />
