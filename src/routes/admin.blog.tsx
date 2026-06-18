@@ -350,16 +350,23 @@ function sectionsToHtml(intro: string, sections: { heading: string; markdown: st
   return parts.join("\n") || "<p></p>";
 }
 
-function PostEditor({ token, slug, onBack }: { token: string; slug?: string; onBack: () => void }) {
+function PostEditor({ token, slug, source, onBack }: { token: string; slug?: string; source?: "db" | "static"; onBack: () => void }) {
   const [form, setForm] = useState<PostInput>(EMPTY);
-  const [originalSlug, setOriginalSlug] = useState<string | undefined>(slug);
-  const [loading, setLoading] = useState<boolean>(!!slug);
+  const [originalSlug, setOriginalSlug] = useState<string | undefined>(source === "static" ? undefined : slug);
+  const [loading, setLoading] = useState<boolean>(!!slug && source !== "static");
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!slug) return;
+    if (source === "static") {
+      const sp = BLOG.find((b) => b.slug === slug);
+      if (sp) setForm(staticToPostInput(sp));
+      setOriginalSlug(undefined);
+      setLoading(false);
+      return;
+    }
     adminGetPost({ data: { token, slug } })
       .then((p) => {
         if (p) {
