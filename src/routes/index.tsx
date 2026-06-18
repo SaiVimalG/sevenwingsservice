@@ -39,7 +39,10 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: "Best immigration consultancy in Hyderabad — Germany, Australia, Canada, UK, JSS." },
       { name: "twitter:image", content: heroImg },
     ],
-    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/" }],
+    links: [
+      { rel: "canonical", href: "https://www.7wingsimmigration.com/" },
+      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" } as any,
+    ],
   }),
   component: Home,
 });
