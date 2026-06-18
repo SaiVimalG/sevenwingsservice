@@ -246,7 +246,7 @@ export function PopupLeadForm() {
               <input type="hidden" name="form_id" value={formId} />
 
               <Field icon={Languages}>
-                <select name="english_level" className={`${input} appearance-none pr-8`} defaultValue="">
+                <select aria-label="English level" name="english_level" className={`${input} appearance-none pr-8`} defaultValue="">
                   <option value="" disabled>What is your English level (optional)</option>
                   {ENGLISH_LEVELS.map((v) => <option key={v} value={v}>{v}</option>)}
                 </select>
