@@ -388,7 +388,10 @@ function PostEditor({ token, slug, source, onBack, onAuthExpired }: { token: str
           setOriginalSlug(p.slug);
         }
       })
-      .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"))
+      .catch((e) => {
+        if (isAuthErr(e)) { onAuthExpired(); return; }
+        setError(e instanceof Error ? e.message : "Failed to load");
+      })
       .finally(() => setLoading(false));
   }, [slug, source, token]);
 
