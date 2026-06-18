@@ -12,8 +12,64 @@ import {
   setPostListed,
   type PostInput,
 } from "@/lib/blog.functions";
-import { SERVICES } from "@/lib/site";
+import { SERVICES, BLOG, type BlogPost } from "@/lib/site";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
+
+type ListRow = {
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  published: boolean;
+  listed: boolean;
+  source: "db" | "static";
+};
+
+function mdInline(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+function staticPostToHtml(post: BlogPost): string {
+  const parts: string[] = [];
+  if (post.intro?.trim()) parts.push(`<p>${mdInline(post.intro.trim())}</p>`);
+  for (const s of post.sections) {
+    if (s.heading?.trim()) parts.push(`<h2>${mdInline(s.heading.trim())}</h2>`);
+    for (const p of s.paragraphs) {
+      const t = p.trim();
+      if (t) parts.push(`<p>${mdInline(t)}</p>`);
+    }
+  }
+  if (post.why7Wings?.length) {
+    parts.push("<h2>Why 7 Wings</h2><ul>" + post.why7Wings.map((w) => `<li>${mdInline(w)}</li>`).join("") + "</ul>");
+  }
+  return parts.join("\n") || "<p></p>";
+}
+
+function staticToPostInput(post: BlogPost): PostInput {
+  return {
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    author: post.author,
+    imageUrl: typeof post.image === "string" ? post.image : "",
+    readTime: post.readTime,
+    contentHtml: staticPostToHtml(post),
+    intro: "",
+    sections: [],
+    why7Wings: [],
+    ctaLabel: post.cta?.label ?? "Book a free consultation",
+    ctaSlug: post.cta?.slug ?? "",
+    published: true,
+    listed: true,
+  };
+}
 
 export const Route = createFileRoute("/admin/blog")({
   head: () => ({
@@ -27,7 +83,7 @@ export const Route = createFileRoute("/admin/blog")({
 
 const TOKEN_KEY = "admin_blog_token";
 
-type Mode = { kind: "list" } | { kind: "edit"; slug?: string };
+type Mode = { kind: "list" } | { kind: "edit"; slug?: string; source?: "db" | "static" };
 
 const EMPTY: PostInput = {
   slug: "",
@@ -133,25 +189,44 @@ function AdminBlogPage() {
         </div>
 
         {mode.kind === "list" ? (
-          <PostList token={token} onEdit={(slug) => setMode({ kind: "edit", slug })} onNew={() => setMode({ kind: "edit" })} />
+          <PostList token={token} onEdit={(slug, source) => setMode({ kind: "edit", slug, source })} onNew={() => setMode({ kind: "edit" })} />
         ) : (
-          <PostEditor token={token} slug={mode.slug} onBack={() => setMode({ kind: "list" })} />
+          <PostEditor token={token} slug={mode.slug} source={mode.source} onBack={() => setMode({ kind: "list" })} />
         )}
       </section>
     </div>
   );
 }
 
-function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string) => void; onNew: () => void }) {
-  const [posts, setPosts] = useState<Awaited<ReturnType<typeof adminListPosts>>>([]);
+function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string, source: "db" | "static") => void; onNew: () => void }) {
+  const [posts, setPosts] = useState<ListRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
   const reload = async () => {
     setLoading(true);
     try {
-      const list = await adminListPosts({ data: { token } });
-      setPosts(list);
+      const dbList = await adminListPosts({ data: { token } });
+      const dbRows: ListRow[] = dbList.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category,
+        date: p.date,
+        published: p.published,
+        listed: p.listed,
+        source: "db",
+      }));
+      const dbSlugs = new Set(dbRows.map((r) => r.slug));
+      const staticRows: ListRow[] = BLOG.filter((b) => !dbSlugs.has(b.slug)).map((b) => ({
+        slug: b.slug,
+        title: b.title,
+        category: b.category,
+        date: b.date,
+        published: true,
+        listed: true,
+        source: "static",
+      }));
+      setPosts([...dbRows, ...staticRows]);
       setErr(null);
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Failed to load posts");
@@ -206,6 +281,7 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-gold-deep">{p.category}</span>
+                    {p.source === "static" && <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-sky-700">Built-in</span>}
                     {!p.published && <span className="rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-red-600">Draft</span>}
                     {p.published && !p.listed && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-amber-700">SEO only · hidden</span>}
                   </div>
@@ -215,13 +291,15 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onToggleListed(p.slug, !p.listed)}
-                    disabled={!p.published}
+                    disabled={!p.published || p.source === "static"}
                     title={
-                      !p.published
-                        ? "Publish the post first to show it on the website"
-                        : p.listed
-                          ? "Showing on website — click to hide from the blog section"
-                          : "Hidden from the blog section — click to show on website"
+                      p.source === "static"
+                        ? "Built-in post — open Edit and Save to make it manageable"
+                        : !p.published
+                          ? "Publish the post first to show it on the website"
+                          : p.listed
+                            ? "Showing on website — click to hide from the blog section"
+                            : "Hidden from the blog section — click to show on website"
                     }
                     className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
                       p.listed
@@ -236,10 +314,15 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
                     <Eye className="h-3.5 w-3.5" /> View
                   </Link>
 
-                  <button onClick={() => onEdit(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
+                  <button onClick={() => onEdit(p.slug, p.source)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
                     <Pencil className="h-3.5 w-3.5" /> Edit
                   </button>
-                  <button onClick={() => onDelete(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50">
+                  <button
+                    onClick={() => onDelete(p.slug)}
+                    disabled={p.source === "static"}
+                    title={p.source === "static" ? "Built-in post — cannot be deleted" : "Delete this post"}
+                    className="inline-flex items-center gap-1 rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
+                  >
                     <Trash2 className="h-3.5 w-3.5" /> Delete
                   </button>
                 </div>
@@ -267,16 +350,23 @@ function sectionsToHtml(intro: string, sections: { heading: string; markdown: st
   return parts.join("\n") || "<p></p>";
 }
 
-function PostEditor({ token, slug, onBack }: { token: string; slug?: string; onBack: () => void }) {
+function PostEditor({ token, slug, source, onBack }: { token: string; slug?: string; source?: "db" | "static"; onBack: () => void }) {
   const [form, setForm] = useState<PostInput>(EMPTY);
-  const [originalSlug, setOriginalSlug] = useState<string | undefined>(slug);
-  const [loading, setLoading] = useState<boolean>(!!slug);
+  const [originalSlug, setOriginalSlug] = useState<string | undefined>(source === "static" ? undefined : slug);
+  const [loading, setLoading] = useState<boolean>(!!slug && source !== "static");
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!slug) return;
+    if (source === "static") {
+      const sp = BLOG.find((b) => b.slug === slug);
+      if (sp) setForm(staticToPostInput(sp));
+      setOriginalSlug(undefined);
+      setLoading(false);
+      return;
+    }
     adminGetPost({ data: { token, slug } })
       .then((p) => {
         if (p) {
@@ -302,7 +392,7 @@ function PostEditor({ token, slug, onBack }: { token: string; slug?: string; onB
       })
       .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"))
       .finally(() => setLoading(false));
-  }, [slug, token]);
+  }, [slug, token, source]);
 
   const update = <K extends keyof PostInput>(k: K, v: PostInput[K]) => setForm((f) => ({ ...f, [k]: v }));
 
