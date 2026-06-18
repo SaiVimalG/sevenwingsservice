@@ -202,12 +202,17 @@ function AdminBlogPage() {
   );
 }
 
-function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string, source: "db" | "static") => void; onNew: () => void }) {
+function isAuthErr(e: unknown) {
+  return e instanceof Error && /invalid admin token/i.test(e.message);
+}
+
+function PostList({ token, onEdit, onNew, onAuthExpired }: { token: string; onEdit: (slug: string, source: "db" | "static") => void; onNew: () => void; onAuthExpired: () => void }) {
   const [posts, setPosts] = useState<ListRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
   const reload = async () => {
+    if (!token) return;
     setLoading(true);
     try {
       const dbList = await adminListPosts({ data: { token } });
@@ -225,6 +230,10 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
       setPosts([...dbRows, ...staticRows]);
       setErr(null);
     } catch (e) {
+      if (isAuthErr(e)) {
+        onAuthExpired();
+        return;
+      }
       setErr(e instanceof Error ? e.message : "Failed to load posts");
     } finally {
       setLoading(false);
@@ -234,7 +243,7 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
   useEffect(() => {
     reload();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [token]);
 
   const onDelete = async (slug: string) => {
     if (!confirm(`Delete post "${slug}"? This cannot be undone.`)) return;
