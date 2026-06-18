@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -154,7 +153,7 @@ function AdminBlogPage() {
 
   if (!authed) {
     return (
-      <PageShell>
+      <div className="min-h-screen bg-background">
         <div className="container max-w-md py-24">
           <h1 className="text-2xl font-bold mb-6">Blog Admin</h1>
           <form
@@ -166,12 +165,12 @@ function AdminBlogPage() {
             <Button type="submit" disabled={loginMut.isPending}>Sign in</Button>
           </form>
         </div>
-      </PageShell>
+      </div>
     );
   }
 
   return (
-    <PageShell>
+    <div className="min-h-screen bg-background">
       <div className="container py-10 grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
         <aside className="space-y-3">
           <div className="flex items-center justify-between">
@@ -265,6 +264,6 @@ function AdminBlogPage() {
           </div>
         </main>
       </div>
-    </PageShell>
+    </div>
   );
 }
