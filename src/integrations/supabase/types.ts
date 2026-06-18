@@ -18,13 +18,15 @@ export type Database = {
         Row: {
           author: string
           category: string
+          content_html: string | null
           created_at: string
           cta_label: string | null
           cta_slug: string | null
           excerpt: string
           id: string
           image_url: string
-          intro: string
+          intro: string | null
+          listed: boolean
           published: boolean
           published_at: string
           read_time: string
@@ -37,13 +39,15 @@ export type Database = {
         Insert: {
           author?: string
           category: string
+          content_html?: string | null
           created_at?: string
           cta_label?: string | null
           cta_slug?: string | null
           excerpt: string
           id?: string
           image_url: string
-          intro: string
+          intro?: string | null
+          listed?: boolean
           published?: boolean
           published_at?: string
           read_time?: string
@@ -56,13 +60,15 @@ export type Database = {
         Update: {
           author?: string
           category?: string
+          content_html?: string | null
           created_at?: string
           cta_label?: string | null
           cta_slug?: string | null
           excerpt?: string
           id?: string
           image_url?: string
-          intro?: string
+          intro?: string | null
+          listed?: boolean
           published?: boolean
           published_at?: string
           read_time?: string
