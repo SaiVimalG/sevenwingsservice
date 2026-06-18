@@ -339,9 +339,9 @@ function sectionsToHtml(intro: string, sections: { heading: string; markdown: st
   return parts.join("\n") || "<p></p>";
 }
 
-function PostEditor({ token, slug, onBack }: { token: string; slug?: string; onBack: () => void }) {
+function PostEditor({ token, slug, source, onBack }: { token: string; slug?: string; source?: "db" | "static"; onBack: () => void }) {
   const [form, setForm] = useState<PostInput>(EMPTY);
-  const [originalSlug, setOriginalSlug] = useState<string | undefined>(slug);
+  const [originalSlug, setOriginalSlug] = useState<string | undefined>(source === "static" ? undefined : slug);
   const [loading, setLoading] = useState<boolean>(!!slug);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -349,6 +349,12 @@ function PostEditor({ token, slug, onBack }: { token: string; slug?: string; onB
 
   useEffect(() => {
     if (!slug) return;
+    if (source === "static") {
+      const sp = BLOG.find((b) => b.slug === slug);
+      if (sp) setForm(staticToPostInput(sp));
+      setLoading(false);
+      return;
+    }
     adminGetPost({ data: { token, slug } })
       .then((p) => {
         if (p) {
@@ -374,7 +380,7 @@ function PostEditor({ token, slug, onBack }: { token: string; slug?: string; onB
       })
       .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"))
       .finally(() => setLoading(false));
-  }, [slug, token]);
+  }, [slug, source, token]);
 
   const update = <K extends keyof PostInput>(k: K, v: PostInput[K]) => setForm((f) => ({ ...f, [k]: v }));
 
