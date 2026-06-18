@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
+import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp } from "lucide-react";
 
 import {
   verifyAdminToken,
@@ -12,63 +12,8 @@ import {
   setPostListed,
   type PostInput,
 } from "@/lib/blog.functions";
-import { SERVICES, BLOG, type BlogPost } from "@/lib/site";
+import { SERVICES } from "@/lib/site";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
-
-type ListRow = {
-  slug: string;
-  title: string;
-  category: string;
-  date: string;
-  published: boolean;
-  listed: boolean;
-  source: "db" | "static";
-};
-
-function staticToListRow(p: BlogPost): ListRow {
-  return {
-    slug: p.slug,
-    title: p.title,
-    category: p.category,
-    date: p.date,
-    published: true,
-    listed: true,
-    source: "static",
-  };
-}
-
-function staticToPostInput(p: BlogPost): PostInput {
-  const parts: string[] = [];
-  if (p.intro?.trim()) parts.push(`<p>${p.intro.trim()}</p>`);
-  for (const s of p.sections) {
-    if (s.heading?.trim()) parts.push(`<h2>${s.heading.trim()}</h2>`);
-    for (const para of s.paragraphs) {
-      const t = para?.trim();
-      if (t) parts.push(`<p>${t.replace(/\n/g, "<br/>")}</p>`);
-    }
-  }
-  const imageUrl =
-    typeof window !== "undefined" && p.image && !/^https?:\/\//.test(p.image)
-      ? new URL(p.image, window.location.origin).toString()
-      : p.image;
-  return {
-    slug: p.slug,
-    title: p.title,
-    excerpt: p.excerpt,
-    category: p.category,
-    author: p.author,
-    imageUrl,
-    readTime: p.readTime,
-    contentHtml: parts.join("\n") || "<p></p>",
-    intro: "",
-    sections: [],
-    why7Wings: p.why7Wings ?? [],
-    ctaLabel: p.cta?.label ?? "",
-    ctaSlug: p.cta?.slug ?? "",
-    published: true,
-    listed: true,
-  };
-}
 
 export const Route = createFileRoute("/admin/blog")({
   head: () => ({
@@ -82,7 +27,7 @@ export const Route = createFileRoute("/admin/blog")({
 
 const TOKEN_KEY = "admin_blog_token";
 
-type Mode = { kind: "list" } | { kind: "edit"; slug?: string; source?: "db" | "static" };
+type Mode = { kind: "list" } | { kind: "edit"; slug?: string };
 
 const EMPTY: PostInput = {
   slug: "",
@@ -188,52 +133,27 @@ function AdminBlogPage() {
         </div>
 
         {mode.kind === "list" ? (
-          <PostList
-            token={token}
-            onEdit={(slug, source) => setMode({ kind: "edit", slug, source })}
-            onNew={() => setMode({ kind: "edit" })}
-            onAuthExpired={signOut}
-          />
+          <PostList token={token} onEdit={(slug) => setMode({ kind: "edit", slug })} onNew={() => setMode({ kind: "edit" })} />
         ) : (
-          <PostEditor token={token} slug={mode.slug} source={mode.source} onBack={() => setMode({ kind: "list" })} onAuthExpired={signOut} />
+          <PostEditor token={token} slug={mode.slug} onBack={() => setMode({ kind: "list" })} />
         )}
       </section>
     </div>
   );
 }
 
-function isAuthErr(e: unknown) {
-  return e instanceof Error && /invalid admin token/i.test(e.message);
-}
-
-function PostList({ token, onEdit, onNew, onAuthExpired }: { token: string; onEdit: (slug: string, source: "db" | "static") => void; onNew: () => void; onAuthExpired: () => void }) {
-  const [posts, setPosts] = useState<ListRow[]>([]);
+function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string) => void; onNew: () => void }) {
+  const [posts, setPosts] = useState<Awaited<ReturnType<typeof adminListPosts>>>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
   const reload = async () => {
-    if (!token) return;
     setLoading(true);
     try {
-      const dbList = await adminListPosts({ data: { token } });
-      const dbRows: ListRow[] = dbList.map((p) => ({
-        slug: p.slug,
-        title: p.title,
-        category: p.category,
-        date: p.date,
-        published: p.published,
-        listed: p.listed,
-        source: "db",
-      }));
-      const dbSlugs = new Set(dbRows.map((p) => p.slug));
-      const staticRows: ListRow[] = BLOG.filter((p) => !dbSlugs.has(p.slug)).map(staticToListRow);
-      setPosts([...dbRows, ...staticRows]);
+      const list = await adminListPosts({ data: { token } });
+      setPosts(list);
       setErr(null);
     } catch (e) {
-      if (isAuthErr(e)) {
-        onAuthExpired();
-        return;
-      }
       setErr(e instanceof Error ? e.message : "Failed to load posts");
     } finally {
       setLoading(false);
@@ -243,7 +163,7 @@ function PostList({ token, onEdit, onNew, onAuthExpired }: { token: string; onEd
   useEffect(() => {
     reload();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, []);
 
   const onDelete = async (slug: string) => {
     if (!confirm(`Delete post "${slug}"? This cannot be undone.`)) return;
@@ -256,10 +176,12 @@ function PostList({ token, onEdit, onNew, onAuthExpired }: { token: string; onEd
   };
 
   const onToggleListed = async (slug: string, next: boolean) => {
+    // optimistic update
     setPosts((prev) => prev.map((p) => (p.slug === slug ? { ...p, listed: next } : p)));
     try {
       await setPostListed({ data: { token, slug, listed: next } });
     } catch (e) {
+      // revert on failure
       setPosts((prev) => prev.map((p) => (p.slug === slug ? { ...p, listed: !next } : p)));
       alert(e instanceof Error ? e.message : "Failed to update visibility");
     }
@@ -280,11 +202,10 @@ function PostList({ token, onEdit, onNew, onAuthExpired }: { token: string; onEd
         ) : (
           <ul className="divide-y divide-black/5">
             {posts.map((p) => (
-              <li key={`${p.source}:${p.slug}`} className="flex flex-wrap items-center justify-between gap-3 p-4">
+              <li key={p.slug} className="flex flex-wrap items-center justify-between gap-3 p-4">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-gold-deep">{p.category}</span>
-                    {p.source === "static" && <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-sky-700">Built-in</span>}
                     {!p.published && <span className="rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-red-600">Draft</span>}
                     {p.published && !p.listed && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-amber-700">SEO only · hidden</span>}
                   </div>
@@ -292,38 +213,35 @@ function PostList({ token, onEdit, onNew, onAuthExpired }: { token: string; onEd
                   <p className="truncate text-xs text-muted-foreground">/blog/{slugify(p.category)}/{p.slug} · {p.date}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  {p.source === "db" ? (
-                    <button
-                      onClick={() => onToggleListed(p.slug, !p.listed)}
-                      disabled={!p.published}
-                      title={!p.published ? "Publish first" : p.listed ? "Click to hide" : "Click to show"}
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
-                        p.listed ? "border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100" : "border-black/10 bg-white text-muted-foreground hover:border-gold"
-                      }`}
-                    >
-                      {p.listed ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5" />}
-                      {p.listed ? "Shown" : "Hidden"}
-                    </button>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700">
-                      <Eye className="h-3.5 w-3.5" /> Shown
-                    </span>
-                  )}
+                  <button
+                    onClick={() => onToggleListed(p.slug, !p.listed)}
+                    disabled={!p.published}
+                    title={
+                      !p.published
+                        ? "Publish the post first to show it on the website"
+                        : p.listed
+                          ? "Showing on website — click to hide from the blog section"
+                          : "Hidden from the blog section — click to show on website"
+                    }
+                    className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
+                      p.listed
+                        ? "border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                        : "border-black/10 bg-white text-muted-foreground hover:border-gold"
+                    }`}
+                  >
+                    {p.listed ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5" />}
+                    {p.listed ? "Shown" : "Hidden"}
+                  </button>
                   <Link to="/blog/$country/$slug" params={{ country: slugify(p.category), slug: p.slug }} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold" target="_blank">
                     <Eye className="h-3.5 w-3.5" /> View
                   </Link>
-                  <button onClick={() => onEdit(p.slug, p.source)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
+
+                  <button onClick={() => onEdit(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
                     <Pencil className="h-3.5 w-3.5" /> Edit
                   </button>
-                  {p.source === "db" ? (
-                    <button onClick={() => onDelete(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50">
-                      <Trash2 className="h-3.5 w-3.5" /> Delete
-                    </button>
-                  ) : (
-                    <span title="Built-in post — edit to save a custom version" className="inline-flex items-center gap-1 rounded-full border border-black/5 px-3 py-1.5 text-xs text-muted-foreground/60">
-                      <Trash2 className="h-3.5 w-3.5" /> Delete
-                    </span>
-                  )}
+                  <button onClick={() => onDelete(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50">
+                    <Trash2 className="h-3.5 w-3.5" /> Delete
+                  </button>
                 </div>
               </li>
             ))}
@@ -349,9 +267,9 @@ function sectionsToHtml(intro: string, sections: { heading: string; markdown: st
   return parts.join("\n") || "<p></p>";
 }
 
-function PostEditor({ token, slug, source, onBack, onAuthExpired }: { token: string; slug?: string; source?: "db" | "static"; onBack: () => void; onAuthExpired: () => void }) {
+function PostEditor({ token, slug, onBack }: { token: string; slug?: string; onBack: () => void }) {
   const [form, setForm] = useState<PostInput>(EMPTY);
-  const [originalSlug, setOriginalSlug] = useState<string | undefined>(source === "static" ? undefined : slug);
+  const [originalSlug, setOriginalSlug] = useState<string | undefined>(slug);
   const [loading, setLoading] = useState<boolean>(!!slug);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -359,12 +277,6 @@ function PostEditor({ token, slug, source, onBack, onAuthExpired }: { token: str
 
   useEffect(() => {
     if (!slug) return;
-    if (source === "static") {
-      const sp = BLOG.find((b) => b.slug === slug);
-      if (sp) setForm(staticToPostInput(sp));
-      setLoading(false);
-      return;
-    }
     adminGetPost({ data: { token, slug } })
       .then((p) => {
         if (p) {
@@ -388,12 +300,9 @@ function PostEditor({ token, slug, source, onBack, onAuthExpired }: { token: str
           setOriginalSlug(p.slug);
         }
       })
-      .catch((e) => {
-        if (isAuthErr(e)) { onAuthExpired(); return; }
-        setError(e instanceof Error ? e.message : "Failed to load");
-      })
+      .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"))
       .finally(() => setLoading(false));
-  }, [slug, source, token]);
+  }, [slug, token]);
 
   const update = <K extends keyof PostInput>(k: K, v: PostInput[K]) => setForm((f) => ({ ...f, [k]: v }));
 
@@ -527,8 +436,13 @@ function PostEditor({ token, slug, source, onBack, onAuthExpired }: { token: str
           </Field>
         </Section>
 
-        <Section title="Body" subtitle="The article content — switch to Preview to see the live blog look" defaultOpen>
-          <BodyEditorWithPreview form={form} onChange={(html) => update("contentHtml", html)} onUploadImage={uploadImage} />
+        <Section title="Body" subtitle="The article content shown on the page" defaultOpen>
+          <div>
+            <p className="mb-2 text-xs text-muted-foreground">
+              Use the toolbar for headings, font sizes, colors, links, lists, tables and images. Everything you add here is responsive on mobile.
+            </p>
+            <RichTextEditor value={form.contentHtml} onChange={(html) => update("contentHtml", html)} onUploadImage={uploadImage} />
+          </div>
         </Section>
 
         <Section title="CTA" subtitle="Call-to-action button at the end of the article" defaultOpen={false}>
@@ -608,109 +522,6 @@ function Section({
         )}
       </button>
       {open && <div className="space-y-5 border-t border-black/5 px-5 py-5">{children}</div>}
-    </div>
-  );
-}
-
-// Editor + live "poster preview" of the blog post. Toggling between tabs
-// keeps the rich-text editor mounted (so caret/scroll position survive) and
-// renders the preview using the same .blog-content stylesheet as the live
-// article, plus the same hero/cover layout so editors see exactly what the
-// published article will look like.
-function BodyEditorWithPreview({
-  form,
-  onChange,
-  onUploadImage,
-}: {
-  form: PostInput;
-  onChange: (html: string) => void;
-  onUploadImage: (file: File) => Promise<string>;
-}) {
-  const [tab, setTab] = useState<"edit" | "preview">("edit");
-  const country = slugify(form.category) || "country";
-  const urlSlug = slugify(form.slug || form.title) || "post-title";
-
-  return (
-    <div>
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <div className="inline-flex rounded-full border border-black/10 bg-white p-0.5 text-xs font-semibold">
-          <button
-            type="button"
-            onClick={() => setTab("edit")}
-            className={`rounded-full px-4 py-1.5 transition-colors ${tab === "edit" ? "bg-navy-deep text-cream" : "text-navy-deep hover:text-gold-deep"}`}
-          >
-            Edit
-          </button>
-          <button
-            type="button"
-            onClick={() => setTab("preview")}
-            className={`rounded-full px-4 py-1.5 transition-colors ${tab === "preview" ? "bg-navy-deep text-cream" : "text-navy-deep hover:text-gold-deep"}`}
-          >
-            Preview
-          </button>
-        </div>
-        <p className="text-xs text-muted-foreground">
-          {tab === "edit"
-            ? "Use the toolbar for headings, colors, lists, tables, images and CTA cards."
-            : "This is how your post will look on the live blog."}
-        </p>
-      </div>
-
-      {/* Keep the editor mounted so state is preserved across tab switches */}
-      <div className={tab === "edit" ? "" : "hidden"}>
-        <RichTextEditor value={form.contentHtml} onChange={onChange} onUploadImage={onUploadImage} />
-      </div>
-
-      {tab === "preview" && <PosterPreview form={form} country={country} urlSlug={urlSlug} />}
-    </div>
-  );
-}
-
-function PosterPreview({ form, country, urlSlug }: { form: PostInput; country: string; urlSlug: string }) {
-  const html = form.contentHtml?.trim() ? form.contentHtml : "<p class='text-muted-foreground'>Nothing to preview yet — start writing in the Edit tab.</p>";
-  return (
-    <div className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_20px_50px_-30px_rgba(13,46,125,0.25)]">
-      {/* Browser-chrome frame */}
-      <div className="flex items-center gap-2 border-b border-black/10 bg-cream/60 px-3 py-2">
-        <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
-        <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-        <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-        <span className="ml-3 truncate rounded-md bg-white px-3 py-1 text-[11px] font-mono text-muted-foreground">
-          www.7wingsimmigration.com/blog/{country}/{urlSlug}
-        </span>
-      </div>
-
-      {/* Hero — mirrors blog.$country.$slug.tsx */}
-      <div className="bg-hero px-6 py-10 text-white md:px-10 md:py-12">
-        <nav className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/90">
-          <span>Home</span>
-          <ChevronRight className="h-3 w-3" />
-          <span>Blog</span>
-          <ChevronRight className="h-3 w-3" />
-          <span className="text-gold-soft">{form.category || "Category"}</span>
-        </nav>
-        <h1 className="mt-4 font-display text-2xl font-bold leading-tight md:text-3xl lg:text-[2.2rem]">
-          {form.title || "Untitled post"}
-        </h1>
-        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[10px] uppercase tracking-widest text-white/90">
-          <span>📅 {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
-          <span>⏱ {form.readTime || "5 min read"}</span>
-          <span>✍ {form.author || "7 Wings Editorial"}</span>
-        </div>
-      </div>
-
-      {/* Body */}
-      <div className="px-6 py-8 md:px-10 md:py-10">
-        {form.imageUrl && (
-          <img
-            src={form.imageUrl}
-            alt={form.title}
-            className="mb-8 aspect-[16/9] w-full rounded-2xl border border-black/5 object-cover"
-          />
-        )}
-        <p className="mb-6 text-xs uppercase tracking-widest text-gold-deep">{form.excerpt}</p>
-        <div className="blog-content" dangerouslySetInnerHTML={{ __html: html }} />
-      </div>
     </div>
   );
 }
