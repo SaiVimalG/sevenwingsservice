@@ -23,6 +23,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
@@ -108,6 +109,11 @@ const EligibilityIndexRoute = EligibilityIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => EligibilityRoute,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
@@ -213,6 +219,7 @@ export interface FileRoutesByFullPath {
   '/admin/blog': typeof AdminBlogRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
@@ -243,6 +250,7 @@ export interface FileRoutesByTo {
   '/admin/blog': typeof AdminBlogRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog': typeof BlogIndexRoute
   '/eligibility': typeof EligibilityIndexRoute
   '/services': typeof ServicesIndexRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
@@ -275,6 +283,7 @@ export interface FileRoutesById {
   '/admin/blog': typeof AdminBlogRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
@@ -308,6 +317,7 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/programs/$slug'
     | '/services/$slug'
+    | '/blog/'
     | '/eligibility/'
     | '/services/'
     | '/eligibility/australia/189-points-calculator'
@@ -338,6 +348,7 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/programs/$slug'
     | '/services/$slug'
+    | '/blog'
     | '/eligibility'
     | '/services'
     | '/eligibility/australia/189-points-calculator'
@@ -369,6 +380,7 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/programs/$slug'
     | '/services/$slug'
+    | '/blog/'
     | '/eligibility/'
     | '/services/'
     | '/eligibility/australia/189-points-calculator'
@@ -401,6 +413,7 @@ export interface RootRouteChildren {
   AdminBlogRoute: typeof AdminBlogRoute
   ProgramsSlugRoute: typeof ProgramsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ApiPublicGscSubmitSitemapRoute: typeof ApiPublicGscSubmitSitemapRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
@@ -505,6 +518,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/eligibility/'
       preLoaderRoute: typeof EligibilityIndexRouteImport
       parentRoute: typeof EligibilityRoute
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/services/$slug': {
       id: '/services/$slug'
@@ -671,6 +691,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminBlogRoute: AdminBlogRoute,
   ProgramsSlugRoute: ProgramsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ApiPublicGscSubmitSitemapRoute: ApiPublicGscSubmitSitemapRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
