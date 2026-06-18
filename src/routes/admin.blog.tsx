@@ -349,7 +349,7 @@ function sectionsToHtml(intro: string, sections: { heading: string; markdown: st
   return parts.join("\n") || "<p></p>";
 }
 
-function PostEditor({ token, slug, source, onBack }: { token: string; slug?: string; source?: "db" | "static"; onBack: () => void }) {
+function PostEditor({ token, slug, source, onBack, onAuthExpired }: { token: string; slug?: string; source?: "db" | "static"; onBack: () => void; onAuthExpired: () => void }) {
   const [form, setForm] = useState<PostInput>(EMPTY);
   const [originalSlug, setOriginalSlug] = useState<string | undefined>(source === "static" ? undefined : slug);
   const [loading, setLoading] = useState<boolean>(!!slug);
