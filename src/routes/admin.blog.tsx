@@ -192,21 +192,27 @@ function AdminBlogPage() {
             token={token}
             onEdit={(slug, source) => setMode({ kind: "edit", slug, source })}
             onNew={() => setMode({ kind: "edit" })}
+            onAuthExpired={signOut}
           />
         ) : (
-          <PostEditor token={token} slug={mode.slug} source={mode.source} onBack={() => setMode({ kind: "list" })} />
+          <PostEditor token={token} slug={mode.slug} source={mode.source} onBack={() => setMode({ kind: "list" })} onAuthExpired={signOut} />
         )}
       </section>
     </div>
   );
 }
 
-function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string, source: "db" | "static") => void; onNew: () => void }) {
+function isAuthErr(e: unknown) {
+  return e instanceof Error && /invalid admin token/i.test(e.message);
+}
+
+function PostList({ token, onEdit, onNew, onAuthExpired }: { token: string; onEdit: (slug: string, source: "db" | "static") => void; onNew: () => void; onAuthExpired: () => void }) {
   const [posts, setPosts] = useState<ListRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
   const reload = async () => {
+    if (!token) return;
     setLoading(true);
     try {
       const dbList = await adminListPosts({ data: { token } });
@@ -224,6 +230,10 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
       setPosts([...dbRows, ...staticRows]);
       setErr(null);
     } catch (e) {
+      if (isAuthErr(e)) {
+        onAuthExpired();
+        return;
+      }
       setErr(e instanceof Error ? e.message : "Failed to load posts");
     } finally {
       setLoading(false);
@@ -233,7 +243,7 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
   useEffect(() => {
     reload();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [token]);
 
   const onDelete = async (slug: string) => {
     if (!confirm(`Delete post "${slug}"? This cannot be undone.`)) return;
@@ -339,7 +349,7 @@ function sectionsToHtml(intro: string, sections: { heading: string; markdown: st
   return parts.join("\n") || "<p></p>";
 }
 
-function PostEditor({ token, slug, source, onBack }: { token: string; slug?: string; source?: "db" | "static"; onBack: () => void }) {
+function PostEditor({ token, slug, source, onBack, onAuthExpired }: { token: string; slug?: string; source?: "db" | "static"; onBack: () => void; onAuthExpired: () => void }) {
   const [form, setForm] = useState<PostInput>(EMPTY);
   const [originalSlug, setOriginalSlug] = useState<string | undefined>(source === "static" ? undefined : slug);
   const [loading, setLoading] = useState<boolean>(!!slug);
@@ -378,7 +388,10 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
           setOriginalSlug(p.slug);
         }
       })
-      .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"))
+      .catch((e) => {
+        if (isAuthErr(e)) { onAuthExpired(); return; }
+        setError(e instanceof Error ? e.message : "Failed to load");
+      })
       .finally(() => setLoading(false));
   }, [slug, source, token]);
 
