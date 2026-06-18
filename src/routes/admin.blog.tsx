@@ -153,7 +153,7 @@ function AdminBlogPage() {
 
   if (!authed) {
     return (
-      <PageShell>
+      <div className="min-h-screen bg-background">
         <div className="container max-w-md py-24">
           <h1 className="text-2xl font-bold mb-6">Blog Admin</h1>
           <form
@@ -165,7 +165,7 @@ function AdminBlogPage() {
             <Button type="submit" disabled={loginMut.isPending}>Sign in</Button>
           </form>
         </div>
-      </PageShell>
+      </div>
     );
   }
 
