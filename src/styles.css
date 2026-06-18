@@ -251,6 +251,137 @@
 .seven-phone-input .PhoneInputInput { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font-size: 0.875rem; color: var(--ink); padding: 0.25rem 0; }
 .seven-phone-input .PhoneInputInput::placeholder { color: color-mix(in oklab, var(--muted-foreground) 60%, transparent); }
 
+/* ============================================================
+   Shared blog article styles
+   Used by both the published article (blog.$country.$slug.tsx)
+   and the Tiptap editor (RichTextEditor) + admin preview pane
+   so the editing area looks like the live blog.
+   ============================================================ */
+.blog-content { color: var(--ink); font-size: 1.0625rem; line-height: 1.75; }
+.blog-content > * + * { margin-top: 1.1em; }
+.blog-content h2 {
+  font-family: var(--font-display, "Playfair Display", serif);
+  color: var(--navy-deep);
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-top: 2.2em;
+  margin-bottom: 0.6em;
+  letter-spacing: -0.01em;
+}
+.blog-content h3 {
+  font-family: var(--font-display, "Playfair Display", serif);
+  color: var(--navy-deep);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+}
+.blog-content p { color: color-mix(in oklab, var(--ink) 92%, transparent); }
+.blog-content strong { color: var(--navy-deep); font-weight: 700; }
+.blog-content em { font-style: italic; }
+.blog-content a {
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--gold-deep) 35%, transparent);
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.blog-content a:hover { color: var(--navy-deep); text-decoration-color: var(--gold); }
+.blog-content ul, .blog-content ol { padding-left: 1.4em; }
+.blog-content ul { list-style: disc; }
+.blog-content ol { list-style: decimal; }
+.blog-content li { margin: 0.4em 0; padding-left: 0.25em; }
+.blog-content li::marker { color: var(--gold-deep); font-weight: 700; }
+.blog-content blockquote {
+  margin: 1.5em 0;
+  padding: 0.75em 1.25em;
+  border-left: 3px solid var(--gold);
+  background: var(--cream);
+  color: var(--navy-deep);
+  font-style: italic;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+.blog-content img {
+  border-radius: 1rem;
+  border: 1px solid color-mix(in oklab, var(--ink) 6%, transparent);
+  margin: 1.5em auto;
+  max-width: 100%;
+  height: auto;
+}
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+  font-size: 0.95rem;
+}
+.blog-content th, .blog-content td {
+  border: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+  padding: 0.65em 0.85em;
+  text-align: left;
+  vertical-align: top;
+}
+.blog-content th { background: var(--cream); color: var(--navy-deep); font-weight: 700; }
+.blog-content hr { border: 0; border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); margin: 2em 0; }
+.blog-content code {
+  background: var(--cream);
+  border: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+  padding: 0.1em 0.4em;
+  border-radius: 0.35rem;
+  font-size: 0.92em;
+}
+
+/* CTA card embedded inside article body */
+.blog-content .blog-cta,
+.blog-cta {
+  margin: 2em 0;
+  padding: 1.6em 1.8em;
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in oklab, var(--gold) 35%, transparent);
+  background: linear-gradient(135deg, var(--cream), #fff 60%, var(--cream));
+  box-shadow: 0 18px 40px -28px color-mix(in oklab, var(--navy-deep) 50%, transparent);
+}
+.blog-cta .blog-cta-title {
+  font-family: var(--font-display, "Playfair Display", serif);
+  color: var(--navy-deep);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+.blog-cta .blog-cta-text { margin-top: 0.4em; color: color-mix(in oklab, var(--ink) 75%, transparent); font-size: 0.95rem; }
+.blog-cta .blog-cta-actions { margin-top: 1em; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.blog-cta .blog-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.65em 1.2em; border-radius: 9999px;
+  font-size: 0.875rem; font-weight: 600; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.blog-cta .blog-cta-btn:hover { transform: translateY(-1px); }
+.blog-cta .blog-cta-btn-primary {
+  color: var(--navy-deep);
+  background: linear-gradient(135deg, oklch(0.92 0.10 90), var(--gold) 50%, var(--gold-deep));
+  box-shadow: 0 12px 28px -14px color-mix(in oklab, var(--gold) 70%, transparent);
+}
+.blog-cta .blog-cta-btn-outline {
+  color: var(--navy-deep);
+  border: 1px solid color-mix(in oklab, var(--navy-deep) 25%, transparent);
+  background: transparent;
+}
+.blog-cta .blog-cta-btn-outline:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+
+/* Tiptap-only chrome: keep editor outline tidy without changing typography */
+.ProseMirror.blog-content { padding: 0.25rem 0.25rem 1rem; }
+.ProseMirror.blog-content:focus { outline: none; }
+.ProseMirror.blog-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: color-mix(in oklab, var(--ink) 35%, transparent);
+  float: left; height: 0; pointer-events: none;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
