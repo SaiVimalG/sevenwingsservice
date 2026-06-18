@@ -201,16 +201,27 @@ function AdminBlogPage() {
   );
 }
 
-function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string) => void; onNew: () => void }) {
-  const [posts, setPosts] = useState<Awaited<ReturnType<typeof adminListPosts>>>([]);
+function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string, source: "db" | "static") => void; onNew: () => void }) {
+  const [posts, setPosts] = useState<ListRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
   const reload = async () => {
     setLoading(true);
     try {
-      const list = await adminListPosts({ data: { token } });
-      setPosts(list);
+      const dbList = await adminListPosts({ data: { token } });
+      const dbRows: ListRow[] = dbList.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category,
+        date: p.date,
+        published: p.published,
+        listed: p.listed,
+        source: "db",
+      }));
+      const dbSlugs = new Set(dbRows.map((p) => p.slug));
+      const staticRows: ListRow[] = BLOG.filter((p) => !dbSlugs.has(p.slug)).map(staticToListRow);
+      setPosts([...dbRows, ...staticRows]);
       setErr(null);
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Failed to load posts");
@@ -235,12 +246,10 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
   };
 
   const onToggleListed = async (slug: string, next: boolean) => {
-    // optimistic update
     setPosts((prev) => prev.map((p) => (p.slug === slug ? { ...p, listed: next } : p)));
     try {
       await setPostListed({ data: { token, slug, listed: next } });
     } catch (e) {
-      // revert on failure
       setPosts((prev) => prev.map((p) => (p.slug === slug ? { ...p, listed: !next } : p)));
       alert(e instanceof Error ? e.message : "Failed to update visibility");
     }
@@ -261,10 +270,11 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
         ) : (
           <ul className="divide-y divide-black/5">
             {posts.map((p) => (
-              <li key={p.slug} className="flex flex-wrap items-center justify-between gap-3 p-4">
+              <li key={`${p.source}:${p.slug}`} className="flex flex-wrap items-center justify-between gap-3 p-4">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-gold-deep">{p.category}</span>
+                    {p.source === "static" && <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-sky-700">Built-in</span>}
                     {!p.published && <span className="rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-red-600">Draft</span>}
                     {p.published && !p.listed && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-amber-700">SEO only · hidden</span>}
                   </div>
@@ -272,35 +282,38 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
                   <p className="truncate text-xs text-muted-foreground">/blog/{slugify(p.category)}/{p.slug} · {p.date}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => onToggleListed(p.slug, !p.listed)}
-                    disabled={!p.published}
-                    title={
-                      !p.published
-                        ? "Publish the post first to show it on the website"
-                        : p.listed
-                          ? "Showing on website — click to hide from the blog section"
-                          : "Hidden from the blog section — click to show on website"
-                    }
-                    className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
-                      p.listed
-                        ? "border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
-                        : "border-black/10 bg-white text-muted-foreground hover:border-gold"
-                    }`}
-                  >
-                    {p.listed ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5" />}
-                    {p.listed ? "Shown" : "Hidden"}
-                  </button>
+                  {p.source === "db" ? (
+                    <button
+                      onClick={() => onToggleListed(p.slug, !p.listed)}
+                      disabled={!p.published}
+                      title={!p.published ? "Publish first" : p.listed ? "Click to hide" : "Click to show"}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
+                        p.listed ? "border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100" : "border-black/10 bg-white text-muted-foreground hover:border-gold"
+                      }`}
+                    >
+                      {p.listed ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5" />}
+                      {p.listed ? "Shown" : "Hidden"}
+                    </button>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700">
+                      <Eye className="h-3.5 w-3.5" /> Shown
+                    </span>
+                  )}
                   <Link to="/blog/$country/$slug" params={{ country: slugify(p.category), slug: p.slug }} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold" target="_blank">
                     <Eye className="h-3.5 w-3.5" /> View
                   </Link>
-
-                  <button onClick={() => onEdit(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
+                  <button onClick={() => onEdit(p.slug, p.source)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
                     <Pencil className="h-3.5 w-3.5" /> Edit
                   </button>
-                  <button onClick={() => onDelete(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50">
-                    <Trash2 className="h-3.5 w-3.5" /> Delete
-                  </button>
+                  {p.source === "db" ? (
+                    <button onClick={() => onDelete(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50">
+                      <Trash2 className="h-3.5 w-3.5" /> Delete
+                    </button>
+                  ) : (
+                    <span title="Built-in post — edit to save a custom version" className="inline-flex items-center gap-1 rounded-full border border-black/5 px-3 py-1.5 text-xs text-muted-foreground/60">
+                      <Trash2 className="h-3.5 w-3.5" /> Delete
+                    </span>
+                  )}
                 </div>
               </li>
             ))}
