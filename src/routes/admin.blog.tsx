@@ -514,13 +514,8 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
           </Field>
         </Section>
 
-        <Section title="Body" subtitle="The article content shown on the page" defaultOpen>
-          <div>
-            <p className="mb-2 text-xs text-muted-foreground">
-              Use the toolbar for headings, font sizes, colors, links, lists, tables and images. Everything you add here is responsive on mobile.
-            </p>
-            <RichTextEditor value={form.contentHtml} onChange={(html) => update("contentHtml", html)} onUploadImage={uploadImage} />
-          </div>
+        <Section title="Body" subtitle="The article content — switch to Preview to see the live blog look" defaultOpen>
+          <BodyEditorWithPreview form={form} onChange={(html) => update("contentHtml", html)} onUploadImage={uploadImage} />
         </Section>
 
         <Section title="CTA" subtitle="Call-to-action button at the end of the article" defaultOpen={false}>
