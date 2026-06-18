@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp } from "lucide-react";
+import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
 
 import {
   verifyAdminToken,
