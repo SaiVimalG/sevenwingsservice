@@ -120,7 +120,7 @@ const CtaCard = Node.create({
   parseHTML() {
     return [{ tag: "div[data-cta]" }];
   },
-  renderHTML({ node }: { node: { attrs: { variant: CtaVariant } } }) {
+  renderHTML({ node }: any) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return ctaSpec(node.attrs.variant as CtaVariant) as any;
   },
