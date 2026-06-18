@@ -3,7 +3,9 @@ import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/button";
 import { listPublishedPosts, type DbBlogPost } from "@/lib/blog.functions";
-import { BLOG, SITE, type BlogPost } from "@/lib/site";
+import { BLOG, type BlogPost } from "@/lib/site";
+
+const SITE_URL = "https://www.7wingsimmigration.com";
 
 const postsQuery = queryOptions({
   queryKey: ["blog", "published"],
