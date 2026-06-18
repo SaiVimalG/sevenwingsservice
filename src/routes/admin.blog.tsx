@@ -12,8 +12,64 @@ import {
   setPostListed,
   type PostInput,
 } from "@/lib/blog.functions";
-import { SERVICES } from "@/lib/site";
+import { SERVICES, BLOG, type BlogPost } from "@/lib/site";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
+
+type ListRow = {
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  published: boolean;
+  listed: boolean;
+  source: "db" | "static";
+};
+
+function mdInline(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+function staticPostToHtml(post: BlogPost): string {
+  const parts: string[] = [];
+  if (post.intro?.trim()) parts.push(`<p>${mdInline(post.intro.trim())}</p>`);
+  for (const s of post.sections) {
+    if (s.heading?.trim()) parts.push(`<h2>${mdInline(s.heading.trim())}</h2>`);
+    for (const p of s.paragraphs) {
+      const t = p.trim();
+      if (t) parts.push(`<p>${mdInline(t)}</p>`);
+    }
+  }
+  if (post.why7Wings?.length) {
+    parts.push("<h2>Why 7 Wings</h2><ul>" + post.why7Wings.map((w) => `<li>${mdInline(w)}</li>`).join("") + "</ul>");
+  }
+  return parts.join("\n") || "<p></p>";
+}
+
+function staticToPostInput(post: BlogPost): PostInput {
+  return {
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    author: post.author,
+    imageUrl: typeof post.image === "string" ? post.image : "",
+    readTime: post.readTime,
+    contentHtml: staticPostToHtml(post),
+    intro: "",
+    sections: [],
+    why7Wings: [],
+    ctaLabel: post.cta?.label ?? "Book a free consultation",
+    ctaSlug: post.cta?.slug ?? "",
+    published: true,
+    listed: true,
+  };
+}
 
 export const Route = createFileRoute("/admin/blog")({
   head: () => ({
