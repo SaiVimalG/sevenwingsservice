@@ -170,7 +170,7 @@ function AdminBlogPage() {
   }
 
   return (
-    <PageShell>
+    <div className="min-h-screen bg-background">
       <div className="container py-10 grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
         <aside className="space-y-3">
           <div className="flex items-center justify-between">
@@ -264,6 +264,6 @@ function AdminBlogPage() {
           </div>
         </main>
       </div>
-    </PageShell>
+    </div>
   );
 }
