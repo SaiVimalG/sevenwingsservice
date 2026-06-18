@@ -189,9 +189,9 @@ function AdminBlogPage() {
         </div>
 
         {mode.kind === "list" ? (
-          <PostList token={token} onEdit={(slug) => setMode({ kind: "edit", slug })} onNew={() => setMode({ kind: "edit" })} />
+          <PostList token={token} onEdit={(slug, source) => setMode({ kind: "edit", slug, source })} onNew={() => setMode({ kind: "edit" })} />
         ) : (
-          <PostEditor token={token} slug={mode.slug} onBack={() => setMode({ kind: "list" })} />
+          <PostEditor token={token} slug={mode.slug} source={mode.source} onBack={() => setMode({ kind: "list" })} />
         )}
       </section>
     </div>
