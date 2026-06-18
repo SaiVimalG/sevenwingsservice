@@ -38,6 +38,7 @@ import { Route as EligibilityCanadaCrsCalculatorRouteImport } from './routes/eli
 import { Route as EligibilityAustralia491PointsCalculatorRouteImport } from './routes/eligibility.australia.491-points-calculator'
 import { Route as EligibilityAustralia190PointsCalculatorRouteImport } from './routes/eligibility.australia.190-points-calculator'
 import { Route as EligibilityAustralia189PointsCalculatorRouteImport } from './routes/eligibility.australia.189-points-calculator'
+import { Route as BlogCountrySlugRouteImport } from './routes/blog.$country.$slug'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as ApiPublicGscSubmitSitemapRouteImport } from './routes/api/public/gsc/submit-sitemap'
 
@@ -196,6 +197,11 @@ const EligibilityAustralia189PointsCalculatorRoute =
     path: '/australia/189-points-calculator',
     getParentRoute: () => EligibilityRoute,
   } as any)
+const BlogCountrySlugRoute = BlogCountrySlugRouteImport.update({
+  id: '/blog/$country/$slug',
+  path: '/blog/$country/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -229,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/blog/$country/$slug': typeof BlogCountrySlugRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
   '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
   '/eligibility/australia/491-points-calculator': typeof EligibilityAustralia491PointsCalculatorRoute
@@ -261,6 +268,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/eligibility': typeof EligibilityIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/blog/$country/$slug': typeof BlogCountrySlugRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
   '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
   '/eligibility/australia/491-points-calculator': typeof EligibilityAustralia491PointsCalculatorRoute
@@ -295,6 +303,7 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/blog/$country/$slug': typeof BlogCountrySlugRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
   '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
   '/eligibility/australia/491-points-calculator': typeof EligibilityAustralia491PointsCalculatorRoute
@@ -330,6 +339,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/eligibility/'
     | '/services/'
+    | '/blog/$country/$slug'
     | '/eligibility/australia/189-points-calculator'
     | '/eligibility/australia/190-points-calculator'
     | '/eligibility/australia/491-points-calculator'
@@ -362,6 +372,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/eligibility'
     | '/services'
+    | '/blog/$country/$slug'
     | '/eligibility/australia/189-points-calculator'
     | '/eligibility/australia/190-points-calculator'
     | '/eligibility/australia/491-points-calculator'
@@ -395,6 +406,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/eligibility/'
     | '/services/'
+    | '/blog/$country/$slug'
     | '/eligibility/australia/189-points-calculator'
     | '/eligibility/australia/190-points-calculator'
     | '/eligibility/australia/491-points-calculator'
@@ -428,6 +440,7 @@ export interface RootRouteChildren {
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  BlogCountrySlugRoute: typeof BlogCountrySlugRoute
   ApiPublicGscSubmitSitemapRoute: typeof ApiPublicGscSubmitSitemapRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
@@ -637,6 +650,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EligibilityAustralia189PointsCalculatorRouteImport
       parentRoute: typeof EligibilityRoute
     }
+    '/blog/$country/$slug': {
+      id: '/blog/$country/$slug'
+      path: '/blog/$country/$slug'
+      fullPath: '/blog/$country/$slug'
+      preLoaderRoute: typeof BlogCountrySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -714,6 +734,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  BlogCountrySlugRoute: BlogCountrySlugRoute,
   ApiPublicGscSubmitSitemapRoute: ApiPublicGscSubmitSitemapRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
