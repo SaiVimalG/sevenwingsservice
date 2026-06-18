@@ -198,16 +198,35 @@ function AdminBlogPage() {
   );
 }
 
-function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string) => void; onNew: () => void }) {
-  const [posts, setPosts] = useState<Awaited<ReturnType<typeof adminListPosts>>>([]);
+function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: string, source: "db" | "static") => void; onNew: () => void }) {
+  const [posts, setPosts] = useState<ListRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
   const reload = async () => {
     setLoading(true);
     try {
-      const list = await adminListPosts({ data: { token } });
-      setPosts(list);
+      const dbList = await adminListPosts({ data: { token } });
+      const dbRows: ListRow[] = dbList.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category,
+        date: p.date,
+        published: p.published,
+        listed: p.listed,
+        source: "db",
+      }));
+      const dbSlugs = new Set(dbRows.map((r) => r.slug));
+      const staticRows: ListRow[] = BLOG.filter((b) => !dbSlugs.has(b.slug)).map((b) => ({
+        slug: b.slug,
+        title: b.title,
+        category: b.category,
+        date: b.date,
+        published: true,
+        listed: true,
+        source: "static",
+      }));
+      setPosts([...dbRows, ...staticRows]);
       setErr(null);
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Failed to load posts");
