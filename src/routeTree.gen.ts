@@ -25,6 +25,7 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
+import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
 import { Route as EligibilityUkSkilledWorkerCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-calculator'
 import { Route as EligibilityGermanyOpportunityCardCalculatorRouteImport } from './routes/eligibility.germany.opportunity-card-calculator'
@@ -118,6 +119,11 @@ const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
   path: '/programs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/admin/blog',
+  path: '/admin/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EligibilityUkSkilledWorkerVisaCalculatorRoute =
   EligibilityUkSkilledWorkerVisaCalculatorRouteImport.update({
     id: '/uk/skilled-worker-visa-calculator',
@@ -204,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/eligibility/': typeof EligibilityIndexRoute
@@ -233,6 +240,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/eligibility': typeof EligibilityIndexRoute
@@ -264,6 +272,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/eligibility/': typeof EligibilityIndexRoute
@@ -296,6 +305,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/admin/blog'
     | '/programs/$slug'
     | '/services/$slug'
     | '/eligibility/'
@@ -325,6 +335,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/admin/blog'
     | '/programs/$slug'
     | '/services/$slug'
     | '/eligibility'
@@ -355,6 +366,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/admin/blog'
     | '/programs/$slug'
     | '/services/$slug'
     | '/eligibility/'
@@ -386,6 +398,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SuccessStoriesRoute: typeof SuccessStoriesRoute
   TermsRoute: typeof TermsRoute
+  AdminBlogRoute: typeof AdminBlogRoute
   ProgramsSlugRoute: typeof ProgramsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
@@ -505,6 +518,13 @@ declare module '@tanstack/react-router' {
       path: '/programs/$slug'
       fullPath: '/programs/$slug'
       preLoaderRoute: typeof ProgramsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/admin/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/eligibility/uk/skilled-worker-visa-calculator': {
@@ -648,6 +668,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SuccessStoriesRoute: SuccessStoriesRoute,
   TermsRoute: TermsRoute,
+  AdminBlogRoute: AdminBlogRoute,
   ProgramsSlugRoute: ProgramsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
