@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { SERVICES, BLOG, COUNTRY_PROGRAMS } from "@/lib/site";
+import { SERVICES, COUNTRY_PROGRAMS } from "@/lib/site";
 
 const BASE_URL = "https://www.7wingsimmigration.com";
 
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const paths = [
-          "/", "/about", "/services", "/blog", "/success-stories", "/faq",
+          "/", "/about", "/services", "/success-stories", "/faq",
           "/contact", "/book-consultation", "/privacy", "/terms", "/refund",
           "/eligibility",
           "/eligibility/australia/189-points-calculator",
@@ -24,7 +24,6 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/eligibility/uk/skilled-worker-visa-calculator",
           ...SERVICES.map((s) => `/services/${s.slug}`),
           ...COUNTRY_PROGRAMS.flatMap((c) => c.programs.map((p) => `/programs/${p.slug}`)),
-          ...BLOG.map((b) => `/blog/${b.slug}`),
         ];
         const urls = paths.map((p) => `  <url>\n    <loc>${BASE_URL}${p}</loc>\n    <changefreq>monthly</changefreq>\n  </url>`).join("\n");
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;

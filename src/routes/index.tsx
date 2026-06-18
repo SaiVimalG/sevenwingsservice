@@ -9,9 +9,7 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Marquee } from "@/components/motion/Marquee";
 import { CountUp } from "@/components/motion/CountUp";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE, type BlogPost } from "@/lib/site";
-import { listDbPosts } from "@/lib/blog.functions";
-import { mergePosts } from "@/lib/blog-merge";
+import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE } from "@/lib/site";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
 import realStoriesVideo from "@/assets/happy-client.mp4.asset.json";
@@ -19,14 +17,6 @@ import realStoriesPoster from "@/assets/happy-client-poster.jpg.asset.json";
 import germanyImg from "@/assets/germany.jpg";
 
 export const Route = createFileRoute("/")({
-  loader: async () => {
-    try {
-      const db = await listDbPosts();
-      return { posts: mergePosts(db) };
-    } catch {
-      return { posts: mergePosts([]) };
-    }
-  },
   head: () => ({
     meta: [
       { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
@@ -48,7 +38,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { posts } = Route.useLoaderData() as { posts: BlogPost[] };
   return (
     <PageShell>
       <Hero />
@@ -61,7 +50,6 @@ function Home() {
       <Counter />
       <Awards />
       <BrandMarquee />
-      <NewsTeaser posts={posts} />
       <CTABanner />
     </PageShell>
   );
@@ -552,48 +540,8 @@ function BrandMarquee() {
   );
 }
 
-/* ───────── News teaser ───────── */
-function NewsTeaser({ posts }: { posts: BlogPost[] }) {
-  return (
-    <section className="bg-cream py-12 md:py-10">
-      <div className="mx-auto max-w-[1200px] px-6">
-        <div className="mb-12 flex items-end justify-between gap-6">
-          <div>
-            <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">Latest Insights</p></Reveal>
-            <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">News & <span className="text-gradient-gold">Migration Updates</span></h2></Reveal>
-          </div>
-          <Reveal delay={0.2}>
-            <Link to="/blog" className="hidden items-center gap-2 text-sm font-semibold text-navy-deep transition-all hover:gap-3 hover:text-gold-deep md:inline-flex">
-              View all news <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {posts.slice(0, 3).map((n, i) => (
-            <Reveal key={n.slug} delay={i * 0.08}>
-              <Link to="/blog/$slug" params={{ slug: n.slug }} className="group block overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:shadow-gold">
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <img src={n.image} alt={n.title} width={800} height={500} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
-                  <span className="absolute left-4 top-4 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep">{n.category}</span>
-                </div>
-                <div className="p-7">
-                  <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foreground">
-                    <span>{n.date}</span>
-                    <span className="h-1 w-1 rounded-full bg-gold" />
-                    <span>{n.readTime}</span>
-                  </div>
-                  <h3 className="mt-3 font-display text-xl font-bold text-navy-deep transition-colors group-hover:text-gold-deep line-clamp-2">{n.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{n.excerpt}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep">Read article <ArrowRight className="h-3.5 w-3.5" /></span>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+
+
 
 /* ───────── CTA Banner ───────── */
 function CTABanner() {
