@@ -20,9 +20,9 @@ export const Route = createFileRoute("/blog/")({
       { name: "description", content: "Country guides, visa updates and migration insights from senior 7 Wings counsellors." },
       { property: "og:title", content: "Immigration Blog & Guides | 7 Wings" },
       { property: "og:description", content: "Country guides, visa updates and migration insights." },
-      { property: "og:url", content: `${SITE.url}/blog` },
+      { property: "og:url", content: `${SITE_URL}/blog` },
     ],
-    links: [{ rel: "canonical", href: `${SITE.url}/blog` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/blog` }],
   }),
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
