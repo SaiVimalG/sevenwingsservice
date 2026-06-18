@@ -358,7 +358,7 @@ function VideoStory() {
           </span>
         </button>
       )}
-      <h3 className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</h3>
+      <span className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</span>
     </div>
   );
 }
