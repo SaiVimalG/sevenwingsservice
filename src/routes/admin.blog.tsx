@@ -281,6 +281,7 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-gold-deep">{p.category}</span>
+                    {p.source === "static" && <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-sky-700">Built-in</span>}
                     {!p.published && <span className="rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-red-600">Draft</span>}
                     {p.published && !p.listed && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-amber-700">SEO only · hidden</span>}
                   </div>
@@ -290,13 +291,15 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onToggleListed(p.slug, !p.listed)}
-                    disabled={!p.published}
+                    disabled={!p.published || p.source === "static"}
                     title={
-                      !p.published
-                        ? "Publish the post first to show it on the website"
-                        : p.listed
-                          ? "Showing on website — click to hide from the blog section"
-                          : "Hidden from the blog section — click to show on website"
+                      p.source === "static"
+                        ? "Built-in post — open Edit and Save to make it manageable"
+                        : !p.published
+                          ? "Publish the post first to show it on the website"
+                          : p.listed
+                            ? "Showing on website — click to hide from the blog section"
+                            : "Hidden from the blog section — click to show on website"
                     }
                     className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
                       p.listed
@@ -311,10 +314,15 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
                     <Eye className="h-3.5 w-3.5" /> View
                   </Link>
 
-                  <button onClick={() => onEdit(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
+                  <button onClick={() => onEdit(p.slug, p.source)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
                     <Pencil className="h-3.5 w-3.5" /> Edit
                   </button>
-                  <button onClick={() => onDelete(p.slug)} className="inline-flex items-center gap-1 rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50">
+                  <button
+                    onClick={() => onDelete(p.slug)}
+                    disabled={p.source === "static"}
+                    title={p.source === "static" ? "Built-in post — cannot be deleted" : "Delete this post"}
+                    className="inline-flex items-center gap-1 rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
+                  >
                     <Trash2 className="h-3.5 w-3.5" /> Delete
                   </button>
                 </div>
