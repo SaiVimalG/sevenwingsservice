@@ -342,7 +342,7 @@ function VideoStory() {
         poster={realStoriesPoster.url}
         controls={playing}
         playsInline
-        preload="metadata"
+        preload="none"
         onEnded={() => setPlaying(false)}
         className="absolute inset-0 h-full w-full object-cover"
       />
