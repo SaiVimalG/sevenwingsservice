@@ -126,17 +126,6 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-[1200px] px-6 py-5">
-          <p className="text-center text-[11px] leading-relaxed md:text-xs">
-            <span className="font-semibold text-red-500">Service Commitment:</span>{" "}
-            <span className="text-sky">
-              7 Wings Immigration offers professional guidance and full application processing. We don't guarantee visa approvals or job placements — final decisions rest with immigration authorities, embassies and employers. We maximise your success with accurate documentation, transparent advice and dedicated support.
-            </span>
-          </p>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-white/55 md:flex-row">
           <p>© {new Date().getFullYear()} 7 Wings Immigration. All rights reserved.</p>
           <p>
@@ -145,5 +134,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
