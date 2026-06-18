@@ -39,7 +39,10 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: "Best immigration consultancy in Hyderabad — Germany, Australia, Canada, UK, JSS." },
       { name: "twitter:image", content: heroImg },
     ],
-    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/" }],
+    links: [
+      { rel: "canonical", href: "https://www.7wingsimmigration.com/" },
+      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" } as any,
+    ],
   }),
   component: Home,
 });
@@ -116,7 +119,7 @@ function Hero() {
           <div className="relative">
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-gold/30 via-transparent to-sky/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
-              <img src={heroImg} alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={1600} height={1100} className="aspect-[5/4] w-full object-cover" />
+              <img src={heroImg} alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={1600} height={1100} fetchPriority="high" decoding="async" className="aspect-[5/4] w-full object-cover" />
               <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur-xl">
                 <div>
                   <p className="text-xs uppercase tracking-wider text-gold-soft">Soar Beyond Borders</p>
@@ -252,7 +255,7 @@ function ServiceRow({ s, index }: { s: (typeof SERVICES)[number]; index: number 
         style={{ backgroundImage: `linear-gradient(90deg, rgba(8,18,41,0.92), rgba(8,18,41,0.55)), url(${s.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
       />
       <div className="relative">
-        <p className="font-display text-5xl font-bold text-gold/40 transition-colors group-hover:text-gold md:text-6xl">{String(index + 1).padStart(2, "0")}</p>
+        <p className="font-display text-5xl font-bold text-gold-deep/80 transition-colors group-hover:text-gold md:text-6xl">{String(index + 1).padStart(2, "0")}</p>
       </div>
       <div className="relative">
         <h3 className="font-display text-2xl font-bold text-navy-deep transition-colors group-hover:text-white md:text-3xl">{s.title}</h3>
@@ -339,7 +342,7 @@ function VideoStory() {
         poster={realStoriesPoster.url}
         controls={playing}
         playsInline
-        preload="metadata"
+        preload="none"
         onEnded={() => setPlaying(false)}
         className="absolute inset-0 h-full w-full object-cover"
       />
@@ -355,7 +358,7 @@ function VideoStory() {
           </span>
         </button>
       )}
-      <h5 className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</h5>
+      <h3 className="pointer-events-none absolute bottom-6 left-6 z-10 rounded-full bg-navy-deep/70 px-4 py-1.5 font-display text-lg font-bold text-white backdrop-blur">Real Stories</h3>
     </div>
   );
 }

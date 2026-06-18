@@ -246,7 +246,7 @@ export function PopupLeadForm() {
               <input type="hidden" name="form_id" value={formId} />
 
               <Field icon={Languages}>
-                <select name="english_level" className={`${input} appearance-none pr-8`} defaultValue="">
+                <select aria-label="English level" name="english_level" className={`${input} appearance-none pr-8`} defaultValue="">
                   <option value="" disabled>What is your English level (optional)</option>
                   {ENGLISH_LEVELS.map((v) => <option key={v} value={v}>{v}</option>)}
                 </select>
@@ -268,13 +268,13 @@ export function PopupLeadForm() {
 
               <div className="grid gap-3 sm:grid-cols-2">
                 <Field icon={GraduationCap}>
-                  <select name="education" className={`${input} appearance-none pr-8`} defaultValue="">
+                  <select aria-label="Education" name="education" className={`${input} appearance-none pr-8`} defaultValue="">
                     <option value="" disabled>Education (optional)</option>
                     {EDUCATION.map((v) => <option key={v} value={v}>{v}</option>)}
                   </select>
                 </Field>
                 <Field icon={Briefcase}>
-                  <select name="visa_type" required className={`${input} appearance-none pr-8`} defaultValue="">
+                  <select aria-label="Visa type" name="visa_type" required className={`${input} appearance-none pr-8`} defaultValue="">
                     <option value="" disabled>Visa Type *</option>
                     {VISA_TYPES.map((v) => <option key={v} value={v}>{v}</option>)}
                   </select>
@@ -282,7 +282,7 @@ export function PopupLeadForm() {
               </div>
 
               <Field icon={Globe2}>
-                <select name="country_to_immigrate" required className={`${input} appearance-none pr-8`} defaultValue="">
+                <select aria-label="Country to immigrate" name="country_to_immigrate" required className={`${input} appearance-none pr-8`} defaultValue="">
                   <option value="" disabled>Country to immigrate *</option>
                   {DEST_COUNTRIES.map((v) => <option key={v} value={v}>{v}</option>)}
                 </select>
