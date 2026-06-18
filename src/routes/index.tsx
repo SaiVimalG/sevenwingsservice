@@ -255,7 +255,7 @@ function ServiceRow({ s, index }: { s: (typeof SERVICES)[number]; index: number 
         style={{ backgroundImage: `linear-gradient(90deg, rgba(8,18,41,0.92), rgba(8,18,41,0.55)), url(${s.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
       />
       <div className="relative">
-        <p className="font-display text-5xl font-bold text-gold/40 transition-colors group-hover:text-gold md:text-6xl">{String(index + 1).padStart(2, "0")}</p>
+        <p className="font-display text-5xl font-bold text-gold-deep/80 transition-colors group-hover:text-gold md:text-6xl">{String(index + 1).padStart(2, "0")}</p>
       </div>
       <div className="relative">
         <h3 className="font-display text-2xl font-bold text-navy-deep transition-colors group-hover:text-white md:text-3xl">{s.title}</h3>
