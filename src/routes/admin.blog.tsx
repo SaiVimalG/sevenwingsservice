@@ -82,7 +82,7 @@ export const Route = createFileRoute("/admin/blog")({
 
 const TOKEN_KEY = "admin_blog_token";
 
-type Mode = { kind: "list" } | { kind: "edit"; slug?: string };
+type Mode = { kind: "list" } | { kind: "edit"; slug?: string; source?: "db" | "static" };
 
 const EMPTY: PostInput = {
   slug: "",
