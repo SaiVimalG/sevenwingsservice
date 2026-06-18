@@ -11,8 +11,8 @@ export interface DbBlogPost {
   image_url: string;
   read_time: string;
   intro: string; // HTML body from rich text editor
-  sections: unknown;
-  why_7wings: unknown;
+  sections: unknown[];
+  why_7wings: unknown[];
   cta_label: string | null;
   cta_slug: string | null;
   published: boolean;
