@@ -392,7 +392,7 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
       })
       .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"))
       .finally(() => setLoading(false));
-  }, [slug, token]);
+  }, [slug, token, source]);
 
   const update = <K extends keyof PostInput>(k: K, v: PostInput[K]) => setForm((f) => ({ ...f, [k]: v }));
 
