@@ -598,3 +598,106 @@ function Section({
     </div>
   );
 }
+
+// Editor + live "poster preview" of the blog post. Toggling between tabs
+// keeps the rich-text editor mounted (so caret/scroll position survive) and
+// renders the preview using the same .blog-content stylesheet as the live
+// article, plus the same hero/cover layout so editors see exactly what the
+// published article will look like.
+function BodyEditorWithPreview({
+  form,
+  onChange,
+  onUploadImage,
+}: {
+  form: PostInput;
+  onChange: (html: string) => void;
+  onUploadImage: (file: File) => Promise<string>;
+}) {
+  const [tab, setTab] = useState<"edit" | "preview">("edit");
+  const country = slugify(form.category) || "country";
+  const urlSlug = slugify(form.slug || form.title) || "post-title";
+
+  return (
+    <div>
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <div className="inline-flex rounded-full border border-black/10 bg-white p-0.5 text-xs font-semibold">
+          <button
+            type="button"
+            onClick={() => setTab("edit")}
+            className={`rounded-full px-4 py-1.5 transition-colors ${tab === "edit" ? "bg-navy-deep text-cream" : "text-navy-deep hover:text-gold-deep"}`}
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            onClick={() => setTab("preview")}
+            className={`rounded-full px-4 py-1.5 transition-colors ${tab === "preview" ? "bg-navy-deep text-cream" : "text-navy-deep hover:text-gold-deep"}`}
+          >
+            Preview
+          </button>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          {tab === "edit"
+            ? "Use the toolbar for headings, colors, lists, tables, images and CTA cards."
+            : "This is how your post will look on the live blog."}
+        </p>
+      </div>
+
+      {/* Keep the editor mounted so state is preserved across tab switches */}
+      <div className={tab === "edit" ? "" : "hidden"}>
+        <RichTextEditor value={form.contentHtml} onChange={onChange} onUploadImage={onUploadImage} />
+      </div>
+
+      {tab === "preview" && <PosterPreview form={form} country={country} urlSlug={urlSlug} />}
+    </div>
+  );
+}
+
+function PosterPreview({ form, country, urlSlug }: { form: PostInput; country: string; urlSlug: string }) {
+  const html = form.contentHtml?.trim() ? form.contentHtml : "<p class='text-muted-foreground'>Nothing to preview yet — start writing in the Edit tab.</p>";
+  return (
+    <div className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_20px_50px_-30px_rgba(13,46,125,0.25)]">
+      {/* Browser-chrome frame */}
+      <div className="flex items-center gap-2 border-b border-black/10 bg-cream/60 px-3 py-2">
+        <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+        <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+        <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+        <span className="ml-3 truncate rounded-md bg-white px-3 py-1 text-[11px] font-mono text-muted-foreground">
+          www.7wingsimmigration.com/blog/{country}/{urlSlug}
+        </span>
+      </div>
+
+      {/* Hero — mirrors blog.$country.$slug.tsx */}
+      <div className="bg-hero px-6 py-10 text-white md:px-10 md:py-12">
+        <nav className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/90">
+          <span>Home</span>
+          <ChevronRight className="h-3 w-3" />
+          <span>Blog</span>
+          <ChevronRight className="h-3 w-3" />
+          <span className="text-gold-soft">{form.category || "Category"}</span>
+        </nav>
+        <h1 className="mt-4 font-display text-2xl font-bold leading-tight md:text-3xl lg:text-[2.2rem]">
+          {form.title || "Untitled post"}
+        </h1>
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[10px] uppercase tracking-widest text-white/90">
+          <span>📅 {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+          <span>⏱ {form.readTime || "5 min read"}</span>
+          <span>✍ {form.author || "7 Wings Editorial"}</span>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="px-6 py-8 md:px-10 md:py-10">
+        {form.imageUrl && (
+          <img
+            src={form.imageUrl}
+            alt={form.title}
+            className="mb-8 aspect-[16/9] w-full rounded-2xl border border-black/5 object-cover"
+          />
+        )}
+        <p className="mb-6 text-xs uppercase tracking-widest text-gold-deep">{form.excerpt}</p>
+        <div className="blog-content" dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+    </div>
+  );
+}
