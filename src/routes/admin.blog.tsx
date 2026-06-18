@@ -192,9 +192,10 @@ function AdminBlogPage() {
             token={token}
             onEdit={(slug, source) => setMode({ kind: "edit", slug, source })}
             onNew={() => setMode({ kind: "edit" })}
+            onAuthExpired={signOut}
           />
         ) : (
-          <PostEditor token={token} slug={mode.slug} source={mode.source} onBack={() => setMode({ kind: "list" })} />
+          <PostEditor token={token} slug={mode.slug} source={mode.source} onBack={() => setMode({ kind: "list" })} onAuthExpired={signOut} />
         )}
       </section>
     </div>
