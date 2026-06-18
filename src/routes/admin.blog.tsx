@@ -12,8 +12,63 @@ import {
   setPostListed,
   type PostInput,
 } from "@/lib/blog.functions";
-import { SERVICES } from "@/lib/site";
+import { SERVICES, BLOG, type BlogPost } from "@/lib/site";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
+
+type ListRow = {
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  published: boolean;
+  listed: boolean;
+  source: "db" | "static";
+};
+
+function staticToListRow(p: BlogPost): ListRow {
+  return {
+    slug: p.slug,
+    title: p.title,
+    category: p.category,
+    date: p.date,
+    published: true,
+    listed: true,
+    source: "static",
+  };
+}
+
+function staticToPostInput(p: BlogPost): PostInput {
+  const parts: string[] = [];
+  if (p.intro?.trim()) parts.push(`<p>${p.intro.trim()}</p>`);
+  for (const s of p.sections) {
+    if (s.heading?.trim()) parts.push(`<h2>${s.heading.trim()}</h2>`);
+    for (const para of s.paragraphs) {
+      const t = para?.trim();
+      if (t) parts.push(`<p>${t.replace(/\n/g, "<br/>")}</p>`);
+    }
+  }
+  const imageUrl =
+    typeof window !== "undefined" && p.image && !/^https?:\/\//.test(p.image)
+      ? new URL(p.image, window.location.origin).toString()
+      : p.image;
+  return {
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    category: p.category,
+    author: p.author,
+    imageUrl,
+    readTime: p.readTime,
+    contentHtml: parts.join("\n") || "<p></p>",
+    intro: "",
+    sections: [],
+    why7Wings: p.why7Wings ?? [],
+    ctaLabel: p.cta?.label ?? "",
+    ctaSlug: p.cta?.slug ?? "",
+    published: true,
+    listed: true,
+  };
+}
 
 export const Route = createFileRoute("/admin/blog")({
   head: () => ({
