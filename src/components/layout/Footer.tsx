@@ -5,8 +5,20 @@ import { SITE, SERVICES } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-navy-mesh text-white">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+    <>
+      {/* Service Commitment — sits above the footer on a white band */}
+      <div className="bg-white">
+        <div className="mx-auto max-w-[1200px] px-6 py-5">
+          <p className="text-center text-[11px] leading-relaxed md:text-xs">
+            <span className="font-semibold text-red-500">Service Commitment:</span>{" "}
+            <span className="text-navy-deep">
+              7 Wings Immigration offers professional guidance and full application processing. We don't guarantee visa approvals or job placements — final decisions rest with immigration authorities, embassies and employers. We maximise your success with accurate documentation, transparent advice and dedicated support.
+            </span>
+          </p>
+        </div>
+      </div>
+
+    <footer className="relative overflow-hidden bg-navy-mesh text-white border-t-4 border-navy-deep">
       <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-8 px-4 pt-4 pb-6 sm:px-6 md:gap-12 md:pt-8 md:pb-14 lg:grid-cols-4">
         <div className="space-y-4 md:space-y-6 col-span-2 lg:col-span-1 pb-[2px]">
           <div className="flex items-center justify-start gap-4 -mt-2 mb-[5px]">
