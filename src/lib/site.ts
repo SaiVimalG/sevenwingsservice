@@ -252,6 +252,7 @@ export interface BlogPost {
   category: string;
   author: string;
   image: string;
+  contentHtml?: string;
   intro: string;
   sections: { heading: string; paragraphs: string[] }[];
   why7Wings: string[];

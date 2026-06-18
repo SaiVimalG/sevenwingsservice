@@ -1,101 +1,123 @@
-import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
-import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
-import { Button } from "@/components/ui/button";
-import { listPublishedPosts, type DbBlogPost } from "@/lib/blog.functions";
-import { BLOG, type BlogPost } from "@/lib/site";
-
-const SITE_URL = "https://www.7wingsimmigration.com";
-
-const postsQuery = queryOptions({
-  queryKey: ["blog", "published"],
-  queryFn: () => listPublishedPosts(),
-});
+import { Reveal } from "@/components/motion/Reveal";
+import type { BlogPost } from "@/lib/site";
+import { listDbPosts } from "@/lib/blog.functions";
+import { mergePosts } from "@/lib/blog-merge";
 
 export const Route = createFileRoute("/blog/")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(postsQuery),
+  loader: async () => {
+    try {
+      const db = await listDbPosts();
+      return { posts: mergePosts(db) };
+    } catch {
+      return { posts: mergePosts([]) };
+    }
+  },
   head: () => ({
     meta: [
-      { title: "Immigration Blog & Guides | 7 Wings Immigration" },
-      { name: "description", content: "Country guides, visa updates and migration insights from senior 7 Wings counsellors." },
-      { property: "og:title", content: "Immigration Blog & Guides | 7 Wings" },
-      { property: "og:description", content: "Country guides, visa updates and migration insights." },
-      { property: "og:url", content: `${SITE_URL}/blog` },
+      { title: "Immigration Blog Hyderabad | 7 Wings Immigration" },
+      { name: "description", content: "Latest visa & PR updates, plain-English migration guides and policy news from Hyderabad's leading immigration consultancy — 7 Wings Immigration." },
+      { property: "og:title", content: "Immigration Blog & Visa Insights | 7 Wings Immigration Hyderabad" },
+      { property: "og:description", content: "Visa tips, PR updates and migration guides written by senior 7 Wings consultants in Hyderabad." },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/blog" },
+      { name: "twitter:title", content: "Immigration Blog | 7 Wings Hyderabad" },
+      { name: "twitter:description", content: "Visa news, PR updates and migration guides from Hyderabad's senior consultants." },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/blog` }],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/blog" }],
   }),
-  errorComponent: ({ error, reset }) => {
-    const router = useRouter();
-    return (
-      <PageShell>
-        <div className="container py-24 text-center">
-          <p className="text-red-600 mb-4">{error.message}</p>
-          <Button onClick={() => { reset(); router.invalidate(); }}>Retry</Button>
-        </div>
-      </PageShell>
-    );
-  },
-  notFoundComponent: () => <div>Not found</div>,
   component: BlogIndex,
 });
 
-type ListItem = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  image: string;
-  date: string;
-  readTime: string;
-};
-
-function toItem(p: DbBlogPost): ListItem {
-  return {
-    slug: p.slug,
-    title: p.title,
-    excerpt: p.excerpt,
-    category: p.category,
-    image: p.image_url,
-    date: new Date(p.published_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
-    readTime: p.read_time,
-  };
-}
-
-function staticToItem(p: BlogPost): ListItem {
-  return {
-    slug: p.slug, title: p.title, excerpt: p.excerpt, category: p.category,
-    image: p.image, date: p.date, readTime: p.readTime,
-  };
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
 }
 
 function BlogIndex() {
-  const { data: dbPosts } = useSuspenseQuery(postsQuery);
-  const dbSlugs = new Set(dbPosts.map((p) => p.slug));
-  const items: ListItem[] = [
-    ...dbPosts.map(toItem),
-    ...BLOG.filter((p) => !dbSlugs.has(p.slug)).map(staticToItem),
-  ];
+  const { posts } = Route.useLoaderData() as { posts: BlogPost[] };
+  const [featured, ...rest] = posts;
+
+  const allPosts = featured ? [featured, ...rest] : rest;
 
   return (
     <PageShell>
-      <section className="container py-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-3">Immigration Blog & Guides</h1>
-        <p className="text-muted-foreground mb-10 max-w-2xl">
-          Country guides, visa updates and senior counsel insights for Indian applicants.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {items.map((p) => (
-            <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="group rounded-xl overflow-hidden border bg-card hover:shadow-lg transition">
-              <div className="aspect-video overflow-hidden">
-                <img src={p.image} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition" />
-              </div>
-              <div className="p-5">
-                <div className="text-xs text-primary font-medium mb-2">{p.category} · {p.readTime}</div>
-                <h2 className="font-semibold text-lg mb-2 line-clamp-2">{p.title}</h2>
-                <p className="text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>
-              </div>
-            </Link>
-          ))}
+      {/* Compact Hero (Breadcrumb-style banner like Visaway) */}
+      <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
+        <div className="absolute inset-0 [background:radial-gradient(500px_220px_at_85%_30%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
+        <div className="relative mx-auto max-w-[1200px] px-6 text-center">
+          <Reveal>
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-gold-soft backdrop-blur">
+              Our Blog
+            </p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-3 font-display text-2xl font-bold leading-tight md:text-4xl">
+              Visa Insights &amp; <span className="text-gradient-gold">Migration Guides</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <nav className="mt-3 flex items-center justify-center gap-2 text-xs text-white/90">
+              <Link to="/" className="hover:text-gold-soft">Home</Link>
+              <span className="text-gold">›</span>
+              <span>Our Blog</span>
+            </nav>
+          </Reveal>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      </section>
+
+      {/* Blog Grid (Visaway news-grid style: 3 cols, image-top with category badge, meta row, title, footer with author + arrow) */}
+      <section className="bg-cream py-12 md:py-16">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {allPosts.map((post, i) => (
+              <Reveal key={post.slug} delay={i * 0.05}>
+                <article className="group h-full overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_-20px_rgba(13,46,125,0.25)] transition-all duration-500 hover:-translate-y-1 hover:shadow-gold">
+                  <Link to="/blog/$country/$slug" params={{ country: slugify(post.category), slug: post.slug }} className="block">
+                    <div className="relative aspect-[16/11] overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
+                      />
+                      <span className="absolute left-4 top-4 rounded-md bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep shadow">
+                        {post.category}
+                      </span>
+                    </div>
+                  </Link>
+                  <div className="p-6">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                      <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5 text-gold" /> {post.date}</span>
+                      <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" /> {post.readTime}</span>
+                    </div>
+                    <h3 className="mt-3 font-display text-lg font-bold leading-snug text-navy-deep transition-colors group-hover:text-gold-deep md:text-xl">
+                      <Link to="/blog/$country/$slug" params={{ country: slugify(post.category), slug: post.slug }} className="line-clamp-2">
+                        {post.title}
+                      </Link>
+                    </h3>
+                    <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
+                    <div className="mt-5 flex items-center justify-between border-t border-black/5 pt-4">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-navy-deep">
+                        <span className="grid h-7 w-7 place-items-center rounded-full bg-navy-deep/5 text-gold-deep">
+                          <User className="h-3.5 w-3.5" />
+                        </span>
+                        By {post.author}
+                      </div>
+                      <Link
+                        to="/blog/$country/$slug"
+                        params={{ country: slugify(post.category), slug: post.slug }}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-gold-deep transition-colors hover:text-navy-deep"
+                      >
+                        View Article <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
     </PageShell>
