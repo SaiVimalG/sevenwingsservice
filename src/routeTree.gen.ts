@@ -23,8 +23,11 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
 import { Route as EligibilityUkSkilledWorkerCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-calculator'
 import { Route as EligibilityGermanyOpportunityCardCalculatorRouteImport } from './routes/eligibility.germany.opportunity-card-calculator'
@@ -108,6 +111,11 @@ const EligibilityIndexRoute = EligibilityIndexRouteImport.update({
   path: '/',
   getParentRoute: () => EligibilityRoute,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
@@ -116,6 +124,16 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
   id: '/programs/$slug',
   path: '/programs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/admin/blog',
+  path: '/admin/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EligibilityUkSkilledWorkerVisaCalculatorRoute =
@@ -204,8 +222,11 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
@@ -233,8 +254,11 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog': typeof BlogIndexRoute
   '/eligibility': typeof EligibilityIndexRoute
   '/services': typeof ServicesIndexRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
@@ -264,8 +288,11 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
@@ -296,8 +323,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/admin/blog'
+    | '/blog/$slug'
     | '/programs/$slug'
     | '/services/$slug'
+    | '/blog/'
     | '/eligibility/'
     | '/services/'
     | '/eligibility/australia/189-points-calculator'
@@ -325,8 +355,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/admin/blog'
+    | '/blog/$slug'
     | '/programs/$slug'
     | '/services/$slug'
+    | '/blog'
     | '/eligibility'
     | '/services'
     | '/eligibility/australia/189-points-calculator'
@@ -355,8 +388,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/admin/blog'
+    | '/blog/$slug'
     | '/programs/$slug'
     | '/services/$slug'
+    | '/blog/'
     | '/eligibility/'
     | '/services/'
     | '/eligibility/australia/189-points-calculator'
@@ -386,8 +422,11 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SuccessStoriesRoute: typeof SuccessStoriesRoute
   TermsRoute: typeof TermsRoute
+  AdminBlogRoute: typeof AdminBlogRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   ProgramsSlugRoute: typeof ProgramsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ApiPublicGscSubmitSitemapRoute: typeof ApiPublicGscSubmitSitemapRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
@@ -493,6 +532,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EligibilityIndexRouteImport
       parentRoute: typeof EligibilityRoute
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
@@ -505,6 +551,20 @@ declare module '@tanstack/react-router' {
       path: '/programs/$slug'
       fullPath: '/programs/$slug'
       preLoaderRoute: typeof ProgramsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/admin/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/eligibility/uk/skilled-worker-visa-calculator': {
@@ -648,8 +708,11 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SuccessStoriesRoute: SuccessStoriesRoute,
   TermsRoute: TermsRoute,
+  AdminBlogRoute: AdminBlogRoute,
+  BlogSlugRoute: BlogSlugRoute,
   ProgramsSlugRoute: ProgramsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ApiPublicGscSubmitSitemapRoute: ApiPublicGscSubmitSitemapRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
