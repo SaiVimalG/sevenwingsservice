@@ -112,7 +112,7 @@ const CtaCard = Node.create({
     return {
       variant: {
         default: "both",
-        parseHTML: (el) => (el as HTMLElement).getAttribute("data-cta") || "both",
+        parseHTML: (el: HTMLElement) => el.getAttribute("data-cta") || "both",
         renderHTML: () => ({}),
       },
     };
@@ -120,7 +120,7 @@ const CtaCard = Node.create({
   parseHTML() {
     return [{ tag: "div[data-cta]" }];
   },
-  renderHTML({ node }) {
+  renderHTML({ node }: { node: { attrs: { variant: CtaVariant } } }) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return ctaSpec(node.attrs.variant as CtaVariant) as any;
   },
@@ -135,8 +135,8 @@ const LineHeight = Extension.create({
         attributes: {
           lineHeight: {
             default: null,
-            parseHTML: (element) => element.style.lineHeight?.replace(/px$/, "") || null,
-            renderHTML: (attributes) => {
+            parseHTML: (element: HTMLElement) => element.style.lineHeight?.replace(/px$/, "") || null,
+            renderHTML: (attributes: { lineHeight?: string | null }) => {
               if (!attributes.lineHeight) return {};
               return { style: `line-height: ${attributes.lineHeight}` };
             },
@@ -149,7 +149,7 @@ const LineHeight = Extension.create({
     return {
       setLineHeight:
         (lineHeight: string) =>
-        ({ chain }) => {
+        ({ chain }: { chain: () => any }) => {
           return chain()
             .focus()
             .updateAttributes("paragraph", { lineHeight })
@@ -158,7 +158,7 @@ const LineHeight = Extension.create({
         },
       unsetLineHeight:
         () =>
-        ({ chain }) => {
+        ({ chain }: { chain: () => any }) => {
           return chain()
             .focus()
             .updateAttributes("paragraph", { lineHeight: null })
@@ -226,7 +226,7 @@ export function RichTextEditor({ value, onChange, onUploadImage }: Props) {
         class: "blog-content focus:outline-none min-h-[360px]",
       },
     },
-    onUpdate: ({ editor }) => onChange(editor.getHTML()),
+    onUpdate: ({ editor }: { editor: Editor }) => onChange(editor.getHTML()),
   });
 
   // Sync external value changes (e.g. when loading an existing post).
