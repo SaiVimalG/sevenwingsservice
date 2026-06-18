@@ -57,7 +57,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Programs</h4>
+          <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Programs</h3>
           <ul className="space-y-3 text-sm text-white/90">
             {SERVICES.map((s) => (
               <li key={s.slug}>
@@ -74,7 +74,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Company</h4>
+          <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Company</h3>
           <ul className="space-y-3 text-sm text-white/90">
             {[
               { to: "/about", label: "About Us" },
@@ -95,7 +95,7 @@ export function Footer() {
         </div>
 
         <div className="col-span-2 lg:col-span-1">
-          <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Contact</h4>
+          <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Contact</h3>
           <ul className="space-y-4 text-sm text-white/90">
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />

@@ -156,15 +156,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "shortcut icon", href: "/favicon.ico" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      // Load Google Fonts non-blocking — flips to "all" once loaded, with <noscript> fallback handled by browser default fonts.
+      // Load Google Fonts non-blocking via media="print" trick — a small inline script flips media to "all" once loaded.
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap",
         media: "print",
-        onLoad: "this.media='all'",
+        "data-defer-font": "true",
       } as any,
     ],
     scripts: [
+      {
+        children:
+          "(function(){function s(){document.querySelectorAll('link[data-defer-font]').forEach(function(l){l.media='all'})}if(document.readyState!=='loading')s();else document.addEventListener('DOMContentLoaded',s);})();",
+      },
       {
         children:
           "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5K4WPVGQ');",
