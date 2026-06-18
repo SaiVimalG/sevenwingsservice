@@ -119,7 +119,7 @@ function Hero() {
           <div className="relative">
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-gold/30 via-transparent to-sky/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
-              <img src={heroImg} alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={1600} height={1100} className="aspect-[5/4] w-full object-cover" />
+              <img src={heroImg} alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={1600} height={1100} fetchPriority="high" decoding="async" className="aspect-[5/4] w-full object-cover" />
               <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur-xl">
                 <div>
                   <p className="text-xs uppercase tracking-wider text-gold-soft">Soar Beyond Borders</p>
