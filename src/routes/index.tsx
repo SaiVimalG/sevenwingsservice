@@ -45,7 +45,7 @@ function Home() {
       <FeaturedServices />
       <NumberedServices />
       <Testimonials />
-      <VideoBanner />
+      
       <FAQ />
       <Counter />
       <Awards />
@@ -323,7 +323,7 @@ function VideoStory() {
     requestAnimationFrame(() => ref.current?.play());
   };
   return (
-    <div className="group relative mx-auto aspect-[3/4] w-full max-w-[360px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant sm:aspect-auto sm:h-[550px] sm:max-w-[430px] lg:mx-0 lg:h-full lg:min-h-[500px] lg:max-w-none">
+    <div className="group relative mx-auto aspect-[3/4] w-full max-w-none overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant sm:aspect-auto sm:h-[550px] sm:max-w-[430px] lg:mx-0 lg:h-full lg:min-h-[500px] lg:max-w-none">
       <video
         ref={ref}
         src={realStoriesVideo.url}
@@ -356,7 +356,7 @@ function VideoStory() {
 function Testimonials() {
   return (
     <section className="bg-cream py-14 md:py-10">
-      <div className="mx-auto max-w-[1200px] px-6">
+      <div className="mx-auto max-w-[1200px] px-[5px] sm:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">What Our Clients Say</p></Reveal>
           <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Stories of <span className="text-gradient-gold">Successful Landings.</span></h2></Reveal>
