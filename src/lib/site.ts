@@ -9,7 +9,7 @@ export const SITE = {
   email: "hello@7wingsimmigration.com",
   phone: "+91 80621 80254",
   whatsapp: "+91 80621 80254",
-  address: "Hi-Tech City, Madhapur, Hyderabad, Telangana, India",
+  address: "H.No. 3-10-102/1, Gokhale Nagar, Srinivasapuram (Hyderabad), Amberpet, Hyderabad - 500013, Telangana, India",
   logoUrl: logo.url,
   logoUrlDark: logo.url,
   social: {
@@ -476,7 +476,7 @@ export const PRICING = [
     name: "Profile Assessment",
     price: "Free",
     cadence: "30-minute consultation",
-    description: "Sit with a senior counsellor at our Hi-Tech City, Madhapur office or on video. Walk away with a written eligibility summary, country fit and next steps.",
+    description: "Sit with a senior counsellor at our Amberpet office or on video. Walk away with a written eligibility summary, country fit and next steps.",
     features: ["1:1 senior-led call", "Points and occupation scoring", "Written eligibility note", "Recommended pathway"],
     cta: "Book now",
     href: "/book-consultation",

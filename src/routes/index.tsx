@@ -148,7 +148,7 @@ function About() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              At <strong className="text-navy-deep">7 Wings Immigration</strong>, we believe talent should never be limited by geography. From our Hi-Tech City, Madhapur office, senior counsellors guide professionals, students and families through every step — from eligibility scoring to final landing.
+              At <strong className="text-navy-deep">7 Wings Immigration</strong>, we believe talent should never be limited by geography. From our Amberpet office, senior counsellors guide professionals, students and families through every step — from eligibility scoring to final landing.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
@@ -323,7 +323,7 @@ function VideoStory() {
     requestAnimationFrame(() => ref.current?.play());
   };
   return (
-    <div className="group relative mx-auto aspect-[9/16] w-full max-w-[360px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant sm:max-w-[400px] lg:mx-0 lg:aspect-auto lg:h-full lg:min-h-[500px] lg:max-w-none">
+    <div className="group relative mx-auto h-[550px] w-full max-w-[430px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant lg:mx-0 lg:h-full lg:min-h-[500px] lg:max-w-none">
       <video
         ref={ref}
         src={realStoriesVideo.url}
@@ -332,7 +332,7 @@ function VideoStory() {
         playsInline
         preload="none"
         onEnded={() => setPlaying(false)}
-        className="absolute inset-0 h-full w-full object-contain lg:object-cover"
+        className="absolute inset-0 h-full w-full object-cover"
       />
       {!playing && (
         <button
