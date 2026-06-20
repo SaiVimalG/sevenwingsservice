@@ -442,7 +442,7 @@ function LeadCapture({ country }: { country: string }) {
             </div>
           </form>
 
-          <p className="mt-4 flex items-center gap-2 text-xs text-white/50">
+          <p className="mt-4 flex items-center gap-2 text-xs text-white/80">
             <Shield className="h-3.5 w-3.5" /> Your details are confidential and never shared.
           </p>
         </div>
