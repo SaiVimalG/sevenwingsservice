@@ -379,8 +379,9 @@ function Testimonials() {
               </Reveal>
             ))}
           </div>
-          <div className="sm:hidden">
-            <Carousel opts={{ loop: true, align: "start" }} className="w-full">
+          <div className="w-full min-w-0 overflow-hidden sm:hidden">
+            <Carousel opts={{ loop: true, align: "start" }} className="w-full min-w-0">
+
               <CarouselContent>
                 {TESTIMONIALS.slice(0, 4).map((t) => (
                   <CarouselItem key={t.name}>
