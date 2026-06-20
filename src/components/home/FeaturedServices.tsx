@@ -104,8 +104,11 @@ export function FeaturedServices() {
                       <img
                         src={`https://hatscripts.github.io/circle-flags/flags/${code}.svg`}
                         alt={c.country}
+                        width={92}
+                        height={92}
                         className="h-full w-full object-cover"
                         loading="lazy"
+                        decoding="async"
                       />
                     </button>
                   );
