@@ -250,7 +250,7 @@ function FieldShell({
 }
 
 const baseInput =
-  "w-full bg-transparent px-4 py-3 text-sm text-ink placeholder:text-muted-foreground/60 outline-none";
+  "w-full bg-transparent px-4 py-3 text-sm text-ink placeholder:text-muted-foreground outline-none";
 
 function Input(
   props: React.InputHTMLAttributes<HTMLInputElement> & { label: string; icon?: IconCmp }
