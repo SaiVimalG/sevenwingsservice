@@ -323,7 +323,7 @@ function VideoStory() {
     requestAnimationFrame(() => ref.current?.play());
   };
   return (
-    <div className="group relative mx-auto aspect-[3/4] w-full max-w-none overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant sm:aspect-auto sm:h-[550px] sm:max-w-[430px] lg:mx-0 lg:h-full lg:min-h-[500px] lg:max-w-none">
+    <div className="group relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-3xl border border-black/5 bg-navy-deep shadow-elegant sm:aspect-auto sm:h-[550px] sm:max-w-[430px] lg:mx-0 lg:h-full lg:min-h-[500px] lg:max-w-none">
       <video
         ref={ref}
         src={realStoriesVideo.url}
@@ -355,13 +355,13 @@ function VideoStory() {
 
 function Testimonials() {
   return (
-    <section className="bg-cream py-14 md:py-10">
-      <div className="mx-auto max-w-[1200px] px-[5px] sm:px-6">
+    <section className="overflow-x-hidden bg-cream py-14 md:py-10">
+      <div className="mx-auto max-w-[1200px] overflow-hidden px-3 sm:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">What Our Clients Say</p></Reveal>
           <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Stories of <span className="text-gradient-gold">Successful Landings.</span></h2></Reveal>
         </div>
-        <div className="mt-16 grid gap-8 lg:grid-cols-[5fr_7fr]">
+        <div className="mt-16 grid gap-8 lg:grid-cols-[5fr_7fr] [&>*]:min-w-0">
           <Reveal>
             <VideoStory />
           </Reveal>
@@ -379,8 +379,9 @@ function Testimonials() {
               </Reveal>
             ))}
           </div>
-          <div className="sm:hidden">
-            <Carousel opts={{ loop: true, align: "start" }} className="w-full">
+          <div className="w-full min-w-0 overflow-hidden sm:hidden">
+            <Carousel opts={{ loop: true, align: "start" }} className="w-full min-w-0">
+
               <CarouselContent>
                 {TESTIMONIALS.slice(0, 4).map((t) => (
                   <CarouselItem key={t.name}>
