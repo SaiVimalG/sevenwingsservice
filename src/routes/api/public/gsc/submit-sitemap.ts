@@ -25,14 +25,23 @@ async function submitSitemap() {
 }
 
 function authorized(request: Request): boolean {
-  const expected = process.env.SUPABASE_PUBLISHABLE_KEY;
+  const expected = process.env.GSC_WEBHOOK_SECRET;
   if (!expected) return false;
-  const apikey = request.headers.get("apikey");
-  const auth = request.headers.get("authorization");
-  if (apikey && apikey === expected) return true;
-  if (auth && auth === `Bearer ${expected}`) return true;
-  return false;
+  const provided =
+    request.headers.get("x-webhook-secret") ??
+    (request.headers.get("authorization")?.startsWith("Bearer ")
+      ? request.headers.get("authorization")!.slice(7)
+      : null);
+  if (!provided) return false;
+  // Constant-time-ish compare to avoid trivial length/early-exit leaks.
+  if (provided.length !== expected.length) return false;
+  let mismatch = 0;
+  for (let i = 0; i < expected.length; i++) {
+    mismatch |= expected.charCodeAt(i) ^ provided.charCodeAt(i);
+  }
+  return mismatch === 0;
 }
+
 
 export const Route = createFileRoute("/api/public/gsc/submit-sitemap")({
   server: {
