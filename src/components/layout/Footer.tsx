@@ -126,7 +126,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-white/55 md:flex-row">
+        <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-white/85 md:flex-row">
           <p>© {new Date().getFullYear()} 7 Wings Immigration. All rights reserved.</p>
           <p>
             Made for ambitious professionals in <span className="text-gold">Hyderabad</span>.
