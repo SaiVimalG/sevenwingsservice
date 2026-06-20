@@ -148,7 +148,7 @@ function About() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              At <strong className="text-navy-deep">7 Wings Immigration</strong>, we believe talent should never be limited by geography. From our Amberpet office, senior counsellors guide professionals, students and families through every step — from eligibility scoring to final landing.
+              At <strong className="text-navy-deep">7 Wings Immigration</strong>, we believe talent should never be limited by geography. From our Hi-Tech City, Madhapur office, senior counsellors guide professionals, students and families through every step — from eligibility scoring to final landing.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
