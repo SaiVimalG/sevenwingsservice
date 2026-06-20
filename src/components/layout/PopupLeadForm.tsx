@@ -328,7 +328,7 @@ export function PopupLeadForm() {
 }
 
 const input =
-  "w-full bg-transparent px-3 py-3 text-sm text-ink placeholder:text-muted-foreground/70 outline-none";
+  "w-full bg-transparent px-3 py-3 text-sm text-ink placeholder:text-muted-foreground outline-none";
 
 function Field({ icon: Icon, children }: { icon: React.ComponentType<{ className?: string }>; children: React.ReactNode }) {
   return (
