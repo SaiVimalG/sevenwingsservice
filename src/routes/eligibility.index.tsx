@@ -38,8 +38,8 @@ const CALCS = [
 export const Route = createFileRoute("/eligibility/")({
   head: () => ({
     meta: [
-      { title: "Free Visa Free Visa & PR Eligibility Calculators — Hyderabad | 7 Wings Immigration PR Eligibility Calculators | 7 Wings Hyderabad" },
-      { name: "description", content: "Free real-time PR calculators for Australia (189/190/491), Canada (CRS, FSWP, SINP, Quebec), Germany Opportunity Card and UK Skilled Worker — by Hyderabad's top immigration consultancy." },
+      { title: "Visa & PR Eligibility Calculators | 7 Wings Immigration" },
+      { name: "description", content: "Free PR & visa points calculators for Australia (189/190/491), Canada (CRS, FSWP, SINP, Quebec), Germany Opportunity Card and UK Skilled Worker." },
       { property: "og:title", content: "Free Immigration Eligibility Calculators | 7 Wings Hyderabad" },
       { property: "og:description", content: "Instant points calculators for Australia, Canada, Germany and UK — built by Hyderabad's senior immigration consultants." },
       { property: "og:url", content: "https://www.7wingsimmigration.com/eligibility" },
