@@ -1,13 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { SERVICES, COUNTRY_PROGRAMS } from "@/lib/site";
+import { listSitemapPosts } from "@/lib/blog.functions";
 
 const BASE_URL = "https://www.7wingsimmigration.com";
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
+}
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const blogPaths: string[] = ["/blog"];
+        try {
+          const posts = await listSitemapPosts();
+          for (const p of posts) {
+            blogPaths.push(`/blog/${p.slug}`);
+            blogPaths.push(`/blog/${slugify(p.category)}/${p.slug}`);
+          }
+        } catch {
+          // If the DB is unreachable, ship the static sitemap rather than 500.
+        }
+
         const paths = [
           "/", "/about", "/services", "/success-stories", "/faq",
           "/contact", "/book-consultation", "/privacy", "/terms", "/refund",
@@ -24,6 +40,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/eligibility/uk/skilled-worker-visa-calculator",
           ...SERVICES.map((s) => `/services/${s.slug}`),
           ...COUNTRY_PROGRAMS.flatMap((c) => c.programs.map((p) => `/programs/${p.slug}`)),
+          ...blogPaths,
         ];
         const urls = paths.map((p) => `  <url>\n    <loc>${BASE_URL}${p}</loc>\n    <changefreq>monthly</changefreq>\n  </url>`).join("\n");
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
