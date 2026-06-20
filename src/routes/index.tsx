@@ -356,7 +356,7 @@ function VideoStory() {
 function Testimonials() {
   return (
     <section className="bg-cream py-14 md:py-10">
-      <div className="mx-auto max-w-[1200px] px-[5px] sm:px-6">
+      <div className="mx-auto max-w-[1200px] overflow-hidden px-3 sm:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">What Our Clients Say</p></Reveal>
           <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Stories of <span className="text-gradient-gold">Successful Landings.</span></h2></Reveal>
