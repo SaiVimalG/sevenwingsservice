@@ -361,7 +361,7 @@ function Testimonials() {
           <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">What Our Clients Say</p></Reveal>
           <Reveal delay={0.1}><h2 className="mt-3 font-display text-4xl font-bold text-navy-deep md:text-5xl">Stories of <span className="text-gradient-gold">Successful Landings.</span></h2></Reveal>
         </div>
-        <div className="mt-16 grid gap-8 lg:grid-cols-[5fr_7fr]">
+        <div className="mt-16 grid gap-8 lg:grid-cols-[5fr_7fr] [&>*]:min-w-0">
           <Reveal>
             <VideoStory />
           </Reveal>
