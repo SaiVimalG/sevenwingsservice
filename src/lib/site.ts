@@ -38,10 +38,10 @@ export interface Service {
   metaDescription: string;
 }
 
-import germany from "@/assets/germany.jpg";
-import australia from "@/assets/australia.jpg";
-import canada from "@/assets/canada.jpg";
-import jss from "@/assets/jss.jpg";
+import germany from "@/assets/germany.webp";
+import australia from "@/assets/australia.webp";
+import canada from "@/assets/canada.webp";
+import jss from "@/assets/jss.webp";
 
 export const SERVICES: Service[] = [
   {
