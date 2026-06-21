@@ -1,15 +1,34 @@
-import type { ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
-import { PopupLeadForm } from "./PopupLeadForm";
+
+const PopupLeadForm = lazy(() =>
+  import("./PopupLeadForm").then((m) => ({ default: m.PopupLeadForm })),
+);
 
 export function PageShell({ children }: { children: ReactNode }) {
+  const [showPopup, setShowPopup] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
+    const id = w.requestIdleCallback
+      ? w.requestIdleCallback(() => setShowPopup(true), { timeout: 6000 })
+      : (window.setTimeout(() => setShowPopup(true), 4000) as unknown as number);
+    return () => {
+      if (w.cancelIdleCallback) w.cancelIdleCallback(id);
+      else window.clearTimeout(id);
+    };
+  }, []);
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-1 animate-fade-in">{children}</main>
       <Footer />
-      <PopupLeadForm />
+      {showPopup && (
+        <Suspense fallback={null}>
+          <PopupLeadForm />
+        </Suspense>
+      )}
     </div>
   );
 }

@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
-import { TiltCard } from "@/components/motion/TiltCard";
 import { SERVICES } from "@/lib/site";
 
 export const Route = createFileRoute("/services/")({
@@ -33,7 +32,7 @@ function Services() {
         <div className="mx-auto grid max-w-[1200px] gap-8 px-6 md:grid-cols-2">
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.08}>
-              <TiltCard className="group h-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-elegant">
+              <div className="group h-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-elegant">
                 <div className="relative h-72 overflow-hidden">
                   <img src={s.image} alt={`${s.country} reference`} width={1024} height={768} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy/20 to-transparent" />
@@ -48,7 +47,7 @@ function Services() {
                     Explore programme <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
-              </TiltCard>
+              </div>
             </Reveal>
           ))}
         </div>
