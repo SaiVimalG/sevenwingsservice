@@ -10,8 +10,10 @@ import { Marquee } from "@/components/motion/Marquee";
 import { CountUp } from "@/components/motion/CountUp";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE } from "@/lib/site";
-import heroImg from "@/assets/hero.jpg";
-import aboutImg from "@/assets/about.jpg";
+import heroImg from "@/assets/hero.webp";
+import heroImgJpg from "@/assets/hero.jpg";
+import aboutImg from "@/assets/about.webp";
+import aboutImgJpg from "@/assets/about.jpg";
 import realStoriesVideo from "@/assets/happy-client.mp4.asset.json";
 import realStoriesPoster from "@/assets/happy-client-poster.jpg.asset.json";
 import germanyImg from "@/assets/germany.jpg";
@@ -24,10 +26,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
       { property: "og:description", content: "Best immigration consultancy in Hyderabad. Free profile evaluation across Germany, Australia, Canada, UK and JSS pathways." },
       { property: "og:url", content: "https://www.7wingsimmigration.com/" },
-      { property: "og:image", content: heroImg },
+      { property: "og:image", content: heroImgJpg },
       { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings" },
       { name: "twitter:description", content: "Best immigration consultancy in Hyderabad — Germany, Australia, Canada, UK, JSS." },
-      { name: "twitter:image", content: heroImg },
+      { name: "twitter:image", content: heroImgJpg },
     ],
     links: [
       { rel: "canonical", href: "https://www.7wingsimmigration.com/" },
@@ -107,7 +109,7 @@ function Hero() {
           <div className="relative">
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-gold/30 via-transparent to-sky/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
-              <img src={heroImg} alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={1920} height={1080} fetchPriority="high" decoding="async" className="aspect-video w-full object-cover" />
+              <img src={heroImg} alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={1280} height={720} fetchPriority="high" decoding="async" className="aspect-video w-full object-cover" />
               <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur-xl">
                 <div>
                   <p className="text-xs uppercase tracking-wider text-gold-soft">Soar Beyond Borders</p>
@@ -132,7 +134,7 @@ function About() {
         <Reveal>
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-sky/10 blur-2xl" />
-            <img src={aboutImg} alt="7 Wings Immigration consultants at the Hyderabad office" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
+            <img src={aboutImg} alt="7 Wings Immigration consultants at the Hyderabad office" width={800} height={800} loading="lazy" decoding="async" className="rounded-3xl border border-black/5 shadow-elegant" />
             <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-8 -right-6 hidden rounded-2xl border border-black/5 bg-white p-5 shadow-elegant md:block">
               <p className="text-xs uppercase tracking-widest text-gold-deep">Since 2018</p>
               <p className="mt-1 font-display text-xl text-navy-deep">Hyderabad's senior-led<br />immigration team.</p>

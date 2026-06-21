@@ -386,3 +386,11 @@
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 
+
+@keyframes lov-page-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-in {
+  animation: lov-page-fade-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}

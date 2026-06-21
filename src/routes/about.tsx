@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
-import aboutImg from "@/assets/about.jpg";
+import aboutImg from "@/assets/about.webp";
+import aboutImgJpg from "@/assets/about.jpg";
 import { SITE, WHY_CHOOSE_US } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
@@ -13,10 +14,10 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About 7 Wings | Immigration Consultants Hyderabad" },
       { property: "og:description", content: "A senior-led, Hyderabad-based immigration consultancy built around transparent fees and 1000+ documented successes." },
       { property: "og:url", content: "https://www.7wingsimmigration.com/about" },
-      { property: "og:image", content: aboutImg },
+      { property: "og:image", content: aboutImgJpg },
       { name: "twitter:title", content: "About 7 Wings Immigration Hyderabad" },
       { name: "twitter:description", content: "Senior-led immigration consultancy in Hyderabad with 1000+ successful visa cases." },
-      { name: "twitter:image", content: aboutImg },
+      { name: "twitter:image", content: aboutImgJpg },
     ],
     links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/about" }],
   }),
@@ -34,7 +35,7 @@ function About() {
       <section className="py-12 md:py-10">
         <div className="mx-auto grid max-w-[1200px] gap-16 px-6 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <img src={aboutImg} alt="7 Wings Immigration consultants in Hyderabad" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
+            <img src={aboutImg} alt="7 Wings Immigration consultants in Hyderabad" width={800} height={800} loading="lazy" decoding="async" className="rounded-3xl border border-black/5 shadow-elegant" />
           </Reveal>
           <div>
             <Reveal><h2 className="font-display text-4xl font-bold text-navy-deep">Why&nbsp; 7&nbsp; Wings Immigration?</h2></Reveal>

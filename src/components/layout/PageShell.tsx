@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { PopupLeadForm } from "./PopupLeadForm";
@@ -8,14 +7,7 @@ export function PageShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <motion.main
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-        className="flex-1"
-      >
-        {children}
-      </motion.main>
+      <main className="flex-1 animate-fade-in">{children}</main>
       <Footer />
       <PopupLeadForm />
     </div>
