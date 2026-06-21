@@ -11,12 +11,12 @@ import { CountUp } from "@/components/motion/CountUp";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE } from "@/lib/site";
 import heroImg from "@/assets/hero.webp";
-import heroImgJpg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.webp";
-import aboutImgJpg from "@/assets/about.jpg";
 import realStoriesVideo from "@/assets/happy-client.mp4.asset.json";
 import realStoriesPoster from "@/assets/happy-client-poster.jpg.asset.json";
 import germanyImg from "@/assets/germany.webp";
+
+const OG_IMAGE = "https://www.7wingsimmigration.com" + heroImg;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,10 +26,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
       { property: "og:description", content: "Best immigration consultancy in Hyderabad. Free profile evaluation across Germany, Australia, Canada, UK and JSS pathways." },
       { property: "og:url", content: "https://www.7wingsimmigration.com/" },
-      { property: "og:image", content: heroImgJpg },
+      { property: "og:image", content: OG_IMAGE },
       { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings" },
       { name: "twitter:description", content: "Best immigration consultancy in Hyderabad — Germany, Australia, Canada, UK, JSS." },
-      { name: "twitter:image", content: heroImgJpg },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [
       { rel: "canonical", href: "https://www.7wingsimmigration.com/" },
