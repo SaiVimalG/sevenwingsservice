@@ -398,10 +398,6 @@ function Testimonials() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="mt-4 flex items-center justify-center gap-3">
-                <CarouselPrevious className="static translate-y-0" />
-                <CarouselNext className="static translate-y-0" />
-              </div>
             </Carousel>
           </div>
         </div>

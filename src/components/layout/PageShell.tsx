@@ -10,14 +10,13 @@ export function PageShell({ children }: { children: ReactNode }) {
   const [showPopup, setShowPopup] = useState(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const idle = (cb: () => void) =>
-      "requestIdleCallback" in window
-        ? (window as any).requestIdleCallback(cb, { timeout: 6000 })
-        : window.setTimeout(cb, 4000);
-    const id = idle(() => setShowPopup(true));
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
+    const id = w.requestIdleCallback
+      ? w.requestIdleCallback(() => setShowPopup(true), { timeout: 6000 })
+      : (window.setTimeout(() => setShowPopup(true), 4000) as unknown as number);
     return () => {
-      if ("cancelIdleCallback" in window) (window as any).cancelIdleCallback(id);
-      else clearTimeout(id as any);
+      if (w.cancelIdleCallback) w.cancelIdleCallback(id);
+      else window.clearTimeout(id);
     };
   }, []);
   return (
