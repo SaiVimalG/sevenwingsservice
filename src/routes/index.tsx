@@ -26,10 +26,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
       { property: "og:description", content: "Best immigration consultancy in Hyderabad. Free profile evaluation across Germany, Australia, Canada, UK and JSS pathways." },
       { property: "og:url", content: "https://www.7wingsimmigration.com/" },
-      { property: "og:image", content: heroImg },
+      { property: "og:image", content: heroImgJpg },
       { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings" },
       { name: "twitter:description", content: "Best immigration consultancy in Hyderabad — Germany, Australia, Canada, UK, JSS." },
-      { name: "twitter:image", content: heroImg },
+      { name: "twitter:image", content: heroImgJpg },
     ],
     links: [
       { rel: "canonical", href: "https://www.7wingsimmigration.com/" },
