@@ -16,7 +16,7 @@ import aboutImg from "@/assets/about.webp";
 import aboutImgJpg from "@/assets/about.jpg";
 import realStoriesVideo from "@/assets/happy-client.mp4.asset.json";
 import realStoriesPoster from "@/assets/happy-client-poster.jpg.asset.json";
-import germanyImg from "@/assets/germany.jpg";
+import germanyImg from "@/assets/germany.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
