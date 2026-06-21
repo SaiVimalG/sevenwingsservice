@@ -35,7 +35,7 @@ function About() {
       <section className="py-12 md:py-10">
         <div className="mx-auto grid max-w-[1200px] gap-16 px-6 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <img src={aboutImg} alt="7 Wings Immigration consultants in Hyderabad" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
+            <img src={aboutImg} alt="7 Wings Immigration consultants in Hyderabad" width={800} height={800} loading="lazy" decoding="async" className="rounded-3xl border border-black/5 shadow-elegant" />
           </Reveal>
           <div>
             <Reveal><h2 className="font-display text-4xl font-bold text-navy-deep">Why&nbsp; 7&nbsp; Wings Immigration?</h2></Reveal>
