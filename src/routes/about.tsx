@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
-import aboutImg from "@/assets/about.jpg";
+import aboutImg from "@/assets/about.webp";
+import aboutImgJpg from "@/assets/about.jpg";
 import { SITE, WHY_CHOOSE_US } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
