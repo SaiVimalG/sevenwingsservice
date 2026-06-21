@@ -134,7 +134,7 @@ function About() {
         <Reveal>
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-sky/10 blur-2xl" />
-            <img src={aboutImg} alt="7 Wings Immigration consultants at the Hyderabad office" width={1024} height={1024} loading="lazy" className="rounded-3xl border border-black/5 shadow-elegant" />
+            <img src={aboutImg} alt="7 Wings Immigration consultants at the Hyderabad office" width={800} height={800} loading="lazy" decoding="async" className="rounded-3xl border border-black/5 shadow-elegant" />
             <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-8 -right-6 hidden rounded-2xl border border-black/5 bg-white p-5 shadow-elegant md:block">
               <p className="text-xs uppercase tracking-widest text-gold-deep">Since 2018</p>
               <p className="mt-1 font-display text-xl text-navy-deep">Hyderabad's senior-led<br />immigration team.</p>
