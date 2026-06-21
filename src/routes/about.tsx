@@ -3,8 +3,9 @@ import { ArrowRight, Check } from "lucide-react";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
 import aboutImg from "@/assets/about.webp";
-import aboutImgJpg from "@/assets/about.jpg";
 import { SITE, WHY_CHOOSE_US } from "@/lib/site";
+
+const OG_IMAGE = "https://www.7wingsimmigration.com" + aboutImg;
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -14,10 +15,10 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About 7 Wings | Immigration Consultants Hyderabad" },
       { property: "og:description", content: "A senior-led, Hyderabad-based immigration consultancy built around transparent fees and 1000+ documented successes." },
       { property: "og:url", content: "https://www.7wingsimmigration.com/about" },
-      { property: "og:image", content: aboutImgJpg },
+      { property: "og:image", content: OG_IMAGE },
       { name: "twitter:title", content: "About 7 Wings Immigration Hyderabad" },
       { name: "twitter:description", content: "Senior-led immigration consultancy in Hyderabad with 1000+ successful visa cases." },
-      { name: "twitter:image", content: aboutImgJpg },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/about" }],
   }),
