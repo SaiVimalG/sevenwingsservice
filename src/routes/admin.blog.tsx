@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp } from "lucide-react";
+import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp, Sparkles, X } from "lucide-react";
 
 import {
   verifyAdminToken,
@@ -12,6 +12,7 @@ import {
   setPostListed,
   type PostInput,
 } from "@/lib/blog.functions";
+import { generateBlogWithAI } from "@/lib/blog-ai.functions";
 import { SERVICES, BLOG, type BlogPost } from "@/lib/site";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
 
