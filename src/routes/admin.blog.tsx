@@ -459,9 +459,23 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
         <button onClick={onBack} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy-deep">
           <ArrowLeft className="h-4 w-4" /> Back to list
         </button>
-        <button onClick={save} disabled={saving} className="inline-flex items-center gap-2 btn-gold btn-gold-hover disabled:opacity-60">
-          <Save className="h-4 w-4" /> {saving ? "Saving…" : "Save post"}
-        </button>
+        <div className="flex items-center gap-2">
+          <AIWriteButton
+            token={token}
+            onGenerated={({ title, excerpt, contentHtml }) =>
+              setForm((f) => ({
+                ...f,
+                title: title || f.title,
+                slug: originalSlug ? f.slug : slugify(title || f.title),
+                excerpt: excerpt || f.excerpt,
+                contentHtml: contentHtml || f.contentHtml,
+              }))
+            }
+          />
+          <button onClick={save} disabled={saving} className="inline-flex items-center gap-2 btn-gold btn-gold-hover disabled:opacity-60">
+            <Save className="h-4 w-4" /> {saving ? "Saving…" : "Save post"}
+          </button>
+        </div>
       </div>
       {error && <p className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
 
