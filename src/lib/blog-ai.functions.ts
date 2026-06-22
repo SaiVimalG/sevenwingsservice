@@ -34,44 +34,43 @@ export const generateBlogWithAI = createServerFn({ method: "POST" })
     if (!expected) throw new Error("ADMIN_BLOG_TOKEN not configured.");
     if (data.token.trim() !== expected) throw new Error("Invalid admin token.");
 
-    const key = process.env.LOVABLE_API_KEY;
-    if (!key) throw new Error("LOVABLE_API_KEY missing on server.");
+    const key = process.env.GEMINI_API_KEY;
+    if (!key) throw new Error("GEMINI_API_KEY missing on server.");
 
-    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`;
+
+    const res = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${key}`,
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: `Topic: ${data.topic}` },
-        ],
-        response_format: { type: "json_object" },
+        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents: [{ role: "user", parts: [{ text: `Topic: ${data.topic}` }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          temperature: 0.8,
+        },
       }),
     });
 
     if (!res.ok) {
       const body = await res.text();
-      if (res.status === 429) throw new Error("AI rate limit reached. Please try again in a minute.");
-      if (res.status === 402) throw new Error("AI credits exhausted. Please add credits in your Lovable workspace.");
-      throw new Error(`AI request failed (${res.status}): ${body.slice(0, 200)}`);
+      if (res.status === 429) throw new Error("Gemini rate limit reached. Please try again in a minute.");
+      if (res.status === 401 || res.status === 403) throw new Error("Gemini API key is invalid or lacks access.");
+      throw new Error(`Gemini request failed (${res.status}): ${body.slice(0, 200)}`);
     }
 
     const json = (await res.json()) as {
-      choices?: { message?: { content?: string } }[];
+      candidates?: { content?: { parts?: { text?: string }[] } }[];
     };
-    const raw = json.choices?.[0]?.message?.content ?? "";
-    if (!raw) throw new Error("AI returned an empty response.");
+    const raw = json.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";
+    if (!raw) throw new Error("Gemini returned an empty response.");
 
     let parsed: { title?: string; excerpt?: string; contentHtml?: string };
     try {
       parsed = JSON.parse(raw);
     } catch {
       const m = raw.match(/\{[\s\S]*\}/);
-      if (!m) throw new Error("AI returned non-JSON output.");
+      if (!m) throw new Error("Gemini returned non-JSON output.");
       parsed = JSON.parse(m[0]);
     }
 
