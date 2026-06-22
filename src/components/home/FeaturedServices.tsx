@@ -17,9 +17,9 @@ export function FeaturedServices() {
   const prevCountry = COUNTRY_PROGRAMS[prevIndex];
   const nextCountry = COUNTRY_PROGRAMS[nextIndex];
 
-  const goPrev = () => { setPaused(true); setActiveIndex(prevIndex); };
-  const goNext = () => { setPaused(true); setActiveIndex(nextIndex); };
-  const goTo = (i: number) => { setPaused(true); setActiveIndex(i); };
+  const goPrev = () => { setActiveIndex(prevIndex); };
+  const goNext = () => { setActiveIndex(nextIndex); };
+  const goTo = (i: number) => { setActiveIndex(i); };
 
   useEffect(() => {
     if (paused) return;
