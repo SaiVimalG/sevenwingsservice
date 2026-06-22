@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp } from "lucide-react";
+import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp, Sparkles, X } from "lucide-react";
 
 import {
   verifyAdminToken,
@@ -12,6 +12,7 @@ import {
   setPostListed,
   type PostInput,
 } from "@/lib/blog.functions";
+import { generateBlogWithAI } from "@/lib/blog-ai.functions";
 import { SERVICES, BLOG, type BlogPost } from "@/lib/site";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
 
@@ -458,9 +459,23 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
         <button onClick={onBack} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy-deep">
           <ArrowLeft className="h-4 w-4" /> Back to list
         </button>
-        <button onClick={save} disabled={saving} className="inline-flex items-center gap-2 btn-gold btn-gold-hover disabled:opacity-60">
-          <Save className="h-4 w-4" /> {saving ? "Saving…" : "Save post"}
-        </button>
+        <div className="flex items-center gap-2">
+          <AIWriteButton
+            token={token}
+            onGenerated={({ title, excerpt, contentHtml }) =>
+              setForm((f) => ({
+                ...f,
+                title: title || f.title,
+                slug: originalSlug ? f.slug : slugify(title || f.title),
+                excerpt: excerpt || f.excerpt,
+                contentHtml: contentHtml || f.contentHtml,
+              }))
+            }
+          />
+          <button onClick={save} disabled={saving} className="inline-flex items-center gap-2 btn-gold btn-gold-hover disabled:opacity-60">
+            <Save className="h-4 w-4" /> {saving ? "Saving…" : "Save post"}
+          </button>
+        </div>
       </div>
       {error && <p className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
 
@@ -613,5 +628,102 @@ function Section({
       </button>
       {open && <div className="space-y-5 border-t border-black/5 px-5 py-5">{children}</div>}
     </div>
+  );
+}
+
+function AIWriteButton({
+  token,
+  onGenerated,
+}: {
+  token: string;
+  onGenerated: (out: { title: string; excerpt: string; contentHtml: string }) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [topic, setTopic] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  const run = async () => {
+    if (!topic.trim()) return;
+    setLoading(true);
+    setErr(null);
+    try {
+      const res = await generateBlogWithAI({ data: { token, topic: topic.trim() } });
+      onGenerated(res);
+      setOpen(false);
+      setTopic("");
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "Generation failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gradient-to-r from-gold/10 to-amber-100/40 px-4 py-2 text-sm font-semibold text-navy-deep transition-colors hover:border-gold hover:bg-gold/20"
+      >
+        <Sparkles className="h-4 w-4 text-gold-deep" /> Write with Gemini
+      </button>
+
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => !loading && setOpen(false)}>
+          <div
+            className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-4 flex items-start justify-between">
+              <div>
+                <h3 className="font-display text-lg font-bold text-navy-deep flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-gold-deep" /> Write with Gemini
+                </h3>
+                <p className="mt-1 text-xs text-muted-foreground">Describe the topic — AI will fill the title, excerpt and body.</p>
+              </div>
+              <button onClick={() => !loading && setOpen(false)} className="rounded-full p-1 text-muted-foreground hover:bg-cream">
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <label className="mb-1.5 block text-sm font-semibold text-navy-deep">Blog topic</label>
+            <textarea
+              autoFocus
+              rows={3}
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              placeholder="e.g. Canada Express Entry CRS score breakdown for Indian IT professionals in 2026"
+              className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm outline-none focus:border-gold"
+              disabled={loading}
+            />
+
+            {err && <p className="mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">{err}</p>}
+
+            <div className="mt-5 flex justify-end gap-2">
+              <button
+                onClick={() => setOpen(false)}
+                disabled={loading}
+                className="rounded-full border border-black/10 px-4 py-2 text-sm text-navy-deep hover:border-gold disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={run}
+                disabled={loading || !topic.trim()}
+                className="inline-flex items-center gap-2 btn-gold btn-gold-hover disabled:opacity-60"
+              >
+                <Sparkles className="h-4 w-4" />
+                {loading ? "Generating…" : "Generate article"}
+              </button>
+            </div>
+
+            <p className="mt-4 text-[11px] text-muted-foreground">
+              Tip: review and edit the generated text before saving. Generation typically takes 10-20 seconds.
+            </p>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
