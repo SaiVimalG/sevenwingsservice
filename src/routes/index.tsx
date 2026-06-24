@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://www.7wingsimmigration.com/" },
-      { rel: "preload", as: "image", href: hero768Img, fetchPriority: "high" } as any,
+      { rel: "preload", as: "image", href: hero768Img },
     ],
   }),
   component: Home,
