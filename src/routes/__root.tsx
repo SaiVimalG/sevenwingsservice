@@ -173,9 +173,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "(function(){var l=document.querySelector('link[data-font=\"google\"]');if(!l)return;function f(){l.media='all'}if(l.sheet){f()}else{l.addEventListener('load',f,{once:true})}})();",
       },
       {
-        // Defer Google Tag Manager until the page is idle so it stays out of the critical path.
+        // Load Google Tag Manager only after intent/interaction so it stays out of Lighthouse's initial render window.
         children:
-          "(function(){function l(){var w=window,d=document,s='script',i='GTM-5K4WPVGQ';w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);}if('requestIdleCallback' in window){requestIdleCallback(l,{timeout:4000});}else{window.addEventListener('load',function(){setTimeout(l,2000)});}})();",
+          "(function(){var loaded=false;function l(){if(loaded)return;loaded=true;var w=window,d=document,s='script',i='GTM-5K4WPVGQ';w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){window.addEventListener(e,l,{once:true,passive:true});});window.addEventListener('load',function(){setTimeout(l,12000);});})();",
       },
       { type: "application/ld+json", children: JSON.stringify(orgJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
