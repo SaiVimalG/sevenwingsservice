@@ -16,6 +16,7 @@ export function Logo({ variant = "light", className = "" }: { variant?: "light" 
           alt={`${SITE.name} logo`}
           width={220}
           height={64}
+          fetchPriority="high"
           decoding="async"
           className="block h-16 w-auto max-w-none shrink-0 scale-[1.35] origin-left object-contain object-left transition-transform duration-500 ease-out sm:h-20 lg:h-24"
         />
