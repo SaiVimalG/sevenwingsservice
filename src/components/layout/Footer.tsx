@@ -10,7 +10,7 @@ export function Footer() {
       <div className="bg-white">
         <div className="mx-auto max-w-[1200px] px-6 py-5">
           <p className="text-center text-[11px] leading-relaxed md:text-xs">
-            <span className="font-semibold text-red-500">Service Commitment:</span>{" "}
+            <span className="font-semibold text-navy-deep">Service Commitment:</span>{" "}
             <span className="text-navy-deep">
               7 Wings Immigration offers professional guidance and full application processing. We don't guarantee visa approvals or job placements — final decisions rest with immigration authorities, embassies and employers. We maximise your success with accurate documentation, transparent advice and dedicated support.
             </span>
