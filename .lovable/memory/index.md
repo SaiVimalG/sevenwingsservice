@@ -1,5 +1,15 @@
 # Project Memory
 
 ## Core
-Mobile layout uses full viewport width matching the navbar (max-w-[1200px] px-6, overflow-x-hidden on root). DO NOT change mobile width/padding without explicit user permission — warn first.
-Footer logo uses 7wings-logo-dark.png (designed for dark bg) — no filters/inversion.
+Performance is a hard requirement. Every change must keep Lighthouse mobile Performance ≥ 90 and never reintroduce these regressions:
+- No render-blocking external stylesheets in `__root.tsx`. Google Fonts must load via `media="print"` + JS media-swap, with a `<noscript>` fallback.
+- LCP image (currently the navbar logo) must keep `fetchPriority="high"` + explicit `width`/`height`, and stay preloaded in `__root.tsx`.
+- Navbar / hero images must be WebP or AVIF and ≤ 40 KB. Never use the 162 KB SVG logo again (`7wings-navbar-logo.svg.asset.json`); use `7wings-navbar-logo.webp.asset.json`.
+- Below-the-fold UI (popup form, phone-input lib, carousels) must be `React.lazy` — never imported at module scope from `PageShell`.
+- `framer-motion` stays out of the shared shell chunk; import it dynamically per component that needs it.
+- GTM stays idle-deferred (`requestIdleCallback` + 4 s timeout). Do not move it back to `<head>`.
+- Every `<img>` needs `alt`, `width`, `height`, and `loading="lazy"` unless it is the LCP image.
+- Every icon-only button needs `aria-label`. Use design tokens (`text-foreground`, `text-muted-foreground`) — no `text-gray-*` or arbitrary low-contrast colors.
+
+## Memories
+- [Performance plan](.lovable/plan.md) — Full audit + A/B/C fix buckets (logo, lazy popup, framer-motion trim, self-host fonts).

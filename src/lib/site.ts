@@ -1,4 +1,4 @@
-import logo from "@/assets/7wings-navbar-logo.svg.asset.json";
+import logo from "@/assets/7wings-navbar-logo.webp.asset.json";
 
 
 export const SITE = {

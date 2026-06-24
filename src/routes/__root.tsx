@@ -154,14 +154,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/png", sizes: "512x512", href: LOGO_URL_512 },
       { rel: "apple-touch-icon", sizes: "192x192", href: LOGO_URL_192 },
       { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "preload", as: "image", href: "/__l5e/assets-v1/cf5718b5-4f9c-458a-bd7b-5af3eec8d6ca/7wings-navbar-logo.webp", fetchpriority: "high" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Non-blocking font load: fetched via media="print" so it does not block render;
+      // an inline script (below) flips media to 'all' after the stylesheet loads.
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap",
-      },
+        media: "print",
+        "data-font": "google",
+      } as unknown as { rel: string; href: string },
     ],
     scripts: [
+      {
+        // Promote the deferred font stylesheet to media="all" once loaded.
+        children:
+          "(function(){var l=document.querySelector('link[data-font=\"google\"]');if(!l)return;function f(){l.media='all'}if(l.sheet){f()}else{l.addEventListener('load',f,{once:true})}})();",
+      },
       {
         // Defer Google Tag Manager until the page is idle so it stays out of the critical path.
         children:
@@ -189,6 +199,11 @@ function RootShell({ children }: { children: ReactNode }) {
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
+          />
+          {/* JS-disabled fallback so fonts still apply when the media-swap script can't run. */}
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap"
           />
         </noscript>
         {children}
