@@ -157,16 +157,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preload", as: "image", href: "/__l5e/assets-v1/cf5718b5-4f9c-458a-bd7b-5af3eec8d6ca/7wings-navbar-logo.webp", fetchpriority: "high" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      // Non-blocking font load: fetch with media="print" then promote to all on load.
+      // Non-blocking font load: fetched via media="print" so it does not block render;
+      // an inline script (below) flips media to 'all' after the stylesheet loads.
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap",
         media: "print",
-        onLoad: "this.media='all'",
-      },
+        "data-font": "google",
+      } as unknown as { rel: string; href: string },
     ],
     scripts: [
-      // Fallback: ensure fonts apply even if JS is disabled — covered by <noscript> below.
+      {
+        // Promote the deferred font stylesheet to media="all" once loaded.
+        children:
+          "(function(){var l=document.querySelector('link[data-font=\"google\"]');if(!l)return;function f(){l.media='all'}if(l.sheet){f()}else{l.addEventListener('load',f,{once:true})}})();",
+      },
       {
         // Defer Google Tag Manager until the page is idle so it stays out of the critical path.
         children:
