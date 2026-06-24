@@ -200,6 +200,11 @@ function RootShell({ children }: { children: ReactNode }) {
             width="0"
             style={{ display: "none", visibility: "hidden" }}
           />
+          {/* JS-disabled fallback so fonts still apply when the media-swap script can't run. */}
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap"
+          />
         </noscript>
         {children}
         <Scripts />
