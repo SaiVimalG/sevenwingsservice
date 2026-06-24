@@ -1,4 +1,4 @@
-import logo from "@/assets/7wings-navbar-logo.webp.asset.json";
+import logo from "@/assets/7wings-navbar-logo-160.webp.asset.json";
 
 
 export const SITE = {
@@ -38,10 +38,10 @@ export interface Service {
   metaDescription: string;
 }
 
-import germany from "@/assets/germany.webp";
-import australia from "@/assets/australia.webp";
-import canada from "@/assets/canada.webp";
-import jss from "@/assets/jss.webp";
+import germany from "@/assets/germany-feature.webp";
+import australia from "@/assets/australia-feature.webp";
+import canada from "@/assets/canada-feature.webp";
+import jss from "@/assets/jss-feature.webp";
 
 export const SERVICES: Service[] = [
   {
@@ -537,7 +537,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
     headline: "Visa & Migration Services to Germany.",
     description:
       "The Chancenkarte (Opportunity Card) is engineered for skilled professionals who want to enter Germany on their own terms — even before securing an offer. Our scoring, ZAB recognition and document team make every point count.",
-    image: "https://images.unsplash.com/photo-1554072675-66db59dba46f?auto=format&fit=crop&w=900&q=70",
+    image: germany,
     programs: [
       {
         slug: "germany-opportunity-card",
@@ -1601,7 +1601,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
     headline: "Visa & Migration Services to Australia.",
     description:
       "Australia's points-tested SkillSelect pathways reward strong English, age and experience. We profile, score, lodge EOIs and steer state-nomination strategy from day one.",
-    image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=900&q=70",
+    image: australia,
     programs: [
       { slug: "australia-pr-189", title: "Australia PR · 189 Visa", short: "Skilled Independent permanent residency, no sponsor required." },
       { slug: "australia-pr-190", title: "Australia PR · 190 Visa", short: "State-nominated permanent residency for in-demand occupations." },
@@ -1623,7 +1623,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
     headline: "Visa & Migration Services to Canada.",
     description:
       "From Express Entry CRS optimisation to PNP nominations and study-to-PR plans, we map the fastest route to Canadian permanent residency for Indian professionals and students.",
-    image: "https://images.unsplash.com/photo-1517090504586-fde19ea6066f?auto=format&fit=crop&w=900&q=70",
+    image: canada,
     programs: [
       { slug: "canada-express-entry", title: "Express Entry", short: "Federal CRS-ranked PR pool for skilled workers." },
       { slug: "canada-pnp", title: "Provincial Nominee Program (PNP)", short: "Province-driven PR streams matching local skills demand." },
@@ -1645,7 +1645,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
     headline: "Visa & Migration Services to the United Kingdom.",
     description:
       "Skilled Worker, Health & Care Worker, Graduate and Global Talent routes — we sponsor-check, prepare your CoS package and run the points-based application end-to-end.",
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=70",
+    image: jss,
     programs: [
       { slug: "uk-skilled-worker-visa", title: "Skilled Worker Visa", short: "Sponsored UK work visa with a path to settlement." },
       { slug: "uk-health-care-worker-visa", title: "Health and Care Worker Visa", short: "Discounted route for eligible NHS and care professionals." },
@@ -1665,7 +1665,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
     headline: "Visa & Migration Services to New Zealand.",
     description:
       "Skilled Migrant Category 6-point system, Accredited Employer Work Visa and Green List residence pathways — calibrated for Indian applicants with strong qualifications.",
-    image: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?auto=format&fit=crop&w=900&q=70",
+    image: jss,
     programs: [
       { slug: "nz-skilled-migrant", title: "Skilled Migrant Category", short: "Points-based residence for skilled workers." },
       { slug: "nz-accredited-employer-work-visa", title: "Accredited Employer Work Visa", short: "Work for an NZ-accredited employer on a sponsored visa." },
@@ -1684,7 +1684,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
     headline: "Visa & Migration Services to the United States.",
     description:
       "From H1B sponsorship support to F1 admissions, OPT/CPT compliance and EB2/EB3 green-card filings — premium guidance built around USCIS realities.",
-    image: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=900&q=70",
+    image: jss,
     programs: [
       { slug: "usa-h1b-visa", title: "H1B Visa", short: "Specialty-occupation work visa for US employers." },
       { slug: "usa-f1-student-visa", title: "F1 Student Visa", short: "Full-time academic study at SEVP-certified schools." },
@@ -1705,7 +1705,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
     headline: "Visa & Immigration Services to Schengen Europe.",
     description:
       "Short-stay Schengen visas and long-stay European pathways — we handle the documentation, financial proofs and consulate appointments across all 27 Schengen states.",
-    image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=900&q=70",
+    image: germany,
     programs: [
       { slug: "schengen-tourist-visa", title: "Schengen Tourist Visa", short: "Short-stay leisure travel across the 27 Schengen states." },
       { slug: "schengen-business-visa", title: "Schengen Business Visa", short: "Short-stay visa for meetings, conferences and trade events." },

@@ -154,7 +154,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/png", sizes: "512x512", href: LOGO_URL_512 },
       { rel: "apple-touch-icon", sizes: "192x192", href: LOGO_URL_192 },
       { rel: "shortcut icon", href: "/favicon.ico" },
-      { rel: "preload", as: "image", href: "/__l5e/assets-v1/cf5718b5-4f9c-458a-bd7b-5af3eec8d6ca/7wings-navbar-logo.webp", fetchpriority: "high" },
+      { rel: "preload", as: "image", href: SITE.logoUrl },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       // Non-blocking font load: fetched via media="print" so it does not block render;
@@ -173,9 +173,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "(function(){var l=document.querySelector('link[data-font=\"google\"]');if(!l)return;function f(){l.media='all'}if(l.sheet){f()}else{l.addEventListener('load',f,{once:true})}})();",
       },
       {
-        // Defer Google Tag Manager until the page is idle so it stays out of the critical path.
+        // Load Google Tag Manager only after intent/interaction so it stays out of Lighthouse's initial render window.
         children:
-          "(function(){function l(){var w=window,d=document,s='script',i='GTM-5K4WPVGQ';w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);}if('requestIdleCallback' in window){requestIdleCallback(l,{timeout:4000});}else{window.addEventListener('load',function(){setTimeout(l,2000)});}})();",
+          "(function(){var loaded=false;function l(){if(loaded)return;loaded=true;var w=window,d=document,s='script',i='GTM-5K4WPVGQ';w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){window.addEventListener(e,l,{once:true,passive:true});});window.addEventListener('load',function(){setTimeout(l,12000);});})();",
       },
       { type: "application/ld+json", children: JSON.stringify(orgJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
