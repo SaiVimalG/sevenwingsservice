@@ -89,7 +89,7 @@ export const Route = createFileRoute("/blog/$country/$slug")({
     <PageShell>
       <div className="mx-auto max-w-3xl px-6 py-40 text-center">
         <h1 className="font-display text-3xl text-navy-deep">Something went wrong</h1>
-        <p className="mt-3 text-muted-foreground">{error.message}</p>
+        <p className="mt-3 text-muted-foreground">An unexpected error occurred. Please go back and try again.</p>
         <Link to="/blog" className="mt-6 inline-flex btn-gold btn-gold-hover">Back to Blog</Link>
       </div>
     </PageShell>
