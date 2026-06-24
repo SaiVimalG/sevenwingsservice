@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Play, Sparkles, ChevronDown } from "lucide-react";
-import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
 import { Reveal, RevealWords } from "@/components/motion/Reveal";
@@ -11,7 +10,9 @@ import { CountUp } from "@/components/motion/CountUp";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE } from "@/lib/site";
 import heroImg from "@/assets/hero.webp";
-import aboutImg from "@/assets/about.webp";
+import hero768Img from "@/assets/hero-768.webp";
+import hero960Img from "@/assets/hero-960.webp";
+import about640Img from "@/assets/about-640.webp";
 import realStoriesVideo from "@/assets/happy-client.mp4.asset.json";
 import realStoriesPoster from "@/assets/happy-client-poster.jpg.asset.json";
 import germanyImg from "@/assets/germany.webp";
@@ -33,7 +34,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://www.7wingsimmigration.com/" },
-      { rel: "preload", as: "image", href: heroImg, fetchPriority: "high" } as any,
+      { rel: "preload", as: "image", href: hero768Img, fetchPriority: "high" } as any,
     ],
   }),
   component: Home,
@@ -62,9 +63,9 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-hero pb-10 pt-24 text-white sm:pb-20 sm:pt-36 lg:pb-28 lg:pt-48">
       {/* floating shapes */}
-      <motion.div aria-hidden animate={{ y: [0, -14, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute -right-32 top-32 h-96 w-96 rounded-full bg-gold/20 blur-3xl" />
-      <motion.div aria-hidden animate={{ y: [0, 16, 0] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -left-40 bottom-0 h-[28rem] w-[28rem] rounded-full bg-sky/20 blur-3xl" />
-      <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute right-1/3 top-24 h-32 w-32 rounded-full border border-gold/20" />
+      <div aria-hidden className="absolute -right-32 top-32 h-96 w-96 rounded-full bg-gold/20 blur-3xl" />
+      <div aria-hidden className="absolute -left-40 bottom-0 h-[28rem] w-[28rem] rounded-full bg-sky/20 blur-3xl" />
+      <div aria-hidden className="absolute right-1/3 top-24 h-32 w-32 rounded-full border border-gold/20" />
 
       {/* pagi numbers (visaway style) */}
       <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-2 font-display text-xs text-white/90 lg:flex">
@@ -109,14 +110,14 @@ function Hero() {
           <div className="relative">
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-gold/30 via-transparent to-sky/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
-              <img src={heroImg} alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={1280} height={720} fetchPriority="high" decoding="async" className="aspect-video w-full object-cover" />
-              <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur-xl">
+              <img src={hero768Img} srcSet={`${hero768Img} 768w, ${hero960Img} 960w`} sizes="(min-width: 1024px) 711px, 100vw" alt="Indian professional couple looking out toward a Lufthansa jet at sunset" width={768} height={432} fetchPriority="high" decoding="async" className="aspect-video w-full object-cover" />
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur-xl">
                 <div>
                   <p className="text-xs uppercase tracking-wider text-gold-soft">Soar Beyond Borders</p>
                   <p className="mt-1 font-display text-lg text-white">Land With Confidence.</p>
                 </div>
                 <div className="grid h-12 w-12 place-items-center rounded-full bg-gold text-navy-deep"><Sparkles className="h-4 w-4" /></div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -129,16 +130,16 @@ function Hero() {
 function About() {
   return (
     <section className="relative overflow-hidden py-14 md:py-10">
-      <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 80, repeat: Infinity, ease: "linear" }} className="pointer-events-none absolute right-10 top-10 h-40 w-40 rounded-full border border-gold/20" />
+      <div aria-hidden className="pointer-events-none absolute right-10 top-10 h-40 w-40 rounded-full border border-gold/20" />
       <div className="mx-auto grid max-w-[1200px] gap-16 px-6 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-sky/10 blur-2xl" />
-            <img src={aboutImg} alt="7 Wings Immigration consultants at the Hyderabad office" width={800} height={800} loading="lazy" decoding="async" className="rounded-3xl border border-black/5 shadow-elegant" />
-            <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-8 -right-6 hidden rounded-2xl border border-black/5 bg-white p-5 shadow-elegant md:block">
+            <img src={about640Img} alt="7 Wings Immigration consultants at the Hyderabad office" width={640} height={640} loading="lazy" decoding="async" className="rounded-3xl border border-black/5 shadow-elegant" />
+            <div className="absolute -bottom-8 -right-6 hidden rounded-2xl border border-black/5 bg-white p-5 shadow-elegant md:block">
               <p className="text-xs uppercase tracking-widest text-gold-deep">Since 2018</p>
               <p className="mt-1 font-display text-xl text-navy-deep">Hyderabad's senior-led<br />immigration team.</p>
-            </motion.div>
+            </div>
           </div>
         </Reveal>
         <div>
@@ -306,10 +307,10 @@ function DestinationFeature() {
             <div className="overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
               <img src={germanyImg} alt="Brandenburg Gate at blue hour" width={1400} height={1000} loading="lazy" className="aspect-[4/3] w-full object-cover" />
             </div>
-            <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-6 left-6 rounded-2xl bg-white px-5 py-4 text-navy-deep shadow-elegant">
+            <div className="absolute -bottom-6 left-6 rounded-2xl bg-white px-5 py-4 text-navy-deep shadow-elegant">
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-deep">GERMANY</p>
               <p className="mt-1 font-display text-xl">Opportunity Card</p>
-            </motion.div>
+            </div>
           </div>
         </Reveal>
       </div>
@@ -411,9 +412,9 @@ function VideoBanner() {
   return (
     <section className="relative overflow-hidden bg-hero py-14 md:py-10 text-white">
       <div className="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_50%,color-mix(in_oklab,var(--gold)_40%,transparent),transparent_50%)]" />
-      <motion.div aria-hidden animate={{ x: [-100, 0, -100] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute left-0 top-10 whitespace-nowrap font-display text-[8rem] font-black text-white/[0.04] md:text-[12rem]">
+      <div aria-hidden className="absolute left-0 top-10 whitespace-nowrap font-display text-[8rem] font-black text-white/[0.04] md:text-[12rem]">
         GLOBAL · GERMANY · CANADA · AUSTRALIA · GLOBAL · GERMANY ·
-      </motion.div>
+      </div>
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <Reveal>
           <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" target="_blank" rel="noreferrer" aria-label="Play video gallery on YouTube" className="group inline-grid h-24 w-24 place-items-center rounded-full bg-white/10 backdrop-blur transition-all hover:bg-gold">
@@ -469,9 +470,11 @@ function AccordionItem({ q, a, defaultOpen = false }: { q: string; a: string; de
           <ChevronDown className="h-4 w-4" />
         </span>
       </button>
-      <motion.div initial={false} animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }} transition={{ duration: 0.3, ease: [0.2, 0.8, 0.2, 1] }} className="overflow-hidden">
-        <p className="pt-4 text-sm leading-relaxed text-muted-foreground">{a}</p>
-      </motion.div>
+      <div className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+        <div className="overflow-hidden">
+          <p className="pt-4 text-sm leading-relaxed text-muted-foreground">{a}</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -548,7 +551,7 @@ function CTABanner() {
     <section className="relative overflow-hidden py-10 md:py-14">
       <div className="mx-auto max-w-[1200px] px-6">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-hero p-14 text-white shadow-elegant">
-          <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute -right-20 -top-20 h-72 w-72 rounded-full border border-gold/20" />
+          <div aria-hidden className="absolute -right-20 -top-20 h-72 w-72 rounded-full border border-gold/20" />
           <div className="relative grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
             <div>
               <Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Ready to take flight?</p></Reveal>

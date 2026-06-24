@@ -154,7 +154,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/png", sizes: "512x512", href: LOGO_URL_512 },
       { rel: "apple-touch-icon", sizes: "192x192", href: LOGO_URL_192 },
       { rel: "shortcut icon", href: "/favicon.ico" },
-      { rel: "preload", as: "image", href: "/__l5e/assets-v1/cf5718b5-4f9c-458a-bd7b-5af3eec8d6ca/7wings-navbar-logo.webp", fetchpriority: "high" },
+      { rel: "preload", as: "image", href: SITE.logoUrl, fetchpriority: "high" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       // Non-blocking font load: fetched via media="print" so it does not block render;

@@ -1,9 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { COUNTRY_PROGRAMS } from "@/lib/site";
 import { Reveal } from "@/components/motion/Reveal";
+
+const FLAG_BY_KEY: Record<string, string> = {
+  germany: "🇩🇪",
+  australia: "🇦🇺",
+  canada: "🇨🇦",
+  uk: "🇬🇧",
+  "new-zealand": "🇳🇿",
+  usa: "🇺🇸",
+  schengen: "🇪🇺",
+};
 
 export function FeaturedServices() {
   const [paused, setPaused] = useState(false);
@@ -78,15 +87,6 @@ export function FeaturedServices() {
               <div className="flex items-center gap-3 sm:gap-4">
                 {COUNTRY_PROGRAMS.map((c, i) => {
                   const isActive = i === activeIndex;
-                  const code = ({
-                    germany: "de",
-                    australia: "au",
-                    canada: "ca",
-                    uk: "gb",
-                    "new-zealand": "nz",
-                    usa: "us",
-                    schengen: "eu",
-                  } as Record<string, string>)[c.key] ?? "un";
                   return (
                     <button
                       key={c.key}
@@ -95,21 +95,13 @@ export function FeaturedServices() {
                       aria-pressed={isActive}
                       title={c.country}
                       className={[
-                        "relative overflow-hidden rounded-full transition-all duration-300",
+                        "relative grid shrink-0 place-items-center overflow-hidden rounded-full border bg-white text-xl transition-[opacity,transform,border-color] duration-300 sm:text-2xl",
                         isActive
-                          ? "h-[84px] w-[84px] ring-2 ring-gold shadow-[0_14px_32px_-10px_rgba(212,175,55,0.65)] scale-110 sm:h-[92px] sm:w-[92px]"
-                          : "h-10 w-10 opacity-60 hover:opacity-100 sm:h-12 sm:w-12",
+                          ? "h-[84px] w-[84px] scale-105 border-gold sm:h-[92px] sm:w-[92px]"
+                          : "h-11 w-11 border-navy/10 opacity-70 hover:opacity-100 sm:h-12 sm:w-12",
                       ].join(" ")}
                     >
-                      <img
-                        src={`https://hatscripts.github.io/circle-flags/flags/${code}.svg`}
-                        alt={c.country}
-                        width={92}
-                        height={92}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
+                      <span aria-hidden>{FLAG_BY_KEY[c.key] ?? c.flag}</span>
                     </button>
                   );
                 })}
@@ -143,49 +135,23 @@ export function FeaturedServices() {
           {/* static heading — never blinks; only country name animates */}
           <div className="relative mb-8">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-soft backdrop-blur">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={active.key + "-badge"}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="inline-flex items-center gap-2"
-                >
-                  <span className="text-sm leading-none">{active.flag}</span>
-                  {active.badge}
-                </motion.span>
-              </AnimatePresence>
+              <span className="inline-flex items-center gap-2">
+                <span className="text-sm leading-none">{active.flag}</span>
+                {active.badge}
+              </span>
             </span>
 
             <h3 className="mt-5 flex flex-nowrap items-baseline gap-x-3 whitespace-nowrap font-display font-bold leading-[1.08] text-xl sm:text-2xl md:text-3xl lg:text-4xl">
               <span>Visa &amp; Migration Services to</span>
               <span className="relative inline-flex overflow-hidden align-baseline pb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={active.country}
-                    initial={{ y: "100%", opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: "-100%", opacity: 0 }}
-                    transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-                    className="relative text-gradient-gold after:absolute after:inset-x-0 after:-bottom-1 after:h-[3px] after:rounded-full after:bg-gradient-to-r after:from-transparent after:via-gold after:to-transparent"
-                  >
-                    {active.country}.
-                  </motion.span>
-                </AnimatePresence>
+                <span className="relative text-gradient-gold after:absolute after:inset-x-0 after:-bottom-1 after:h-[3px] after:rounded-full after:bg-gradient-to-r after:from-transparent after:via-gold after:to-transparent">
+                  {active.country}.
+                </span>
               </span>
             </h3>
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.key}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-              className="relative grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14"
-            >
+          <div className="relative grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14">
               {/* left: copy */}
               <div className="order-2 lg:order-1">
                 <p className="max-w-xl text-sm leading-relaxed text-white/90 sm:text-base">
@@ -229,28 +195,24 @@ export function FeaturedServices() {
                   <img
                     src={active.image}
                     alt={`${active.country} immigration reference`}
-                    width={1600}
-                    height={1200}
+                    width={760}
+                    height={608}
                     loading="lazy"
+                    decoding="async"
                     className="aspect-[5/4] w-full object-cover transition-transform duration-[1.4s] hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/40 via-transparent to-transparent" />
-                  <motion.div
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/40 bg-white/95 p-4 backdrop-blur-xl sm:bottom-7 sm:left-7 sm:right-auto sm:max-w-[260px] sm:p-5"
-                  >
+                  <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/40 bg-white/95 p-4 backdrop-blur-xl sm:bottom-7 sm:left-7 sm:right-auto sm:max-w-[260px] sm:p-5">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-deep">
                       {active.country}
                     </p>
                     <p className="mt-1 font-display text-lg font-bold text-navy-deep sm:text-xl">
                       {active.programs[0].title}
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

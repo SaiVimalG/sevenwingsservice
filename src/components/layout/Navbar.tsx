@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight, Phone, Mail, MapPin, Globe, Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
 import { Logo } from "./Logo";
 import { NAV, SERVICES, SITE } from "@/lib/site";
-import { motion, AnimatePresence } from "framer-motion";
 
 function HeaderTop() {
   return (
@@ -78,15 +77,11 @@ export function Navbar() {
                     >
                       {item.label}
                     </Link>
-                    <AnimatePresence>
-                      {servicesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute left-1/2 top-full w-[420px] -translate-x-1/2 pt-3"
-                        >
+                    <div
+                      className={`absolute left-1/2 top-full w-[420px] -translate-x-1/2 pt-3 transition-[opacity,transform,visibility] duration-200 ${
+                        servicesOpen ? "visible translate-y-0 opacity-100" : "invisible translate-y-2 opacity-0"
+                      }`}
+                    >
                           <div className="rounded-2xl border border-black/5 bg-white p-3 shadow-elegant">
                             {SERVICES.map((s) => (
                               <Link
@@ -106,9 +101,7 @@ export function Navbar() {
                               </Link>
                             ))}
                           </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    </div>
                   </div>
                 );
               }
@@ -139,14 +132,8 @@ export function Navbar() {
           </button>
         </div>
 
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden border-t border-black/5 bg-white lg:hidden"
-            >
+        <div className={`grid overflow-hidden border-t border-black/5 bg-white transition-[grid-template-rows,opacity] duration-300 lg:hidden ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+          <div className="min-h-0 overflow-hidden">
               <div className="space-y-1 px-6 py-4">
                 {NAV.map((item) => (
                   <Link
@@ -179,9 +166,8 @@ export function Navbar() {
                   Free Eligibility Check <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+        </div>
       </div>
     </header>
   );
