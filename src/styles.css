@@ -2,6 +2,26 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Metric-matched fallbacks: render H1/body in a system font sized to match
+   Playfair / Inter so the swap to the web font causes ~0 layout shift. */
+@font-face {
+  font-family: "Playfair Fallback";
+  src: local("Georgia");
+  size-adjust: 105%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
