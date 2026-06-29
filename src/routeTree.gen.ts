@@ -26,6 +26,7 @@ import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
+import { Route as CanadaNocFinderRouteImport } from './routes/canada.noc-finder'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
@@ -125,6 +126,11 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
   id: '/programs/$slug',
   path: '/programs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CanadaNocFinderRoute = CanadaNocFinderRouteImport.update({
+  id: '/canada/noc-finder',
+  path: '/canada/noc-finder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -230,6 +236,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -263,6 +270,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -298,6 +306,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -334,6 +343,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/blog'
     | '/blog/$slug'
+    | '/canada/noc-finder'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog/'
@@ -367,6 +377,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/blog'
     | '/blog/$slug'
+    | '/canada/noc-finder'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog'
@@ -401,6 +412,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/blog'
     | '/blog/$slug'
+    | '/canada/noc-finder'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog/'
@@ -436,6 +448,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   AdminBlogRoute: typeof AdminBlogRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  CanadaNocFinderRoute: typeof CanadaNocFinderRoute
   ProgramsSlugRoute: typeof ProgramsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -564,6 +577,13 @@ declare module '@tanstack/react-router' {
       path: '/programs/$slug'
       fullPath: '/programs/$slug'
       preLoaderRoute: typeof ProgramsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/canada/noc-finder': {
+      id: '/canada/noc-finder'
+      path: '/canada/noc-finder'
+      fullPath: '/canada/noc-finder'
+      preLoaderRoute: typeof CanadaNocFinderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -730,6 +750,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   AdminBlogRoute: AdminBlogRoute,
   BlogSlugRoute: BlogSlugRoute,
+  CanadaNocFinderRoute: CanadaNocFinderRoute,
   ProgramsSlugRoute: ProgramsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
