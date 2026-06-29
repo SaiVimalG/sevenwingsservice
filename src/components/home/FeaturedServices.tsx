@@ -95,10 +95,10 @@ export function FeaturedServices() {
                       aria-pressed={isActive}
                       title={c.country}
                       className={[
-                        "relative grid shrink-0 place-items-center overflow-hidden rounded-full border bg-white text-xl transition-[opacity,transform,border-color] duration-300 sm:text-2xl",
+                        "relative grid shrink-0 place-items-center overflow-hidden rounded-full border bg-white leading-none transition-[opacity,transform,border-color] duration-300",
                         isActive
-                          ? "h-[84px] w-[84px] scale-105 border-gold sm:h-[92px] sm:w-[92px]"
-                          : "h-11 w-11 border-navy/10 opacity-70 hover:opacity-100 sm:h-12 sm:w-12",
+                          ? "h-[84px] w-[84px] scale-105 border-gold text-[46px] sm:h-[92px] sm:w-[92px] sm:text-[54px]"
+                          : "h-11 w-11 border-navy/10 text-[26px] opacity-70 hover:opacity-100 sm:h-12 sm:w-12 sm:text-[30px]",
                       ].join(" ")}
                     >
                       <span aria-hidden>{FLAG_BY_KEY[c.key] ?? c.flag}</span>
