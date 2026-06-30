@@ -6,6 +6,11 @@ const SectionSchema = z.object({
   markdown: z.string().trim().min(1).max(20000),
 });
 
+const FaqSchema = z.object({
+  q: z.string().trim().min(1).max(300),
+  a: z.string().trim().min(1).max(3000),
+});
+
 const PostInputSchema = z.object({
   slug: z.string().trim().min(2).max(120).regex(/^[a-z0-9-]+$/, "lowercase letters, numbers, dashes only"),
   title: z.string().trim().min(3).max(200),
@@ -18,6 +23,7 @@ const PostInputSchema = z.object({
   intro: z.string().trim().max(3000).optional().default(""),
   sections: z.array(SectionSchema).max(20).optional().default([]),
   why7Wings: z.array(z.string().trim().min(3).max(400)).max(10).optional().default([]),
+  faqs: z.array(FaqSchema).max(30).optional().default([]),
   ctaLabel: z.string().trim().max(80).optional().nullable(),
   ctaSlug: z.string().trim().max(80).optional().nullable(),
   published: z.boolean().default(true),
@@ -38,6 +44,7 @@ export interface DbBlogPost {
   intro: string;
   sections: { heading: string; markdown: string }[];
   why7Wings: string[];
+  faqs: { q: string; a: string }[];
   date: string;
   cta?: { label: string; slug?: string };
   published: boolean;
@@ -59,6 +66,7 @@ function mapRow(row: Record<string, unknown>): DbBlogPost {
     intro: (row.intro as string) ?? "",
     sections: (row.sections as { heading: string; markdown: string }[]) ?? [],
     why7Wings: (row.why_7wings as string[]) ?? [],
+    faqs: (row.faqs as { q: string; a: string }[]) ?? [],
     date: publishedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
     cta: row.cta_label
       ? { label: row.cta_label as string, slug: (row.cta_slug as string) ?? undefined }
@@ -176,6 +184,7 @@ export const upsertPost = createServerFn({ method: "POST" })
       intro: data.post.intro,
       sections: data.post.sections,
       why_7wings: data.post.why7Wings,
+      faqs: data.post.faqs ?? [],
       cta_label: data.post.ctaLabel || null,
       cta_slug: data.post.ctaSlug || null,
       published: data.post.published,

@@ -7,7 +7,10 @@ Given a blog TOPIC, write a complete, SEO-friendly blog article in JSON with thi
 {
   "title": "...",        // catchy, <=70 chars, includes the main keyword
   "excerpt": "...",      // 1-2 sentence summary, <=180 chars
-  "contentHtml": "..."   // full article body as clean semantic HTML
+  "contentHtml": "...",  // full article body as clean semantic HTML
+  "faqs": [              // 4-6 FAQ items rendered as a collapsible accordion
+    { "q": "Question?", "a": "Plain-text answer (1-3 sentences)." }
+  ]
 }
 
 contentHtml rules:
@@ -17,6 +20,7 @@ contentHtml rules:
 - Indian audience: mention IELTS/PTE, INR costs where relevant, processing times, eligibility points.
 - No <html>, <body>, <head>, <script>, <style>, no markdown, no code fences.
 - Do not include the title inside contentHtml.
+- DO NOT include FAQ questions/answers inside contentHtml — put them ONLY in the "faqs" array. The site renders FAQs as a separate accordion.
 
 Return ONLY the JSON object, nothing else.`;
 
@@ -65,7 +69,7 @@ export const generateBlogWithAI = createServerFn({ method: "POST" })
     const raw = json.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";
     if (!raw) throw new Error("Gemini returned an empty response.");
 
-    let parsed: { title?: string; excerpt?: string; contentHtml?: string };
+    let parsed: { title?: string; excerpt?: string; contentHtml?: string; faqs?: { q?: string; a?: string }[] };
     try {
       parsed = JSON.parse(raw);
     } catch {
@@ -74,9 +78,16 @@ export const generateBlogWithAI = createServerFn({ method: "POST" })
       parsed = JSON.parse(m[0]);
     }
 
+    const faqs = Array.isArray(parsed.faqs)
+      ? parsed.faqs
+          .map((f) => ({ q: (f?.q ?? "").trim(), a: (f?.a ?? "").trim() }))
+          .filter((f) => f.q && f.a)
+      : [];
+
     return {
       title: (parsed.title ?? "").trim(),
       excerpt: (parsed.excerpt ?? "").trim(),
       contentHtml: (parsed.contentHtml ?? "").trim() || "<p></p>",
+      faqs,
     };
   });
