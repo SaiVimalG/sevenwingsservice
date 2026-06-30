@@ -69,7 +69,7 @@ export const generateBlogWithAI = createServerFn({ method: "POST" })
     const raw = json.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";
     if (!raw) throw new Error("Gemini returned an empty response.");
 
-    let parsed: { title?: string; excerpt?: string; contentHtml?: string };
+    let parsed: { title?: string; excerpt?: string; contentHtml?: string; faqs?: { q?: string; a?: string }[] };
     try {
       parsed = JSON.parse(raw);
     } catch {
@@ -78,9 +78,16 @@ export const generateBlogWithAI = createServerFn({ method: "POST" })
       parsed = JSON.parse(m[0]);
     }
 
+    const faqs = Array.isArray(parsed.faqs)
+      ? parsed.faqs
+          .map((f) => ({ q: (f?.q ?? "").trim(), a: (f?.a ?? "").trim() }))
+          .filter((f) => f.q && f.a)
+      : [];
+
     return {
       title: (parsed.title ?? "").trim(),
       excerpt: (parsed.excerpt ?? "").trim(),
       contentHtml: (parsed.contentHtml ?? "").trim() || "<p></p>",
+      faqs,
     };
   });
