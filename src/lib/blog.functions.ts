@@ -184,6 +184,7 @@ export const upsertPost = createServerFn({ method: "POST" })
       intro: data.post.intro,
       sections: data.post.sections,
       why_7wings: data.post.why7Wings,
+      faqs: data.post.faqs ?? [],
       cta_label: data.post.ctaLabel || null,
       cta_slug: data.post.ctaSlug || null,
       published: data.post.published,
