@@ -565,6 +565,66 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
           </div>
         </Section>
 
+        <Section title="FAQs" subtitle="Question & answer pairs shown as a collapsible accordion at the bottom of the article" defaultOpen={false}>
+          <div className="space-y-3">
+            {(form.faqs ?? []).length === 0 && (
+              <p className="text-xs text-muted-foreground">No FAQs yet. Add a question to display the FAQ accordion on the published article.</p>
+            )}
+            {(form.faqs ?? []).map((faq, idx) => (
+              <div key={idx} className="rounded-xl border border-black/10 bg-cream/30 p-3">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-gold-deep">FAQ #{idx + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      update("faqs", (form.faqs ?? []).filter((_, i) => i !== idx))
+                    }
+                    className="inline-flex items-center gap-1 rounded-md border border-red-200 px-2 py-1 text-xs font-medium text-red-600 hover:bg-red-50"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" /> Remove
+                  </button>
+                </div>
+                <Field label="Question">
+                  <input
+                    type="text"
+                    value={faq.q}
+                    onChange={(e) =>
+                      update(
+                        "faqs",
+                        (form.faqs ?? []).map((f, i) => (i === idx ? { ...f, q: e.target.value } : f)),
+                      )
+                    }
+                    className={inputCls}
+                    placeholder="e.g. How long does the Germany Opportunity Card take?"
+                  />
+                </Field>
+                <div className="h-2" />
+                <Field label="Answer">
+                  <textarea
+                    value={faq.a}
+                    onChange={(e) =>
+                      update(
+                        "faqs",
+                        (form.faqs ?? []).map((f, i) => (i === idx ? { ...f, a: e.target.value } : f)),
+                      )
+                    }
+                    rows={3}
+                    className={inputCls}
+                    placeholder="Plain-text answer shown when the user expands this question."
+                  />
+                </Field>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => update("faqs", [...(form.faqs ?? []), { q: "", a: "" }])}
+              className="inline-flex items-center gap-2 rounded-full border border-navy-deep/20 px-4 py-2 text-sm font-semibold text-navy-deep hover:border-gold-deep hover:text-gold-deep"
+            >
+              <Plus className="h-4 w-4" /> Add FAQ
+            </button>
+          </div>
+        </Section>
+
         <Section title="Visibility" subtitle="Publish and blog listing options" defaultOpen={false}>
           <div className="space-y-3">
             <label className="flex items-start gap-3 text-sm text-navy-deep">
