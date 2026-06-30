@@ -7,7 +7,10 @@ Given a blog TOPIC, write a complete, SEO-friendly blog article in JSON with thi
 {
   "title": "...",        // catchy, <=70 chars, includes the main keyword
   "excerpt": "...",      // 1-2 sentence summary, <=180 chars
-  "contentHtml": "..."   // full article body as clean semantic HTML
+  "contentHtml": "...",  // full article body as clean semantic HTML
+  "faqs": [              // 4-6 FAQ items rendered as a collapsible accordion
+    { "q": "Question?", "a": "Plain-text answer (1-3 sentences)." }
+  ]
 }
 
 contentHtml rules:
@@ -17,6 +20,7 @@ contentHtml rules:
 - Indian audience: mention IELTS/PTE, INR costs where relevant, processing times, eligibility points.
 - No <html>, <body>, <head>, <script>, <style>, no markdown, no code fences.
 - Do not include the title inside contentHtml.
+- DO NOT include FAQ questions/answers inside contentHtml — put them ONLY in the "faqs" array. The site renders FAQs as a separate accordion.
 
 Return ONLY the JSON object, nothing else.`;
 
