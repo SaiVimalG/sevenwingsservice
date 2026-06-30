@@ -385,6 +385,7 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
             intro: "",
             sections: [],
             why7Wings: [],
+            faqs: p.faqs ?? [],
             ctaLabel: p.cta?.label ?? "",
             ctaSlug: p.cta?.slug ?? "",
             published: p.published,
