@@ -465,13 +465,14 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
         <div className="flex items-center gap-2">
           <AIWriteButton
             token={token}
-            onGenerated={({ title, excerpt, contentHtml }) =>
+            onGenerated={({ title, excerpt, contentHtml, faqs }) =>
               setForm((f) => ({
                 ...f,
                 title: title || f.title,
                 slug: originalSlug ? f.slug : slugify(title || f.title),
                 excerpt: excerpt || f.excerpt,
                 contentHtml: contentHtml || f.contentHtml,
+                faqs: faqs && faqs.length > 0 ? faqs : f.faqs,
               }))
             }
           />
