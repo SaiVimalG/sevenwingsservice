@@ -44,6 +44,7 @@ export interface DbBlogPost {
   intro: string;
   sections: { heading: string; markdown: string }[];
   why7Wings: string[];
+  faqs: { q: string; a: string }[];
   date: string;
   cta?: { label: string; slug?: string };
   published: boolean;
