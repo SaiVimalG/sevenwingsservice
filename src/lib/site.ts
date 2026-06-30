@@ -6,7 +6,7 @@ export const SITE = {
   short: "7 Wings",
   tagline: "Soar Beyond Borders. Land With Confidence.",
   city: "Hyderabad",
-  email: "hello@7wingsimmigration.com",
+  email: "info@7wingsimmigration.com",
   phone: "+91 80621 80254",
   whatsapp: "+91 80621 80254",
   address: "Hi-Tech City, Madhapur, Hyderabad, Telangana, INDIA",
