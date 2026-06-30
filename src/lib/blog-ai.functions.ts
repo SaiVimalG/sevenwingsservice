@@ -25,7 +25,7 @@ export const generateBlogWithAI = createServerFn({ method: "POST" })
     z
       .object({
         token: z.string().min(1).max(500),
-        topic: z.string().min(3).max(300),
+        topic: z.string().min(3).max(8000),
       })
       .parse(d),
   )
