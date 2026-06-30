@@ -700,7 +700,7 @@ function AIWriteButton({
   onGenerated,
 }: {
   token: string;
-  onGenerated: (out: { title: string; excerpt: string; contentHtml: string }) => void;
+  onGenerated: (out: { title: string; excerpt: string; contentHtml: string; faqs: { q: string; a: string }[] }) => void;
 }) {
   const [open, setOpen] = useState(false);
   const [topic, setTopic] = useState("");
