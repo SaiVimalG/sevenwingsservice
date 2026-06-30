@@ -136,7 +136,7 @@ function About() {
         <Reveal>
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-sky/10 blur-2xl" />
-            <img src={about640Img} alt="7 Wings Immigration consultants at the Hyderabad office" width={640} height={640} loading="lazy" decoding="async" className="rounded-3xl border border-black/5 shadow-elegant" />
+            <img src={teamImg640.url} srcSet={`${teamImg640.url} 640w, ${teamImg960.url} 960w`} sizes="(min-width: 1024px) 560px, 90vw" alt="7 Wings Immigration senior-led team at Hi-Tech City, Madhapur office" width={640} height={640} loading="lazy" decoding="async" className="rounded-3xl border border-black/5 shadow-elegant" />
             <div className="absolute -bottom-8 -right-6 hidden rounded-2xl border border-black/5 bg-white p-5 shadow-elegant md:block">
               <p className="text-xs uppercase tracking-widest text-gold-deep">Since 2018</p>
               <p className="mt-1 font-display text-xl text-navy-deep">Hyderabad's senior-led<br />immigration team.</p>
