@@ -23,6 +23,7 @@ export type Database = {
           cta_label: string | null
           cta_slug: string | null
           excerpt: string
+          faqs: Json
           id: string
           image_url: string
           intro: string | null
@@ -44,6 +45,7 @@ export type Database = {
           cta_label?: string | null
           cta_slug?: string | null
           excerpt: string
+          faqs?: Json
           id?: string
           image_url: string
           intro?: string | null
@@ -65,6 +67,7 @@ export type Database = {
           cta_label?: string | null
           cta_slug?: string | null
           excerpt?: string
+          faqs?: Json
           id?: string
           image_url?: string
           intro?: string | null
