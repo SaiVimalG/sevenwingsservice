@@ -26,6 +26,8 @@ import {
 import { SITE } from "@/lib/site";
 import { toast } from "sonner";
 import type { CalculatorConfig } from "@/lib/eligibility/types";
+import { RelatedLinks } from "@/components/RelatedLinks";
+import { CALCULATOR_RELATED } from "@/lib/related-links";
 
 export function CalculatorPage({ config }: { config: CalculatorConfig }) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -326,11 +328,24 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
         </div>
       </section>
 
+      {CALCULATOR_RELATED[config.url] && (
+        <section className="bg-background py-10 md:py-12">
+          <div className="mx-auto max-w-4xl px-6">
+            <RelatedLinks
+              title={`Related to ${config.h1}`}
+              intro="Service pages, sibling calculators and tools that pair well with this assessment."
+              links={CALCULATOR_RELATED[config.url]}
+            />
+          </div>
+        </section>
+      )}
+
       {/* Lead capture */}
       <LeadCapture country={config.country} />
     </PageShell>
   );
 }
+
 
 function CategoryPoints({ value }: { value: number }) {
   return (
