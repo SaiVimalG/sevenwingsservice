@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SuccessStoriesRouteImport } from './routes/success-stories'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -26,9 +27,11 @@ import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
+import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as CanadaNocFinderRouteImport } from './routes/canada.noc-finder'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
 import { Route as EligibilityUkSkilledWorkerCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-calculator'
 import { Route as EligibilityGermanyOpportunityCardCalculatorRouteImport } from './routes/eligibility.germany.opportunity-card-calculator'
@@ -40,9 +43,16 @@ import { Route as EligibilityAustralia491PointsCalculatorRouteImport } from './r
 import { Route as EligibilityAustralia190PointsCalculatorRouteImport } from './routes/eligibility.australia.190-points-calculator'
 import { Route as EligibilityAustralia189PointsCalculatorRouteImport } from './routes/eligibility.australia.189-points-calculator'
 import { Route as BlogCountrySlugRouteImport } from './routes/blog.$country.$slug'
+import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as ApiPublicGscSubmitSitemapRouteImport } from './routes/api/public/gsc/submit-sitemap'
 
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -128,6 +138,11 @@ const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
   path: '/programs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
+  id: '/email/unsubscribe',
+  path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CanadaNocFinderRoute = CanadaNocFinderRouteImport.update({
   id: '/canada/noc-finder',
   path: '/canada/noc-finder',
@@ -141,6 +156,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 const AdminBlogRoute = AdminBlogRouteImport.update({
   id: '/admin/blog',
   path: '/admin/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
+  id: '/lovable/email/suppression',
+  path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EligibilityUkSkilledWorkerVisaCalculatorRoute =
@@ -208,6 +228,18 @@ const BlogCountrySlugRoute = BlogCountrySlugRouteImport.update({
   path: '/blog/$country/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalSendRoute =
+  LovableEmailTransactionalSendRouteImport.update({
+    id: '/lovable/email/transactional/send',
+    path: '/lovable/email/transactional/send',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -234,9 +266,11 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -253,8 +287,11 @@ export interface FileRoutesByFullPath {
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -268,9 +305,11 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -287,8 +326,11 @@ export interface FileRoutesByTo {
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -304,9 +346,11 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success-stories': typeof SuccessStoriesRoute
   '/terms': typeof TermsRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -323,8 +367,11 @@ export interface FileRoutesById {
   '/eligibility/germany/opportunity-card-calculator': typeof EligibilityGermanyOpportunityCardCalculatorRoute
   '/eligibility/uk/skilled-worker-calculator': typeof EligibilityUkSkilledWorkerCalculatorRoute
   '/eligibility/uk/skilled-worker-visa-calculator': typeof EligibilityUkSkilledWorkerVisaCalculatorRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/gsc/submit-sitemap': typeof ApiPublicGscSubmitSitemapRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -341,9 +388,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/unsubscribe'
     | '/admin/blog'
     | '/blog/$slug'
     | '/canada/noc-finder'
+    | '/email/unsubscribe'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog/'
@@ -360,8 +409,11 @@ export interface FileRouteTypes {
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
+    | '/lovable/email/suppression'
     | '/api/public/gsc/submit-sitemap'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -375,9 +427,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/unsubscribe'
     | '/admin/blog'
     | '/blog/$slug'
     | '/canada/noc-finder'
+    | '/email/unsubscribe'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog'
@@ -394,8 +448,11 @@ export interface FileRouteTypes {
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
+    | '/lovable/email/suppression'
     | '/api/public/gsc/submit-sitemap'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   id:
     | '__root__'
     | '/'
@@ -410,9 +467,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/success-stories'
     | '/terms'
+    | '/unsubscribe'
     | '/admin/blog'
     | '/blog/$slug'
     | '/canada/noc-finder'
+    | '/email/unsubscribe'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog/'
@@ -429,8 +488,11 @@ export interface FileRouteTypes {
     | '/eligibility/germany/opportunity-card-calculator'
     | '/eligibility/uk/skilled-worker-calculator'
     | '/eligibility/uk/skilled-worker-visa-calculator'
+    | '/lovable/email/suppression'
     | '/api/public/gsc/submit-sitemap'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -446,20 +508,32 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SuccessStoriesRoute: typeof SuccessStoriesRoute
   TermsRoute: typeof TermsRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
   AdminBlogRoute: typeof AdminBlogRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CanadaNocFinderRoute: typeof CanadaNocFinderRoute
+  EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   ProgramsSlugRoute: typeof ProgramsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   BlogCountrySlugRoute: typeof BlogCountrySlugRoute
+  LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   ApiPublicGscSubmitSitemapRoute: typeof ApiPublicGscSubmitSitemapRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
+  LovableEmailTransactionalSendRoute: typeof LovableEmailTransactionalSendRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -579,6 +653,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/email/unsubscribe': {
+      id: '/email/unsubscribe'
+      path: '/email/unsubscribe'
+      fullPath: '/email/unsubscribe'
+      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/canada/noc-finder': {
       id: '/canada/noc-finder'
       path: '/canada/noc-finder'
@@ -598,6 +679,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/blog'
       fullPath: '/admin/blog'
       preLoaderRoute: typeof AdminBlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/suppression': {
+      id: '/lovable/email/suppression'
+      path: '/lovable/email/suppression'
+      fullPath: '/lovable/email/suppression'
+      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/eligibility/uk/skilled-worker-visa-calculator': {
@@ -677,6 +765,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogCountrySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/send': {
+      id: '/lovable/email/transactional/send'
+      path: '/lovable/email/transactional/send'
+      fullPath: '/lovable/email/transactional/send'
+      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -748,27 +850,22 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SuccessStoriesRoute: SuccessStoriesRoute,
   TermsRoute: TermsRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
   AdminBlogRoute: AdminBlogRoute,
   BlogSlugRoute: BlogSlugRoute,
   CanadaNocFinderRoute: CanadaNocFinderRoute,
+  EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   ProgramsSlugRoute: ProgramsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   BlogCountrySlugRoute: BlogCountrySlugRoute,
+  LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   ApiPublicGscSubmitSitemapRoute: ApiPublicGscSubmitSitemapRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
+  LovableEmailTransactionalSendRoute: LovableEmailTransactionalSendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
