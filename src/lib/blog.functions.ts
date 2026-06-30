@@ -6,6 +6,11 @@ const SectionSchema = z.object({
   markdown: z.string().trim().min(1).max(20000),
 });
 
+const FaqSchema = z.object({
+  q: z.string().trim().min(1).max(300),
+  a: z.string().trim().min(1).max(3000),
+});
+
 const PostInputSchema = z.object({
   slug: z.string().trim().min(2).max(120).regex(/^[a-z0-9-]+$/, "lowercase letters, numbers, dashes only"),
   title: z.string().trim().min(3).max(200),
@@ -18,6 +23,7 @@ const PostInputSchema = z.object({
   intro: z.string().trim().max(3000).optional().default(""),
   sections: z.array(SectionSchema).max(20).optional().default([]),
   why7Wings: z.array(z.string().trim().min(3).max(400)).max(10).optional().default([]),
+  faqs: z.array(FaqSchema).max(30).optional().default([]),
   ctaLabel: z.string().trim().max(80).optional().nullable(),
   ctaSlug: z.string().trim().max(80).optional().nullable(),
   published: z.boolean().default(true),
