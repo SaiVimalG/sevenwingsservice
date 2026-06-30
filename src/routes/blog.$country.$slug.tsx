@@ -23,6 +23,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { BLOG_MAP, BLOG, SITE, type BlogPost } from "@/lib/site";
 import { getDbPost } from "@/lib/blog.functions";
 import { dbToBlogPost } from "@/lib/blog-merge";
+import { RelatedLinks } from "@/components/RelatedLinks";
+import { blogRelatedByCountry } from "@/lib/related-links";
 import type { ServiceSlug } from "@/lib/site";
 
 function slugify(s: string) {
@@ -465,7 +467,19 @@ function BlogPostPage() {
         </div>
       </div>
 
+      {/* Country-tagged service & calculator links */}
+      <section className="bg-background py-10 md:py-12">
+        <div className="mx-auto max-w-3xl px-6">
+          <RelatedLinks
+            title={`Next steps for ${post.category}`}
+            intro="Services and calculators that pair with this article."
+            links={blogRelatedByCountry(post.category)}
+          />
+        </div>
+      </section>
+
       {/* Related */}
+
       {related.length > 0 && (
         <section className="border-t border-black/5 bg-cream py-10 md:py-12">
           <div className="mx-auto max-w-[1200px] px-6">

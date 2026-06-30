@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { SITE } from "@/lib/site";
+import { RelatedLinks } from "@/components/RelatedLinks";
+import { NOC_FINDER_RELATED } from "@/lib/related-links";
 import nocData from "@/data/noc-2021.json";
 
 type Noc = {
@@ -510,9 +512,20 @@ function NocFinderPage() {
         </div>
       </section>
 
+      <section className="bg-background py-10 md:py-14">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <RelatedLinks
+            title="Plan your Canada move"
+            intro="Pair your NOC code with the right PR pathway and calculators."
+            links={NOC_FINDER_RELATED}
+          />
+        </div>
+      </section>
+
       {/* DRAWER */}
       {selected && <NocDrawer n={selected} onClose={() => setSelected(null)} waLink={waLink} />}
     </PageShell>
+
   );
 }
 

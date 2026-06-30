@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check, List } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
+import { RelatedLinks } from "@/components/RelatedLinks";
+import { SERVICE_RELATED } from "@/lib/related-links";
 import { Reveal } from "@/components/motion/Reveal";
 import { BlogContactForm } from "@/components/forms/Forms";
 import { SERVICE_MAP, SERVICES, type Service, type ServiceSlug } from "@/lib/site";
@@ -167,7 +169,17 @@ function ServiceDetail() {
               </div>
             </section>
 
+            <Reveal>
+              <RelatedLinks
+                className="mt-14"
+                title={`Related to ${s.title}`}
+                intro="Hand-picked calculators, services and resources for this pathway."
+                links={SERVICE_RELATED[s.slug] ?? []}
+              />
+            </Reveal>
+
             <section id="get-started" className="scroll-mt-28 mt-14 rounded-3xl bg-hero p-8 text-white md:p-12">
+
               <Reveal>
                 <h2 className="font-display text-3xl font-bold md:text-4xl">Ready to start your <span className="text-gradient-gold">{s.country}</span> journey?</h2>
               </Reveal>

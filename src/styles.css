@@ -361,6 +361,44 @@
   float: left; height: 0; pointer-events: none;
 }
 
+/* Site standard: internal links in long-form content render bold with a NE arrow.
+   Auto-applies to anchors inside .blog-content and any element marked .rich-links.
+   Add class `no-arrow` on an <a> to opt out. */
+.blog-content a[href^="/"]:not(.no-arrow),
+.blog-content a[href^="https://www.7wingsimmigration.com/"]:not(.no-arrow),
+.blog-content a[href^="https://7wingsimmigration.com/"]:not(.no-arrow),
+.rich-links a[href^="/"]:not(.no-arrow),
+a.internal-link:not(.no-arrow) {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--gold) 45%, transparent);
+  text-underline-offset: 3px;
+  color: var(--navy-deep);
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.blog-content a[href^="/"]:not(.no-arrow):hover,
+.blog-content a[href^="https://www.7wingsimmigration.com/"]:not(.no-arrow):hover,
+.blog-content a[href^="https://7wingsimmigration.com/"]:not(.no-arrow):hover,
+.rich-links a[href^="/"]:not(.no-arrow):hover,
+a.internal-link:not(.no-arrow):hover {
+  color: var(--gold-deep);
+  text-decoration-color: var(--gold);
+}
+.blog-content a[href^="/"]:not(.no-arrow)::after,
+.blog-content a[href^="https://www.7wingsimmigration.com/"]:not(.no-arrow)::after,
+.blog-content a[href^="https://7wingsimmigration.com/"]:not(.no-arrow)::after,
+.rich-links a[href^="/"]:not(.no-arrow)::after {
+  content: "\2197"; /* ↗ */
+  display: inline-block;
+  margin-left: 0.15em;
+  font-size: 0.85em;
+  line-height: 1;
+  color: var(--gold-deep);
+  transform: translateY(-0.05em);
+  font-weight: 700;
+}
+
+
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
