@@ -12,7 +12,8 @@ import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE } from "@/
 import heroImg from "@/assets/hero.webp";
 import hero768Img from "@/assets/hero-768.webp";
 import hero960Img from "@/assets/hero-960.webp";
-import about640Img from "@/assets/about-640.webp";
+import teamImg640 from "@/assets/team-640.webp.asset.json";
+import teamImg960 from "@/assets/team-960.webp.asset.json";
 import realStoriesVideo from "@/assets/happy-client.mp4.asset.json";
 import realStoriesPoster from "@/assets/happy-client-poster.jpg.asset.json";
 import germanyImg from "@/assets/germany.webp";
