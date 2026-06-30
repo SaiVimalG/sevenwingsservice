@@ -19,6 +19,7 @@ export function dbToBlogPost(p: DbBlogPost): BlogPost {
     intro: p.intro,
     sections: p.sections.map((s) => ({ heading: s.heading, paragraphs: [s.markdown] })),
     why7Wings: p.why7Wings,
+    faqs: p.faqs ?? [],
     cta: {
       label: p.cta?.label ?? "Book a free consultation",
       to: p.cta?.slug ? "/services/$slug" : "/book-consultation",
