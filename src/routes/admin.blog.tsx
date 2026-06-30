@@ -99,6 +99,7 @@ const EMPTY: PostInput = {
   intro: "",
   sections: [],
   why7Wings: [],
+  faqs: [],
   ctaLabel: "Book a free consultation",
   ctaSlug: "",
   published: true,
