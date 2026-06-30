@@ -65,6 +65,7 @@ function staticToPostInput(post: BlogPost): PostInput {
     intro: "",
     sections: [],
     why7Wings: [],
+    faqs: [],
     ctaLabel: post.cta?.label ?? "Book a free consultation",
     ctaSlug: post.cta?.slug ?? "",
     published: true,
