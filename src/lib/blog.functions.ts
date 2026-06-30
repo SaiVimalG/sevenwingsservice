@@ -66,6 +66,7 @@ function mapRow(row: Record<string, unknown>): DbBlogPost {
     intro: (row.intro as string) ?? "",
     sections: (row.sections as { heading: string; markdown: string }[]) ?? [],
     why7Wings: (row.why_7wings as string[]) ?? [],
+    faqs: (row.faqs as { q: string; a: string }[]) ?? [],
     date: publishedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
     cta: row.cta_label
       ? { label: row.cta_label as string, slug: (row.cta_slug as string) ?? undefined }
