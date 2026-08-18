@@ -29,15 +29,24 @@ function Contact() {
         <div className="mx-auto grid max-w-[1200px] gap-12 px-6 lg:grid-cols-[1fr_1.2fr]">
           <Reveal>
             <div className="space-y-6">
-              <div className="rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)]">
-                <div className="flex items-start gap-4">
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/15 text-gold-deep"><MapPin className="h-5 w-5" /></span>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Visit us</p>
-                    <p className="mt-1 font-display text-lg text-navy-deep">{SITE.address}</p>
+              {BRANCHES.map((b) => (
+                <button
+                  key={b.id}
+                  type="button"
+                  onClick={() => setBranch(b.id)}
+                  className={`w-full rounded-2xl border bg-white p-7 text-left shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-colors ${
+                    branch === b.id ? "border-gold" : "border-black/5"
+                  }`}
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/15 text-gold-deep"><MapPin className="h-5 w-5" /></span>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{b.name}</p>
+                      <p className="mt-1 font-display text-lg text-navy-deep">{b.address}</p>
+                    </div>
                   </div>
-                </div>
-              </div>
+                </button>
+              ))}
               <div className="rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)]">
                 <div className="flex items-start gap-4">
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/15 text-gold-deep"><Phone className="h-5 w-5" /></span>
