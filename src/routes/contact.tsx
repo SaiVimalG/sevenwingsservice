@@ -23,6 +23,8 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const [branch, setBranch] = useState<(typeof BRANCHES)[number]["id"]>("hyderabad");
+  const active = BRANCHES.find((b) => b.id === branch) ?? BRANCHES[0];
   return (
     <PageShell>
       <PageHero eyebrow="Contact" title="Let's plan your next chapter." subtitle="Drop us a line, give us a call, or walk into our Hyderabad office — every enquiry gets a senior counsellor's attention." />
