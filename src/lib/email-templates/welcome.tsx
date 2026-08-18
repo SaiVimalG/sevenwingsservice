@@ -65,7 +65,7 @@ const Email = ({ name, country }: Props) => (
           </Link>
         </Text>
         <Text style={contactLine}>
-          📍 Hi-Tech City, Madhapur, Hyderabad, Telangana, INDIA
+          📍 308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081 · 📍 Schacht Neu-Cöln 26, 1. Etage, 45355 Essen, Deutschland
         </Text>
 
         <Hr style={hr} />
