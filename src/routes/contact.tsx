@@ -69,7 +69,7 @@ function Contact() {
                 </div>
               </div>
               <div className="overflow-hidden rounded-2xl border border-black/5">
-                <iframe key={active.id} title={`7 Wings Immigration ${active.name} map`} width="100%" height="280" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src={active.embed} />
+                <iframe key={active.id} title={`${active.name} office map`} width="100%" height="280" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src={active.embed} />
               </div>
             </div>
           </Reveal>
