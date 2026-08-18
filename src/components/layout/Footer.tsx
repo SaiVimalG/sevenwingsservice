@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook, Youtube } from "lucide-react";
 import { Logo } from "./Logo";
-import { SITE, SERVICES } from "@/lib/site";
+import { SITE, SERVICES, BRANCHES } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -109,10 +109,15 @@ export function Footer() {
         <div className="col-span-2 lg:col-span-1">
           <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Contact</h3>
           <ul className="space-y-4 text-sm text-white/90">
-            <li className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-              <span>{SITE.address}</span>
-            </li>
+            {BRANCHES.map((b) => (
+              <li key={b.id} className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                <span>
+                  <span className="block font-semibold text-gold">{b.name}</span>
+                  {b.address}
+                </span>
+              </li>
+            ))}
             <li className="flex items-center gap-3">
               <Phone className="h-4 w-4 shrink-0 text-gold" />
               <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="hover:text-gold">{SITE.phone}</a>

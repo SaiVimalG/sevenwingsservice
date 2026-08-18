@@ -9,7 +9,7 @@ export const SITE = {
   email: "info@7wingsimmigration.com",
   phone: "+91 80621 80254",
   whatsapp: "+91 80621 80254",
-  address: "Hi-Tech City, Madhapur, Hyderabad, Telangana, INDIA",
+  address: "308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081",
   logoUrl: logo.url,
   logoUrlDark: logo.url,
   social: {
@@ -19,6 +19,30 @@ export const SITE = {
     youtube: "https://www.youtube.com/@7WingsImmigration",
   },
 };
+
+export const BRANCHES = [
+  {
+    id: "hyderabad",
+    name: "Hyderabad Branch",
+    address:
+      "308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081",
+    mapsLink: "https://share.google/k9vsSLHA776nPsZhN",
+    embed: "https://www.google.com/maps?q=17.4340529,78.405003&output=embed",
+  },
+  {
+    id: "germany",
+    name: "Germany Branch",
+    address: "Schacht Neu-Cöln 26, 1. Etage, 45355 Essen, Deutschland",
+    mapsLink:
+      "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent("Schacht Neu-Cöln 26, 45355 Essen, Deutschland"),
+    embed:
+      "https://www.google.com/maps?q=" +
+      encodeURIComponent("Schacht Neu-Cöln 26, 45355 Essen, Deutschland") +
+      "&output=embed",
+  },
+] as const;
+
 
 export type ServiceSlug = "germany-opportunity-card" | "australia-pr" | "canada-pr" | "jss-program";
 
