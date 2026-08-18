@@ -24,20 +24,30 @@ export const BRANCHES = [
   {
     id: "hyderabad",
     name: "Hyderabad Branch",
+    country: "India",
+    flag: "🇮🇳",
     address:
-      "308, 3rd Floor, Jain Sadguru Capital Park, Capital Pk Rd, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana 500081",
+      "308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081",
     mapsLink: "https://share.google/k9vsSLHA776nPsZhN",
+    directions:
+      "https://www.google.com/maps/dir/?api=1&destination=" +
+      encodeURIComponent("7 Wings Immigration, Jain Sadguru Capital Park, Silicon Valley, Madhapur, Hyderabad, Telangana 500081"),
     embed:
       "https://www.google.com/maps?q=" +
-      encodeURIComponent("7 Wings Immigration, Jain Sadguru Capital Park, Capital Pk Rd, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana 500081") +
+      encodeURIComponent("7 Wings Immigration, Jain Sadguru Capital Park, Silicon Valley, Madhapur, Hyderabad, Telangana 500081") +
       "&ll=17.4340529,78.405003&z=18&output=embed",
   },
   {
     id: "germany",
     name: "Germany Branch",
+    country: "Germany",
+    flag: "🇩🇪",
     address: "Schacht Neu-Cöln 26, 1. Etage, 45355 Essen, Deutschland",
     mapsLink:
       "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent("Schacht Neu-Cöln 26, 45355 Essen, Deutschland"),
+    directions:
+      "https://www.google.com/maps/dir/?api=1&destination=" +
       encodeURIComponent("Schacht Neu-Cöln 26, 45355 Essen, Deutschland"),
     embed:
       "https://www.google.com/maps?q=" +

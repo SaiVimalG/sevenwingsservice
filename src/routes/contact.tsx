@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Navigation, Phone } from "lucide-react";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/forms/Forms";
@@ -43,8 +43,11 @@ function Contact() {
                 >
                   <div className="flex items-start gap-4">
                     <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/15 text-gold-deep"><MapPin className="h-5 w-5" /></span>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{b.name}</p>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{b.name}</p>
+                        <span className="grid h-5 w-5 place-items-center rounded-full bg-cream text-xs" title={b.country}>{b.flag}</span>
+                      </div>
                       <p className="mt-1 font-display text-lg text-navy-deep">{b.address}</p>
                     </div>
                   </div>
@@ -70,6 +73,15 @@ function Contact() {
               </div>
               <div className="overflow-hidden rounded-2xl border border-black/5">
                 <iframe key={active.id} title={`7 Wings Immigration ${active.name} map`} width="100%" height="280" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src={active.embed} />
+                <a
+                  href={active.directions}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 bg-navy-deep py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-mid"
+                >
+                  <Navigation className="h-4 w-4" />
+                  Get directions to {active.name}
+                </a>
               </div>
             </div>
           </Reveal>
