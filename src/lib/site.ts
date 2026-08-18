@@ -30,8 +30,7 @@ export const BRANCHES = [
       "308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081",
     mapsLink: "https://share.google/k9vsSLHA776nPsZhN",
     directions:
-      "https://www.google.com/maps/dir/?api=1&destination=" +
-      encodeURIComponent("7 Wings Immigration, Jain Sadguru Capital Park, Silicon Valley, Madhapur, Hyderabad, Telangana 500081"),
+      "https://www.google.com/maps/dir/?api=1&destination=17.4340529,78.405003",
     embed:
       "https://www.google.com/maps?q=" +
       encodeURIComponent("7 Wings Immigration, Jain Sadguru Capital Park, Silicon Valley, Madhapur, Hyderabad, Telangana 500081") +
