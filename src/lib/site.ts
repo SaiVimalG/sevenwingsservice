@@ -9,7 +9,7 @@ export const SITE = {
   email: "info@7wingsimmigration.com",
   phone: "+91 80621 80254",
   whatsapp: "+91 80621 80254",
-  address: "Hi-Tech City, Madhapur, Hyderabad, Telangana, INDIA",
+  address: "308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081",
   logoUrl: logo.url,
   logoUrlDark: logo.url,
   social: {
