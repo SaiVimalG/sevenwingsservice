@@ -70,7 +70,7 @@ const orgJsonLd = {
   priceRange: "₹₹",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City",
+    streetAddress: "308, 3rd Floor, Jain Sadguru Capital Park, Capital Pk Rd, VIP Hills, Silicon Valley, Madhapur",
     addressLocality: "Hyderabad",
     addressRegion: "Telangana",
     postalCode: "500081",
