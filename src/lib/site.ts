@@ -25,9 +25,12 @@ export const BRANCHES = [
     id: "hyderabad",
     name: "Hyderabad Branch",
     address:
-      "308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081",
+      "308, 3rd Floor, Jain Sadguru Capital Park, Capital Pk Rd, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana 500081",
     mapsLink: "https://share.google/k9vsSLHA776nPsZhN",
-    embed: "https://www.google.com/maps?q=17.4340529,78.405003&output=embed",
+    embed:
+      "https://www.google.com/maps?q=" +
+      encodeURIComponent("7 Wings Immigration, Jain Sadguru Capital Park, Capital Pk Rd, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana 500081") +
+      "&z=18&output=embed",
   },
   {
     id: "germany",
