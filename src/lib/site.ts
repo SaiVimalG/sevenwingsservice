@@ -23,13 +23,13 @@ export const SITE = {
 export const BRANCHES = [
   {
     id: "hyderabad",
-    name: "7 Wings Immigration",
+    name: "Hyderabad Branch",
     address:
       "308, 3rd Floor, Jain Sadguru Capital Park, Capital Pk Rd, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana 500081",
     mapsLink: "https://share.google/k9vsSLHA776nPsZhN",
     embed:
       "https://www.google.com/maps?q=" +
-      encodeURIComponent("7 Wings Immigration, Jain Sadguru Capital Park, Capital Pk Rd, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana 500081") +
+      encodeURIComponent("Jain Sadguru Capital Park, Capital Pk Rd, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana 500081") +
       "&z=18&output=embed",
   },
   {
