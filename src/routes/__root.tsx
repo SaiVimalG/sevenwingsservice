@@ -210,6 +210,14 @@ function RootShell({ children }: { children: ReactNode }) {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap"
           />
+          {/* Meta Pixel noscript fallback image tracking. */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2211895116258735&ev=PageView&noscript=1"
+            alt=""
+          />
         </noscript>
         {children}
         <Scripts />
