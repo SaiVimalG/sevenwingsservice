@@ -168,6 +168,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     scripts: [
       {
+        // Meta Pixel Code — base pixel initialization and PageView tracking.
+        children:
+          "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2211895116258735');fbq('track','PageView');",
+      },
+      {
         // Promote the deferred font stylesheet to media="all" once loaded.
         children:
           "(function(){var l=document.querySelector('link[data-font=\"google\"]');if(!l)return;function f(){l.media='all'}if(l.sheet){f()}else{l.addEventListener('load',f,{once:true})}})();",
@@ -204,6 +209,14 @@ function RootShell({ children }: { children: ReactNode }) {
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap"
+          />
+          {/* Meta Pixel noscript fallback image tracking. */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2211895116258735&ev=PageView&noscript=1"
+            alt=""
           />
         </noscript>
         {children}
