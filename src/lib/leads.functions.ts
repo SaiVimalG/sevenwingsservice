@@ -155,3 +155,45 @@ export const updateLeadStatus = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+export const submitLead = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => LeadSubmitSchema.parse(data))
+  .handler(async ({ data }) => {
+    // Honeypot: bots that fill the hidden "website" field are silently accepted.
+    if (data.website) {
+      console.warn("[submitLead] honeypot triggered", data.website);
+      return { ok: true };
+    }
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin.from("contact_submissions").insert({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      country_interest: data.country ?? data.service ?? null,
+      message: data.message ?? "",
+    });
+    if (error) {
+      console.error("[submitLead] insert failed", error.message);
+      throw new Error("Could not submit your enquiry. Please try again or call us.");
+    }
+
+    try {
+      const { forwardLeadToCRM } = await import("@/lib/crm-forward.server");
+      await forwardLeadToCRM({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.service ?? undefined,
+        country: data.country ?? undefined,
+        city: data.city ?? undefined,
+        source: "Website",
+        subsource: "7wings Leads Page",
+        message: data.message ?? undefined,
+      });
+    } catch (e) {
+      console.error("[submitLead] crm forward failed", e);
+    }
+
+    return { ok: true };
+  });
