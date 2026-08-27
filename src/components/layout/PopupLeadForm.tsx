@@ -102,6 +102,7 @@ export function PopupLeadForm() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (hasPopupBeenDismissed()) return;
     setOpen(false);
     setAccepted(false);
     setSubmitted(false);
@@ -122,6 +123,7 @@ export function PopupLeadForm() {
 
   function close() {
     setOpen(false);
+    markPopupDismissed();
     // Return focus to whatever was focused before popup opened
     setTimeout(() => triggerRef.current?.focus?.(), 0);
   }
@@ -160,6 +162,7 @@ export function PopupLeadForm() {
         },
       });
       setSubmitted(true);
+      markPopupDismissed();
       toast.success("Thank you! We will contact you shortly.", {
         description: "A counsellor will call you within 4 working hours.",
       });
@@ -227,7 +230,7 @@ export function PopupLeadForm() {
                 </div>
                 <div className="mt-5 flex flex-col items-center gap-2">
                   <a
-                    href="tel:+919876543210"
+                    href={`tel:${SITE.phone.replace(/\s/g, '')}`}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-gold-deep hover:text-gold"
                   >
                     <PhoneIcon className="h-4 w-4" /> Need us sooner? Call us now
