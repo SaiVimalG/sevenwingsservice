@@ -15,7 +15,6 @@ import { Route as SuccessStoriesRouteImport } from './routes/success-stories'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as LeadsRouteImport } from './routes/leads'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EligibilityRouteImport } from './routes/eligibility'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -30,6 +29,7 @@ import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as CanadaNocFinderRouteImport } from './routes/canada.noc-finder'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
@@ -76,11 +76,6 @@ const RefundRoute = RefundRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LeadsRoute = LeadsRouteImport.update({
-  id: '/leads',
-  path: '/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -151,6 +146,11 @@ const CanadaNocFinderRoute = CanadaNocFinderRouteImport.update({
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminBlogRoute = AdminBlogRouteImport.update({
@@ -260,7 +260,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/eligibility': typeof EligibilityRouteWithChildren
   '/faq': typeof FaqRoute
-  '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -268,6 +267,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -299,7 +299,6 @@ export interface FileRoutesByTo {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
-  '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -307,6 +306,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -340,7 +340,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/eligibility': typeof EligibilityRouteWithChildren
   '/faq': typeof FaqRoute
-  '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -348,6 +347,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -382,7 +382,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/eligibility'
     | '/faq'
-    | '/leads'
     | '/privacy'
     | '/refund'
     | '/sitemap.xml'
@@ -390,6 +389,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/admin/blog'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -421,7 +421,6 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/faq'
-    | '/leads'
     | '/privacy'
     | '/refund'
     | '/sitemap.xml'
@@ -429,6 +428,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/admin/blog'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -461,7 +461,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/eligibility'
     | '/faq'
-    | '/leads'
     | '/privacy'
     | '/refund'
     | '/sitemap.xml'
@@ -469,6 +468,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/admin/blog'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -502,7 +502,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EligibilityRoute: typeof EligibilityRouteWithChildren
   FaqRoute: typeof FaqRoute
-  LeadsRoute: typeof LeadsRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -510,6 +509,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
   AdminBlogRoute: typeof AdminBlogRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CanadaNocFinderRoute: typeof CanadaNocFinderRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
@@ -567,13 +567,6 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/leads': {
-      id: '/leads'
-      path: '/leads'
-      fullPath: '/leads'
-      preLoaderRoute: typeof LeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -672,6 +665,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/blog': {
@@ -844,7 +844,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EligibilityRoute: EligibilityRouteWithChildren,
   FaqRoute: FaqRoute,
-  LeadsRoute: LeadsRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
@@ -852,6 +851,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   UnsubscribeRoute: UnsubscribeRoute,
   AdminBlogRoute: AdminBlogRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
   BlogSlugRoute: BlogSlugRoute,
   CanadaNocFinderRoute: CanadaNocFinderRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,

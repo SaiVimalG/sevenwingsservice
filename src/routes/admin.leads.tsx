@@ -38,7 +38,7 @@ import {
   type LeadSource,
 } from "@/lib/leads.functions";
 
-export const Route = createFileRoute("/leads")({
+export const Route = createFileRoute("/admin/leads")({
   head: () => ({
     meta: [
       { title: "Leads | 7 Wings CRM" },
