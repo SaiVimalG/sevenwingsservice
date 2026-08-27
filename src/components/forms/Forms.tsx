@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
@@ -22,6 +22,16 @@ function makeFormId(prefix: string) {
   const rand = Math.random().toString(36).slice(2, 8).toUpperCase();
   const ts = Date.now().toString(36).toUpperCase();
   return `7WFI-${prefix}-${ts}-${rand}`;
+}
+
+/**
+ * Stable during SSR/hydration, randomised after mount so the markup the server
+ * sends always matches the first client render (no hydration mismatch).
+ */
+export function useFormId(prefix: string) {
+  const [id, setId] = useState(`7WFI-${prefix}`);
+  useEffect(() => setId(makeFormId(prefix)), [prefix]);
+  return id;
 }
 
 function ConsentCheckbox({
@@ -63,7 +73,7 @@ export function ContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const formId = useMemo(() => makeFormId("CU"), []);
+  const formId = useFormId("CU");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -113,7 +123,7 @@ export function ConsultationForm() {
   const fn = useServerFn(submitConsultation);
   const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const formId = useMemo(() => makeFormId("CB"), []);
+  const formId = useFormId("CB");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -179,7 +189,7 @@ export function BlogContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const formId = useMemo(() => makeFormId("BL"), []);
+  const formId = useFormId("BL");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
