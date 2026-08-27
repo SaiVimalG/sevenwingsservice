@@ -3,7 +3,7 @@
  * The webhook secret is read from process.env.CRM_WEBHOOK_SECRET and never exposed to the client.
  */
 
-const CRM_WEBHOOK_URL = "https://global-crm.lovable.app/api/public/hooks/website-lead";
+const CRM_WEBHOOK_URL = "https://crm.7wingsimmigration.com/api/public/hooks/website-lead";
 
 export interface CRMLeadPayload {
   name: string;
