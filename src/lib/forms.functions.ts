@@ -69,14 +69,13 @@ export const submitContact = createServerFn({ method: "POST" })
     }
 
     try {
-      const { forwardLeadToCRM } = await import("@/lib/crm-forward.server");
-      await forwardLeadToCRM({
+      const { forwardLeadToCrm } = await import("@/lib/crm-forward.server");
+      await forwardLeadToCrm({
         name: data.name,
         email: data.email,
         phone: data.phone,
         service: data.country_interest ?? undefined,
         country: data.country_interest ?? undefined,
-        source: "Website",
         subsource: "7wings Contact Form",
         message: data.message,
       });
@@ -139,14 +138,13 @@ export const submitConsultation = createServerFn({ method: "POST" })
     }
 
     try {
-      const { forwardLeadToCRM } = await import("@/lib/crm-forward.server");
-      await forwardLeadToCRM({
+      const { forwardLeadToCrm } = await import("@/lib/crm-forward.server");
+      await forwardLeadToCrm({
         name: data.name,
         email: data.email,
         phone: data.phone,
         service: data.preferred_country,
         country: data.preferred_country,
-        source: "Website",
         subsource: "7wings Consultation Form",
         message: data.notes ?? undefined,
       });

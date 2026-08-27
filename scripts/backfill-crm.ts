@@ -5,7 +5,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 
-const CRM_URL = "https://crm.7wingsimmigration.com/api/public/hooks/website-lead";
+const URL = "https://crm.7wingsimmigration.com/api/public/hooks/website-lead-bulk";
 const SECRET = process.env["CRM_WEBHOOK_SECRET"];
 
 const SUPABASE_URL = process.env["SUPABASE_URL"];
@@ -31,7 +31,6 @@ interface CRMLead {
   service?: string;
   country?: string;
   city?: string;
-  source: string;
   subsource: string;
   message?: string;
   created_at?: string;
@@ -57,7 +56,6 @@ async function fetchLeads(): Promise<CRMLead[]> {
       phone: String(row.phone ?? "").trim(),
       service: country,
       country,
-      source: "Website",
       subsource: "Contact Form",
       message: String(row.message ?? "").trim(),
       created_at: row.created_at ? String(row.created_at) : undefined,
@@ -78,7 +76,6 @@ async function fetchLeads(): Promise<CRMLead[]> {
       phone: String(row.phone ?? "").trim(),
       service: country,
       country,
-      source: "Website",
       subsource: "Consultation Form",
       message: message || undefined,
       created_at: row.created_at ? String(row.created_at) : undefined,
@@ -88,52 +85,26 @@ async function fetchLeads(): Promise<CRMLead[]> {
   return out;
 }
 
-async function sendLead(lead: CRMLead, index: number) {
-  const res = await fetch(CRM_URL, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "x-website-lead-secret": SECRET,
-    },
-    body: JSON.stringify(lead),
-  });
-
-  const text = await res.text();
-  let json: Record<string, unknown> | null = null;
-  try {
-    json = JSON.parse(text);
-  } catch {
-    // leave json null
-  }
-
-  if (!res.ok) {
-    throw new Error(`Lead ${index + 1} failed: HTTP ${res.status} ${text}`);
-  }
-
-  console.log(`Lead ${index + 1} (${lead.name}):`, json ?? text);
-  return json as { ok?: boolean; inserted?: boolean; skipped?: boolean } | null;
-}
-
 async function main() {
-  const all = await fetchLeads();
-  console.log(`Found ${all.length} website leads to backfill.`);
+  const leads = await fetchLeads();
+  console.log(`Found ${leads.length} website leads to backfill.`);
 
-  if (all.length === 0) {
+  if (leads.length === 0) {
     console.log("Nothing to send.");
     return;
   }
 
-  let inserted = 0;
-  let skipped = 0;
-
-  for (let i = 0; i < all.length; i++) {
-    const out = await sendLead(all[i], i);
-    if (out?.inserted) inserted++;
-    if (out?.skipped) skipped++;
+  for (let i = 0; i < leads.length; i += 500) {
+    const res = await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-website-lead-secret": SECRET,
+      },
+      body: JSON.stringify({ leads: leads.slice(i, i + 500) }),
+    });
+    console.log(res.status, await res.text());
   }
-
-  console.log("\nBackfill complete:");
-  console.log({ total: all.length, inserted, skipped });
 }
 
 main().catch((err) => {
