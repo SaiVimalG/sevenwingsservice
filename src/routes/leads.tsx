@@ -1,664 +1,222 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { format } from "date-fns";
-import type { DateRange } from "react-day-picker";
-import {
-  LogOut,
-  Search,
-  RefreshCw,
-  Mail,
-  Phone,
-  Globe2,
-  Calendar as CalendarIcon,
-  Users,
-  X,
-  Copy,
-  Check,
-  MessageCircle,
-} from "lucide-react";
 import { toast } from "sonner";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  verifyLeadsToken,
-  listLeads,
-  updateLeadStatus,
-  type Lead,
-  type LeadStatus,
-  type LeadSource,
-} from "@/lib/leads.functions";
+  ArrowRight,
+  Loader2,
+  User,
+  Mail,
+  Globe2,
+  Briefcase,
+  MapPin,
+  MessageSquare,
+} from "lucide-react";
+import { PageShell, PageHero } from "@/components/layout/PageShell";
+import { Reveal } from "@/components/motion/Reveal";
+import { SERVICES } from "@/lib/site";
+import { submitLead } from "@/lib/leads.functions";
+import { Input, Textarea, Select } from "@/components/forms/Forms";
+import { PhoneField } from "@/components/forms/PhoneField";
 
 export const Route = createFileRoute("/leads")({
   head: () => ({
     meta: [
-      { title: "Leads | 7 Wings CRM" },
-      { name: "robots", content: "noindex, nofollow" },
+      { title: "Get a Free Immigration Consultation | 7 Wings Immigration" },
+      {
+        name: "description",
+        content:
+          "Submit your enquiry for Germany, Australia, Canada or global immigration. A senior counsellor from 7 Wings Immigration will call you back within 4 working hours.",
+      },
+      {
+        property: "og:title",
+        content: "Get a Free Immigration Consultation | 7 Wings Immigration",
+      },
+      {
+        property: "og:description",
+        content:
+          "Free consultation for Germany Opportunity Card, Australia PR, Canada PR and JSS Program. Hyderabad's premium immigration consultancy.",
+      },
+      { property: "og:url", content: "https://www.7wingsimmigration.com/leads" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Get a Free Immigration Consultation | 7 Wings Immigration",
+      },
+      {
+        name: "twitter:description",
+        content: "Submit your enquiry and a senior counsellor will reply within 4 working hours.",
+      },
     ],
+    links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/leads" }],
   }),
   component: LeadsPage,
 });
 
-const STORAGE_KEY = "leads_admin_token";
-const STATUSES: LeadStatus[] = ["new", "contacted", "qualified", "converted", "closed"];
-
 function LeadsPage() {
-  const [token, setToken] = useState<string | null>(null);
-  const [checking, setChecking] = useState(true);
-  const [input, setInput] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const verify = useServerFn(verifyLeadsToken);
-
-  useEffect(() => {
-    const saved = typeof window !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
-    if (!saved) {
-      setChecking(false);
-      return;
-    }
-    verify({ data: { token: saved } })
-      .then(() => setToken(saved))
-      .catch(() => localStorage.removeItem(STORAGE_KEY))
-      .finally(() => setChecking(false));
-  }, [verify]);
-
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-    setSubmitting(true);
-    try {
-      await verify({ data: { token: input.trim() } });
-      localStorage.setItem(STORAGE_KEY, input.trim());
-      setToken(input.trim());
-      toast.success("Welcome");
-    } catch {
-      toast.error("Invalid password");
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  if (checking) {
-    return (
-      <div className="min-h-screen grid place-items-center bg-cream text-navy-deep">
-        Loading…
-      </div>
-    );
-  }
-
-  if (!token) {
-    return (
-      <div className="min-h-screen grid place-items-center bg-cream p-6">
-        <form
-          onSubmit={onSubmit}
-          className="w-full max-w-sm rounded-2xl bg-white border border-border shadow-elegant p-8 space-y-5"
-        >
-          <div className="space-y-1">
-            <h1 className="font-display text-2xl text-navy-deep">7 Wings · Leads</h1>
-            <p className="text-sm text-muted-foreground">
-              Enter the leads admin password to continue.
-            </p>
-          </div>
-          <Input
-            type="password"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Password"
-            autoFocus
-          />
-          <Button
-            type="submit"
-            disabled={submitting}
-            className="w-full bg-gold hover:bg-gold-deep text-navy-deep"
-          >
-            {submitting ? "Checking…" : "Sign in"}
-          </Button>
-        </form>
-      </div>
-    );
-  }
-
   return (
-    <LeadsDashboard
-      token={token}
-      onSignOut={() => {
-        localStorage.removeItem(STORAGE_KEY);
-        setToken(null);
-        setInput("");
-      }}
-    />
+    <PageShell>
+      <PageHero
+        eyebrow="Free Consultation"
+        title="Tell us about your immigration goal."
+        subtitle="Fill in the form below. A senior counsellor will review your profile and call you back within 4 working hours."
+      />
+      <section className="py-12 md:py-16">
+        <div className="mx-auto max-w-[760px] px-6">
+          <Reveal>
+            <LeadCaptureForm />
+          </Reveal>
+        </div>
+      </section>
+    </PageShell>
   );
 }
 
-function LeadsDashboard({ token, onSignOut }: { token: string; onSignOut: () => void }) {
-  const fetchLeads = useServerFn(listLeads);
-  const updateStatus = useServerFn(updateLeadStatus);
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
-  const [query, setQuery] = useState("");
-  const [source, setSource] = useState<"all" | LeadSource>("all");
-  const [status, setStatus] = useState<"all" | LeadStatus>("all");
-  const [country, setCountry] = useState<string>("all");
-  const [range, setRange] = useState<DateRange | undefined>();
-  const [active, setActive] = useState<Lead | null>(null);
+function LeadCaptureForm() {
+  const fn = useServerFn(submitLead);
+  const [loading, setLoading] = useState(false);
+  const [accepted, setAccepted] = useState(false);
+  const formId = useMemo(
+    () =>
+      `7WFI-LP-${Date.now().toString(36).toUpperCase()}-${Math.random()
+        .toString(36)
+        .slice(2, 8)
+        .toUpperCase()}`,
+    [],
+  );
 
-  const load = async (silent = false) => {
-    if (silent) setRefreshing(true);
-    else setLoading(true);
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    setLoading(true);
     try {
-      const res = await fetchLeads({ data: { token } });
-      setLeads(res.leads);
-    } catch (e) {
-      toast.error("Failed to load leads");
+      await fn({
+        data: {
+          name: String(f.get("name") || ""),
+          email: String(f.get("email") || ""),
+          phone: String(f.get("phone") || ""),
+          service: String(f.get("service") || "") || null,
+          country: String(f.get("country") || "") || null,
+          city: String(f.get("city") || "") || null,
+          message: String(f.get("message") || "") || null,
+          website: String(f.get("website") || "") || null,
+        },
+      });
+      toast.success("Thank you! A senior counsellor will call you within 4 working hours.");
+      (e.target as HTMLFormElement).reset();
+      setAccepted(false);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Submission failed. Please try again.");
     } finally {
       setLoading(false);
-      setRefreshing(false);
     }
-  };
-
-  useEffect(() => {
-    load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const countries = useMemo(() => {
-    const s = new Set<string>();
-    leads.forEach((l) => l.country && s.add(l.country));
-    return Array.from(s).sort();
-  }, [leads]);
-
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return leads.filter((l) => {
-      if (source !== "all" && l.source !== source) return false;
-      if (status !== "all" && l.status !== status) return false;
-      if (country !== "all" && (l.country ?? "") !== country) return false;
-      if (range?.from) {
-        const d = new Date(l.createdAt);
-        if (d < range.from) return false;
-        if (range.to && d > new Date(range.to.getTime() + 24 * 60 * 60 * 1000 - 1)) return false;
-      }
-      if (q) {
-        const hay = `${l.name} ${l.email} ${l.phone} ${l.country ?? ""} ${l.summary}`.toLowerCase();
-        if (!hay.includes(q)) return false;
-      }
-      return true;
-    });
-  }, [leads, query, source, status, country, range]);
-
-  const counts = useMemo(() => {
-    const by: Record<string, number> = { total: leads.length, new: 0, contacted: 0, converted: 0 };
-    leads.forEach((l) => {
-      by[l.status] = (by[l.status] ?? 0) + 1;
-    });
-    return by;
-  }, [leads]);
-
-  const setLeadStatus = async (lead: Lead, next: LeadStatus) => {
-    const prev = lead.status;
-    setLeads((all) => all.map((l) => (l.id === lead.id ? { ...l, status: next } : l)));
-    if (active?.id === lead.id) setActive({ ...lead, status: next });
-    try {
-      await updateStatus({ data: { token, id: lead.id, status: next } });
-      toast.success(`Marked ${next}`);
-    } catch {
-      toast.error("Could not update status");
-      setLeads((all) => all.map((l) => (l.id === lead.id ? { ...l, status: prev } : l)));
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-cream text-ink">
-      {/* Header */}
-      <header className="bg-navy-deep text-cream">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-5 flex flex-wrap items-center gap-4 justify-between">
-          <div className="flex items-center gap-3">
-            <Users className="h-6 w-6 text-gold" />
-            <div>
-              <h1 className="font-display text-xl sm:text-2xl">7 Wings · Leads</h1>
-              <p className="text-xs text-cream/70">
-                {counts.total} total · {counts.new ?? 0} new · {counts.contacted ?? 0} contacted ·{" "}
-                {counts.converted ?? 0} converted
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => load(true)}
-              disabled={refreshing}
-              className="bg-transparent border-cream/30 text-cream hover:bg-cream/10 hover:text-cream"
-            >
-              <RefreshCw className={`h-4 w-4 mr-1.5 ${refreshing ? "animate-spin" : ""}`} />
-              Refresh
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onSignOut}
-              className="bg-transparent border-cream/30 text-cream hover:bg-cream/10 hover:text-cream"
-            >
-              <LogOut className="h-4 w-4 mr-1.5" />
-              Sign out
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Filters */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-5">
-        <div className="grid gap-3 md:grid-cols-[1fr_auto_auto_auto_auto]">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search name, email, phone, country…"
-              className="pl-9 bg-white"
-            />
-          </div>
-          <Select value={source} onValueChange={(v) => setSource(v as "all" | LeadSource)}>
-            <SelectTrigger className="bg-white w-full md:w-[160px]">
-              <SelectValue placeholder="Source" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All sources</SelectItem>
-              <SelectItem value="contact">Contact form</SelectItem>
-              <SelectItem value="consultation">Consultation</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select value={status} onValueChange={(v) => setStatus(v as "all" | LeadStatus)}>
-            <SelectTrigger className="bg-white w-full md:w-[150px]">
-              <SelectValue placeholder="Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All statuses</SelectItem>
-              {STATUSES.map((s) => (
-                <SelectItem key={s} value={s} className="capitalize">
-                  {s}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={country} onValueChange={setCountry}>
-            <SelectTrigger className="bg-white w-full md:w-[170px]">
-              <SelectValue placeholder="Country" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All countries</SelectItem>
-              {countries.map((c) => (
-                <SelectItem key={c} value={c}>
-                  {c}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <DateRangeFilter range={range} onChange={setRange} />
-        </div>
-      </div>
-
-      {/* Table */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 pb-12">
-        <div className="rounded-xl bg-white border border-border overflow-hidden shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-secondary text-navy-deep text-left">
-                <tr>
-                  <th className="px-4 py-3 font-semibold w-10">#</th>
-                  <th className="px-4 py-3 font-semibold">Name</th>
-                  <th className="px-4 py-3 font-semibold">Source</th>
-                  <th className="px-4 py-3 font-semibold">Email</th>
-                  <th className="px-4 py-3 font-semibold">Phone</th>
-                  <th className="px-4 py-3 font-semibold">Country</th>
-                  <th className="px-4 py-3 font-semibold">Date</th>
-                  <th className="px-4 py-3 font-semibold">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan={8} className="px-4 py-10 text-center text-muted-foreground">
-                      Loading leads…
-                    </td>
-                  </tr>
-                ) : filtered.length === 0 ? (
-                  <tr>
-                    <td colSpan={8} className="px-4 py-10 text-center text-muted-foreground">
-                      No leads match your filters.
-                    </td>
-                  </tr>
-                ) : (
-                  filtered.map((l, i) => (
-                    <tr
-                      key={l.id}
-                      onClick={() => setActive(l)}
-                      className="border-t border-border hover:bg-secondary/60 cursor-pointer"
-                    >
-                      <td className="px-4 py-3 text-muted-foreground">{i + 1}</td>
-                      <td className="px-4 py-3 font-medium text-navy-deep">{l.name}</td>
-                      <td className="px-4 py-3">
-                        <SourceBadge source={l.source} label={l.sourceLabel} />
-                      </td>
-                      <td className="px-4 py-3">
-                        <CopyInline text={l.email} />
-                      </td>
-                      <td className="px-4 py-3">
-                        <CopyInline text={l.phone} />
-                      </td>
-                      <td className="px-4 py-3">{l.country ?? "—"}</td>
-                      <td className="px-4 py-3 text-muted-foreground whitespace-nowrap">
-                        {fmtDate(l.createdAt)}
-                      </td>
-                      <td className="px-4 py-3">
-                        <StatusBadge status={l.status} />
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <p className="text-xs text-muted-foreground mt-3">
-          Showing {filtered.length} of {leads.length} leads.
-        </p>
-      </div>
-
-      {active && (
-        <LeadDrawer lead={active} onClose={() => setActive(null)} onStatus={setLeadStatus} />
-      )}
-    </div>
-  );
-}
-
-function DateRangeFilter({
-  range,
-  onChange,
-}: {
-  range: DateRange | undefined;
-  onChange: (r: DateRange | undefined) => void;
-}) {
-  const label = range?.from
-    ? range.to
-      ? `${format(range.from, "MMM d")} – ${format(range.to, "MMM d")}`
-      : format(range.from, "MMM d, yyyy")
-    : "Any date";
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className="bg-white justify-start font-normal w-full md:w-[220px]"
-        >
-          <CalendarIcon className="h-4 w-4 mr-2" />
-          {label}
-          {range?.from && (
-            <X
-              className="ml-auto h-4 w-4 opacity-60 hover:opacity-100"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onChange(undefined);
-              }}
-            />
-          )}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="end">
-        <Calendar mode="range" selected={range} onSelect={onChange} numberOfMonths={2} />
-      </PopoverContent>
-    </Popover>
-  );
-}
-
-function StatusBadge({ status }: { status: LeadStatus }) {
-  const styles: Record<LeadStatus, string> = {
-    new: "bg-sky/15 text-sky border-sky/30",
-    contacted: "bg-gold/20 text-gold-deep border-gold/40",
-    qualified: "bg-purple-100 text-purple-700 border-purple-200",
-    converted: "bg-success/15 text-success border-success/30",
-    closed: "bg-muted text-muted-foreground border-border",
-  };
-  return (
-    <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium capitalize ${styles[status]}`}
-    >
-      {status}
-    </span>
-  );
-}
-
-function SourceBadge({ source, label }: { source: LeadSource; label: string }) {
-  const cls =
-    source === "consultation"
-      ? "bg-navy-deep text-cream"
-      : "bg-gold-soft text-navy-deep border border-gold/40";
-  return (
-    <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${cls}`}>
-      {label}
-    </span>
-  );
-}
-
-function CopyInline({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-  if (!text) return <span className="text-muted-foreground">—</span>;
-  return (
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        navigator.clipboard
-          .writeText(text)
-          .then(() => {
-            setCopied(true);
-            toast.success("Copied");
-            setTimeout(() => setCopied(false), 1200);
-          })
-          .catch(() => toast.error("Could not copy"));
-      }}
-      className="inline-flex items-center gap-1.5 max-w-[220px] truncate text-left hover:text-navy-deep"
-      title={text}
-    >
-      <span className="truncate">{text}</span>
-      {copied ? (
-        <Check className="h-3.5 w-3.5 text-success shrink-0" />
-      ) : (
-        <Copy className="h-3.5 w-3.5 opacity-50 shrink-0" />
-      )}
-    </button>
-  );
-}
-
-function LeadDrawer({
-  lead,
-  onClose,
-  onStatus,
-}: {
-  lead: Lead;
-  onClose: () => void;
-  onStatus: (l: Lead, s: LeadStatus) => void;
-}) {
-  const waPhone = lead.phone.replace(/[^\d+]/g, "").replace(/^\+/, "");
-  const buildAll = () =>
-    [
-      `Lead: ${lead.name}`,
-      `Source: ${lead.sourceLabel}`,
-      `Status: ${lead.status}`,
-      `Created: ${fmtDate(lead.createdAt)}`,
-      "",
-      ...lead.fields.map((f) => `${f.label}: ${f.value}`),
-    ].join("\n");
-
-  return (
-    <div className="fixed inset-0 z-50 flex">
-      <div className="flex-1 bg-black/40" onClick={onClose} />
-      <aside className="w-full max-w-md bg-white h-full overflow-y-auto shadow-2xl flex flex-col">
-        <div className="flex items-center justify-between p-5 border-b border-border bg-navy-deep text-cream">
-          <div>
-            <div className="text-xs uppercase tracking-wide text-cream/70">
-              {lead.sourceLabel}
-            </div>
-            <h2 className="font-display text-xl">{lead.name}</h2>
-          </div>
-          <button
-            onClick={onClose}
-            className="rounded-full p-1.5 hover:bg-cream/10"
-            aria-label="Close"
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-
-        <div className="p-5 space-y-5 flex-1">
-          <div className="space-y-2">
-            <ContactRow icon={Mail} value={lead.email} href={`mailto:${lead.email}`} />
-            <ContactRow icon={Phone} value={lead.phone} href={`tel:${lead.phone}`} />
-            {lead.country && <ContactRow icon={Globe2} value={lead.country} />}
-            <ContactRow icon={CalendarIcon} value={fmtDate(lead.createdAt)} />
-          </div>
-
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">
-              Status
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {STATUSES.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => onStatus(lead, s)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium capitalize border transition ${
-                    lead.status === s
-                      ? "bg-navy-deep text-cream border-navy-deep"
-                      : "bg-white text-navy-deep border-border hover:border-navy-deep"
-                  }`}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Submission
-            </div>
-            {lead.fields.map((f) => (
-              <div
-                key={f.label}
-                className="rounded-lg border border-border bg-secondary/40 p-3"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="text-xs font-medium text-muted-foreground">{f.label}</div>
-                  {f.value && f.value !== "—" && (
-                    <button
-                      onClick={() => {
-                        navigator.clipboard.writeText(f.value).then(
-                          () => toast.success("Copied"),
-                          () => toast.error("Could not copy"),
-                        );
-                      }}
-                      className="text-xs text-muted-foreground hover:text-navy-deep inline-flex items-center gap-1"
-                    >
-                      <Copy className="h-3 w-3" /> Copy
-                    </button>
-                  )}
-                </div>
-                <div className="text-sm text-navy-deep mt-1 whitespace-pre-wrap break-words">
-                  {f.value || "—"}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="p-5 border-t border-border bg-secondary/40 grid grid-cols-3 gap-2 sticky bottom-0">
-          {waPhone && (
-            <a
-              href={`https://wa.me/${waPhone}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 rounded-md bg-success text-white text-sm font-medium px-3 py-2 hover:opacity-90"
-            >
-              <MessageCircle className="h-4 w-4" /> WhatsApp
-            </a>
-          )}
-          <a
-            href={`mailto:${lead.email}`}
-            className="inline-flex items-center justify-center gap-1.5 rounded-md bg-navy-deep text-cream text-sm font-medium px-3 py-2 hover:opacity-90"
-          >
-            <Mail className="h-4 w-4" /> Email
-          </a>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(buildAll()).then(
-                () => toast.success("Lead copied"),
-                () => toast.error("Could not copy"),
-              );
-            }}
-            className="inline-flex items-center justify-center gap-1.5 rounded-md bg-gold text-navy-deep text-sm font-medium px-3 py-2 hover:bg-gold-deep"
-          >
-            <Copy className="h-4 w-4" /> Copy all
-          </button>
-        </div>
-      </aside>
-    </div>
-  );
-}
-
-function ContactRow({
-  icon: Icon,
-  value,
-  href,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  value: string;
-  href?: string;
-}) {
-  const content = (
-    <span className="inline-flex items-center gap-2 text-sm text-navy-deep">
-      <Icon className="h-4 w-4 text-gold-deep" />
-      <span className="break-all">{value}</span>
-    </span>
-  );
-  return (
-    <div className="flex items-center justify-between gap-2">
-      {href ? (
-        <a href={href} className="hover:underline">
-          {content}
-        </a>
-      ) : (
-        content
-      )}
-      <button
-        onClick={() =>
-          navigator.clipboard.writeText(value).then(
-            () => toast.success("Copied"),
-            () => toast.error("Could not copy"),
-          )
-        }
-        className="text-muted-foreground hover:text-navy-deep"
-        aria-label="Copy"
-      >
-        <Copy className="h-3.5 w-3.5" />
-      </button>
-    </div>
-  );
-}
-
-function fmtDate(iso: string) {
-  try {
-    return format(new Date(iso), "MMM d, yyyy · h:mm a");
-  } catch {
-    return iso;
   }
+
+  return (
+    <form
+      id={formId}
+      data-form-id={formId}
+      data-form-source="leads_page"
+      onSubmit={onSubmit}
+      className="space-y-5 rounded-3xl border border-black/5 bg-white p-6 md:p-10 shadow-elegant"
+    >
+      <input type="hidden" name="form_id" value={formId} />
+      <div className="space-y-1">
+        <h2 className="font-display text-2xl font-bold text-navy-deep">
+          Start your immigration journey
+        </h2>
+        <p className="text-sm text-muted-foreground">Fields marked with * are required.</p>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-2">
+        <Input name="name" label="Full name" icon={User} required />
+        <Input name="email" type="email" label="Email" icon={Mail} required />
+      </div>
+      <PhoneField name="phone" label="Phone" required />
+      <div className="grid gap-5 md:grid-cols-2">
+        <Select name="service" label="Service interested in" icon={Briefcase}>
+          <option value="">Select a service…</option>
+          {SERVICES.map((s) => (
+            <option key={s.slug} value={s.title}>
+              {s.title}
+            </option>
+          ))}
+          <option value="Other">Other</option>
+        </Select>
+        <Select name="country" label="Country of interest" icon={Globe2}>
+          <option value="">Select a country…</option>
+          {SERVICES.map((s) => (
+            <option key={s.slug} value={s.country}>
+              {s.country}
+            </option>
+          ))}
+          <option value="Other">Other</option>
+        </Select>
+      </div>
+      <Input name="city" label="Current city" icon={MapPin} placeholder="e.g. Hyderabad" />
+      <Textarea
+        name="message"
+        label="How can we help?"
+        icon={MessageSquare}
+        rows={4}
+        placeholder="Tell us about your profile, goals and timeline..."
+      />
+
+      {/* Honeypot: hidden from real users, traps bots */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        className="sr-only"
+        aria-hidden="true"
+      />
+
+      <label className="flex items-start gap-2 pt-1 text-[11px] leading-relaxed text-muted-foreground">
+        <input
+          type="checkbox"
+          required
+          checked={accepted}
+          onChange={(e) => setAccepted(e.target.checked)}
+          className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-gold"
+        />
+        <span>
+          I agree to be contacted about my enquiry and accept the{" "}
+          <a
+            href="/terms"
+            className="text-gold-deep underline hover:text-gold"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Terms &amp; Conditions
+          </a>{" "}
+          and{" "}
+          <a
+            href="/privacy"
+            className="text-gold-deep underline hover:text-gold"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Privacy Policy
+          </a>
+          .
+        </span>
+      </label>
+
+      <button
+        type="submit"
+        disabled={loading || !accepted}
+        className="btn-gold btn-gold-hover w-full justify-center disabled:opacity-60"
+      >
+        {loading ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <>
+            Request Free Consultation <ArrowRight className="h-4 w-4" />
+          </>
+        )}
+      </button>
+    </form>
+  );
 }

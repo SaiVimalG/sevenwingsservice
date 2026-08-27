@@ -68,6 +68,22 @@ export const submitContact = createServerFn({ method: "POST" })
       console.error("[contact] email send failed", e);
     }
 
+    try {
+      const { forwardLeadToCRM } = await import("@/lib/crm-forward.server");
+      await forwardLeadToCRM({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.country_interest ?? undefined,
+        country: data.country_interest ?? undefined,
+        source: "Website",
+        subsource: "7wings Contact Form",
+        message: data.message,
+      });
+    } catch (e) {
+      console.error("[contact] crm forward failed", e);
+    }
+
     return { ok: true };
   });
 
@@ -120,6 +136,22 @@ export const submitConsultation = createServerFn({ method: "POST" })
       ]);
     } catch (e) {
       console.error("[consultation] email send failed", e);
+    }
+
+    try {
+      const { forwardLeadToCRM } = await import("@/lib/crm-forward.server");
+      await forwardLeadToCRM({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.preferred_country,
+        country: data.preferred_country,
+        source: "Website",
+        subsource: "7wings Consultation Form",
+        message: data.notes ?? undefined,
+      });
+    } catch (e) {
+      console.error("[consultation] crm forward failed", e);
     }
 
     return { ok: true };

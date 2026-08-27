@@ -21,6 +21,17 @@ export interface Lead {
 
 const ALLOWED_STATUSES: LeadStatus[] = ["new", "contacted", "qualified", "converted", "closed"];
 
+const LeadSubmitSchema = z.object({
+  name: z.string().trim().min(2).max(100),
+  email: z.string().trim().email().max(200),
+  phone: z.string().trim().min(6).max(30),
+  service: z.string().trim().max(120).optional().nullable(),
+  country: z.string().trim().max(80).optional().nullable(),
+  city: z.string().trim().max(80).optional().nullable(),
+  message: z.string().trim().max(2000).optional().nullable(),
+  website: z.string().trim().max(100).optional().nullable(), // honeypot
+});
+
 function checkToken(token: string) {
   const expected = process.env.LEADS_ADMIN_TOKEN;
   if (!expected) throw new Error("LEADS_ADMIN_TOKEN is not configured on the server.");
@@ -142,5 +153,47 @@ export const updateLeadStatus = createServerFn({ method: "POST" })
     if (!table) throw new Error("Unknown lead source");
     const { error } = await supabaseAdmin.from(table).update({ status: data.status }).eq("id", uuid);
     if (error) throw new Error(error.message);
+    return { ok: true };
+  });
+
+export const submitLead = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => LeadSubmitSchema.parse(data))
+  .handler(async ({ data }) => {
+    // Honeypot: bots that fill the hidden "website" field are silently accepted.
+    if (data.website) {
+      console.warn("[submitLead] honeypot triggered", data.website);
+      return { ok: true };
+    }
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin.from("contact_submissions").insert({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      country_interest: data.country ?? data.service ?? null,
+      message: data.message ?? "",
+    });
+    if (error) {
+      console.error("[submitLead] insert failed", error.message);
+      throw new Error("Could not submit your enquiry. Please try again or call us.");
+    }
+
+    try {
+      const { forwardLeadToCRM } = await import("@/lib/crm-forward.server");
+      await forwardLeadToCRM({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.service ?? undefined,
+        country: data.country ?? undefined,
+        city: data.city ?? undefined,
+        source: "Website",
+        subsource: "7wings Leads Page",
+        message: data.message ?? undefined,
+      });
+    } catch (e) {
+      console.error("[submitLead] crm forward failed", e);
+    }
+
     return { ok: true };
   });

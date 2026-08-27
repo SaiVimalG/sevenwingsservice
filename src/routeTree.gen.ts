@@ -30,6 +30,7 @@ import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as CanadaNocFinderRouteImport } from './routes/canada.noc-finder'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
@@ -153,6 +154,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminBlogRoute = AdminBlogRouteImport.update({
   id: '/admin/blog',
   path: '/admin/blog',
@@ -268,6 +274,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -307,6 +314,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -348,6 +356,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -390,6 +399,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/admin/blog'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -429,6 +439,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/admin/blog'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -469,6 +480,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/admin/blog'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -510,6 +522,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
   AdminBlogRoute: typeof AdminBlogRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CanadaNocFinderRoute: typeof CanadaNocFinderRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
@@ -672,6 +685,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/blog': {
@@ -852,6 +872,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   UnsubscribeRoute: UnsubscribeRoute,
   AdminBlogRoute: AdminBlogRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
   BlogSlugRoute: BlogSlugRoute,
   CanadaNocFinderRoute: CanadaNocFinderRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
