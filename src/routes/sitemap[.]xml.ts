@@ -28,6 +28,8 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/", "/about", "/services", "/success-stories", "/faq",
           "/contact", "/book-consultation", "/privacy", "/terms", "/refund",
           "/eligibility",
+          "/germany-opportunity-card-hyderabad",
+          "/canada/noc-finder",
           "/eligibility/australia/189-points-calculator",
           "/eligibility/australia/190-points-calculator",
           "/eligibility/australia/491-points-calculator",
