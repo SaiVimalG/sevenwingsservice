@@ -77,14 +77,7 @@ function LeadCaptureForm() {
   const fn = useServerFn(submitLead);
   const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const formId = useMemo(
-    () =>
-      `7WFI-LP-${Date.now().toString(36).toUpperCase()}-${Math.random()
-        .toString(36)
-        .slice(2, 8)
-        .toUpperCase()}`,
-    [],
-  );
+  const formId = useFormId("LP");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
