@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
@@ -73,7 +73,7 @@ export function ContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const formId = useMemo(() => makeFormId("CU"), []);
+  const formId = useFormId("CU");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -123,7 +123,7 @@ export function ConsultationForm() {
   const fn = useServerFn(submitConsultation);
   const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const formId = useMemo(() => makeFormId("CB"), []);
+  const formId = useFormId("CB");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -189,7 +189,7 @@ export function BlogContactForm() {
   const fn = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const formId = useMemo(() => makeFormId("BL"), []);
+  const formId = useFormId("BL");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
