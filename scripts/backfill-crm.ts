@@ -88,14 +88,14 @@ async function fetchLeads(): Promise<CRMLead[]> {
   return out;
 }
 
-async function sendBatch(batch: CRMLead[], index: number) {
-  const res = await fetch(CRM_BULK_URL, {
+async function sendLead(lead: CRMLead, index: number) {
+  const res = await fetch(CRM_URL, {
     method: "POST",
     headers: {
       "content-type": "application/json",
       "x-website-lead-secret": SECRET,
     },
-    body: JSON.stringify({ leads: batch }),
+    body: JSON.stringify(lead),
   });
 
   const text = await res.text();
@@ -107,11 +107,11 @@ async function sendBatch(batch: CRMLead[], index: number) {
   }
 
   if (!res.ok) {
-    throw new Error(`Batch ${index + 1} failed: HTTP ${res.status} ${text}`);
+    throw new Error(`Lead ${index + 1} failed: HTTP ${res.status} ${text}`);
   }
 
-  console.log(`Batch ${index + 1}:`, json ?? text);
-  return json as { ok?: boolean; received?: number; inserted?: number; skipped?: number } | null;
+  console.log(`Lead ${index + 1} (${lead.name}):`, json ?? text);
+  return json as { ok?: boolean; inserted?: boolean; skipped?: boolean } | null;
 }
 
 async function main() {
