@@ -5,7 +5,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 
-const CRM_BULK_URL = "https://crm.7wingsimmigration.com/api/public/hooks/website-lead-bulk";
+const CRM_URL = "https://crm.7wingsimmigration.com/api/public/hooks/website-lead";
 const SECRET = process.env["CRM_WEBHOOK_SECRET"];
 
 const SUPABASE_URL = process.env["SUPABASE_URL"];
