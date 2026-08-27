@@ -179,15 +179,14 @@ export const submitLead = createServerFn({ method: "POST" })
     }
 
     try {
-      const { forwardLeadToCRM } = await import("@/lib/crm-forward.server");
-      await forwardLeadToCRM({
+      const { forwardLeadToCrm } = await import("@/lib/crm-forward.server");
+      await forwardLeadToCrm({
         name: data.name,
         email: data.email,
         phone: data.phone,
         service: data.service ?? undefined,
         country: data.country ?? undefined,
         city: data.city ?? undefined,
-        source: "Website",
         subsource: "7wings Leads Page",
         message: data.message ?? undefined,
       });
