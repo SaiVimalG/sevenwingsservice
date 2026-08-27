@@ -21,6 +21,17 @@ export interface Lead {
 
 const ALLOWED_STATUSES: LeadStatus[] = ["new", "contacted", "qualified", "converted", "closed"];
 
+const LeadSubmitSchema = z.object({
+  name: z.string().trim().min(2).max(100),
+  email: z.string().trim().email().max(200),
+  phone: z.string().trim().min(6).max(30),
+  service: z.string().trim().max(120).optional().nullable(),
+  country: z.string().trim().max(80).optional().nullable(),
+  city: z.string().trim().max(80).optional().nullable(),
+  message: z.string().trim().max(2000).optional().nullable(),
+  website: z.string().trim().max(100).optional().nullable(), // honeypot
+});
+
 function checkToken(token: string) {
   const expected = process.env.LEADS_ADMIN_TOKEN;
   if (!expected) throw new Error("LEADS_ADMIN_TOKEN is not configured on the server.");

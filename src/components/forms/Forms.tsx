@@ -252,7 +252,7 @@ function FieldShell({
 const baseInput =
   "w-full bg-transparent px-4 py-3 text-sm text-ink placeholder:text-muted-foreground outline-none";
 
-function Input(
+export function Input(
   props: React.InputHTMLAttributes<HTMLInputElement> & { label: string; icon?: IconCmp }
 ) {
   const { label, icon, required, ...rest } = props;
@@ -263,7 +263,7 @@ function Input(
   );
 }
 
-function Textarea(
+export function Textarea(
   props: React.TextareaHTMLAttributes<HTMLTextAreaElement> & { label: string; icon?: IconCmp }
 ) {
   const { label, icon, required, ...rest } = props;
@@ -274,7 +274,7 @@ function Textarea(
   );
 }
 
-function Select(
+export function Select(
   props: React.SelectHTMLAttributes<HTMLSelectElement> & { label: string; icon?: IconCmp }
 ) {
   const { label, icon, required, children, ...rest } = props;
