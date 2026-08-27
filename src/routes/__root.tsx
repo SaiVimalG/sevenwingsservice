@@ -14,6 +14,16 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SITE } from "@/lib/site";
 
 function NotFoundComponent() {
+  useEffect(() => {
+    document.title = "Page not found | 7 Wings Immigration";
+    const meta = document.createElement("meta");
+    meta.name = "robots";
+    meta.content = "noindex";
+    document.head.appendChild(meta);
+    return () => {
+      meta.remove();
+    };
+  }, []);
   return (
     <div className="grid min-h-screen place-items-center bg-hero text-center text-white">
       <div className="px-6">
@@ -22,7 +32,12 @@ function NotFoundComponent() {
         <p className="mx-auto mt-3 max-w-md text-sm text-white/90">
           The page you're looking for has migrated. Let's get you back on a clear pathway.
         </p>
-        <a href="/" className="mt-8 inline-flex btn-gold btn-gold-hover">Back home</a>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href="/" className="inline-flex btn-gold btn-gold-hover">Back home</a>
+          <a href="/services" className="rounded-full border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-gold">Services</a>
+          <a href="/eligibility" className="rounded-full border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-gold">Free eligibility check</a>
+          <a href="/contact" className="rounded-full border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-gold">Contact us</a>
+        </div>
       </div>
     </div>
   );
