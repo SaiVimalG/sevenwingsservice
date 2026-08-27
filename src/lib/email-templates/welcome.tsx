@@ -12,6 +12,7 @@ import {
   Section,
   Text,
 } from '@react-email/components'
+import { SITE } from '@/lib/site'
 import type { TemplateEntry } from './registry'
 
 interface Props {
@@ -56,7 +57,7 @@ const Email = ({ name, country }: Props) => (
 
         <Text style={contactTitle}>Need to reach us sooner?</Text>
         <Text style={contactLine}>
-          📞 <Link href="tel:+919876543210" style={link}>+91 98765 43210</Link>
+          📞 <Link href={`tel:${SITE.phone.replace(/\s/g, '')}`} style={link}>{SITE.phone}</Link>
         </Text>
         <Text style={contactLine}>
           ✉️{' '}

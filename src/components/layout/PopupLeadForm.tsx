@@ -20,9 +20,28 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { submitContact } from "@/lib/forms.functions";
 import { PhoneField } from "@/components/forms/PhoneField";
+import { SITE } from "@/lib/site";
 
 const STORAGE_KEY = "7w_popup_shown_v1";
 const FORM_SOURCE = "popup_lead_v2";
+
+function hasPopupBeenDismissed() {
+  if (typeof window === "undefined") return true;
+  try {
+    return window.localStorage.getItem(STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function markPopupDismissed() {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, "true");
+  } catch {
+    // ignore storage errors
+  }
+}
 
 const ENGLISH_LEVELS = [
   "Excellent (8+ Band)",
