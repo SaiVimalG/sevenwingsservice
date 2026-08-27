@@ -16,7 +16,8 @@ import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
 import { SERVICES } from "@/lib/site";
 import { submitLead } from "@/lib/leads.functions";
-import { Input, Textarea, Select, PhoneField } from "@/components/forms/Forms";
+import { Input, Textarea, Select } from "@/components/forms/Forms";
+import { PhoneField } from "@/components/forms/PhoneField";
 
 export const Route = createFileRoute("/leads")({
   head: () => ({
