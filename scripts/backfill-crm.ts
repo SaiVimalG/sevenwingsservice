@@ -126,11 +126,10 @@ async function main() {
   let inserted = 0;
   let skipped = 0;
 
-  for (let i = 0; i < all.length; i += 500) {
-    const batch = all.slice(i, i + 500);
-    const out = await sendBatch(batch, i / 500);
-    inserted += out?.inserted ?? 0;
-    skipped += out?.skipped ?? 0;
+  for (let i = 0; i < all.length; i++) {
+    const out = await sendLead(all[i], i);
+    if (out?.inserted) inserted++;
+    if (out?.skipped) skipped++;
   }
 
   console.log("\nBackfill complete:");
