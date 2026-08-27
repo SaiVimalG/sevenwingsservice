@@ -20,9 +20,28 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { submitContact } from "@/lib/forms.functions";
 import { PhoneField } from "@/components/forms/PhoneField";
+import { SITE } from "@/lib/site";
 
 const STORAGE_KEY = "7w_popup_shown_v1";
 const FORM_SOURCE = "popup_lead_v2";
+
+function hasPopupBeenDismissed() {
+  if (typeof window === "undefined") return true;
+  try {
+    return window.localStorage.getItem(STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function markPopupDismissed() {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, "true");
+  } catch {
+    // ignore storage errors
+  }
+}
 
 const ENGLISH_LEVELS = [
   "Excellent (8+ Band)",
@@ -83,6 +102,7 @@ export function PopupLeadForm() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (hasPopupBeenDismissed()) return;
     setOpen(false);
     setAccepted(false);
     setSubmitted(false);
@@ -103,6 +123,7 @@ export function PopupLeadForm() {
 
   function close() {
     setOpen(false);
+    markPopupDismissed();
     // Return focus to whatever was focused before popup opened
     setTimeout(() => triggerRef.current?.focus?.(), 0);
   }
@@ -141,6 +162,7 @@ export function PopupLeadForm() {
         },
       });
       setSubmitted(true);
+      markPopupDismissed();
       toast.success("Thank you! We will contact you shortly.", {
         description: "A counsellor will call you within 4 working hours.",
       });
@@ -208,7 +230,7 @@ export function PopupLeadForm() {
                 </div>
                 <div className="mt-5 flex flex-col items-center gap-2">
                   <a
-                    href="tel:+919876543210"
+                    href={`tel:${SITE.phone.replace(/\s/g, '')}`}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-gold-deep hover:text-gold"
                   >
                     <PhoneIcon className="h-4 w-4" /> Need us sooner? Call us now
