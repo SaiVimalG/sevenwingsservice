@@ -24,6 +24,16 @@ function makeFormId(prefix: string) {
   return `7WFI-${prefix}-${ts}-${rand}`;
 }
 
+/**
+ * Stable during SSR/hydration, randomised after mount so the markup the server
+ * sends always matches the first client render (no hydration mismatch).
+ */
+export function useFormId(prefix: string) {
+  const [id, setId] = useState(`7WFI-${prefix}`);
+  useEffect(() => setId(makeFormId(prefix)), [prefix]);
+  return id;
+}
+
 function ConsentCheckbox({
   checked,
   onChange,
