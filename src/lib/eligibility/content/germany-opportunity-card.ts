@@ -230,6 +230,7 @@ export const germanyOpportunityCard: CalculatorConfig = {
     { q: "Is this calculator official?", a: "No — it is an indicative tool based on the German Skilled Immigration Act and BAMF criteria. Final eligibility is determined by the German embassy and BAMF. Book a free consultation with 7 Wings Immigration for a full assessment." },
   ],
   relatedCalculators: [
+    { label: "Germany Opportunity Card Consultants in Hyderabad", href: "/germany-opportunity-card-hyderabad" },
     { label: "Canada CRS Calculator", href: "/eligibility/canada/crs-calculator" },
     { label: "Canada FSWP Calculator", href: "/eligibility/canada/federal-skilled-worker-program" },
     { label: "Australia 189 PR Calculator", href: "/eligibility/australia/189-points-calculator" },

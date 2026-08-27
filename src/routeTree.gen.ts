@@ -16,6 +16,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LeadsRouteImport } from './routes/leads'
+import { Route as GermanyOpportunityCardHyderabadRouteImport } from './routes/germany-opportunity-card-hyderabad'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EligibilityRouteImport } from './routes/eligibility'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -84,6 +85,12 @@ const LeadsRoute = LeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GermanyOpportunityCardHyderabadRoute =
+  GermanyOpportunityCardHyderabadRouteImport.update({
+    id: '/germany-opportunity-card-hyderabad',
+    path: '/germany-opportunity-card-hyderabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -266,6 +273,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/eligibility': typeof EligibilityRouteWithChildren
   '/faq': typeof FaqRoute
+  '/germany-opportunity-card-hyderabad': typeof GermanyOpportunityCardHyderabadRoute
   '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -306,6 +314,7 @@ export interface FileRoutesByTo {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/germany-opportunity-card-hyderabad': typeof GermanyOpportunityCardHyderabadRoute
   '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -348,6 +357,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/eligibility': typeof EligibilityRouteWithChildren
   '/faq': typeof FaqRoute
+  '/germany-opportunity-card-hyderabad': typeof GermanyOpportunityCardHyderabadRoute
   '/leads': typeof LeadsRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
@@ -391,6 +401,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/eligibility'
     | '/faq'
+    | '/germany-opportunity-card-hyderabad'
     | '/leads'
     | '/privacy'
     | '/refund'
@@ -431,6 +442,7 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/faq'
+    | '/germany-opportunity-card-hyderabad'
     | '/leads'
     | '/privacy'
     | '/refund'
@@ -472,6 +484,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/eligibility'
     | '/faq'
+    | '/germany-opportunity-card-hyderabad'
     | '/leads'
     | '/privacy'
     | '/refund'
@@ -514,6 +527,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EligibilityRoute: typeof EligibilityRouteWithChildren
   FaqRoute: typeof FaqRoute
+  GermanyOpportunityCardHyderabadRoute: typeof GermanyOpportunityCardHyderabadRoute
   LeadsRoute: typeof LeadsRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
@@ -587,6 +601,13 @@ declare module '@tanstack/react-router' {
       path: '/leads'
       fullPath: '/leads'
       preLoaderRoute: typeof LeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/germany-opportunity-card-hyderabad': {
+      id: '/germany-opportunity-card-hyderabad'
+      path: '/germany-opportunity-card-hyderabad'
+      fullPath: '/germany-opportunity-card-hyderabad'
+      preLoaderRoute: typeof GermanyOpportunityCardHyderabadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -864,6 +885,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EligibilityRoute: EligibilityRouteWithChildren,
   FaqRoute: FaqRoute,
+  GermanyOpportunityCardHyderabadRoute: GermanyOpportunityCardHyderabadRoute,
   LeadsRoute: LeadsRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
