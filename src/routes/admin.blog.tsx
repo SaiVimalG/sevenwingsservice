@@ -182,7 +182,7 @@ function AdminBlogPage() {
             <p className="text-sm text-muted-foreground">Create and manage posts shown on /blog and the home page.</p>
           </div>
           <div className="flex items-center gap-2">
-            <Link to="/leads" className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm text-navy-deep hover:border-gold">
+            <Link to="/admin/leads" className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm text-navy-deep hover:border-gold">
               <Users className="h-4 w-4" /> Leads
             </Link>
             <button onClick={signOut} className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm text-navy-deep hover:border-gold">
