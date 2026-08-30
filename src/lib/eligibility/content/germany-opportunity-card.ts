@@ -19,7 +19,7 @@ export const germanyOpportunityCard: CalculatorConfig = {
     "Personalised Immigration Guidance",
   ],
   basePoints: 0,
-  maxPoints: 14,
+  maxPoints: 10,
   passingThreshold: 6,
   competitiveThreshold: 8,
   highlyCompetitiveThreshold: 10,
@@ -46,18 +46,6 @@ export const germanyOpportunityCard: CalculatorConfig = {
         { label: "Bachelor's Degree", value: "bachelor", points: 2 },
         { label: "Master's Degree", value: "master", points: 3 },
         { label: "PhD", value: "phd", points: 4 },
-      ],
-    },
-    {
-      key: "recognition",
-      label: "Qualification Recognition (ANABIN / ZAB)",
-      category: "Qualification Recognition",
-      tooltip:
-        "Recognition of qualifications through ANABIN or ZAB is an important requirement for Germany Opportunity Card applications.",
-      options: [
-        { label: "Not Recognised", value: "none", points: 0 },
-        { label: "Partially Recognised (ZAB Positive)", value: "partial", points: 1 },
-        { label: "Fully Recognised in Germany", value: "full", points: 4 },
       ],
     },
     {
