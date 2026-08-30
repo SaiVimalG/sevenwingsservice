@@ -353,14 +353,27 @@ export const caSinp: CalculatorConfig = {
       ],
     },
     {
-      key: "exp", label: "Skilled work experience (last 5 yrs)", category: "Work Experience",
+      key: "exp", label: "a) Work experience in the 5 years prior to application", category: "Work Experience",
       options: [
-        { label: "5+ years", value: "5+", points: 10 },
-        { label: "3–4 years", value: "3-4", points: 8 },
-        { label: "1–2 years", value: "1-2", points: 2 },
-        { label: "<1 year", value: "<1", points: 0 },
+        { label: "5 years", value: "5", points: 10 },
+        { label: "4 years", value: "4", points: 8 },
+        { label: "3 years", value: "3", points: 6 },
+        { label: "2 years", value: "2", points: 4 },
+        { label: "1 year", value: "1", points: 2 },
+        { label: "Less than 1 year", value: "0", points: 0 },
       ],
     },
+    {
+      key: "exp610", label: "b) Work experience in the 6–10 years prior to application", category: "Work Experience",
+      options: [
+        { label: "5 years", value: "5", points: 5 },
+        { label: "4 years", value: "4", points: 4 },
+        { label: "3 years", value: "3", points: 3 },
+        { label: "2 years", value: "2", points: 2 },
+        { label: "Less than 1 year", value: "0", points: 0 },
+      ],
+    },
+
     {
       key: "english", label: "English language ability (CLB)", category: "Language",
       options: [
@@ -410,7 +423,7 @@ export const caSinp: CalculatorConfig = {
       h2: "How SINP points are calculated",
       bullets: [
         "Education up to 23 points based on highest qualification.",
-        "Skilled work experience in the last 5 years — up to 10 points.",
+        "Skilled work experience in the last 5 years — up to 10 points, plus up to 5 points for experience 6–10 years prior.",
         "English (and optionally French) language up to 20 points.",
         "Age up to 12 points.",
         "Adaptability factors up to 30+ points for Saskatchewan connection and job offers.",
