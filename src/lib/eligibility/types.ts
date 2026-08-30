@@ -8,6 +8,7 @@ export type Option = {
 export type Field = {
   key: string;
   label: string;
+  sublabel?: string;
   tooltip?: string;
   category: string;
   options: Option[];
