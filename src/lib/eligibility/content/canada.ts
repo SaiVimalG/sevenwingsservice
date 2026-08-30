@@ -353,7 +353,10 @@ export const caSinp: CalculatorConfig = {
       ],
     },
     {
-      key: "exp", label: "a) Work experience in the 5 years prior to application (Work experience in the 5 years prior to application submission date.)", category: "Work Experience",
+      key: "exp",
+      label: "a) Work experience in the 5 years prior to application",
+      sublabel: "Work experience in the 5 years prior to application submission date.",
+      category: "Work Experience",
       options: [
         { label: "5 years", value: "5", points: 10 },
         { label: "4 years", value: "4", points: 8 },
@@ -364,7 +367,10 @@ export const caSinp: CalculatorConfig = {
       ],
     },
     {
-      key: "exp610", label: "b) Work experience in the 6–10 years prior to application (In the 6-10 years prior to application submission date.)", category: "Work Experience",
+      key: "exp610",
+      label: "b) Work experience in the 6–10 years prior to application",
+      sublabel: "In the 6-10 years prior to application submission date.",
+      category: "Work Experience",
       options: [
         { label: "5 years", value: "5", points: 5 },
         { label: "4 years", value: "4", points: 4 },

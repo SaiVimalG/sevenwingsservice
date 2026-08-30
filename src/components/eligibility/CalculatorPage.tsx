@@ -122,6 +122,9 @@ export function CalculatorPage({ config }: { config: CalculatorConfig }) {
                     <h3 className="mt-1 text-base font-semibold text-foreground md:text-lg">
                       {f.label}
                     </h3>
+                    {f.sublabel && (
+                      <p className="mt-0.5 text-xs text-muted-foreground md:text-sm">{f.sublabel}</p>
+                    )}
                     {f.tooltip && (
                       <p className="mt-1 text-xs text-muted-foreground">{f.tooltip}</p>
                     )}
