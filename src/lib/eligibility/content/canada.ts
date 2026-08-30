@@ -423,7 +423,7 @@ export const caSinp: CalculatorConfig = {
       h2: "How SINP points are calculated",
       bullets: [
         "Education up to 23 points based on highest qualification.",
-        "Skilled work experience in the last 5 years — up to 10 points.",
+        "Skilled work experience in the last 5 years — up to 10 points, plus up to 5 points for experience 6–10 years prior.",
         "English (and optionally French) language up to 20 points.",
         "Age up to 12 points.",
         "Adaptability factors up to 30+ points for Saskatchewan connection and job offers.",
