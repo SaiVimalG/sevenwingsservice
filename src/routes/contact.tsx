@@ -71,6 +71,22 @@ function Contact() {
                   </div>
                 </div>
               </div>
+              <div className="rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)]">
+                <div className="flex items-start gap-4">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-green-100 text-green-700"><MessageCircle className="h-5 w-5" /></span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">WhatsApp Chat</p>
+                    <a
+                      href={`https://wa.me/${SITE.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("Hi 7 Wings, I'd like to discuss my immigration options.")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 block font-display text-lg text-navy-deep hover:text-gold-deep"
+                    >
+                      {SITE.whatsapp}
+                    </a>
+                  </div>
+                </div>
+              </div>
               <div className="overflow-hidden rounded-2xl border border-black/5">
                 <iframe key={active.id} title={`7 Wings Immigration ${active.name} map`} width="100%" height="280" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src={active.embed} />
                 <a
