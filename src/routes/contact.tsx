@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Navigation, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/forms/Forms";
@@ -68,6 +68,22 @@ function Contact() {
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Email</p>
                     <a href={`mailto:${SITE.email}`} className="mt-1 block font-display text-lg text-navy-deep hover:text-gold-deep">{SITE.email}</a>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-2xl border border-black/5 bg-white p-7 shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)]">
+                <div className="flex items-start gap-4">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-green-100 text-green-700"><MessageCircle className="h-5 w-5" /></span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">WhatsApp Chat</p>
+                    <a
+                      href={`https://wa.me/${SITE.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("Hi 7 Wings, I'd like to discuss my immigration options.")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 block font-display text-lg text-navy-deep hover:text-gold-deep"
+                    >
+                      {SITE.whatsapp}
+                    </a>
                   </div>
                 </div>
               </div>
