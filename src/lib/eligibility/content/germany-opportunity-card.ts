@@ -19,7 +19,7 @@ export const germanyOpportunityCard: CalculatorConfig = {
     "Personalised Immigration Guidance",
   ],
   basePoints: 0,
-  maxPoints: 10,
+  maxPoints: 16,
   passingThreshold: 6,
   competitiveThreshold: 8,
   highlyCompetitiveThreshold: 10,
