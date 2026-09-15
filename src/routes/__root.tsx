@@ -12,6 +12,7 @@ import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SITE } from "@/lib/site";
+import { MobileActionBar } from "@/components/layout/MobileActionBar";
 
 function NotFoundComponent() {
   useEffect(() => {
