@@ -8,7 +8,7 @@ export const germanyOpportunityCard: CalculatorConfig = {
   seoTitle:
     "Germany Opportunity Card Calculator 2026 | Chancenkarte Eligibility Check | 7 Wings Immigration",
   metaDescription:
-    "Check your Germany Opportunity Card eligibility instantly using the free Chancenkarte Calculator by 7 Wings Immigration. Calculate your points based on age, education, work experience, language skills, qualification recognition, and more.",
+    "Check your Germany Opportunity Card eligibility instantly using the free Chancenkarte Calculator by 7 Wings Immigration. Calculate your points based on age, education, work experience, language skills, Germany connection and more.",
   h1: "Germany Opportunity Card (Chancenkarte) Eligibility Calculator",
   subheading:
     "Find out whether you qualify for Germany's Opportunity Card (Chancenkarte) using our free eligibility calculator and personalised assessment system.",
@@ -19,7 +19,7 @@ export const germanyOpportunityCard: CalculatorConfig = {
     "Personalised Immigration Guidance",
   ],
   basePoints: 0,
-  maxPoints: 10,
+  maxPoints: 16,
   passingThreshold: 6,
   competitiveThreshold: 8,
   highlyCompetitiveThreshold: 10,
@@ -156,12 +156,12 @@ export const germanyOpportunityCard: CalculatorConfig = {
     {
       h2: "How the Germany Opportunity Card Calculator Works",
       body:
-        "Our calculator scores you exactly the way BAMF and the German embassy assess Chancenkarte applications. Each answer awards points across nine categories: age (up to 2), education (up to 4), qualification recognition (up to 4), work experience (up to 3), shortage occupation (+1), German language (up to 3), English language (+1), previous Germany stay (+1) and spouse eligibility (+1). The system updates your eligibility status in real-time so you can experiment with how improving your German level, completing ZAB recognition, or claiming a shortage occupation changes your outcome.",
+        "Our calculator scores you exactly the way BAMF and the German embassy assess Chancenkarte applications. Each answer awards points across eight categories: age (up to 2), education (up to 4), work experience (up to 3), shortage occupation (+1), German language (up to 3), English language (+1), previous Germany stay (+1) and spouse eligibility (+1). The system updates your eligibility status in real-time so you can experiment with how improving your German level or claiming a shortage occupation changes your outcome.",
     },
     {
       h2: "Germany Opportunity Card Points System Explained",
       subsections: [
-        { h3: "Qualification Points", body: "Full Anerkennung = +4. Partial recognition = +1. Education level adds another 1–4 based on Diploma → PhD." },
+        { h3: "Education Points", body: "Education level adds 1–4 points based on Diploma → PhD." },
         { h3: "Experience Points", body: "2–5 years of qualified experience = +2; 5+ years = +3." },
         { h3: "Language Points", body: "German A2/B1 = +1, B2 = +2, C1 = +3. English B2+ = +1." },
         { h3: "Additional Points", body: "Shortage occupation = +1. Previous 6-month stay in Germany = +1. Spouse also eligible = +1. Age under 35 = +2; 35–39 = +1." },

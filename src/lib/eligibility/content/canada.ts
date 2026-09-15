@@ -376,6 +376,7 @@ export const caSinp: CalculatorConfig = {
         { label: "4 years", value: "4", points: 4 },
         { label: "3 years", value: "3", points: 3 },
         { label: "2 years", value: "2", points: 2 },
+        { label: "1 year", value: "1", points: 1 },
         { label: "Less than 1 year", value: "0", points: 0 },
       ],
     },
