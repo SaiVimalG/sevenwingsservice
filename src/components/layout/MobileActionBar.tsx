@@ -14,16 +14,16 @@ export function MobileActionBar() {
     <>
       <div className="h-[72px] md:hidden" aria-hidden="true" />
       <nav
-        className="fixed bottom-0 left-0 right-0 z-50 border-t border-black/5 bg-white py-2 md:hidden"
+        className="fixed bottom-0 left-0 right-0 z-50 border-t border-navy/10 bg-white py-2 md:hidden"
         aria-label="Mobile quick actions"
       >
         <div className="flex items-stretch justify-around">
           <a
             href={CALL_HREF}
-            className="flex flex-1 flex-col items-center gap-1 border-r border-black/10 py-1"
+            className="flex flex-1 flex-col items-center gap-1 border-r border-navy/10 py-1 active:opacity-80"
             aria-label={`Call us at ${CALL_NUMBER}`}
           >
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-red-600 text-white shadow-sm">
+            <span className="grid h-11 w-11 place-items-center rounded-full bg-navy-deep text-white shadow-sm">
               <Phone className="h-5 w-5" strokeWidth={2} />
             </span>
             <span className="text-[10px] font-medium text-navy-deep">Call Us</span>
@@ -33,10 +33,10 @@ export function MobileActionBar() {
             href={WHATSAPP_HREF}
             target="_blank"
             rel="noreferrer"
-            className="flex flex-1 flex-col items-center gap-1 border-r border-black/10 py-1"
+            className="flex flex-1 flex-col items-center gap-1 border-r border-navy/10 py-1 active:opacity-80"
             aria-label="Chat with us on WhatsApp"
           >
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-red-600 text-white shadow-sm">
+            <span className="grid h-11 w-11 place-items-center rounded-full bg-navy-deep text-white shadow-sm">
               <MessageCircle className="h-5 w-5" strokeWidth={2} />
             </span>
             <span className="text-[10px] font-medium text-navy-deep">WhatsApp</span>
@@ -44,10 +44,10 @@ export function MobileActionBar() {
 
           <a
             href={MAIL_HREF}
-            className="flex flex-1 flex-col items-center gap-1 border-r border-black/10 py-1"
+            className="flex flex-1 flex-col items-center gap-1 border-r border-navy/10 py-1 active:opacity-80"
             aria-label="Email us"
           >
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-red-600 text-white shadow-sm">
+            <span className="grid h-11 w-11 place-items-center rounded-full bg-navy-deep text-white shadow-sm">
               <Mail className="h-5 w-5" strokeWidth={2} />
             </span>
             <span className="text-[10px] font-medium text-navy-deep">Mail Us</span>
@@ -55,10 +55,10 @@ export function MobileActionBar() {
 
           <Link
             to="/contact"
-            className="flex flex-1 flex-col items-center gap-1 py-1"
+            className="flex flex-1 flex-col items-center gap-1 py-1 active:opacity-80"
             aria-label="Go to contact page"
           >
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-red-600 text-white shadow-sm">
+            <span className="grid h-11 w-11 place-items-center rounded-full bg-navy-deep text-white shadow-sm">
               <Users className="h-5 w-5" strokeWidth={2} />
             </span>
             <span className="text-[10px] font-medium text-navy-deep">Consultation</span>
