@@ -248,6 +248,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <Toaster position="top-center" theme="light" richColors closeButton />
+      <MobileActionBar />
     </QueryClientProvider>
   );
 }
