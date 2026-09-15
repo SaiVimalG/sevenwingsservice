@@ -8,7 +8,7 @@ export const germanyOpportunityCard: CalculatorConfig = {
   seoTitle:
     "Germany Opportunity Card Calculator 2026 | Chancenkarte Eligibility Check | 7 Wings Immigration",
   metaDescription:
-    "Check your Germany Opportunity Card eligibility instantly using the free Chancenkarte Calculator by 7 Wings Immigration. Calculate your points based on age, education, work experience, language skills, qualification recognition, and more.",
+    "Check your Germany Opportunity Card eligibility instantly using the free Chancenkarte Calculator by 7 Wings Immigration. Calculate your points based on age, education, work experience, language skills, Germany connection and more.",
   h1: "Germany Opportunity Card (Chancenkarte) Eligibility Calculator",
   subheading:
     "Find out whether you qualify for Germany's Opportunity Card (Chancenkarte) using our free eligibility calculator and personalised assessment system.",
