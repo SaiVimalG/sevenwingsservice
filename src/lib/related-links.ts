@@ -68,6 +68,7 @@ export const CALCULATOR_RELATED: Record<string, RelatedLink[]> = {
   ],
   "/eligibility/germany/opportunity-card-calculator": [
     { to: "/services/germany-opportunity-card", label: "Germany Opportunity Card service" },
+    { to: "/germany/shortage-occupations", label: "Germany shortage occupation list" },
     { to: "/services/jss-program", label: "JSS Program (job search support)" },
   ],
   "/eligibility/uk/skilled-worker-visa-calculator": [
