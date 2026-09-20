@@ -5,6 +5,7 @@ import type { RelatedLink } from "@/components/RelatedLinks";
 export const SERVICE_RELATED: Record<string, RelatedLink[]> = {
   "germany-opportunity-card": [
     { to: "/eligibility/germany/opportunity-card-calculator", label: "Germany Opportunity Card points calculator", description: "Score your Chancenkarte eligibility in 60 seconds." },
+    { to: "/germany/shortage-occupations", label: "Germany shortage occupation list", description: "Check if your job is a Mangelberuf." },
     { to: "/services/jss-program", label: "JSS Program", description: "Job-search support for Germany roles." },
     { to: "/services/canada-pr", label: "Canada PR pathway", description: "Compare with Express Entry options." },
     { to: "/blog", label: "Latest Germany articles", description: "Visa updates, ZAB recognition and city guides." },
