@@ -28,6 +28,7 @@ import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
+import { Route as GermanyShortageOccupationsRouteImport } from './routes/germany.shortage-occupations'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as CanadaNocFinderRouteImport } from './routes/canada.noc-finder'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -146,6 +147,12 @@ const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
   path: '/programs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GermanyShortageOccupationsRoute =
+  GermanyShortageOccupationsRouteImport.update({
+    id: '/germany/shortage-occupations',
+    path: '/germany/shortage-occupations',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   id: '/email/unsubscribe',
   path: '/email/unsubscribe',
@@ -286,6 +293,7 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/germany/shortage-occupations': typeof GermanyShortageOccupationsRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -327,6 +335,7 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/germany/shortage-occupations': typeof GermanyShortageOccupationsRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -370,6 +379,7 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/germany/shortage-occupations': typeof GermanyShortageOccupationsRoute
   '/programs/$slug': typeof ProgramsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -414,6 +424,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
+    | '/germany/shortage-occupations'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog/'
@@ -455,6 +466,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
+    | '/germany/shortage-occupations'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog'
@@ -497,6 +509,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
+    | '/germany/shortage-occupations'
     | '/programs/$slug'
     | '/services/$slug'
     | '/blog/'
@@ -540,6 +553,7 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   CanadaNocFinderRoute: typeof CanadaNocFinderRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  GermanyShortageOccupationsRoute: typeof GermanyShortageOccupationsRoute
   ProgramsSlugRoute: typeof ProgramsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -685,6 +699,13 @@ declare module '@tanstack/react-router' {
       path: '/programs/$slug'
       fullPath: '/programs/$slug'
       preLoaderRoute: typeof ProgramsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/germany/shortage-occupations': {
+      id: '/germany/shortage-occupations'
+      path: '/germany/shortage-occupations'
+      fullPath: '/germany/shortage-occupations'
+      preLoaderRoute: typeof GermanyShortageOccupationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/email/unsubscribe': {
@@ -898,6 +919,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   CanadaNocFinderRoute: CanadaNocFinderRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  GermanyShortageOccupationsRoute: GermanyShortageOccupationsRoute,
   ProgramsSlugRoute: ProgramsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
