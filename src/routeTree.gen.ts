@@ -9,81 +9,76 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as SuccessStoriesRouteImport } from './routes/success-stories'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as RefundRouteImport } from './routes/refund'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as LeadsRouteImport } from './routes/leads'
-import { Route as GermanyOpportunityCardHyderabadRouteImport } from './routes/germany-opportunity-card-hyderabad'
-import { Route as FaqRouteImport } from './routes/faq'
-import { Route as EligibilityRouteImport } from './routes/eligibility'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BookConsultationRouteImport } from './routes/book-consultation'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesIndexRouteImport } from './routes/services.index'
-import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index'
-import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
-import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
-import { Route as GermanyShortageOccupationsRouteImport } from './routes/germany.shortage-occupations'
-import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
-import { Route as CanadaNocFinderRouteImport } from './routes/canada.noc-finder'
-import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
-import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BookConsultationRouteImport } from './routes/book-consultation'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EligibilityRouteImport } from './routes/eligibility'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GermanyOpportunityCardHyderabadRouteImport } from './routes/germany-opportunity-card-hyderabad'
+import { Route as LeadsRouteImport } from './routes/leads'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RefundRouteImport } from './routes/refund'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SuccessStoriesRouteImport } from './routes/success-stories'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
-import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
-import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
-import { Route as EligibilityUkSkilledWorkerCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-calculator'
-import { Route as EligibilityGermanyOpportunityCardCalculatorRouteImport } from './routes/eligibility.germany.opportunity-card-calculator'
-import { Route as EligibilityCanadaSaskatchewanSinpCalculatorRouteImport } from './routes/eligibility.canada.saskatchewan-sinp-calculator'
-import { Route as EligibilityCanadaQuebecSkilledWorkerProgramRouteImport } from './routes/eligibility.canada.quebec-skilled-worker-program'
-import { Route as EligibilityCanadaFederalSkilledWorkerProgramRouteImport } from './routes/eligibility.canada.federal-skilled-worker-program'
-import { Route as EligibilityCanadaCrsCalculatorRouteImport } from './routes/eligibility.canada.crs-calculator'
-import { Route as EligibilityAustralia491PointsCalculatorRouteImport } from './routes/eligibility.australia.491-points-calculator'
-import { Route as EligibilityAustralia190PointsCalculatorRouteImport } from './routes/eligibility.australia.190-points-calculator'
-import { Route as EligibilityAustralia189PointsCalculatorRouteImport } from './routes/eligibility.australia.189-points-calculator'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as CanadaNocFinderRouteImport } from './routes/canada.noc-finder'
+import { Route as EligibilityIndexRouteImport } from './routes/eligibility.index'
+import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as GermanyShortageOccupationsRouteImport } from './routes/germany.shortage-occupations'
+import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as BlogCountrySlugRouteImport } from './routes/blog.$country.$slug'
-import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
-import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
-import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
+import { Route as EligibilityAustralia189PointsCalculatorRouteImport } from './routes/eligibility.australia.189-points-calculator'
+import { Route as EligibilityAustralia190PointsCalculatorRouteImport } from './routes/eligibility.australia.190-points-calculator'
+import { Route as EligibilityAustralia491PointsCalculatorRouteImport } from './routes/eligibility.australia.491-points-calculator'
+import { Route as EligibilityCanadaCrsCalculatorRouteImport } from './routes/eligibility.canada.crs-calculator'
+import { Route as EligibilityCanadaFederalSkilledWorkerProgramRouteImport } from './routes/eligibility.canada.federal-skilled-worker-program'
+import { Route as EligibilityCanadaQuebecSkilledWorkerProgramRouteImport } from './routes/eligibility.canada.quebec-skilled-worker-program'
+import { Route as EligibilityCanadaSaskatchewanSinpCalculatorRouteImport } from './routes/eligibility.canada.saskatchewan-sinp-calculator'
+import { Route as EligibilityGermanyOpportunityCardCalculatorRouteImport } from './routes/eligibility.germany.opportunity-card-calculator'
+import { Route as EligibilityUkSkilledWorkerCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-calculator'
+import { Route as EligibilityUkSkilledWorkerVisaCalculatorRouteImport } from './routes/eligibility.uk.skilled-worker-visa-calculator'
+import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicGscSubmitSitemapRouteImport } from './routes/api/public/gsc/submit-sitemap'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
+import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 
-const UnsubscribeRoute = UnsubscribeRouteImport.update({
-  id: '/unsubscribe',
-  path: '/unsubscribe',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SuccessStoriesRoute = SuccessStoriesRouteImport.update({
-  id: '/success-stories',
-  path: '/success-stories',
+const BookConsultationRoute = BookConsultationRouteImport.update({
+  id: '/book-consultation',
+  path: '/book-consultation',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RefundRoute = RefundRouteImport.update({
-  id: '/refund',
-  path: '/refund',
+const EligibilityRoute = EligibilityRouteImport.update({
+  id: '/eligibility',
+  path: '/eligibility',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LeadsRoute = LeadsRouteImport.update({
-  id: '/leads',
-  path: '/leads',
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GermanyOpportunityCardHyderabadRoute =
@@ -92,39 +87,64 @@ const GermanyOpportunityCardHyderabadRoute =
     path: '/germany-opportunity-card-hyderabad',
     getParentRoute: () => rootRouteImport,
   } as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
+const LeadsRoute = LeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EligibilityRoute = EligibilityRouteImport.update({
-  id: '/eligibility',
-  path: '/eligibility',
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const RefundRoute = RefundRouteImport.update({
+  id: '/refund',
+  path: '/refund',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BookConsultationRoute = BookConsultationRouteImport.update({
-  id: '/book-consultation',
-  path: '/book-consultation',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const SuccessStoriesRoute = SuccessStoriesRouteImport.update({
+  id: '/success-stories',
+  path: '/success-stories',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/services/',
-  path: '/services/',
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/admin/blog',
+  path: '/admin/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CanadaNocFinderRoute = CanadaNocFinderRouteImport.update({
+  id: '/canada/noc-finder',
+  path: '/canada/noc-finder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EligibilityIndexRoute = EligibilityIndexRouteImport.update({
@@ -132,19 +152,9 @@ const EligibilityIndexRoute = EligibilityIndexRouteImport.update({
   path: '/',
   getParentRoute: () => EligibilityRoute,
 } as any)
-const BlogIndexRoute = BlogIndexRouteImport.update({
-  id: '/blog/',
-  path: '/blog/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesSlugRoute = ServicesSlugRouteImport.update({
-  id: '/services/$slug',
-  path: '/services/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
-  id: '/programs/$slug',
-  path: '/programs/$slug',
+const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
+  id: '/email/unsubscribe',
+  path: '/email/unsubscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GermanyShortageOccupationsRoute =
@@ -153,82 +163,30 @@ const GermanyShortageOccupationsRoute =
     path: '/germany/shortage-occupations',
     getParentRoute: () => rootRouteImport,
   } as any)
-const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
-  id: '/email/unsubscribe',
-  path: '/email/unsubscribe',
+const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
+  id: '/programs/$slug',
+  path: '/programs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CanadaNocFinderRoute = CanadaNocFinderRouteImport.update({
-  id: '/canada/noc-finder',
-  path: '/canada/noc-finder',
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminLeadsRoute = AdminLeadsRouteImport.update({
-  id: '/admin/leads',
-  path: '/admin/leads',
+const BlogCountrySlugRoute = BlogCountrySlugRouteImport.update({
+  id: '/blog/$country/$slug',
+  path: '/blog/$country/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminBlogRoute = AdminBlogRouteImport.update({
-  id: '/admin/blog',
-  path: '/admin/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
-  id: '/lovable/email/suppression',
-  path: '/lovable/email/suppression',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EligibilityUkSkilledWorkerVisaCalculatorRoute =
-  EligibilityUkSkilledWorkerVisaCalculatorRouteImport.update({
-    id: '/uk/skilled-worker-visa-calculator',
-    path: '/uk/skilled-worker-visa-calculator',
-    getParentRoute: () => EligibilityRoute,
-  } as any)
-const EligibilityUkSkilledWorkerCalculatorRoute =
-  EligibilityUkSkilledWorkerCalculatorRouteImport.update({
-    id: '/uk/skilled-worker-calculator',
-    path: '/uk/skilled-worker-calculator',
-    getParentRoute: () => EligibilityRoute,
-  } as any)
-const EligibilityGermanyOpportunityCardCalculatorRoute =
-  EligibilityGermanyOpportunityCardCalculatorRouteImport.update({
-    id: '/germany/opportunity-card-calculator',
-    path: '/germany/opportunity-card-calculator',
-    getParentRoute: () => EligibilityRoute,
-  } as any)
-const EligibilityCanadaSaskatchewanSinpCalculatorRoute =
-  EligibilityCanadaSaskatchewanSinpCalculatorRouteImport.update({
-    id: '/canada/saskatchewan-sinp-calculator',
-    path: '/canada/saskatchewan-sinp-calculator',
-    getParentRoute: () => EligibilityRoute,
-  } as any)
-const EligibilityCanadaQuebecSkilledWorkerProgramRoute =
-  EligibilityCanadaQuebecSkilledWorkerProgramRouteImport.update({
-    id: '/canada/quebec-skilled-worker-program',
-    path: '/canada/quebec-skilled-worker-program',
-    getParentRoute: () => EligibilityRoute,
-  } as any)
-const EligibilityCanadaFederalSkilledWorkerProgramRoute =
-  EligibilityCanadaFederalSkilledWorkerProgramRouteImport.update({
-    id: '/canada/federal-skilled-worker-program',
-    path: '/canada/federal-skilled-worker-program',
-    getParentRoute: () => EligibilityRoute,
-  } as any)
-const EligibilityCanadaCrsCalculatorRoute =
-  EligibilityCanadaCrsCalculatorRouteImport.update({
-    id: '/canada/crs-calculator',
-    path: '/canada/crs-calculator',
-    getParentRoute: () => EligibilityRoute,
-  } as any)
-const EligibilityAustralia491PointsCalculatorRoute =
-  EligibilityAustralia491PointsCalculatorRouteImport.update({
-    id: '/australia/491-points-calculator',
-    path: '/australia/491-points-calculator',
+const EligibilityAustralia189PointsCalculatorRoute =
+  EligibilityAustralia189PointsCalculatorRouteImport.update({
+    id: '/australia/189-points-calculator',
+    path: '/australia/189-points-calculator',
     getParentRoute: () => EligibilityRoute,
   } as any)
 const EligibilityAustralia190PointsCalculatorRoute =
@@ -237,27 +195,63 @@ const EligibilityAustralia190PointsCalculatorRoute =
     path: '/australia/190-points-calculator',
     getParentRoute: () => EligibilityRoute,
   } as any)
-const EligibilityAustralia189PointsCalculatorRoute =
-  EligibilityAustralia189PointsCalculatorRouteImport.update({
-    id: '/australia/189-points-calculator',
-    path: '/australia/189-points-calculator',
+const EligibilityAustralia491PointsCalculatorRoute =
+  EligibilityAustralia491PointsCalculatorRouteImport.update({
+    id: '/australia/491-points-calculator',
+    path: '/australia/491-points-calculator',
     getParentRoute: () => EligibilityRoute,
   } as any)
-const BlogCountrySlugRoute = BlogCountrySlugRouteImport.update({
-  id: '/blog/$country/$slug',
-  path: '/blog/$country/$slug',
+const EligibilityCanadaCrsCalculatorRoute =
+  EligibilityCanadaCrsCalculatorRouteImport.update({
+    id: '/canada/crs-calculator',
+    path: '/canada/crs-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityCanadaFederalSkilledWorkerProgramRoute =
+  EligibilityCanadaFederalSkilledWorkerProgramRouteImport.update({
+    id: '/canada/federal-skilled-worker-program',
+    path: '/canada/federal-skilled-worker-program',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityCanadaQuebecSkilledWorkerProgramRoute =
+  EligibilityCanadaQuebecSkilledWorkerProgramRouteImport.update({
+    id: '/canada/quebec-skilled-worker-program',
+    path: '/canada/quebec-skilled-worker-program',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityCanadaSaskatchewanSinpCalculatorRoute =
+  EligibilityCanadaSaskatchewanSinpCalculatorRouteImport.update({
+    id: '/canada/saskatchewan-sinp-calculator',
+    path: '/canada/saskatchewan-sinp-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityGermanyOpportunityCardCalculatorRoute =
+  EligibilityGermanyOpportunityCardCalculatorRouteImport.update({
+    id: '/germany/opportunity-card-calculator',
+    path: '/germany/opportunity-card-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityUkSkilledWorkerCalculatorRoute =
+  EligibilityUkSkilledWorkerCalculatorRouteImport.update({
+    id: '/uk/skilled-worker-calculator',
+    path: '/uk/skilled-worker-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const EligibilityUkSkilledWorkerVisaCalculatorRoute =
+  EligibilityUkSkilledWorkerVisaCalculatorRouteImport.update({
+    id: '/uk/skilled-worker-visa-calculator',
+    path: '/uk/skilled-worker-visa-calculator',
+    getParentRoute: () => EligibilityRoute,
+  } as any)
+const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
+  id: '/lovable/email/suppression',
+  path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LovableEmailTransactionalSendRoute =
-  LovableEmailTransactionalSendRouteImport.update({
-    id: '/lovable/email/transactional/send',
-    path: '/lovable/email/transactional/send',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LovableEmailTransactionalPreviewRoute =
-  LovableEmailTransactionalPreviewRouteImport.update({
-    id: '/lovable/email/transactional/preview',
-    path: '/lovable/email/transactional/preview',
+const ApiPublicGscSubmitSitemapRoute =
+  ApiPublicGscSubmitSitemapRouteImport.update({
+    id: '/api/public/gsc/submit-sitemap',
+    path: '/api/public/gsc/submit-sitemap',
     getParentRoute: () => rootRouteImport,
   } as any)
 const LovableEmailQueueProcessRoute =
@@ -266,10 +260,16 @@ const LovableEmailQueueProcessRoute =
     path: '/lovable/email/queue/process',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiPublicGscSubmitSitemapRoute =
-  ApiPublicGscSubmitSitemapRouteImport.update({
-    id: '/api/public/gsc/submit-sitemap',
-    path: '/api/public/gsc/submit-sitemap',
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LovableEmailTransactionalSendRoute =
+  LovableEmailTransactionalSendRouteImport.update({
+    id: '/lovable/email/transactional/send',
+    path: '/lovable/email/transactional/send',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -568,88 +568,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/unsubscribe': {
-      id: '/unsubscribe'
-      path: '/unsubscribe'
-      fullPath: '/unsubscribe'
-      preLoaderRoute: typeof UnsubscribeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/success-stories': {
-      id: '/success-stories'
-      path: '/success-stories'
-      fullPath: '/success-stories'
-      preLoaderRoute: typeof SuccessStoriesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/refund': {
-      id: '/refund'
-      path: '/refund'
-      fullPath: '/refund'
-      preLoaderRoute: typeof RefundRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/leads': {
-      id: '/leads'
-      path: '/leads'
-      fullPath: '/leads'
-      preLoaderRoute: typeof LeadsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/germany-opportunity-card-hyderabad': {
-      id: '/germany-opportunity-card-hyderabad'
-      path: '/germany-opportunity-card-hyderabad'
-      fullPath: '/germany-opportunity-card-hyderabad'
-      preLoaderRoute: typeof GermanyOpportunityCardHyderabadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/eligibility': {
-      id: '/eligibility'
-      path: '/eligibility'
-      fullPath: '/eligibility'
-      preLoaderRoute: typeof EligibilityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/book-consultation': {
-      id: '/book-consultation'
-      path: '/book-consultation'
-      fullPath: '/book-consultation'
-      preLoaderRoute: typeof BookConsultationRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -659,81 +582,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/book-consultation': {
+      id: '/book-consultation'
+      path: '/book-consultation'
+      fullPath: '/book-consultation'
+      preLoaderRoute: typeof BookConsultationRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/': {
-      id: '/services/'
-      path: '/services'
-      fullPath: '/services/'
-      preLoaderRoute: typeof ServicesIndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/eligibility/': {
-      id: '/eligibility/'
-      path: '/'
-      fullPath: '/eligibility/'
-      preLoaderRoute: typeof EligibilityIndexRouteImport
-      parentRoute: typeof EligibilityRoute
-    }
-    '/blog/': {
-      id: '/blog/'
-      path: '/blog'
-      fullPath: '/blog/'
-      preLoaderRoute: typeof BlogIndexRouteImport
+    '/eligibility': {
+      id: '/eligibility'
+      path: '/eligibility'
+      fullPath: '/eligibility'
+      preLoaderRoute: typeof EligibilityRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/$slug': {
-      id: '/services/$slug'
-      path: '/services/$slug'
-      fullPath: '/services/$slug'
-      preLoaderRoute: typeof ServicesSlugRouteImport
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/programs/$slug': {
-      id: '/programs/$slug'
-      path: '/programs/$slug'
-      fullPath: '/programs/$slug'
-      preLoaderRoute: typeof ProgramsSlugRouteImport
+    '/germany-opportunity-card-hyderabad': {
+      id: '/germany-opportunity-card-hyderabad'
+      path: '/germany-opportunity-card-hyderabad'
+      fullPath: '/germany-opportunity-card-hyderabad'
+      preLoaderRoute: typeof GermanyOpportunityCardHyderabadRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/germany/shortage-occupations': {
-      id: '/germany/shortage-occupations'
-      path: '/germany/shortage-occupations'
-      fullPath: '/germany/shortage-occupations'
-      preLoaderRoute: typeof GermanyShortageOccupationsRouteImport
+    '/leads': {
+      id: '/leads'
+      path: '/leads'
+      fullPath: '/leads'
+      preLoaderRoute: typeof LeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/email/unsubscribe': {
-      id: '/email/unsubscribe'
-      path: '/email/unsubscribe'
-      fullPath: '/email/unsubscribe'
-      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/canada/noc-finder': {
-      id: '/canada/noc-finder'
-      path: '/canada/noc-finder'
-      fullPath: '/canada/noc-finder'
-      preLoaderRoute: typeof CanadaNocFinderRouteImport
+    '/refund': {
+      id: '/refund'
+      path: '/refund'
+      fullPath: '/refund'
+      preLoaderRoute: typeof RefundRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/leads': {
-      id: '/admin/leads'
-      path: '/admin/leads'
-      fullPath: '/admin/leads'
-      preLoaderRoute: typeof AdminLeadsRouteImport
+    '/success-stories': {
+      id: '/success-stories'
+      path: '/success-stories'
+      fullPath: '/success-stories'
+      preLoaderRoute: typeof SuccessStoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/blog': {
@@ -743,67 +673,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lovable/email/suppression': {
-      id: '/lovable/email/suppression'
-      path: '/lovable/email/suppression'
-      fullPath: '/lovable/email/suppression'
-      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/eligibility/uk/skilled-worker-visa-calculator': {
-      id: '/eligibility/uk/skilled-worker-visa-calculator'
-      path: '/uk/skilled-worker-visa-calculator'
-      fullPath: '/eligibility/uk/skilled-worker-visa-calculator'
-      preLoaderRoute: typeof EligibilityUkSkilledWorkerVisaCalculatorRouteImport
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/canada/noc-finder': {
+      id: '/canada/noc-finder'
+      path: '/canada/noc-finder'
+      fullPath: '/canada/noc-finder'
+      preLoaderRoute: typeof CanadaNocFinderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eligibility/': {
+      id: '/eligibility/'
+      path: '/'
+      fullPath: '/eligibility/'
+      preLoaderRoute: typeof EligibilityIndexRouteImport
       parentRoute: typeof EligibilityRoute
     }
-    '/eligibility/uk/skilled-worker-calculator': {
-      id: '/eligibility/uk/skilled-worker-calculator'
-      path: '/uk/skilled-worker-calculator'
-      fullPath: '/eligibility/uk/skilled-worker-calculator'
-      preLoaderRoute: typeof EligibilityUkSkilledWorkerCalculatorRouteImport
-      parentRoute: typeof EligibilityRoute
+    '/email/unsubscribe': {
+      id: '/email/unsubscribe'
+      path: '/email/unsubscribe'
+      fullPath: '/email/unsubscribe'
+      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/eligibility/germany/opportunity-card-calculator': {
-      id: '/eligibility/germany/opportunity-card-calculator'
-      path: '/germany/opportunity-card-calculator'
-      fullPath: '/eligibility/germany/opportunity-card-calculator'
-      preLoaderRoute: typeof EligibilityGermanyOpportunityCardCalculatorRouteImport
-      parentRoute: typeof EligibilityRoute
+    '/germany/shortage-occupations': {
+      id: '/germany/shortage-occupations'
+      path: '/germany/shortage-occupations'
+      fullPath: '/germany/shortage-occupations'
+      preLoaderRoute: typeof GermanyShortageOccupationsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/eligibility/canada/saskatchewan-sinp-calculator': {
-      id: '/eligibility/canada/saskatchewan-sinp-calculator'
-      path: '/canada/saskatchewan-sinp-calculator'
-      fullPath: '/eligibility/canada/saskatchewan-sinp-calculator'
-      preLoaderRoute: typeof EligibilityCanadaSaskatchewanSinpCalculatorRouteImport
-      parentRoute: typeof EligibilityRoute
+    '/programs/$slug': {
+      id: '/programs/$slug'
+      path: '/programs/$slug'
+      fullPath: '/programs/$slug'
+      preLoaderRoute: typeof ProgramsSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/eligibility/canada/quebec-skilled-worker-program': {
-      id: '/eligibility/canada/quebec-skilled-worker-program'
-      path: '/canada/quebec-skilled-worker-program'
-      fullPath: '/eligibility/canada/quebec-skilled-worker-program'
-      preLoaderRoute: typeof EligibilityCanadaQuebecSkilledWorkerProgramRouteImport
-      parentRoute: typeof EligibilityRoute
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/eligibility/canada/federal-skilled-worker-program': {
-      id: '/eligibility/canada/federal-skilled-worker-program'
-      path: '/canada/federal-skilled-worker-program'
-      fullPath: '/eligibility/canada/federal-skilled-worker-program'
-      preLoaderRoute: typeof EligibilityCanadaFederalSkilledWorkerProgramRouteImport
-      parentRoute: typeof EligibilityRoute
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/eligibility/canada/crs-calculator': {
-      id: '/eligibility/canada/crs-calculator'
-      path: '/canada/crs-calculator'
-      fullPath: '/eligibility/canada/crs-calculator'
-      preLoaderRoute: typeof EligibilityCanadaCrsCalculatorRouteImport
-      parentRoute: typeof EligibilityRoute
+    '/blog/$country/$slug': {
+      id: '/blog/$country/$slug'
+      path: '/blog/$country/$slug'
+      fullPath: '/blog/$country/$slug'
+      preLoaderRoute: typeof BlogCountrySlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/eligibility/australia/491-points-calculator': {
-      id: '/eligibility/australia/491-points-calculator'
-      path: '/australia/491-points-calculator'
-      fullPath: '/eligibility/australia/491-points-calculator'
-      preLoaderRoute: typeof EligibilityAustralia491PointsCalculatorRouteImport
+    '/eligibility/australia/189-points-calculator': {
+      id: '/eligibility/australia/189-points-calculator'
+      path: '/australia/189-points-calculator'
+      fullPath: '/eligibility/australia/189-points-calculator'
+      preLoaderRoute: typeof EligibilityAustralia189PointsCalculatorRouteImport
       parentRoute: typeof EligibilityRoute
     }
     '/eligibility/australia/190-points-calculator': {
@@ -813,32 +764,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EligibilityAustralia190PointsCalculatorRouteImport
       parentRoute: typeof EligibilityRoute
     }
-    '/eligibility/australia/189-points-calculator': {
-      id: '/eligibility/australia/189-points-calculator'
-      path: '/australia/189-points-calculator'
-      fullPath: '/eligibility/australia/189-points-calculator'
-      preLoaderRoute: typeof EligibilityAustralia189PointsCalculatorRouteImport
+    '/eligibility/australia/491-points-calculator': {
+      id: '/eligibility/australia/491-points-calculator'
+      path: '/australia/491-points-calculator'
+      fullPath: '/eligibility/australia/491-points-calculator'
+      preLoaderRoute: typeof EligibilityAustralia491PointsCalculatorRouteImport
       parentRoute: typeof EligibilityRoute
     }
-    '/blog/$country/$slug': {
-      id: '/blog/$country/$slug'
-      path: '/blog/$country/$slug'
-      fullPath: '/blog/$country/$slug'
-      preLoaderRoute: typeof BlogCountrySlugRouteImport
+    '/eligibility/canada/crs-calculator': {
+      id: '/eligibility/canada/crs-calculator'
+      path: '/canada/crs-calculator'
+      fullPath: '/eligibility/canada/crs-calculator'
+      preLoaderRoute: typeof EligibilityCanadaCrsCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/canada/federal-skilled-worker-program': {
+      id: '/eligibility/canada/federal-skilled-worker-program'
+      path: '/canada/federal-skilled-worker-program'
+      fullPath: '/eligibility/canada/federal-skilled-worker-program'
+      preLoaderRoute: typeof EligibilityCanadaFederalSkilledWorkerProgramRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/canada/quebec-skilled-worker-program': {
+      id: '/eligibility/canada/quebec-skilled-worker-program'
+      path: '/canada/quebec-skilled-worker-program'
+      fullPath: '/eligibility/canada/quebec-skilled-worker-program'
+      preLoaderRoute: typeof EligibilityCanadaQuebecSkilledWorkerProgramRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/canada/saskatchewan-sinp-calculator': {
+      id: '/eligibility/canada/saskatchewan-sinp-calculator'
+      path: '/canada/saskatchewan-sinp-calculator'
+      fullPath: '/eligibility/canada/saskatchewan-sinp-calculator'
+      preLoaderRoute: typeof EligibilityCanadaSaskatchewanSinpCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/germany/opportunity-card-calculator': {
+      id: '/eligibility/germany/opportunity-card-calculator'
+      path: '/germany/opportunity-card-calculator'
+      fullPath: '/eligibility/germany/opportunity-card-calculator'
+      preLoaderRoute: typeof EligibilityGermanyOpportunityCardCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/uk/skilled-worker-calculator': {
+      id: '/eligibility/uk/skilled-worker-calculator'
+      path: '/uk/skilled-worker-calculator'
+      fullPath: '/eligibility/uk/skilled-worker-calculator'
+      preLoaderRoute: typeof EligibilityUkSkilledWorkerCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/eligibility/uk/skilled-worker-visa-calculator': {
+      id: '/eligibility/uk/skilled-worker-visa-calculator'
+      path: '/uk/skilled-worker-visa-calculator'
+      fullPath: '/eligibility/uk/skilled-worker-visa-calculator'
+      preLoaderRoute: typeof EligibilityUkSkilledWorkerVisaCalculatorRouteImport
+      parentRoute: typeof EligibilityRoute
+    }
+    '/lovable/email/suppression': {
+      id: '/lovable/email/suppression'
+      path: '/lovable/email/suppression'
+      fullPath: '/lovable/email/suppression'
+      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lovable/email/transactional/send': {
-      id: '/lovable/email/transactional/send'
-      path: '/lovable/email/transactional/send'
-      fullPath: '/lovable/email/transactional/send'
-      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lovable/email/transactional/preview': {
-      id: '/lovable/email/transactional/preview'
-      path: '/lovable/email/transactional/preview'
-      fullPath: '/lovable/email/transactional/preview'
-      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+    '/api/public/gsc/submit-sitemap': {
+      id: '/api/public/gsc/submit-sitemap'
+      path: '/api/public/gsc/submit-sitemap'
+      fullPath: '/api/public/gsc/submit-sitemap'
+      preLoaderRoute: typeof ApiPublicGscSubmitSitemapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/queue/process': {
@@ -848,11 +841,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/gsc/submit-sitemap': {
-      id: '/api/public/gsc/submit-sitemap'
-      path: '/api/public/gsc/submit-sitemap'
-      fullPath: '/api/public/gsc/submit-sitemap'
-      preLoaderRoute: typeof ApiPublicGscSubmitSitemapRouteImport
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/send': {
+      id: '/lovable/email/transactional/send'
+      path: '/lovable/email/transactional/send'
+      fullPath: '/lovable/email/transactional/send'
+      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
