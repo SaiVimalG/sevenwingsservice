@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export function CountUp({ end, suffix = "", duration = 1.6 }: { end: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(end);
   const started = useRef(false);
 
   useEffect(() => {
@@ -11,10 +11,13 @@ export function CountUp({ end, suffix = "", duration = 1.6 }: { end: number; suf
     const reduce =
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    // Server HTML shows the real number for Google; only reset to 0 off-screen so it can animate in.
+    const r = el.getBoundingClientRect();
+    if (!reduce && "IntersectionObserver" in window && r.top > window.innerHeight) setValue(0);
     const run = () => {
       if (started.current) return;
       started.current = true;
-      if (reduce) {
+      if (reduce || r.top <= window.innerHeight) {
         setValue(end);
         return;
       }
