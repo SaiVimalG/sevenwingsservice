@@ -1,9 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { CalculatorPage } from "@/components/eligibility/CalculatorPage";
-import { ukSkilledWorker } from "@/lib/eligibility/content/germany-uk";
-import { buildHead } from "@/lib/eligibility/seo";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Old duplicate URL — permanently points to the main UK Skilled Worker calculator.
 export const Route = createFileRoute("/eligibility/uk/skilled-worker-calculator")({
-  head: () => buildHead(ukSkilledWorker),
-  component: () => <CalculatorPage config={ukSkilledWorker} />,
+  beforeLoad: () => {
+    throw redirect({ to: "/eligibility/uk/skilled-worker-visa-calculator", statusCode: 301 });
+  },
 });
