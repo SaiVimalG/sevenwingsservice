@@ -143,7 +143,7 @@ export const deOpportunityCard: CalculatorConfig = {
 };
 
 export const ukSkilledWorker: CalculatorConfig = {
-  url: "/eligibility/uk/skilled-worker-calculator",
+  url: "/eligibility/uk/skilled-worker-visa-calculator",
   country: "United Kingdom",
   countryFlag: "🇬🇧",
   badge: "UK Skilled Worker Visa Assessment",

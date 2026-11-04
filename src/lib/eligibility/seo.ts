@@ -67,7 +67,7 @@ function breadcrumbsFromUrl(url: string, leafName: string) {
   parts.forEach((p, i) => {
     acc += "/" + p;
     const isLeaf = i === parts.length - 1;
-    crumbs.push({ name: isLeaf ? leafName : titleize(p), url: acc });
+    crumbs.push({ name: isLeaf ? leafName : titleize(p), url: i > 0 && !isLeaf ? "/eligibility" : acc });
   });
   return crumbs;
 }

@@ -30,7 +30,7 @@ const CALCS = [
   {
     group: "United Kingdom 🇬🇧",
     items: [
-      { name: "Skilled Worker Visa", desc: "UK Skilled Worker visa 70-point eligibility check.", href: "/eligibility/uk/skilled-worker-calculator" },
+      { name: "Skilled Worker Visa", desc: "UK Skilled Worker visa 70-point eligibility check.", href: "/eligibility/uk/skilled-worker-visa-calculator" },
     ],
   },
 ];
