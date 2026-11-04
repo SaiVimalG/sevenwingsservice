@@ -370,13 +370,13 @@ function Breadcrumbs({ url, leaf }: { url: string; leaf: string }) {
   let acc = "";
   parts.forEach((p, i) => {
     acc += "/" + p;
-    crumbs.push({ name: i === parts.length - 1 ? leaf : p.replace(/-/g, " "), url: acc });
+    crumbs.push({ name: i === parts.length - 1 ? leaf : p.replace(/-/g, " "), url: i > 0 && i < parts.length - 1 ? "/eligibility" : acc });
   });
   return (
     <nav aria-label="Breadcrumb" className="text-xs text-white/95">
       <ol className="flex flex-wrap items-center gap-1.5">
         {crumbs.map((c, i) => (
-          <li key={c.url} className="flex items-center gap-1.5 capitalize">
+          <li key={c.url + i} className="flex items-center gap-1.5 capitalize">
             {i > 0 && <ChevronRight className="h-3 w-3 opacity-50" />}
             {i === crumbs.length - 1 ? (
               <span className="text-white/90">{c.name}</span>
