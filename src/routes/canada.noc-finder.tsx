@@ -123,7 +123,7 @@ export const Route = createFileRoute("/canada/noc-finder")({
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: "https://www.7wingsimmigration.com/" },
-        { "@type": "ListItem", position: 2, name: "Canada", item: "https://www.7wingsimmigration.com/services/canada-immigration" },
+        { "@type": "ListItem", position: 2, name: "Canada", item: "https://www.7wingsimmigration.com/services/canada-pr" },
         { "@type": "ListItem", position: 3, name: "NOC Finder", item: URL_BASE },
       ],
     };
@@ -218,7 +218,7 @@ function NocFinderPage() {
           <nav className="mb-4 text-xs text-muted-foreground">
             <Link to="/" className="hover:text-foreground">Home</Link>
             <span className="mx-2">/</span>
-            <Link to="/services/$slug" params={{ slug: "canada-immigration" }} className="hover:text-foreground">Canada</Link>
+            <Link to="/services/$slug" params={{ slug: "canada-pr" }} className="hover:text-foreground">Canada</Link>
             <span className="mx-2">/</span>
             <span className="text-foreground">NOC Finder</span>
           </nav>
@@ -466,7 +466,7 @@ function NocFinderPage() {
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="font-display text-xl font-semibold">Helpful links</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <Link to="/services/$slug" params={{ slug: "canada-immigration" }} className="rounded-lg border border-black/10 bg-white p-4 hover:border-gold">
+            <Link to="/services/$slug" params={{ slug: "canada-pr" }} className="rounded-lg border border-black/10 bg-white p-4 hover:border-gold">
               <Briefcase className="mb-2 h-5 w-5 text-gold-deep" />
               <p className="font-semibold">Canada PR Services</p>
             </Link>
