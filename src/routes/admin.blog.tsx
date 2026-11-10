@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Plus, Trash2, Save, Upload, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp, Sparkles, X } from "lucide-react";
+import { Plus, Trash2, Save, Eye, ArrowLeft, LogOut, Pencil, Users, EyeOff, ChevronDown, ChevronUp, Sparkles, X } from "lucide-react";
 
 import {
   verifyAdminToken,
@@ -15,6 +15,7 @@ import {
 import { generateBlogWithAI } from "@/lib/blog-ai.functions";
 import { SERVICES, BLOG, type BlogPost } from "@/lib/site";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
+import { CoverImageEditor } from "@/components/blog/CoverImageEditor";
 
 type ListRow = {
   slug: string;
@@ -77,6 +78,11 @@ export const Route = createFileRoute("/admin/blog")({
   head: () => ({
     meta: [
       { title: "Blog Editor | 7 Wings Admin" },
+      { name: "description", content: "Manage 7 Wings Immigration articles and branded blog cover images." },
+      { property: "og:title", content: "Blog Editor | 7 Wings Admin" },
+      { property: "og:description", content: "Manage 7 Wings Immigration articles and branded blog cover images." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -358,7 +364,6 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
   const [originalSlug, setOriginalSlug] = useState<string | undefined>(source === "static" ? undefined : slug);
   const [loading, setLoading] = useState<boolean>(!!slug && source !== "static");
   const [saving, setSaving] = useState(false);
-  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -413,19 +418,6 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
     const base64 = await readFileAsBase64(file);
     const res = await uploadBlogImage({ data: { token, filename: file.name, contentType: file.type, base64 } });
     return res.url;
-  };
-
-  const handleCoverFile = async (file: File) => {
-    setUploading(true);
-    setError(null);
-    try {
-      const url = await uploadImage(file);
-      update("imageUrl", url);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Upload failed");
-    } finally {
-      setUploading(false);
-    }
   };
 
   const save = async () => {
@@ -521,28 +513,9 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
             <textarea rows={2} value={form.excerpt} onChange={(e) => update("excerpt", e.target.value)} className={inputCls} />
           </Field>
 
-          <Field label="Cover image">
-            <div className="flex flex-wrap items-center gap-3">
-              {form.imageUrl && <img src={form.imageUrl} alt="cover" className="h-20 w-32 rounded-lg border border-black/10 object-cover" />}
-              <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm text-navy-deep hover:border-gold">
-                <Upload className="h-4 w-4" />
-                {uploading ? "Uploading…" : form.imageUrl ? "Replace image" : "Upload image"}
-                <input
-                  type="file"
-                  accept="image/png,image/jpeg,image/webp,image/gif,image/avif"
-                  className="hidden"
-                  onChange={(e) => e.target.files?.[0] && handleCoverFile(e.target.files[0])}
-                />
-              </label>
-              <input
-                type="text"
-                placeholder="…or paste an image URL"
-                value={form.imageUrl}
-                onChange={(e) => update("imageUrl", e.target.value)}
-                className={`${inputCls} flex-1 min-w-[200px]`}
-              />
-            </div>
-          </Field>
+          <CoverImageEditor token={token} title={form.title} country={form.category}
+            topic={form.excerpt} content={form.contentHtml} value={form.imageUrl}
+            onChange={(url) => update("imageUrl", url)} onUpload={uploadImage} />
         </Section>
 
         <Section title="Body" subtitle="The article content shown on the page" defaultOpen>
