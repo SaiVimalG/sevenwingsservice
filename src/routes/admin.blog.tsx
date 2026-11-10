@@ -513,8 +513,7 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
             <textarea rows={2} value={form.excerpt} onChange={(e) => update("excerpt", e.target.value)} className={inputCls} />
           </Field>
 
-          <CoverImageEditor token={token} title={form.title} country={form.category}
-            topic={form.excerpt} content={form.contentHtml} value={form.imageUrl}
+          <CoverImageEditor value={form.imageUrl}
             onChange={(url) => update("imageUrl", url)} onUpload={uploadImage} />
         </Section>
 
