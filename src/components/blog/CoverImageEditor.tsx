@@ -1,14 +1,17 @@
 import { useRef, useState } from "react";
 import { Loader2, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ImgPromptDialog } from "./ImgPromptDialog";
 
 type Props = {
   value: string;
+  title: string;
+  country: string;
   onChange: (url: string) => void;
   onUpload: (file: File) => Promise<string>;
 };
 
-export function CoverImageEditor({ value, onChange, onUpload }: Props) {
+export function CoverImageEditor({ value, title, country, onChange, onUpload }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const coverInput = useRef<HTMLInputElement>(null);
@@ -30,6 +33,7 @@ export function CoverImageEditor({ value, onChange, onUpload }: Props) {
             {busy ? <Loader2 className="animate-spin" /> : <Upload />}
             {busy ? "Uploading…" : "Upload Image"}
           </Button>
+          <ImgPromptDialog title={title} country={country} />
           <input aria-label="Cover image URL" placeholder="…or paste an image URL" value={value} onChange={(e) => onChange(e.target.value)} className={`${inputClass} flex-1 basis-56`} />
           <input ref={coverInput} aria-label="Upload cover image" type="file" className="hidden" accept="image/png,image/jpeg,image/webp,image/gif,image/avif" onChange={(e) => { const file = e.target.files?.[0]; if (file) void upload(file); e.target.value = ""; }} />
         </div>
