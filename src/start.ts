@@ -2,6 +2,7 @@ import { createStart, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
+import { adminEntryRedirect } from "@/lib/admin-domain";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -23,6 +24,8 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 // subdomain from its index.
 const canonicalHostMiddleware = createMiddleware().server(async ({ next, request }) => {
   try {
+    const adminRedirect = adminEntryRedirect(request);
+    if (adminRedirect) return adminRedirect;
     const url = new URL(request.url);
     if (url.pathname.startsWith("/lovable/") || url.pathname === "/email/unsubscribe") {
       return next();
