@@ -1,5 +1,5 @@
-// Blog cover renders at aspect-[16/9]; uploads are capped at 5 MB in blog.functions.ts.
-export const COVER_SPEC = { width: 1920, height: 1080, ratio: "16:9", maxKB: 5120 } as const;
+// Target matches the existing blog cover pictures (760x608, under 100 KB).
+export const COVER_SPEC = { width: 760, height: 608, ratio: "5:4", maxKB: 100 } as const;
 
 export const SUBJECTS = [
   "Realistic Professional Human",

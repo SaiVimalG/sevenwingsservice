@@ -47,7 +47,7 @@ export function ImgPromptDialog({ title: initialTitle, country: initialCountry }
           </label>
           <div className="flex flex-wrap gap-2">
             <span className="rounded-full bg-muted px-3 py-1 text-xs">Target Dimensions: {COVER_SPEC.width}x{COVER_SPEC.height}px ({COVER_SPEC.ratio})</span>
-            <span className="rounded-full bg-muted px-3 py-1 text-xs">Upload Max: {COVER_SPEC.maxKB} KB</span>
+            <span className="rounded-full bg-muted px-3 py-1 text-xs">Upload Max: less than {COVER_SPEC.maxKB} KB</span>
           </div>
           <label className="flex items-center gap-2"><input type="checkbox" checked={overlay} onChange={(e) => setOverlay(e.target.checked)} />Include title text overlay</label>
           <Button type="button" className="w-full rounded-full" disabled={!title.trim()} onClick={() => setPrompt(buildCoverPrompt({ title, country, subject, mood, overlay }))}>Generate Prompt</Button>
@@ -60,7 +60,7 @@ export function ImgPromptDialog({ title: initialTitle, country: initialCountry }
                 <Button type="button" size="sm" variant="outline" asChild><a href="https://gemini.google.com/app" target="_blank" rel="noreferrer"><ExternalLink />Open Google Gemini</a></Button>
               </div>
               <p className="rounded-lg border border-gold/40 bg-gold/10 p-3 text-xs">
-                Website Upload Constraint: Max {COVER_SPEC.maxKB} KB at {COVER_SPEC.width}x{COVER_SPEC.height}px. AI models output full-resolution PNGs (1–3 MB); please compress or convert to WebP before uploading to stay under the site limit.
+                Website Upload Constraint: less than {COVER_SPEC.maxKB} KB at {COVER_SPEC.width}x{COVER_SPEC.height}px. AI models output full-resolution PNGs (1–3 MB); please compress or convert to WebP before uploading to stay under the site limit.
               </p>
             </div>
           )}
