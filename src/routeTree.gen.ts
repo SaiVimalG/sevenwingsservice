@@ -34,7 +34,6 @@ import { Route as GermanyShortageOccupationsRouteImport } from './routes/germany
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
-import { Route as ApiPublicBlogCoverRouteImport } from './routes/api/public/blog-cover'
 import { Route as BlogCountrySlugRouteImport } from './routes/blog.$country.$slug'
 import { Route as EligibilityAustralia189PointsCalculatorRouteImport } from './routes/eligibility.australia.189-points-calculator'
 import { Route as EligibilityAustralia190PointsCalculatorRouteImport } from './routes/eligibility.australia.190-points-calculator'
@@ -179,11 +178,6 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicBlogCoverRoute = ApiPublicBlogCoverRouteImport.update({
-  id: '/api/public/blog-cover',
-  path: '/api/public/blog-cover',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const BlogCountrySlugRoute = BlogCountrySlugRouteImport.update({
   id: '/blog/$country/$slug',
   path: '/blog/$country/$slug',
@@ -305,7 +299,6 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
-  '/api/public/blog-cover': typeof ApiPublicBlogCoverRoute
   '/blog/$country/$slug': typeof BlogCountrySlugRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
   '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
@@ -348,7 +341,6 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/eligibility': typeof EligibilityIndexRoute
   '/services': typeof ServicesIndexRoute
-  '/api/public/blog-cover': typeof ApiPublicBlogCoverRoute
   '/blog/$country/$slug': typeof BlogCountrySlugRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
   '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
@@ -393,7 +385,6 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/eligibility/': typeof EligibilityIndexRoute
   '/services/': typeof ServicesIndexRoute
-  '/api/public/blog-cover': typeof ApiPublicBlogCoverRoute
   '/blog/$country/$slug': typeof BlogCountrySlugRoute
   '/eligibility/australia/189-points-calculator': typeof EligibilityAustralia189PointsCalculatorRoute
   '/eligibility/australia/190-points-calculator': typeof EligibilityAustralia190PointsCalculatorRoute
@@ -439,7 +430,6 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/eligibility/'
     | '/services/'
-    | '/api/public/blog-cover'
     | '/blog/$country/$slug'
     | '/eligibility/australia/189-points-calculator'
     | '/eligibility/australia/190-points-calculator'
@@ -482,7 +472,6 @@ export interface FileRouteTypes {
     | '/blog'
     | '/eligibility'
     | '/services'
-    | '/api/public/blog-cover'
     | '/blog/$country/$slug'
     | '/eligibility/australia/189-points-calculator'
     | '/eligibility/australia/190-points-calculator'
@@ -526,7 +515,6 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/eligibility/'
     | '/services/'
-    | '/api/public/blog-cover'
     | '/blog/$country/$slug'
     | '/eligibility/australia/189-points-calculator'
     | '/eligibility/australia/190-points-calculator'
@@ -570,7 +558,6 @@ export interface RootRouteChildren {
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
-  ApiPublicBlogCoverRoute: typeof ApiPublicBlogCoverRoute
   BlogCountrySlugRoute: typeof BlogCountrySlugRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   ApiPublicGscSubmitSitemapRoute: typeof ApiPublicGscSubmitSitemapRoute
@@ -756,13 +743,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/blog-cover': {
-      id: '/api/public/blog-cover'
-      path: '/api/public/blog-cover'
-      fullPath: '/api/public/blog-cover'
-      preLoaderRoute: typeof ApiPublicBlogCoverRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/blog/$country/$slug': {
       id: '/blog/$country/$slug'
       path: '/blog/$country/$slug'
@@ -944,7 +924,6 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
-  ApiPublicBlogCoverRoute: ApiPublicBlogCoverRoute,
   BlogCountrySlugRoute: BlogCountrySlugRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   ApiPublicGscSubmitSitemapRoute: ApiPublicGscSubmitSitemapRoute,
