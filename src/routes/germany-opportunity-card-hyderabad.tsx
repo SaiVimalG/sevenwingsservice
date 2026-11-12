@@ -5,12 +5,13 @@ import { Reveal } from "@/components/motion/Reveal";
 import { BlogContactForm } from "@/components/forms/Forms";
 import { RelatedLinks, InternalLink } from "@/components/RelatedLinks";
 import { SITE, BRANCHES } from "@/lib/site";
+import { GermanyOpportunityGuide, GermanyArticleLinks } from "@/components/GermanyOpportunityGuide";
 
 const URL = "https://www.7wingsimmigration.com/germany-opportunity-card-hyderabad";
 const TITLE =
-  "Germany Opportunity Card Consultants in Hyderabad | 7 Wings Immigration";
+  "Germany Opportunity Card Consultants Hyderabad | 7 Wings";
 const DESC =
-  "Germany Opportunity Card (Chancenkarte) consultants in Hyderabad — free points check, ANABIN/ZAB recognition, blocked account and visa filing. Offices in HITEC City & Essen, Germany.";
+  "Get Germany Opportunity Card guidance in HITEC City, Hyderabad: eligibility review, qualification checks and visa documents, backed by our Essen branch.";
 
 const FAQS = [
   {
@@ -19,7 +20,7 @@ const FAQS = [
   },
   {
     q: "How many points do I need for the Chancenkarte?",
-    a: "You need either a fully recognised qualification, or a recognised vocational/academic qualification plus at least 6 points across age, language, work experience, previous stay in Germany and a qualifying spouse.",
+    a: "A qualification fully recognised in Germany can qualify you for the skilled-worker route without points. Otherwise, you need a qualifying academic or vocational qualification, at least A1 German or B2 English, and at least six points. Both routes require proof of financial means.",
   },
   {
     q: "Where is the visa application submitted from Hyderabad?",
@@ -27,15 +28,15 @@ const FAQS = [
   },
   {
     q: "How much money do I need to show?",
-    a: "Around EUR 1,027 per month for the planned stay, usually through a blocked account (Sperrkonto) or a formal obligation declaration from a sponsor in Germany.",
+    a: "The official 2026 requirement is EUR 1,091 net per month for the planned stay, generally through a blocked account (Sperrkonto) or a declaration of commitment. Confirm the current mission checklist before filing.",
   },
   {
     q: "Do I need German language for the Opportunity Card?",
-    a: "The minimum is A1 German or B2 English. Higher German levels (B1, B2, C1) add points and dramatically improve your chances of landing a job once you are in Germany.",
+    a: "The points route requires at least A1 German or B2 English. The fully recognised skilled-worker route has no mandatory language certificate for the Opportunity Card, though German is useful for job hunting. Higher qualifying language levels can add points on the points route.",
   },
   {
     q: "How long does the process take from Hyderabad?",
-    a: "Document preparation and ZAB/ANABIN recognition usually take a few weeks, and German missions typically decide Chancenkarte applications within about 1–3 months of biometrics.",
+    a: "Timing varies with qualification checks, appointment availability, the responsible German mission and the completeness of your documents. We help identify preparation steps, but cannot guarantee an appointment or decision date. Avoid non-refundable travel bookings before approval.",
   },
   {
     q: "Can IT professionals from Hyderabad apply without a job offer?",
@@ -44,7 +45,7 @@ const FAQS = [
 ];
 
 const STEPS = [
-  { t: "Free points check", d: "We score your profile against the official BAMF criteria in one sitting and tell you honestly whether you clear the 6-point threshold." },
+  { t: "Eligibility & route review", d: "We check whether you can use the fully recognised qualification route or need the six-point route, and identify the evidence required." },
   { t: "Qualification recognition", d: "ANABIN lookup for your university and degree, and a ZAB Statement of Comparability where auto-equivalence is not available." },
   { t: "Documents & attestation", d: "Degree certificates, transcripts, experience letters, translations and attestation prepared to German mission standards." },
   { t: "Funds & insurance", d: "Blocked account (Sperrkonto) opening guidance and travel/health insurance that meets German requirements." },
@@ -126,7 +127,9 @@ export const Route = createFileRoute("/germany-opportunity-card-hyderabad")({
 });
 
 function Page() {
-  const hyd = BRANCHES.find((b) => b.id === "hyderabad")!;
+  const hyd = BRANCHES.find((b) => b.id === "hyderabad");
+  const germanyBranch = BRANCHES.find((b) => b.id === "germany");
+  if (!hyd) return null;
   return (
     <PageShell>
       <PageHero
@@ -146,18 +149,20 @@ function Page() {
                 Germany's Opportunity Card (Chancenkarte), introduced in June 2024 under §20a of the Residence Act,
                 lets qualified non-EU professionals live in Germany for up to 12 months to look for skilled work —
                 before they have an offer in hand. For Hyderabad's IT engineers, mechanical and civil engineers,
-                nurses, doctors and skilled tradespeople, it is currently the most realistic route into the German
-                labour market. You need a recognised qualification (or two years of qualified vocational training)
-                plus at least 6 points across age, language, experience, prior Germany stay and spouse eligibility.
+                nurses, doctors and skilled tradespeople, it can be one option for exploring the German
+                labour market. Your qualification determines which eligibility route applies. Regulated
+                professions, such as medicine and nursing, also require the relevant professional recognition or licence before practice.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
                 Start with our free{" "}
                 <InternalLink to="/eligibility/germany/opportunity-card-calculator">
                   Germany Opportunity Card points calculator
                 </InternalLink>
-                , then walk into our Madhapur office with the result and we'll build the file around it.
+                , then bring the result to our Madhapur office for a route and document review.
               </p>
             </Reveal>
+
+            <div className="mt-10"><GermanyOpportunityGuide local /></div>
 
             <Reveal>
               <h2 className="mt-10 font-display text-xl font-bold text-navy-deep md:text-2xl">
@@ -185,9 +190,9 @@ function Page() {
               <ul className="mt-4 grid gap-2 sm:grid-cols-2">
                 {[
                   "Recognised degree or 2+ years vocational qualification",
-                  "Minimum 6 points (or full recognition)",
-                  "German A1 or English B2 as the language floor",
-                  "Approx. €1,027/month proof of funds",
+                  "Six points on the points route; none for full recognition",
+                  "Points route: German A1 or English B2",
+                  "2026 funds: €1,091 net per month",
                   "German-recognised health insurance",
                   "€75 visa application fee",
                   "Stay up to 12 months to job hunt",
@@ -217,6 +222,8 @@ function Page() {
               </div>
             </Reveal>
 
+            <GermanyArticleLinks />
+
             <Reveal>
               <RelatedLinks
                 className="mt-10"
@@ -224,7 +231,9 @@ function Page() {
                 links={[
                   { to: "/eligibility/germany/opportunity-card-calculator", label: "Opportunity Card points calculator", description: "Score your profile in under two minutes." },
                   { to: "/services/germany-opportunity-card", label: "Germany Opportunity Card service", description: "Full scope of what our Germany desk handles." },
-                  { to: "/book-consultation", label: "Book a free consultation", description: "30 minutes with a senior counsellor." },
+                  { to: "/germany/shortage-occupations", label: "Germany shortage occupations search", description: "Find occupation codes and review the shortage-occupation factor." },
+                  { to: "/services/jss-program", label: "JSS job-search support", description: "Explore career preparation and job-search assistance." },
+                  { to: "/book-consultation", label: "Book a free consultation", description: "Discuss your profile and next steps with our team." },
                   { to: "/contact", label: "Visit our Hyderabad office", description: "HITEC City, Madhapur — map and directions." },
                 ]}
               />
@@ -268,7 +277,7 @@ function Page() {
                   Get directions <ArrowRight className="h-4 w-4" aria-hidden />
                 </a>
                 <p className="mt-4 text-xs text-muted-foreground">
-                  Germany branch: {BRANCHES.find((b) => b.id === "germany")!.address}
+                  Germany branch: {germanyBranch?.address}
                 </p>
               </div>
             </Reveal>

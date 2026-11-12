@@ -81,16 +81,16 @@ import jss from "@/assets/jss-feature.webp";
 export const SERVICES: Service[] = [
   {
     slug: "germany-opportunity-card",
-    title: "Germany Opportunity Card (Chancenkarte) – Job Seeker Visa",
+    title: "Germany Opportunity Card (Chancenkarte)",
     short: "Chancenkarte for skilled professionals seeking work in Germany.",
     blurb: "A points-based residence permit that lets qualified professionals enter Germany to look for a job — even before securing one.",
     intro:
-      "Looking to move to Germany to search for work? The Opportunity Card (Chancenkarte) is a new German visa (Section 20a of the Residence Act) that lets qualified foreign workers enter Germany for up to 12 months to find employment or complete recognition training. Introduced in June 2024, this visa is designed for non-EU professionals (such as Indian nationals) without a job offer. During your stay, you can attend interviews, work trials or part-time work (up to 20 hours/week) while searching for a job. Hyderabad-based 7 Wings Immigration helps Indian applicants navigate the Opportunity Card visa process from start to finish.",
+      "Search for skilled work in Germany without a job offer. Understand the recognised-qualification and six-point routes, prepare your documents and plan your application with 7 Wings Immigration. Our Hyderabad team supports Indian applicants, backed by our branch in Essen, Germany.",
     features: [
       { title: "Job-Search Stay (up to 12 months)", description: "Live in Germany for up to a year while you hunt for skilled employment." },
-      { title: "Flexible Work Trials", description: "Attend unpaid job trials or do part-time work (max 20 hrs/week) while you search." },
+      { title: "Part-Time Work & Job Trials", description: "Work part-time up to 20 hours per week and undertake eligible job trials while searching for qualified employment." },
       { title: "Training for Qualification", description: "Start training to get your foreign degree or qualification recognised in Germany." },
-      { title: "Pathway to Work Visa", description: "Once you find a job or get qualified, switch to a German Skilled Worker Visa or EU Blue Card." },
+      { title: "Next-Step Residence Permit", description: "After securing qualified employment, apply for a suitable work residence permit or EU Blue Card if you meet its requirements." },
     ],
     process: [
       "Free profile review and points scoring against the official BAMF Chancenkarte matrix",
@@ -105,15 +105,16 @@ export const SERVICES: Service[] = [
       { q: "How do I get the required 6 points?", a: "Points come from qualification recognition (4), shortage occupation (1), work experience (2–3), German language A2–B2+ (1–3), English C1+ (1), age (1–2), prior Germany stay (1) and a qualifying spouse (1). We score you on the first call." },
       { q: "What if I already studied in Germany?", a: "If you completed a degree or training in Germany, you can apply for a job seeker permit (18 months) immediately, with part-time work allowed." },
       { q: "How long is the Opportunity Card valid?", a: "Up to 12 months. If you find qualified work, you can switch to another visa before it expires. If not, you must leave when the visa ends." },
-      { q: "Can my spouse come with me?", a: "Yes — usually through family reunification. If your partner qualifies independently, it earns you +1 point in the matrix." },
-      { q: "How long does visa processing take?", a: "Typically 4–6 weeks at the German Embassy/Consulate in India after submission. Do not book flights until the visa is stamped." },
+      { q: "Can my spouse come with me?", a: "A spouse cannot normally join solely through family reunification during your Opportunity Card job search. They may apply for their own Opportunity Card or another qualifying visa. A spouse or registered partner applying together and meeting the Opportunity Card requirements may contribute one point; confirm the conditions for your case." },
+      { q: "How long does visa processing take?", a: "Timing depends on qualification checks, appointment availability, the responsible German mission and whether your file is complete. Check current mission guidance and do not book non-refundable travel before the visa is issued." },
+      { q: "What funds are required in 2026?", a: "The official requirement is €1,091 net per month in 2026, generally evidenced by a blocked account or a declaration of commitment. Confirm the latest financial and insurance checklist with the responsible German mission before applying." },
       { q: "How can 7 Wings Immigration help?", a: "We offer end-to-end support — free eligibility scoring, ZAB recognition, document prep, blocked account and health insurance setup, and interview preparation." },
     ],
     image: germany,
     flag: "🇩🇪",
     country: "Germany",
-    metaTitle: "Best Immigration Consultancy in Hyderabad for Germany Opportunity Card | 7 Wings",
-    metaDescription: "Best immigration consultancy in Hyderabad for Germany Opportunity Card (Chancenkarte) — eligibility, points system and full application support by 7 Wings Immigration.",
+    metaTitle: "Germany Opportunity Card: Eligibility & Support | 7 Wings",
+    metaDescription: "Explore Germany Opportunity Card eligibility, the six-point route, documents and 2026 funds. Check your profile and get application support from 7 Wings.",
   },
   {
     slug: "australia-pr",

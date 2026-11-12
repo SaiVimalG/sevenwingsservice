@@ -7,8 +7,7 @@ export const SERVICE_RELATED: Record<string, RelatedLink[]> = {
     { to: "/eligibility/germany/opportunity-card-calculator", label: "Germany Opportunity Card points calculator", description: "Score your Chancenkarte eligibility in 60 seconds." },
     { to: "/germany/shortage-occupations", label: "Germany shortage occupation list", description: "Check if your job is a Mangelberuf." },
     { to: "/services/jss-program", label: "JSS Program", description: "Job-search support for Germany roles." },
-    { to: "/services/canada-pr", label: "Canada PR pathway", description: "Compare with Express Entry options." },
-    { to: "/blog", label: "Latest Germany articles", description: "Visa updates, ZAB recognition and city guides." },
+    { to: "/germany-opportunity-card-hyderabad", label: "Germany Opportunity Card help in Hyderabad", description: "Visit our HITEC City, Madhapur team for a document and eligibility review." },
   ],
   "australia-pr": [
     { to: "/eligibility/australia/189-points-calculator", label: "Subclass 189 points calculator" },

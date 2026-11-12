@@ -5,6 +5,7 @@ import { RelatedLinks } from "@/components/RelatedLinks";
 import { SERVICE_RELATED } from "@/lib/related-links";
 import { Reveal } from "@/components/motion/Reveal";
 import { BlogContactForm } from "@/components/forms/Forms";
+import { GermanyOpportunityGuide, GermanyArticleLinks } from "@/components/GermanyOpportunityGuide";
 import { SERVICE_MAP, SERVICES, type Service, type ServiceSlug } from "@/lib/site";
 
 const TOC = [
@@ -32,10 +33,11 @@ export const Route = createFileRoute("/services/$slug")({
         { property: "og:description", content: s.metaDescription },
         { property: "og:url", content: url },
         { property: "og:type", content: "article" },
-        { property: "og:image", content: s.image },
+        ...(s.image.startsWith("https://") ? [{ property: "og:image", content: s.image }] : []),
+        { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: s.metaTitle },
         { name: "twitter:description", content: s.metaDescription },
-        { name: "twitter:image", content: s.image },
+        ...(s.image.startsWith("https://") ? [{ name: "twitter:image", content: s.image }] : []),
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [{
@@ -69,6 +71,14 @@ export const Route = createFileRoute("/services/$slug")({
 
 function ServiceDetail() {
   const { service: s } = Route.useLoaderData() as { service: Service };
+  const isGermany = s.slug === "germany-opportunity-card";
+  const toc = isGermany ? [
+    { id: "eligibility", label: "Eligibility & requirements" },
+    { id: "documents", label: "Documents to prepare" },
+    ...TOC.slice(0, 3),
+    { id: "germany-articles", label: "Germany articles" },
+    TOC[3],
+  ] : TOC;
   return (
     <PageShell>
       <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
@@ -90,7 +100,7 @@ function ServiceDetail() {
             </Reveal>
             <Reveal delay={0.4}>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/book-consultation" className="btn-gold btn-gold-hover">Apply Now <ArrowRight className="h-4 w-4" /></Link>
+                <Link to={isGermany ? "/eligibility/germany/opportunity-card-calculator" : "/book-consultation"} className="btn-gold btn-gold-hover">{isGermany ? "Check my eligibility" : "Apply Now"} <ArrowRight className="h-4 w-4" /></Link>
                 <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium hover:border-gold hover:text-gold">Ask a question</Link>
               </div>
             </Reveal>
@@ -111,7 +121,7 @@ function ServiceDetail() {
                 <List className="h-4 w-4 text-gold-deep" /> Table of contents
               </summary>
               <ul className="mt-3 space-y-1.5 pl-1">
-                {TOC.map((t) => (
+                {toc.map((t) => (
                   <li key={t.id}>
                     <a href={`#${t.id}`} className="block text-sm text-muted-foreground hover:text-navy-deep">
                       · {t.label}
@@ -120,6 +130,8 @@ function ServiceDetail() {
                 ))}
               </ul>
             </details>
+
+            {isGermany && <div className="mb-12"><GermanyOpportunityGuide /></div>}
 
             <section id="whats-included" className="scroll-mt-28">
               <Reveal><h2 className="font-display text-3xl font-bold text-navy-deep md:text-4xl">What's included.</h2></Reveal>
@@ -169,6 +181,8 @@ function ServiceDetail() {
               </div>
             </section>
 
+            {isGermany && <GermanyArticleLinks />}
+
             <Reveal>
               <RelatedLinks
                 className="mt-14"
@@ -203,7 +217,7 @@ function ServiceDetail() {
                   <List className="h-3.5 w-3.5" /> On this page
                 </p>
                 <ul className="mt-4 space-y-1 border-l border-black/10">
-                  {TOC.map((t) => (
+                  {toc.map((t) => (
                     <li key={t.id}>
                       <a
                         href={`#${t.id}`}
