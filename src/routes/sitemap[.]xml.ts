@@ -3,7 +3,7 @@ import type {} from "@tanstack/react-start";
 import { SERVICES, COUNTRY_PROGRAMS, BLOG } from "@/lib/site";
 import { listSitemapPosts } from "@/lib/blog.functions";
 
-const BASE_URL = "https://www.7wingsimmigration.com";
+const BASE_URL = "https://sevenwingsservice.lovable.app";
 
 function slugify(s: string) {
   return s.toLowerCase().replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
@@ -16,12 +16,8 @@ export const Route = createFileRoute("/sitemap.xml")({
         // Only the canonical /blog/:country/:slug URL; /blog/:slug just redirects.
         const blogSet = new Set<string>(["/blog"]);
         for (const p of BLOG) blogSet.add(`/blog/${slugify(p.category)}/${p.slug}`);
-        try {
-          const posts = await listSitemapPosts();
-          for (const p of posts) blogSet.add(`/blog/${slugify(p.category)}/${p.slug}`);
-        } catch {
-          // If the DB is unreachable, ship the static sitemap rather than 500.
-        }
+        const posts = await listSitemapPosts();
+        for (const p of posts) blogSet.add(`/blog/${slugify(p.category)}/${p.slug}`);
 
         const paths = [
           "/", "/about", "/services", "/success-stories", "/faq",

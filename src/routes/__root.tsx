@@ -146,6 +146,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "2q2xB1Uqj1dmud_FH7Jztu_7zcOloV6_kFJIVsD4iUg" },
       { name: "theme-color", content: "#0D2E7D" },
       { name: "robots", content: "index,follow,max-image-preview:large,max-snippet:-1" },
       { name: "googlebot", content: "index,follow" },

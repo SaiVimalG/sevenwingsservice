@@ -1,5 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { createClient } from "@supabase/supabase-js";
+import type { Database } from "@/integrations/supabase/types";
 
 const SectionSchema = z.object({
   heading: z.string().trim().min(1).max(200),
@@ -92,14 +94,29 @@ export const listDbPosts = createServerFn({ method: "GET" }).handler(async () =>
 // All published posts (including unlisted/SEO-only) — used for the sitemap so
 // every indexable article is crawlable even when hidden from the blog section.
 export const listSitemapPosts = createServerFn({ method: "GET" }).handler(async () => {
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data, error } = await supabaseAdmin
-    .from("blog_posts")
-    .select("slug, category")
-    .eq("published", true)
-    .order("published_at", { ascending: false });
-  if (error) throw new Error(error.message);
-  return (data ?? []).map((r) => ({ slug: r.slug as string, category: r.category as string }));
+  const url = process.env["SUPABASE_URL"];
+  const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
+  if (!url || !key) throw new Error("Public blog connection is unavailable");
+  const publicClient = createClient<Database>(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: { fetch: (input, init) => {
+      const headers = new Headers(init?.headers);
+      if (key.startsWith("sb_") && headers.get("Authorization") === `Bearer ${key}`) headers.delete("Authorization");
+      headers.set("apikey", key);
+      return fetch(input, { ...init, headers });
+    } },
+  });
+  const posts: { slug: string; category: string }[] = [];
+  const pageSize = 500;
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await publicClient.from("blog_posts")
+      .select("slug, category").eq("published", true)
+      .order("slug", { ascending: true }).range(offset, offset + pageSize - 1);
+    if (error) throw new Error(error.message);
+    const page = data ?? [];
+    posts.push(...page.map((r) => ({ slug: r.slug, category: r.category })));
+    if (page.length < pageSize) return posts;
+  }
 });
 
 export const getDbPost = createServerFn({ method: "GET" })
