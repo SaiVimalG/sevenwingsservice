@@ -5,6 +5,11 @@ export const Route = createFileRoute('/unsubscribe')({
   head: () => ({
     meta: [
       { title: 'Unsubscribe — 7 Wings Immigration' },
+      { name: 'description', content: 'Manage your 7 Wings Immigration email preferences and confirm that you want to stop receiving further emails.' },
+      { property: 'og:title', content: 'Unsubscribe — 7 Wings Immigration' },
+      { property: 'og:description', content: 'Confirm your email unsubscribe request and manage messages from 7 Wings Immigration.' },
+      { property: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary' },
       { name: 'robots', content: 'noindex,nofollow' },
     ],
   }),

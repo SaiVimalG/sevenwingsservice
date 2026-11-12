@@ -42,6 +42,11 @@ export const Route = createFileRoute("/admin/leads")({
   head: () => ({
     meta: [
       { title: "Leads | 7 Wings CRM" },
+      { name: "description", content: "Review contact and consultation requests, filter enquiries, and track lead status in the 7 Wings Immigration administration panel." },
+      { property: "og:title", content: "Leads | 7 Wings CRM" },
+      { property: "og:description", content: "Review immigration enquiries and manage consultation lead status in the 7 Wings administration panel." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
