@@ -75,12 +75,12 @@ function BlogIndex() {
               <Reveal key={post.slug} delay={i * 0.05}>
                 <article className="group h-full overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_-20px_rgba(13,46,125,0.25)] transition-all duration-500 hover:-translate-y-1 hover:shadow-gold">
                   <Link to="/blog/$country/$slug" params={{ country: slugify(post.category), slug: post.slug }} className="block">
-                    <div className="relative aspect-[16/11] overflow-hidden">
+                    <div className="relative aspect-[16/9] overflow-hidden">
                       <img
                         src={post.image}
                         alt={post.title}
                         loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
+                        className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
                       />
                       <span className="absolute left-4 top-4 rounded-md bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep shadow">
                         {post.category}

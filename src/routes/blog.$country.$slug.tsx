@@ -505,12 +505,12 @@ function BlogPostPage() {
                   params={{ country: slugify(r.category), slug: r.slug }}
                   className="group block overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:shadow-gold"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                  <div className="relative aspect-[16/9] overflow-hidden">
                     <img
                       src={r.image}
                       alt={r.title}
                       loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110"
+                      className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-[1.03]"
                     />
                     <span className="absolute left-4 top-4 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-navy-deep">
                       {r.category}
