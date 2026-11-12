@@ -16,6 +16,7 @@ import { generateBlogWithAI } from "@/lib/blog-ai.functions";
 import { SERVICES, BLOG, type BlogPost } from "@/lib/site";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
 import { CoverImageEditor } from "@/components/blog/CoverImageEditor";
+import { Button } from "@/components/ui/button";
 
 type ListRow = {
   slug: string;
@@ -108,7 +109,7 @@ const EMPTY: PostInput = {
   faqs: [],
   ctaLabel: "Book a free consultation",
   ctaSlug: "",
-  published: true,
+  published: false,
   listed: true,
 };
 
@@ -319,9 +320,9 @@ function PostList({ token, onEdit, onNew }: { token: string; onEdit: (slug: stri
                     {p.listed ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5" />}
                     {p.listed ? "Shown" : "Hidden"}
                   </button>
-                  <Link to="/blog/$country/$slug" params={{ country: slugify(p.category), slug: p.slug }} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold" target="_blank">
+                  {p.published && <Link to="/blog/$country/$slug" params={{ country: slugify(p.category), slug: p.slug }} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold" target="_blank">
                     <Eye className="h-3.5 w-3.5" /> View
-                  </Link>
+                  </Link>}
 
                   <button onClick={() => onEdit(p.slug, p.source)} className="inline-flex items-center gap-1 rounded-full border border-black/10 px-3 py-1.5 text-xs text-navy-deep hover:border-gold">
                     <Pencil className="h-3.5 w-3.5" /> Edit
@@ -420,12 +421,14 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
     return res.url;
   };
 
-  const save = async () => {
+  const save = async (published: boolean) => {
+    if (!published && form.published && originalSlug && !confirm("Save as draft and remove this published post from the website?")) return;
     setError(null);
     setSaving(true);
     try {
       const cleaned: PostInput = {
         ...form,
+        published,
         slug: slugify(form.slug || form.title),
         intro: "",
         sections: [],
@@ -454,7 +457,7 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
         <button onClick={onBack} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy-deep">
           <ArrowLeft className="h-4 w-4" /> Back to list
         </button>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <AIWriteButton
             token={token}
             onGenerated={({ title, excerpt, contentHtml, faqs }) =>
@@ -468,9 +471,12 @@ function PostEditor({ token, slug, source, onBack }: { token: string; slug?: str
               }))
             }
           />
-          <button onClick={save} disabled={saving} className="inline-flex items-center gap-2 btn-gold btn-gold-hover disabled:opacity-60">
-            <Save className="h-4 w-4" /> {saving ? "Saving…" : "Save post"}
-          </button>
+          <Button variant="outline" onClick={() => save(false)} disabled={saving}>
+            <Save className="h-4 w-4" /> Save Draft
+          </Button>
+          <Button onClick={() => save(true)} disabled={saving}>
+            <Eye className="h-4 w-4" /> {saving ? "Saving…" : form.published ? "Save post" : "Publish post"}
+          </Button>
         </div>
       </div>
       {error && <p className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
