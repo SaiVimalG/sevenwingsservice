@@ -5,4 +5,4 @@ Disallow: /leads
 Disallow: /lovable/
 Disallow: /api/
 
-Sitemap: https://sevenwingsservice.lovable.app/sitemap.xml
+Sitemap: https://www.7wingsimmigration.com/sitemap.xml

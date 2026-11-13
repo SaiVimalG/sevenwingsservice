@@ -3,7 +3,7 @@ import type {} from "@tanstack/react-start";
 import { SERVICES, COUNTRY_PROGRAMS, BLOG } from "@/lib/site";
 import { listSitemapPosts } from "@/lib/blog.functions";
 
-const BASE_URL = "https://sevenwingsservice.lovable.app";
+const BASE_URL = "https://www.7wingsimmigration.com";
 
 function slugify(s: string) {
   return s.toLowerCase().replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");

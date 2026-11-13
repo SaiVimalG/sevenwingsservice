@@ -7,7 +7,6 @@
 
 ## Pending Search Console setup
 
-- [x] Confirm linked Google account and property access.
-- [x] Add verification tag and correct the published-origin sitemap.
-- [ ] Publish with approval and confirm the live tag and sitemap — blocked because publishing approval was declined.
-- [ ] Verify ownership, add the property, and submit its sitemap — waiting for the verification tag and corrected sitemap to be published.
+- [x] Use https://www.7wingsimmigration.com exclusively in sitemap URLs and robots.txt; stop the previous Lovable-domain setup.
+- [ ] Publish custom-domain sitemap changes — waiting for publishing authorization.
+- [ ] Complete Search Console setup only for www.7wingsimmigration.com or 7wingsimmigration.com — waiting for a custom-domain setup request and verified property access check; never configure the Lovable address.
