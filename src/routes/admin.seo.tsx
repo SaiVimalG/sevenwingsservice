@@ -91,7 +91,7 @@ function SeoReview() {
       <form onSubmit={review} className="border-b border-border pb-8">
         <label htmlFor="page-url" className="mb-2 block font-medium">Custom-domain page URL</label>
         <div className="flex flex-col gap-3 sm:flex-row"><input id="page-url" type="url" required maxLength={2000} value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://www.7wingsimmigration.com/germany-opportunity-card-hyderabad" disabled={busy} className="min-w-0 flex-1 rounded-md border border-input bg-background px-3 py-3" />
-          {busy ? <Button type="button" variant="outline" onClick={() => { active.current?.abort(); active.current = null; setBusy(false); setStatus("Stopped — partial results preserved"); }}><Square /> Stop</Button> : <Button type="submit" size="lg"><Search /> Review page</Button>}
+          {busy ? <Button key="stop" type="button" variant="outline" onClick={() => { active.current?.abort(); active.current = null; setBusy(false); setStatus("Stopped — partial results preserved"); }}><Square /> Stop</Button> : <Button key="review" type="submit" size="lg"><Search /> Review page</Button>}
         </div>
       </form>
       <div role="status" className="my-5 flex items-center gap-2 text-sm text-muted-foreground">{busy && <Loader2 className="animate-spin" />}{status}</div>
