@@ -3,6 +3,7 @@ import { createStart, createMiddleware } from "@tanstack/react-start";
 import { renderErrorPage } from "./lib/error-page";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
 import { adminEntryRedirect } from "@/lib/admin-domain";
+import { canonicalHostRedirect } from "@/lib/canonical-host";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -19,31 +20,14 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   }
 });
 
-// Redirect the legacy `home.7wingsimmigration.com` subdomain (and the bare apex)
-// to the canonical `www.7wingsimmigration.com` so Google drops the duplicate
-// subdomain from its index.
+// Permanently move non-canonical hosts (apex, legacy home subdomain and the
+// test Lovable address) to www.7wingsimmigration.com so only it is indexed.
 const canonicalHostMiddleware = createMiddleware().server(async ({ next, request }) => {
   try {
     const adminRedirect = adminEntryRedirect(request);
     if (adminRedirect) return adminRedirect;
-    const url = new URL(request.url);
-    if (url.pathname.startsWith("/lovable/") || url.pathname === "/email/unsubscribe") {
-      return next();
-    }
-    const host = url.hostname.toLowerCase();
-    if (host === "home.7wingsimmigration.com" || host === "7wingsimmigration.com") {
-      url.hostname = "www.7wingsimmigration.com";
-      url.protocol = "https:";
-      url.port = "";
-      return new Response(null, {
-        status: 301,
-        headers: {
-          Location: url.toString(),
-          "Cache-Control": "public, max-age=3600",
-          "X-Robots-Tag": "noindex",
-        },
-      });
-    }
+    const hostRedirect = canonicalHostRedirect(request);
+    if (hostRedirect) return hostRedirect;
   } catch {
     // fall through to normal handling on any URL parsing issue
   }

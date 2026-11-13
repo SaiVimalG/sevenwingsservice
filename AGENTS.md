@@ -9,3 +9,4 @@
 - Never log unsubscribe tokens or database error details from token updates; diagnostics must not expose reusable email-preference credentials.
 - Keep Germany service and Hyderabad eligibility guidance in shared browser-safe content and components so requirements and curated canonical article links remain consistent without additional server reads.
 - Keep blog draft and publishing validation in the browser-safe blog-post-input module; drafts may omit covers and excerpts, while publishing requires both, so unfinished work can be saved without weakening publication checks.
+- Redirect every non-canonical production host (apex, legacy subdomains, the Lovable test address) to the www custom domain via the canonical-host helper in request middleware; preview and admin hosts stay untouched so only the custom domain is crawled and indexed.
