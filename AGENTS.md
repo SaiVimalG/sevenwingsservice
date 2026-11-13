@@ -1,5 +1,8 @@
 # Architecture rules
 
+- Keep private page reviews behind the blog admin credential, restrict every fetch and redirect to public production-domain pages, and stream evidence plus AI recommendations without claiming Google index status from crawler signals.
+- New page-review AI calls use request-scoped Responses SDK helpers and no automatic retries so cancellations and terminal failures cannot replay billed work.
+
 - Handle the admin hostname root redirect in request middleware using the browser-safe admin-domain helper; keep existing administration paths untouched so blog and leads requests do not loop or change hosts.
 - Sitemap blog reads use the publishable server client and existing published-post access policy, paginate all results, and surface failures rather than return partial XML so discovery never relies on privileged access.
 - Keep email queue RPC execution limited to service_role (revoke PUBLIC, anon and authenticated); queued message contents and mutations belong only to trusted email processing.

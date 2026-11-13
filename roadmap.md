@@ -1,5 +1,10 @@
 # Search Console setup
 
+## Private page SEO review
+
+- [x] Add a blog-admin page accepting production custom-domain URLs and showing live content/crawler evidence with streamed AI recommendations.
+- [x] Verify URL restrictions, admin access, and a real review in the preview; AI Gateway returned a successful streamed review of the Hyderabad page.
+
 ## Germany page improvements
 
 - [x] Improve the service and Hyderabad guidance, metadata, and relevant article/tool links.

@@ -25,6 +25,8 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
+import { Route as ApiPageReviewRouteImport } from './routes/api/page-review'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as CanadaNocFinderRouteImport } from './routes/canada.noc-finder'
@@ -130,6 +132,16 @@ const AdminBlogRoute = AdminBlogRouteImport.update({
 const AdminLeadsRoute = AdminLeadsRouteImport.update({
   id: '/admin/leads',
   path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/admin/seo',
+  path: '/admin/seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPageReviewRoute = ApiPageReviewRouteImport.update({
+  id: '/api/page-review',
+  path: '/api/page-review',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -290,6 +302,8 @@ export interface FileRoutesByFullPath {
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/api/page-review': typeof ApiPageReviewRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -332,6 +346,8 @@ export interface FileRoutesByTo {
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/api/page-review': typeof ApiPageReviewRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -376,6 +392,8 @@ export interface FileRoutesById {
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/api/page-review': typeof ApiPageReviewRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/canada/noc-finder': typeof CanadaNocFinderRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -421,6 +439,8 @@ export interface FileRouteTypes {
     | '/unsubscribe'
     | '/admin/blog'
     | '/admin/leads'
+    | '/admin/seo'
+    | '/api/page-review'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -463,6 +483,8 @@ export interface FileRouteTypes {
     | '/unsubscribe'
     | '/admin/blog'
     | '/admin/leads'
+    | '/admin/seo'
+    | '/api/page-review'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -506,6 +528,8 @@ export interface FileRouteTypes {
     | '/unsubscribe'
     | '/admin/blog'
     | '/admin/leads'
+    | '/admin/seo'
+    | '/api/page-review'
     | '/blog/$slug'
     | '/canada/noc-finder'
     | '/email/unsubscribe'
@@ -550,6 +574,8 @@ export interface RootRouteChildren {
   UnsubscribeRoute: typeof UnsubscribeRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
+  AdminSeoRoute: typeof AdminSeoRoute
+  ApiPageReviewRoute: typeof ApiPageReviewRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CanadaNocFinderRoute: typeof CanadaNocFinderRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
@@ -678,6 +704,20 @@ declare module '@tanstack/react-router' {
       path: '/admin/leads'
       fullPath: '/admin/leads'
       preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/admin/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/page-review': {
+      id: '/api/page-review'
+      path: '/api/page-review'
+      fullPath: '/api/page-review'
+      preLoaderRoute: typeof ApiPageReviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -916,6 +956,8 @@ const rootRouteChildren: RootRouteChildren = {
   UnsubscribeRoute: UnsubscribeRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminLeadsRoute: AdminLeadsRoute,
+  AdminSeoRoute: AdminSeoRoute,
+  ApiPageReviewRoute: ApiPageReviewRoute,
   BlogSlugRoute: BlogSlugRoute,
   CanadaNocFinderRoute: CanadaNocFinderRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
