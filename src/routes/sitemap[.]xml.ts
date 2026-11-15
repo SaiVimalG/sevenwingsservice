@@ -36,7 +36,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/eligibility/germany/opportunity-card-calculator",
           "/eligibility/uk/skilled-worker-visa-calculator",
           ...SERVICES.map((s) => `/services/${s.slug}`),
-          ...COUNTRY_PROGRAMS.flatMap((c) => c.programs.map((p) => `/programs/${p.slug}`)),
+          ...COUNTRY_PROGRAMS.flatMap((c) => c.programs.filter((p) => p.slug !== "germany-opportunity-card").map((p) => `/programs/${p.slug}`)),
           ...blogSet,
         ];
         const urls = paths.map((p) => `  <url>\n    <loc>${BASE_URL}${p}</loc>\n    <changefreq>monthly</changefreq>\n  </url>`).join("\n");

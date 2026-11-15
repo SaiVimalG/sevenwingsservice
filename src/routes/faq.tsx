@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/motion/Reveal";
+import sharingPhoto from "@/assets/immigration-consultation.jpg.asset.json";
 import { FAQS } from "@/lib/site";
 
 export const Route = createFileRoute("/faq")({
@@ -10,12 +11,16 @@ export const Route = createFileRoute("/faq")({
       { name: "description", content: "Hyderabad's most-asked immigration questions answered — Germany Opportunity Card, Australia PR, Canada PR, JSS, eligibility, fees and timelines, by 7 Wings consultants." },
       { property: "og:title", content: "Immigration FAQs | 7 Wings Immigration Hyderabad" },
       { property: "og:description", content: "Common questions about migration, eligibility, fees and timelines — answered by Hyderabad's senior immigration consultants." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: `https://www.7wingsimmigration.com${sharingPhoto.url}` },
+      { name: "twitter:image", content: `https://www.7wingsimmigration.com${sharingPhoto.url}` },
       { property: "og:url", content: "https://www.7wingsimmigration.com/faq" },
       { name: "twitter:title", content: "Immigration FAQs | 7 Wings Hyderabad" },
       { name: "twitter:description", content: "Germany, Australia, Canada PR and JSS questions answered by Hyderabad's senior consultants." },
     ],
     links: [{ rel: "canonical", href: "https://www.7wingsimmigration.com/faq" }],
-    scripts: [{
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.7wingsimmigration.com/" }, { "@type": "ListItem", position: 2, name: "FAQs", item: "https://www.7wingsimmigration.com/faq" }] }) }, {
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",
@@ -34,7 +39,7 @@ export const Route = createFileRoute("/faq")({
 function FAQ() {
   return (
     <PageShell>
-      <PageHero eyebrow="FAQ" title="Everything you wanted to ask, in one place." subtitle="Don't see your question here? Reach out — we'll reply within 4 working hours." />
+      <PageHero image={sharingPhoto.url} eyebrow="FAQ" title="Everything you wanted to ask, in one place." subtitle="Don't see your question here? Reach out — we'll reply within 4 working hours." />
       <section className="py-12 md:py-10">
         <div className="mx-auto max-w-3xl space-y-3 px-6">
           {FAQS.map((f, i) => (

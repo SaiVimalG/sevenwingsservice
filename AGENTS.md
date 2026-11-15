@@ -10,3 +10,6 @@
 - Keep Germany service and Hyderabad eligibility guidance in shared browser-safe content and components so requirements and curated canonical article links remain consistent without additional server reads.
 - Keep blog draft and publishing validation in the browser-safe blog-post-input module; drafts may omit covers and excerpts, while publishing requires both, so unfinished work can be saved without weakening publication checks.
 - Redirect every non-canonical production host (apex, legacy subdomains, the Lovable test address) to the www custom domain via the canonical-host helper in request middleware; preview and admin hosts stay untouched so only the custom domain is crawled and indexed.
+
+- Consolidate the legacy Germany Opportunity Card program URL into the service route with a permanent redirect; internal links and sitemaps use the service, while the Hyderabad page retains its local intent.
+- Render only configured company social profiles in navigation and structured data; omit unverified profiles rather than invent destinations.

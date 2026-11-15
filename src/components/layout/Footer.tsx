@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from "lucide-react";
 import { Logo } from "./Logo";
 import { SITE, SERVICES, BRANCHES } from "@/lib/site";
 
@@ -26,7 +26,6 @@ export function Footer() {
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:hidden">
               {[
                 { Icon: Instagram, href: SITE.social.instagram, label: "Instagram" },
-                { Icon: Linkedin, href: SITE.social.linkedin, label: "LinkedIn" },
                 { Icon: Facebook, href: SITE.social.facebook, label: "Facebook" },
                 { Icon: Youtube, href: SITE.social.youtube, label: "YouTube" },
               ].map(({ Icon, href, label }) => (
@@ -50,7 +49,6 @@ export function Footer() {
           <div className="hidden flex-wrap items-center gap-3 lg:flex">
             {[
               { Icon: Instagram, href: SITE.social.instagram, label: "Instagram" },
-              { Icon: Linkedin, href: SITE.social.linkedin, label: "LinkedIn" },
               { Icon: Facebook, href: SITE.social.facebook, label: "Facebook" },
               { Icon: Youtube, href: SITE.social.youtube, label: "YouTube" },
             ].map(({ Icon, href, label }) => (

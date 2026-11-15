@@ -8,8 +8,8 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Marquee } from "@/components/motion/Marquee";
 import { CountUp } from "@/components/motion/CountUp";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { SERVICES, STATS, TESTIMONIALS, FAQS, AWARDS, COUNTRIES, SITE } from "@/lib/site";
-import heroImg from "@/assets/hero.webp";
+import { SERVICES, STATS, TESTIMONIALS, FAQS, COUNTRIES, SITE } from "@/lib/site";
+import sharingPhoto from "@/assets/immigration-consultation.jpg.asset.json";
 import hero768Img from "@/assets/hero-768.webp";
 import hero960Img from "@/assets/hero-960.webp";
 import teamImg640 from "@/assets/team-640.webp.asset.json";
@@ -18,19 +18,21 @@ import realStoriesVideo from "@/assets/happy-client.mp4.asset.json";
 import realStoriesPoster from "@/assets/happy-client-poster.jpg.asset.json";
 import germanyImg from "@/assets/germany.webp";
 
-const OG_IMAGE = "https://www.7wingsimmigration.com" + heroImg;
+const OG_IMAGE = "https://www.7wingsimmigration.com" + sharingPhoto.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { name: "description", content: "Best immigration consultancy in Hyderabad — senior-led visas & PR for Germany, Australia, Canada, UK and JSS. 1000+ successful cases, transparent fees." },
-      { property: "og:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { property: "og:description", content: "Best immigration consultancy in Hyderabad. Free profile evaluation across Germany, Australia, Canada, UK and JSS pathways." },
+      { title: "Immigration Consultants in Hyderabad | 7 Wings Immigration" },
+      { name: "description", content: "Immigration consultants in Hyderabad — senior-led visas & PR for Germany, Australia, Canada, UK and JSS. Eligibility checks and document support." },
+      { property: "og:title", content: "Immigration Consultants in Hyderabad | 7 Wings Immigration" },
+      { property: "og:description", content: "Immigration consultants in Hyderabad. Free profile evaluation across Germany, Australia, Canada, UK and JSS pathways." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://www.7wingsimmigration.com/" },
       { property: "og:image", content: OG_IMAGE },
-      { name: "twitter:title", content: "Best Immigration Consultancy in Hyderabad | 7 Wings" },
-      { name: "twitter:description", content: "Best immigration consultancy in Hyderabad — Germany, Australia, Canada, UK, JSS." },
+      { name: "twitter:title", content: "Immigration Consultants in Hyderabad | 7 Wings" },
+      { name: "twitter:description", content: "Immigration consultants in Hyderabad — Germany, Australia, Canada, UK, JSS." },
       { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [
@@ -52,7 +54,6 @@ function Home() {
       
       <FAQ />
       <Counter />
-      <Awards />
       <BrandMarquee />
       <CTABanner />
     </PageShell>
@@ -92,7 +93,7 @@ function Hero() {
 
           <Reveal delay={0.5}>
             <p className="mt-7 max-w-xl text-base text-white/90 md:text-lg">
-              7 Wings Immigration guides ambitious professionals, students and families from Hyderabad to confident landings in
+              As immigration consultants in Hyderabad, 7 Wings Immigration helps professionals, students and families explore
               <span className="text-gold"> Germany, Australia, Canada </span> and beyond — through trusted, transparent immigration pathways.
             </p>
           </Reveal>
@@ -170,7 +171,7 @@ function About() {
           </Reveal>
           <Reveal delay={0.4}>
             <ul className="mt-6 space-y-2.5">
-              {["Fastest visa form processing with skilled consultants", "Partnerships with verified international employers & universities", "Family-first planning — spouse and children handled together"].map((p) => (
+              {["Visa application preparation with experienced consultants", "Qualification and document checks for your chosen pathway", "Family eligibility guidance based on your residence permit"].map((p) => (
                 <li key={p} className="flex items-start gap-3 text-sm font-medium text-navy-deep">
                   <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-gold-deep" /> {p}
                 </li>
@@ -487,9 +488,9 @@ function Counter() {
       <div className="absolute inset-0 [background:radial-gradient(600px_300px_at_20%_80%,color-mix(in_oklab,var(--gold)_25%,transparent),transparent_60%)]" />
       <div className="relative mx-auto max-w-[1200px] px-6 text-center">
         <Reveal><p className="inline-block rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Did You Know</p></Reveal>
-        <Reveal delay={0.1}><h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">Our Achievements in <span className="text-gradient-gold">Numbers</span></h2></Reveal>
+        <Reveal delay={0.1}><h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">Our Services and <span className="text-gradient-gold">Offices</span></h2></Reveal>
       </div>
-      <div className="relative mx-auto mt-16 grid max-w-[1200px] grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur md:grid-cols-4">
+      <div className="relative mx-auto mt-16 grid max-w-[1200px] grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur md:grid-cols-2">
         {STATS.map((s, i) => (
           <Reveal key={s.label} delay={i * 0.08}>
             <div className="bg-navy-deep/70 p-8 text-center">
@@ -498,30 +499,6 @@ function Counter() {
             </div>
           </Reveal>
         ))}
-      </div>
-    </section>
-  );
-}
-
-/* ───────── Awards (visa-consultancy grid) ───────── */
-function Awards() {
-  return (
-    <section className="py-12 md:py-10">
-      <div className="mx-auto max-w-[1200px] px-6">
-        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
-          {AWARDS.map((a, i) => (
-            <Reveal key={a.title} delay={i * 0.06}>
-              <div className="group h-full rounded-2xl border border-black/5 bg-white p-7 text-center shadow-[0_15px_40px_-25px_rgba(13,46,125,0.15)] transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-gold">
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-gold-soft via-gold to-gold-deep text-navy-deep shadow-gold transition-transform group-hover:scale-110">
-                  <span className="font-display text-2xl">🏆</span>
-                </div>
-                <h3 className="mt-5 font-display text-lg font-bold text-navy-deep">{a.title}</h3>
-                <p className="mt-1 text-xs text-muted-foreground">{a.body}</p>
-                <p className="mt-3 font-display text-gold-deep">{a.year}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
     </section>
   );

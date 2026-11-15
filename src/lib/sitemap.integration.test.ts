@@ -17,3 +17,21 @@ test("robots advertises only the custom-domain sitemap", async () => {
   const sitemaps = robots.split("\n").filter((line) => line.startsWith("Sitemap:"));
   assert.deepEqual(sitemaps, ["Sitemap: https://www.7wingsimmigration.com/sitemap.xml"]);
 });
+
+test("duplicate Germany program URL permanently redirects to the service", async () => {
+  const response = await fetch("http://localhost:8080/programs/germany-opportunity-card", { redirect: "manual" });
+  assert.equal(response.status, 301);
+  const location = response.headers.get("location");
+  assert.ok(location);
+  assert.equal(new URL(location, "http://localhost:8080").pathname, "/services/germany-opportunity-card");
+});
+
+test("sitemap retains service and local intent but excludes the Germany duplicate", async () => {
+  const response = await fetch("http://localhost:8080/sitemap.xml");
+  assert.equal(response.status, 200);
+  const xml = await response.text();
+  const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
+  assert.ok(paths.includes("/services/germany-opportunity-card"));
+  assert.ok(paths.includes("/germany-opportunity-card-hyderabad"));
+  assert.equal(paths.includes("/programs/germany-opportunity-card"), false);
+});

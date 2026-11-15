@@ -6,6 +6,7 @@ import { SERVICE_RELATED } from "@/lib/related-links";
 import { Reveal } from "@/components/motion/Reveal";
 import { BlogContactForm } from "@/components/forms/Forms";
 import { GermanyOpportunityGuide, GermanyArticleLinks } from "@/components/GermanyOpportunityGuide";
+import germanySharingPhoto from "@/assets/germany-opportunity-card.jpg.asset.json";
 import { SERVICE_MAP, SERVICES, type Service, type ServiceSlug } from "@/lib/site";
 
 const TOC = [
@@ -24,6 +25,7 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => {
     const s = loaderData?.service;
     if (!s) return {};
+    const image = s.slug === "germany-opportunity-card" ? `https://www.7wingsimmigration.com${germanySharingPhoto.url}` : s.image;
     const url = `https://www.7wingsimmigration.com/services/${s.slug}`;
     return {
       meta: [
@@ -33,14 +35,14 @@ export const Route = createFileRoute("/services/$slug")({
         { property: "og:description", content: s.metaDescription },
         { property: "og:url", content: url },
         { property: "og:type", content: "article" },
-        ...(s.image.startsWith("https://") ? [{ property: "og:image", content: s.image }] : []),
+        ...(image.startsWith("https://") ? [{ property: "og:image", content: image }] : []),
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: s.metaTitle },
         { name: "twitter:description", content: s.metaDescription },
-        ...(s.image.startsWith("https://") ? [{ name: "twitter:image", content: s.image }] : []),
+        ...(image.startsWith("https://") ? [{ name: "twitter:image", content: image }] : []),
       ],
       links: [{ rel: "canonical", href: url }],
-      scripts: [{
+      scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.7wingsimmigration.com/" }, { "@type": "ListItem", position: 2, name: "Services", item: "https://www.7wingsimmigration.com/services" }, { "@type": "ListItem", position: 3, name: s.title, item: url }] }) }, {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",

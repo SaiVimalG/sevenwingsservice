@@ -82,7 +82,7 @@ const orgJsonLd = {
   },
   image: LOGO_URL_512,
   description:
-    "Best immigration consultancy in Hyderabad for Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker visa and JSS career programs. Senior-led, transparent fees.",
+    "Immigration consultancy in Hyderabad for Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker visa and JSS career programs. Senior-led, transparent fees.",
   priceRange: "₹₹",
   address: {
     "@type": "PostalAddress",
@@ -105,7 +105,7 @@ const orgJsonLd = {
     "Study Abroad",
     "Work Visa Consultancy",
   ],
-  sameAs: [SITE.social.instagram, SITE.social.linkedin, SITE.social.facebook, SITE.social.youtube],
+  sameAs: [SITE.social.instagram, SITE.social.facebook, SITE.social.youtube],
 };
 
 const websiteJsonLd = {
@@ -117,11 +117,6 @@ const websiteJsonLd = {
   alternateName: ["7 Wings Immigration Hyderabad", "Seven Wings Immigration", "7Wings Immigration"],
   publisher: { "@id": `${SITE_URL}/#organization` },
   inLanguage: "en-IN",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/?q={search_term_string}` },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const sitelinksJsonLd = {
@@ -155,9 +150,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "geo.placename", content: "Hyderabad" },
       { name: "geo.position", content: "17.4435;78.3772" },
       { name: "ICBM", content: "17.4435, 78.3772" },
-      { title: "Best Immigration Consultancy in Hyderabad | 7 Wings Immigration" },
-      { name: "description", content: "Best immigration consultancy in Hyderabad — senior-led visa & PR services for Germany, Australia, Canada, UK and JSS. Transparent fees, 1000+ cases." },
-      { name: "keywords", content: "best immigration consultancy in Hyderabad, immigration consultants Hyderabad, Germany Opportunity Card, Australia PR, Canada PR, UK Skilled Worker visa, JSS program" },
       { property: "og:site_name", content: SITE.name },
       { property: "og:locale", content: "en_IN" },
       { property: "og:type", content: "website" },
@@ -200,6 +192,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "(function(){var loaded=false;function l(){if(loaded)return;loaded=true;var w=window,d=document,s='script',i='GTM-5K4WPVGQ';w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){window.addEventListener(e,l,{once:true,passive:true});});window.addEventListener('load',function(){setTimeout(l,12000);});})();",
       },
       { type: "application/ld+json", children: JSON.stringify(orgJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify({
+        "@context": "https://schema.org", "@type": "LocalBusiness",
+        "@id": `${SITE_URL}/#essen-office`, name: `${SITE.name} — Essen Branch`,
+        parentOrganization: { "@id": `${SITE_URL}/#organization` },
+        url: `${SITE_URL}/contact`, image: LOGO_URL_512,
+        address: { "@type": "PostalAddress", streetAddress: "Schacht Neu-Cöln 26, 1. Etage", addressLocality: "Essen", postalCode: "45355", addressCountry: "DE" },
+        sameAs: Object.values(SITE.social),
+      }) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(sitelinksJsonLd) },
     ],

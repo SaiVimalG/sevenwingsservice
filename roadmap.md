@@ -18,3 +18,10 @@
 - [x] Check all 96 custom-domain sitemap destinations: HTTP 200, one H1 and canonical each, unique titles/descriptions, no noindex; existing sitemap has no lastmod values.
 - [ ] Publish custom-domain sitemap and robots.txt corrections — publishing approval declined during this review; live files still advertise the test host.
 - [ ] Resubmit https://www.7wingsimmigration.com/sitemap.xml to the verified custom-domain property after the corrected files are live — blocked by declined publishing approval.
+
+## Attached accuracy and trust corrections
+
+- [x] Correct family and timeline guidance; remove unsupported awards, approval rates and superlatives.
+- [x] Standardise social links, search metadata, sharing photos, breadcrumbs and Germany page destinations.
+- [x] Verify the affected pages, redirects and sitemap: eight tests and desktop/mobile checks passed.
+- [ ] Publish these content corrections — awaiting publishing approval; Google Rich Results Test and exact Essen coordinates were not verified.

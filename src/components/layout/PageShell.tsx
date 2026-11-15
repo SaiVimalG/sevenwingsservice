@@ -37,13 +37,16 @@ export function PageHero({
   eyebrow,
   title,
   subtitle,
+  image,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  image?: string;
 }) {
   return (
     <section className="relative overflow-hidden bg-hero pb-10 pt-28 text-white md:pb-12 md:pt-32 lg:pt-36">
+      {image && <img src={image} alt="" width={1200} height={630} className="absolute inset-0 h-full w-full object-cover opacity-20" />}
       <div className="absolute inset-0 [background:radial-gradient(500px_220px_at_85%_30%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
       <div className="relative mx-auto max-w-5xl px-6 text-center">
         {eyebrow && (

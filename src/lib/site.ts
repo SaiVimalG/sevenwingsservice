@@ -15,7 +15,6 @@ export const SITE = {
   social: {
     instagram: "https://www.instagram.com/7wingsimmigration/",
     facebook: "https://www.facebook.com/7wings.immigrations",
-    linkedin: "https://linkedin.com/",
     youtube: "https://www.youtube.com/@7WingsImmigration",
   },
 };
@@ -144,8 +143,8 @@ export const SERVICES: Service[] = [
     image: australia,
     flag: "🇦🇺",
     country: "Australia",
-    metaTitle: "Best Immigration Consultancy in Hyderabad for Australia PR | 7 Wings",
-    metaDescription: "Best immigration consultancy in Hyderabad for Australia PR — skills assessment, points uplift, state nomination and Subclass 189/190/491 by 7 Wings.",
+    metaTitle: "Immigration Consultancy in Hyderabad for Australia PR | 7 Wings",
+    metaDescription: "Immigration consultancy in Hyderabad for Australia PR — skills assessment, points uplift, state nomination and Subclass 189/190/491 by 7 Wings.",
   },
   {
     slug: "canada-pr",
@@ -170,13 +169,13 @@ export const SERVICES: Service[] = [
     faqs: [
       { q: "What CRS score do I need?", a: "Recent draws have hovered between 470 and 540 for general rounds and lower for category-based draws. We target your highest reachable score." },
       { q: "Should I apply for PNP or Express Entry?", a: "Both, in parallel where eligible. A PNP nomination adds 600 CRS points — almost a guaranteed ITA." },
-      { q: "Can my family come with me?", a: "Yes. Spouses receive an open work permit and children get free schooling from day one." },
+      { q: "Can my family come with me?", a: "Eligible spouses and dependent children may be included in a permanent residence application. Temporary work-permit eligibility and access to schooling depend on status and applicable rules; they are not automatic for every applicant." },
     ],
     image: canada,
     flag: "🇨🇦",
     country: "Canada",
-    metaTitle: "Best Immigration Consultancy in Hyderabad for Canada PR | 7 Wings",
-    metaDescription: "Best immigration consultancy in Hyderabad for Canada PR — Express Entry, PNP, ECA, IELTS/CELPIP and family sponsorship with transparent fees.",
+    metaTitle: "Immigration Consultancy in Hyderabad for Canada PR | 7 Wings",
+    metaDescription: "Immigration consultancy in Hyderabad for Canada PR — Express Entry, PNP, ECA, IELTS/CELPIP and family sponsorship with transparent fees.",
   },
   {
     slug: "jss-program",
@@ -206,8 +205,8 @@ export const SERVICES: Service[] = [
     image: jss,
     flag: "🌍",
     country: "Global",
-    metaTitle: "Best Immigration Consultancy in Hyderabad for JSS Program | 7 Wings",
-    metaDescription: "Best immigration consultancy in Hyderabad for the JSS Program — CV rebuild, recruiter outreach, interview prep and relocation by 7 Wings.",
+    metaTitle: "Immigration Consultancy in Hyderabad for JSS Program | 7 Wings",
+    metaDescription: "Immigration consultancy in Hyderabad for the JSS Program — CV rebuild, recruiter outreach, interview prep and relocation by 7 Wings.",
   },
 ];
 
@@ -238,11 +237,11 @@ export const TESTIMONIALS = [
 ];
 
 export const FAQS = [
-  { q: "How long does the immigration process take?", a: "It depends on the country and visa class — Germany Opportunity Card typically lands in 8–14 weeks, Canada PR in 9–14 months, and Australia PR in 9–16 months. We commit to a written timeline before you engage." },
+  { q: "How long does the immigration process take?", a: "Timing depends on the country, visa category, qualification checks, appointment availability and the responsible immigration authority. For the Germany Opportunity Card, consult current German mission guidance; we cannot guarantee an appointment or decision date. Do not book non-refundable travel before your visa is issued." },
   { q: "Am I eligible for PR in Germany, Australia or Canada?", a: "Eligibility comes down to your age, education, work experience and language scores. Book a free 30-minute consultation at our Hyderabad office and we will score you against every available pathway in one sitting." },
   { q: "What documents are required?", a: "Identity, educational, work-experience, financial and (where applicable) language proficiency documents. We share a country-specific checklist on day one and manage attestation and translation for you." },
   { q: "How much do your services cost?", a: "We operate on transparent, fixed-fee engagements — no hidden charges and no surprise government-fee mark-ups. The exact figure depends on the program and is shared in writing before you sign." },
-  { q: "Can my family members apply with me?", a: "Yes. Spouses and dependent children are included in nearly every program we handle, with work and study rights from day one in most destinations." },
+  { q: "Can my family members apply with me?", a: "Family eligibility and work or study rights depend on the country and residence permit. A spouse cannot normally join solely through family reunification during a Germany Opportunity Card job search; they may qualify for their own Opportunity Card or another visa. Check the applicable rules before planning travel for your family." },
   { q: "Do you provide job assistance after migration?", a: "Yes. Our JSS Program continues for up to 90 days after landing — CV positioning, recruiter introductions and interview prep tailored to the local market." },
   { q: "Are you a registered immigration consultancy?", a: "Yes. 7 Wings Immigration is a Hyderabad-registered consultancy with senior counsellors trained in the latest IRCC, BAMF and Home Affairs frameworks." },
   { q: "Do you offer refunds?", a: "We offer a written refund policy that protects you against eligibility errors on our part. Full details are in our engagement letter and on the Refund Policy page." },
@@ -257,10 +256,8 @@ export const NAV = [
 ];
 
 export const STATS = [
-  { value: 1000, suffix: "+", label: "Successful Consultations" },
-  { value: 95, suffix: "%", label: "Visa Success Rate" },
-  { value: 4, suffix: "", label: "Countries Served" },
-  { value: 24, suffix: "/7", label: "Guidance Support" },
+  { value: SERVICES.length, suffix: "", label: "Core Service Programmes" },
+  { value: BRANCHES.length, suffix: "", label: "Office Locations" },
 ];
 
 export const COUNTRIES = [
@@ -270,13 +267,6 @@ export const COUNTRIES = [
   { slug: "uae", name: "United Arab Emirates", flag: "🇦🇪", tagline: "Golden Visa · Skilled Employment", image: jss, blurb: "Tax-free salaries, world-class infrastructure and a 10-year Golden Visa for in-demand professionals." },
   { slug: "uk", name: "United Kingdom", flag: "🇬🇧", tagline: "Skilled Worker · Global Talent", image: germany, blurb: "Career-defining roles across London, Manchester and Edinburgh via Skilled Worker and Global Talent routes." },
   { slug: "singapore", name: "Singapore", flag: "🇸🇬", tagline: "Employment Pass · ONE Pass", image: australia, blurb: "Asia's premier finance and tech hub — Employment Pass and ONE Pass strategy for senior professionals." },
-];
-
-export const AWARDS = [
-  { title: "Best Immigration Consultancy", year: "2025", body: "Hyderabad Business Council" },
-  { title: "Visa Success Award", year: "2025", body: "Telangana Trade Forum" },
-  { title: "Innovation in Migration", year: "2024", body: "South India Excellence Awards" },
-  { title: "Global Education Partner", year: "2024", body: "AIRC Recognised Member" },
 ];
 
 export interface BlogPost {
@@ -617,7 +607,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
               heading: "How to Apply",
               paragraphs: [
                 "**Visa Application:** Apply at the German Embassy/Consulate in India via the Federal Foreign Office Visa Portal with proof of qualifications, points, funds and certified translations.",
-                "**Processing Time:** Approximately 4–6 weeks. Do not book flights until the visa is stamped.",
+                "**Processing Time:** Depends on qualification checks, appointment availability, the responsible German mission and document completeness. Consult current mission guidance and avoid non-refundable travel bookings before visa issuance.",
                 "**After Arrival:** Receive a residence permit (job seeker) valid up to 12 months. Once you secure qualified employment, switch to a Skilled Worker Visa or EU Blue Card.",
               ],
             },
@@ -634,7 +624,7 @@ export const COUNTRY_PROGRAMS: CountryGroup[] = [
             { q: "How do I get the required points?", a: "You accumulate points for qualifications, work experience, age, language, etc. For example, 4 points for a partially recognised degree, 3 points for 5+ years' experience." },
             { q: "What if I already studied in Germany?", a: "If you completed a degree or training in Germany, you can apply for a job seeker permit (18 months) immediately, with part-time work allowed." },
             { q: "How long is the Opportunity Card valid?", a: "Up to 12 months. If you find qualified work, switch to another visa before it expires. Otherwise, you must leave when the visa ends." },
-            { q: "Can my spouse come with me?", a: "Yes, usually via family reunification. If your partner qualifies independently, it earns +1 point in the matrix." },
+            { q: "Can my spouse come with me?", a: "A spouse cannot normally join solely through family reunification during an Opportunity Card job search. They may qualify for their own Opportunity Card or another visa. A qualifying spouse applying together may contribute one point; confirm the conditions for your case." },
             { q: "What happens after I find a job in Germany?", a: "Apply to the local Foreigners Authority for a Skilled Worker Visa or Blue Card once you have a valid job offer and the required salary." },
             { q: "How can 7 Wings Immigration help?", a: "7 Wings Immigration (Hyderabad) offers free guidance and end-to-end support — document review, points scoring, recognition, and interview preparation." },
           ],

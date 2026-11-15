@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowRight, Phone, Mail, MapPin, Globe, Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
+import { Menu, X, ArrowRight, Phone, Mail, MapPin, Globe, Instagram, Youtube, Facebook } from "lucide-react";
 import { Logo } from "./Logo";
 import { NAV, SERVICES, SITE } from "@/lib/site";
 
@@ -19,7 +19,6 @@ function HeaderTop() {
           </li>
         </ul>
         <div className="flex items-center gap-3 text-white/95">
-          <a href={SITE.social.linkedin} aria-label="LinkedIn" className="transition-colors hover:text-gold"><Linkedin className="h-3.5 w-3.5" /></a>
           <a href={SITE.social.facebook} aria-label="Facebook" className="transition-colors hover:text-gold"><Facebook className="h-3.5 w-3.5" /></a>
           <a href={SITE.social.instagram} aria-label="Instagram" className="transition-colors hover:text-gold"><Instagram className="h-3.5 w-3.5" /></a>
           <a href={SITE.social.youtube} aria-label="YouTube" className="transition-colors hover:text-gold"><Youtube className="h-3.5 w-3.5" /></a>

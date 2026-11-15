@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { ArrowRight, Check, Phone, MessageCircle, Calendar, List } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -16,6 +16,7 @@ type LoaderData = { country: CountryGroup; program: Program };
 
 export const Route = createFileRoute("/programs/$slug")({
   loader: ({ params }) => {
+    if (params.slug === "germany-opportunity-card") throw redirect({ to: "/services/$slug", params: { slug: "germany-opportunity-card" }, statusCode: 301 });
     const match = findProgram(params.slug);
     if (!match) throw notFound();
     return match;
@@ -34,10 +35,11 @@ export const Route = createFileRoute("/programs/$slug")({
         { property: "og:description", content: desc },
         { property: "og:url", content: url },
         { property: "og:type", content: "article" },
-        { property: "og:image", content: country.image },
+        ...(country.image.startsWith("https://") ? [{ property: "og:image", content: country.image }] : []),
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: desc },
-        { name: "twitter:image", content: country.image },
+        ...(country.image.startsWith("https://") ? [{ name: "twitter:image", content: country.image }] : []),
+        { name: "twitter:card", content: "summary_large_image" },
       ],
       links: [{ rel: "canonical", href: url }],
     };
@@ -370,7 +372,7 @@ function ProgramPage() {
               {related.map((p: Program, i: number) => (
                 <Reveal key={p.slug} delay={i * 0.05}>
                   <Link
-                    to="/programs/$slug"
+                    to={p.slug === "germany-opportunity-card" ? "/services/$slug" : "/programs/$slug"}
                     params={{ slug: p.slug }}
                     className="group block h-full rounded-2xl border border-black/5 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-gold"
                   >

@@ -163,7 +163,7 @@ export function FeaturedServices() {
                   {active.programs.map((p) => (
                     <li key={p.slug}>
                       <Link
-                        to="/programs/$slug"
+                        to={p.slug === "germany-opportunity-card" ? "/services/$slug" : "/programs/$slug"}
                         params={{ slug: p.slug }}
                         className="group relative flex w-full items-center justify-between gap-3 overflow-hidden whitespace-nowrap rounded-full border border-gold/50 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-white/90 shadow-[0_4px_14px_-8px_rgba(212,175,55,0.45)] backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-navy-deep hover:shadow-[0_10px_28px_-10px_rgba(212,175,55,0.75)] sm:text-[15px]"
                       >
