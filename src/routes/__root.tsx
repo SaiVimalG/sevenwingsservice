@@ -105,7 +105,7 @@ const orgJsonLd = {
     "Study Abroad",
     "Work Visa Consultancy",
   ],
-  sameAs: [SITE.social.instagram, SITE.social.facebook, SITE.social.youtube],
+  sameAs: [SITE.social.instagram, SITE.social.facebook, SITE.social.youtube, SITE.social.linkedin],
 };
 
 const websiteJsonLd = {

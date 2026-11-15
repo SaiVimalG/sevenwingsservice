@@ -16,6 +16,7 @@ export const SITE = {
     instagram: "https://www.instagram.com/7wingsimmigration/",
     facebook: "https://www.facebook.com/7wings.immigrations",
     youtube: "https://www.youtube.com/@7WingsImmigration",
+    linkedin: "https://in.linkedin.com/company/7-wings-immigration",
   },
 };
 

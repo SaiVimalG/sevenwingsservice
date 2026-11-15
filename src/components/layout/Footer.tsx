@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 import { Logo } from "./Logo";
 import { SITE, SERVICES, BRANCHES } from "@/lib/site";
 
@@ -28,6 +28,7 @@ export function Footer() {
                 { Icon: Instagram, href: SITE.social.instagram, label: "Instagram" },
                 { Icon: Facebook, href: SITE.social.facebook, label: "Facebook" },
                 { Icon: Youtube, href: SITE.social.youtube, label: "YouTube" },
+                { Icon: Linkedin, href: SITE.social.linkedin, label: "LinkedIn" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -51,6 +52,7 @@ export function Footer() {
               { Icon: Instagram, href: SITE.social.instagram, label: "Instagram" },
               { Icon: Facebook, href: SITE.social.facebook, label: "Facebook" },
               { Icon: Youtube, href: SITE.social.youtube, label: "YouTube" },
+              { Icon: Linkedin, href: SITE.social.linkedin, label: "LinkedIn" },
             ].map(({ Icon, href, label }) => (
               <a
                 key={label}
