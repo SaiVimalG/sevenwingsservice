@@ -40,16 +40,16 @@ export const BRANCHES = [
     name: "Germany Branch",
     country: "Germany",
     flag: "🇩🇪",
-    address: "Schacht Neu-Cöln 26, 1. Etage, 45355 Essen, Deutschland",
+    address: "Essen, Deutschland",
     mapsLink:
       "https://www.google.com/maps/search/?api=1&query=" +
-      encodeURIComponent("Schacht Neu-Cöln 26, 45355 Essen, Deutschland"),
+      encodeURIComponent("Essen, Deutschland"),
     directions:
       "https://www.google.com/maps/dir/?api=1&destination=" +
-      encodeURIComponent("Schacht Neu-Cöln 26, 45355 Essen, Deutschland"),
+      encodeURIComponent("Essen, Deutschland"),
     embed:
       "https://www.google.com/maps?q=" +
-      encodeURIComponent("Schacht Neu-Cöln 26, 45355 Essen, Deutschland") +
+      encodeURIComponent("Essen, Deutschland") +
       "&output=embed",
   },
 ] as const;
