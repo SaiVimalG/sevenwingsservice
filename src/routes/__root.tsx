@@ -197,7 +197,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         "@id": `${SITE_URL}/#essen-office`, name: `${SITE.name} — Essen Branch`,
         parentOrganization: { "@id": `${SITE_URL}/#organization` },
         url: `${SITE_URL}/contact`, image: LOGO_URL_512,
-        address: { "@type": "PostalAddress", addressLocality: "Essen", addressCountry: "DE" },
+        address: { "@type": "PostalAddress", streetAddress: "Krablerstraße 127", postalCode: "45326", addressLocality: "Essen", addressCountry: "DE" },
         sameAs: Object.values(SITE.social),
       }) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },

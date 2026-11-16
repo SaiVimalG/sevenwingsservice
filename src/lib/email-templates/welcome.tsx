@@ -66,7 +66,7 @@ const Email = ({ name, country }: Props) => (
           </Link>
         </Text>
         <Text style={contactLine}>
-          📍 308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081 · 📍 Essen, Deutschland
+          📍 308, 3rd Floor, Jain Sadguru Capital Park, Silicon Valley, Madhapur, HITEC City, Hyderabad, Telangana 500081 · 📍 Krablerstraße 127, 45326 Essen-Stadtbezirke V, Germany
         </Text>
 
         <Hr style={hr} />

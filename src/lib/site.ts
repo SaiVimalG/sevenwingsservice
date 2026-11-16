@@ -20,6 +20,8 @@ export const SITE = {
   },
 };
 
+const ESSEN_ADDRESS = "Krablerstraße 127, 45326 Essen-Stadtbezirke V, Germany";
+
 export const BRANCHES = [
   {
     id: "hyderabad",
@@ -40,16 +42,16 @@ export const BRANCHES = [
     name: "Germany Branch",
     country: "Germany",
     flag: "🇩🇪",
-    address: "Essen, Deutschland",
+    address: ESSEN_ADDRESS,
     mapsLink:
       "https://www.google.com/maps/search/?api=1&query=" +
-      encodeURIComponent("Essen, Deutschland"),
+      encodeURIComponent(ESSEN_ADDRESS),
     directions:
       "https://www.google.com/maps/dir/?api=1&destination=" +
-      encodeURIComponent("Essen, Deutschland"),
+      encodeURIComponent(ESSEN_ADDRESS),
     embed:
       "https://www.google.com/maps?q=" +
-      encodeURIComponent("Essen, Deutschland") +
+      encodeURIComponent(ESSEN_ADDRESS) +
       "&output=embed",
   },
 ] as const;
